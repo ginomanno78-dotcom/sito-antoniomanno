@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Street - ph. antonio manno</title>
+    <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+
+    <nav id="navbar">
+        <div class="navbar-inner">
+            <a href="index.html" class="navbar-logo"><span class="logo-line1">ph. antonio</span><span class="logo-line2">manno</span></a>
+            <button type="button" class="hamburger" aria-label="Apri menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html#hero">Home</a></li>
+                <li><a href="index.html#biografia">Biografia</a></li>
+                <li class="nav-item-dropdown">
+                    <a href="index.html#portfolio" class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">Portfolio</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="monuments.html">Monuments</a></li>
+                        <li><a href="city.html">City</a></li>
+                        <li><a href="people.html">People</a></li>
+                        <li><a href="jazz.html">Jazz</a></li>
+                        <li><a href="landscapes.html">Landscapes</a></li>
+                        <li><a href="street.html">Street</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item-dropdown">
+                    <a href="index.html#mostre" class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">Mostre</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="auschwitz.html">Auschwitz</a></li>
+                        <li><a href="umbria-jazz.html">Umbria jazz</a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html#dicono-di-me">Dicono di me</a></li>
+                <li><a href="index.html#contatti">Contatti</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="gallery-page">
+        <section class="gallery-intro">
+            <h1 class="gallery-title">Street</h1>
+            <p class="gallery-subtitle">Fotografia di strada</p>
+            <p class="gallery-desc">Attimi rubati alla vita urbana. Gesti, sguardi e situazioni che raccontano la città e chi la abita, senza pose né filtri.</p>
+        </section>
+
+        <div class="gallery-street-wrap">
+            <div class="masonry-gallery gallery-street" id="galleryStreet">
+                <div class="masonry-item" data-index="0"><img src="assets/images/photo_street/13.jpg" alt="Street 1" loading="lazy"></div>
+                <!-- Sposto la 55 subito sotto la 13 cambiando l'ordine nel DOM -->
+                <div class="masonry-item" data-index="1"><img src="assets/images/photo_street/55.jpg" alt="Street 2" loading="lazy"></div>
+                <div class="masonry-item" data-index="2"><img src="assets/images/photo_street/14.jpg" alt="Street 3" loading="lazy"></div>
+                <div class="masonry-item" data-index="3"><img src="assets/images/photo_street/22.jpg" alt="Street 4" loading="lazy"></div>
+                <div class="masonry-item" data-index="4"><img src="assets/images/photo_street/43.jpg" alt="Street 5" loading="lazy"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Lightbox: ingrandimento al centro, frecce e X (come Jazz, con bordo bianco) -->
+    <div class="lightbox-street" id="lightboxStreet" aria-hidden="true">
+        <div class="lightbox-street__backdrop" id="lightboxStreetBackdrop"></div>
+        <button type="button" class="lightbox-street__close" id="lightboxStreetClose" aria-label="Chiudi">&times;</button>
+        <div class="lightbox-street__content">
+            <button type="button" class="lightbox-street__prev" id="lightboxStreetPrev" aria-label="Foto precedente">&larr;</button>
+            <img src="" alt="" class="lightbox-street__img" id="lightboxStreetImg">
+            <button type="button" class="lightbox-street__next" id="lightboxStreetNext" aria-label="Foto successiva">&rarr;</button>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+    <script>
+    (function() {
+        var gallery = document.getElementById('galleryStreet');
+        var lightbox = document.getElementById('lightboxStreet');
+        var lightboxImg = document.getElementById('lightboxStreetImg');
+        var lightboxClose = document.getElementById('lightboxStreetClose');
+        var lightboxBackdrop = document.getElementById('lightboxStreetBackdrop');
+        var btnPrev = document.getElementById('lightboxStreetPrev');
+        var btnNext = document.getElementById('lightboxStreetNext');
+        if (!gallery || !lightbox || !lightboxImg) return;
+
+        var items = gallery.querySelectorAll('.masonry-item');
+        var sources = [];
+        items.forEach(function(item) {
+            var img = item.querySelector('img');
+            if (img) sources.push({ src: img.src, alt: img.alt || 'Street' });
+        });
+
+        var currentIndex = 0;
+
+        function openLightbox(index) {
+            currentIndex = (index + sources.length) % sources.length;
+            lightboxImg.src = sources[currentIndex].src;
+            lightboxImg.alt = sources[currentIndex].alt;
+            lightbox.classList.add('is-open');
+            lightbox.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+            lightbox.classList.remove('is-open');
+            lightbox.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+        function showPrev() {
+            if (sources.length === 0) return;
+            currentIndex = (currentIndex - 1 + sources.length) % sources.length;
+            lightboxImg.src = sources[currentIndex].src;
+            lightboxImg.alt = sources[currentIndex].alt;
+        }
+        function showNext() {
+            if (sources.length === 0) return;
+            currentIndex = (currentIndex + 1) % sources.length;
+            lightboxImg.src = sources[currentIndex].src;
+            lightboxImg.alt = sources[currentIndex].alt;
+        }
+
+        items.forEach(function(item) {
+            var img = item.querySelector('img');
+            if (!img) return;
+            item.style.cursor = 'pointer';
+            item.addEventListener('click', function() {
+                var i = parseInt(item.getAttribute('data-index'), 10);
+                if (!isNaN(i)) openLightbox(i);
+            });
+        });
+
+        if (lightboxClose) lightboxClose.addEventListener('click', function(e) { e.stopPropagation(); closeLightbox(); });
+        if (lightboxBackdrop) lightboxBackdrop.addEventListener('click', closeLightbox);
+        if (btnPrev) btnPrev.addEventListener('click', function(e) { e.stopPropagation(); showPrev(); });
+        if (btnNext) btnNext.addEventListener('click', function(e) { e.stopPropagation(); showNext(); });
+
+        document.addEventListener('keydown', function(e) {
+            if (!lightbox.classList.contains('is-open')) return;
+            if (e.key === 'Escape') closeLightbox();
+            else if (e.key === 'ArrowLeft')  { e.preventDefault(); showPrev(); }
+            else if (e.key === 'ArrowRight') { e.preventDefault(); showNext(); }
+        });
+    })();
+    </script>
+</body>
+</html>

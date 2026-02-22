@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auschwitz Reportage - ph. antonio manno</title>
+    <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+
+    <nav id="navbar">
+        <div class="navbar-inner">
+            <a href="index.html" class="navbar-logo"><span class="logo-line1">ph. antonio</span><span class="logo-line2">manno</span></a>
+            <button type="button" class="hamburger" aria-label="Apri menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html#hero">Home</a></li>
+                <li><a href="index.html#biografia">Biografia</a></li>
+                <li class="nav-item-dropdown">
+                    <a href="index.html#portfolio" class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">Portfolio</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="monuments.html">Monuments</a></li>
+                        <li><a href="city.html">City</a></li>
+                        <li><a href="people.html">People</a></li>
+                        <li><a href="jazz.html">Jazz</a></li>
+                        <li><a href="landscapes.html">Landscapes</a></li>
+                        <li><a href="street.html">Street</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item-dropdown">
+                    <a href="index.html#mostre" class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">Mostre</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="auschwitz.html">Auschwitz</a></li>
+                        <li><a href="umbria-jazz.html">Umbria jazz</a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html#dicono-di-me">Dicono di me</a></li>
+                <li><a href="index.html#contatti">Contatti</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="gallery-page">
+        <section class="gallery-intro">
+            <h1 class="gallery-title">Auschwitz Reportage</h1>
+            <p class="gallery-subtitle">Reportage e mostre</p>
+        </section>
+
+        <div class="mostra-page-content mostra-page-content--foto-testo-row">
+            <div class="mostra-page-foto-wrap">
+                <img src="assets/images/mostre/mostra_Auschwitz/11cop.jpg" alt="Auschwitz Reportage" class="mostra-page-foto">
+            </div>
+            <div class="mostra-page-testo">
+                <p class="mostra-page-desc">Il reportage su Auschwitz unisce rigore documentaristico e sensibilità visiva. Una documentazione in bianco e nero realizzata nei luoghi della memoria, per riflettere e non dimenticare. Le immagini sono state esposte in diverse sedi in Italia e all'estero.</p>
+                <h3 class="mostra-page-titolo-lista">Mostre</h3>
+                <ul class="mostra-page-lista">
+                    <li>Katowice (PL) 2007 – Galleria Za Szybą</li>
+                </ul>
+            </div>
+            <div class="mostra-articolo-row">
+                <div class="mostra-articolo-wrap">
+                    <img src="assets/images/mostre/articolo.jpeg" alt="Articolo Katowice 2007" class="mostra-articolo-thumb" id="articoloThumb" width="400" height="auto">
+                </div>
+                <div class="mostra-articolo-testo">
+                    <p>A Katowice ha iniziato a operare la filiale della Società Dante Alighieri. Stanno organizzando mostre, concerti e spettacoli con artisti provenienti dalla penisola appenninica. Per ora possiamo vedere le fotografie di Antonio Manno nella galleria di Katowice Za Szybą. La Società Dante Alighieri ha una lunga tradizione - è stata fondata nel 1889 con l'obiettivo di promuovere la cultura e la lingua italiana. I suoi fondatori furono il poeta e premio Nobel Giosuè Carducci. Katowice è la seconda, dopo Cracovia, città in Polonia dove la Società ha iniziato le sue attività.</p>
+                </div>
+            </div>
+            <div class="mostra-articolo-sotto">
+                <p>L'obiettivo della Società è la lingua italiana, ma vogliamo anche promuovere la cultura italiana, aiutare a comprenderla. Per il giorno di San Silvestro la Società ha portato a Katowice una mostra fotografica di Antonio Manno. Sotto la lente del fotografo sono finiti diversi bambini che guardano il mondo in modi diversi, a Katowice presenta fotografie in bianco e nero. - Ciò che il simbolo è il colore - dalle radici della luce allo sviluppo della loro vita spirituale interna.</p>
+            </div>
+        </div>
+    </main>
+
+    <div class="mostra-articolo-lightbox" id="articoloLightbox" aria-hidden="true">
+        <div class="mostra-articolo-lightbox__backdrop" id="articoloLightboxBackdrop"></div>
+        <button type="button" class="mostra-articolo-lightbox__close" id="articoloLightboxClose" aria-label="Chiudi">&times;</button>
+        <img src="assets/images/mostre/articolo.jpeg" alt="Articolo Katowice 2007 - ingrandimento" class="mostra-articolo-lightbox__img" id="articoloLightboxImg">
+    </div>
+
+    <script src="main.js"></script>
+    <script>
+    (function() {
+        var thumb = document.getElementById('articoloThumb');
+        var lightbox = document.getElementById('articoloLightbox');
+        var backdrop = document.getElementById('articoloLightboxBackdrop');
+        var closeBtn = document.getElementById('articoloLightboxClose');
+        if (!thumb || !lightbox) return;
+        thumb.addEventListener('click', function() {
+            lightbox.classList.add('is-open');
+            lightbox.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        });
+        function closeLightbox() {
+            lightbox.classList.remove('is-open');
+            lightbox.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+        if (backdrop) backdrop.addEventListener('click', closeLightbox);
+        if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
+        });
+    })();
+    </script>
+</body>
+</html>
