@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>antonio manno - Fotografie d'Autore</title>
+    <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+
+    <!-- Barra di navigazione principale (sticky) -->
+    <nav id="navbar">
+        <div class="navbar-inner">
+            <a href="#" class="navbar-logo">ph. antonio manno</a>
+            <button type="button" class="hamburger" aria-label="Apri menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#biografia">Biografia</a></li>
+                <li class="nav-item-dropdown">
+                    <a href="#portfolio" class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">Portfolio</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="monuments.html">Monuments</a></li>
+                        <li><a href="city.html">City</a></li>
+                        <li><a href="people.html">People</a></li>
+                        <li><a href="jazz.html">Jazz</a></li>
+                        <li><a href="landscapes.html">Landscapes</a></li>
+                        <li><a href="street.html">Street</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item-dropdown">
+                    <a href="#mostre" class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">Mostre</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="auschwitz.html">Auschwitz</a></li>
+                        <li><a href="umbria-jazz.html">Umbria jazz</a></li>
+                    </ul>
+                </li>
+                <li><a href="#dicono-di-me">Dicono di me</a></li>
+                <li><a href="#contatti">Contatti</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero: solo immagine fullscreen (foto 12) -->
+    <section id="hero" aria-label="Hero">
+        <div class="hero-heading">
+            <h1 class="hero-title">antonio manno</h1>
+            <p class="hero-subtitle">"fotografie d'autore"</p>
+        </div>
+        <a href="#portfolio" class="cta-button">scopri portfolio</a>
+        <!--
+                “ ”.
+--></section>
+
+    <!-- Sezione Biografia: layout come doc1.pdf (foto | linea verticale | contenuto) -->
+    <section id="biografia" class="biografia-section">
+        <div class="biografia-container">
+            <!-- 1. Colonna sinistra: citazione a tutta altezza -->
+            <div class="biografia-foto">
+                <div class="biografia-quote-left">
+                    <span class="biografia-quote-line biografia-quote-line--big">Fotografare è mettere</span>
+                    <span class="biografia-quote-line biografia-quote-line--small">sulla stessa linea</span>
+                    <span class="biografia-quote-line biografia-quote-line--big">di mira</span>
+                    <span class="biografia-quote-line biografia-quote-line--small">la testa,</span>
+                    <span class="biografia-quote-line biografia-quote-line--big">l'occhio</span>
+                    <span class="biografia-quote-line biografia-quote-line--small">e il</span>
+                    <span class="biografia-quote-line biografia-quote-line--big">cuore</span>
+                    <span class="biografia-quote-author">"Robert Capa"</span>
+                </div>
+            </div>
+            <!-- 2. Linea verticale nera divisoria -->
+            <div class="biografia-divider"></div>
+            <!-- 3. Colonna destra: contenuto testuale -->
+            <div class="biografia-content">
+                <h2 class="biografia-title">BIOGRAFIA</h2>
+                <h3 class="biografia-subtitle">L'Uomo Dietro L'Obiettivo</h3>
+                <div class="biografia-text">
+                    <p>La mia fotografia nasce nel silenzio rosso di una camera oscura, tra l'odore acre dei chimici e la magia dell'immagine che emerge lenta dalla carta. Ho imparato a vedere il mondo prima ancora di scattarlo, sviluppando la pazienza necessaria per attendere che la luce si posasse esattamente dove volevo io.</p>
+                    <p>Oggi, il digitale mi offre velocità, ma il mio approccio resta artigianale. Non cerco la perfezione del pixel, ma l'imperfezione dell'umano. Prediligo la strada, i volti segnati dal lavoro, le mani che raccontano storie. La mia tecnica si è evoluta, ma l'obiettivo è lo stesso: connettermi con l'anima del soggetto.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galleria portfolio fotografico -->
+    <section id="portfolio">
+        <h2 class="portfolio-title">Portfolio</h2>
+        <div class="portfolio-grid">
+            <a href="monuments.html" class="portfolio-item portfolio-item-featured">
+                <img src="assets/images/photo_monuments/7roma.jpg" alt="Monumento Roma" class="portfolio-item-image">
+                <span class="portfolio-item-label">monuments</span>
+            </a>
+            <a href="city.html" class="portfolio-item portfolio-item-featured">
+                <img src="assets/images/photo_city/1.jpg" alt="Scorcio di città con canale" class="portfolio-item-image">
+                <span class="portfolio-item-label">city</span>
+            </a>
+            <a href="people.html" class="portfolio-item portfolio-item-featured">
+                <img src="assets/images/photo_people/9.jpg" alt="Ritratto in bianco e nero" class="portfolio-item-image">
+                <span class="portfolio-item-label">people</span>
+            </a>
+            <a href="jazz.html" class="portfolio-item portfolio-item-featured">
+                <img src="assets/images/photo_jazz/01.jpg" alt="Jazz - Copertina galleria" class="portfolio-item-image">
+                <span class="portfolio-item-label">jazz</span>
+            </a>
+            <a href="landscapes.html" class="portfolio-item portfolio-item-featured">
+                <img src="assets/images/photo_landscapes/14.jpg" alt="Paesaggio marino drammatico in bianco e nero" class="portfolio-item-image">
+                <span class="portfolio-item-label">landscapes</span>
+            </a>
+            <a href="street.html" class="portfolio-item portfolio-item-featured">
+                <img src="assets/images/photo_street/13.jpg" alt="Scena di street photography in bianco e nero" class="portfolio-item-image">
+                <span class="portfolio-item-label">street</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Mostre ed esposizioni -->
+    <section id="mostre">
+        <h2 class="mostre-title">Mostre</h2>
+        <div class="mostre-grid">
+            <article class="mostre-card">
+                <a href="auschwitz.html" class="mostre-card-link">
+                    <div class="mostre-card-img">
+                        <img src="assets/images/mostre/mostra_Auschwitz/11cop.jpg" alt="Auschwitz Reportage" class="mostre-card-image">
+                    </div>
+                    <h3 class="mostre-card-titolo">Auschwitz Reportage</h3>
+                    <p class="mostre-card-data">Gennaio 2007</p>
+                    <p class="mostre-card-luogo">Katowice, Polonia · Galleria Za Szybą</p>
+                </a>
+            </article>
+            <article class="mostre-card">
+                <a href="umbria-jazz.html" class="mostre-card-link">
+                    <div class="mostre-card-img">
+                        <img src="assets/images/photo_jazz/04.jpg" alt="Jazz" class="mostre-card-image">
+                    </div>
+                    <h3 class="mostre-card-titolo">Umbria Jazz Festival</h3>
+                    <p class="mostre-card-data">Formia 2004 · Teano 2006 · Campobasso 2005</p>
+                </a>
+            </article>
+            <article class="mostre-card mostre-card--solo-testo">
+                <a href="mostra-3.html" class="mostre-card-link">
+                    <h3 class="mostre-card-titolo">Titolo mostra 3</h3>
+                    <p class="mostre-card-desc">Mostra presso il Museo Contemporaneo di Napoli, giugno 2024.</p>
+                </a>
+            </article>
+            <article class="mostre-card mostre-card--solo-testo">
+                <a href="mostra-4.html" class="mostre-card-link">
+                    <h3 class="mostre-card-titolo">Titolo mostra 4</h3>
+                    <p class="mostre-card-desc">Esposizione alla Fondazione Photo di Torino, settembre 2024.</p>
+                </a>
+            </article>
+        </div>
+    </section>
+
+    <!-- Testimonianze e citazioni -->
+    <section id="dicono-di-me">
+        <h2 class="testimonial-title">Dicono di me</h2>
+        <div class="carousel" aria-roledescription="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-slide carousel-slide--active" role="group" aria-roledescription="slide" aria-label="Testimonianza 1 di 3">
+                    <div class="testimonial-foto" role="img" aria-label="Foto testimone"></div>
+                    <blockquote class="testimonial-testo">"La fotografia di Antonio cattura l'anima dei soggetti. Ogni scatto racconta una storia unica, con una sensibilità rara."</blockquote>
+                    <p class="testimonial-nome">Maria Rossi</p>
+                </div>
+                <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="Testimonianza 2 di 3">
+                    <div class="testimonial-foto" role="img" aria-label="Foto testimone"></div>
+                    <blockquote class="testimonial-testo">"Ho lavorato con Antonio in diverse occasioni. Professionalità e occhio artistico si fondono in ogni suo progetto."</blockquote>
+                    <p class="testimonial-nome">Giuseppe Bianchi</p>
+                </div>
+                <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="Testimonianza 3 di 3">
+                    <div class="testimonial-foto" role="img" aria-label="Foto testimone"></div>
+                    <blockquote class="testimonial-testo">"Le sue mostre sono sempre un viaggio emozionante. Un fotografo che sa guardare oltre l'apparenza."</blockquote>
+                    <p class="testimonial-nome">Laura Verdi</p>
+                </div>
+            </div>
+            <button type="button" class="carousel-prev" aria-label="Testimonianza precedente">‹</button>
+            <button type="button" class="carousel-next" aria-label="Testimonianza successiva">›</button>
+            <div class="carousel-dots" role="tablist" aria-label="Scegli testimonianza">
+                <button type="button" class="carousel-dot carousel-dot--active" role="tab" aria-selected="true" aria-label="Testimonianza 1" data-index="0"></button>
+                <button type="button" class="carousel-dot" role="tab" aria-selected="false" aria-label="Testimonianza 2" data-index="1"></button>
+                <button type="button" class="carousel-dot" role="tab" aria-selected="false" aria-label="Testimonianza 3" data-index="2"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form e informazioni di contatto -->
+    <section id="contatti">
+        <h2 class="contatti-title">Contatti</h2>
+        <div class="contatti-grid">
+            <div class="contatti-col-form">
+                <form class="contatti-form" action="#" method="post" novalidate>
+                    <label for="contatti-nome">Nome</label>
+                    <input type="text" id="contatti-nome" name="nome" required placeholder="Il tuo nome">
+                    <label for="contatti-email">Email</label>
+                    <input type="email" id="contatti-email" name="email" required placeholder="la-tua@email.it">
+                    <label for="contatti-tel">Telefono</label>
+                    <input type="tel" id="contatti-tel" name="tel" placeholder="+39 333 1234567">
+                    <label for="contatti-messaggio">Messaggio</label>
+                    <textarea id="contatti-messaggio" name="messaggio" required placeholder="Scrivi il tuo messaggio..." rows="5"></textarea>
+                    <button type="submit" class="contatti-submit">Invia messaggio</button>
+                </form>
+            </div>
+            <div class="contatti-col-info">
+                <h3 class="contatti-info-title">Info</h3>
+                <p class="contatti-info-item">
+                    <span class="contatti-info-label">Tel</span>
+                    <a href="tel:+393331234567">+39 333 123 4567</a>
+                </p>
+                <p class="contatti-info-item">
+                    <span class="contatti-info-label">Email</span>
+                    <a href="mailto:info@antoniomanno.it">info@antoniomanno.it</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Piedipagina -->
+    <footer class="site-footer">
+        <p class="footer-copyright">© 2025 ph. antonio manno. Tutti i diritti riservati.</p>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
