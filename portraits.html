@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>People - ph. antonio manno</title>
+    <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+
+    <nav id="navbar">
+        <div class="navbar-inner">
+            <a href="index.html" class="navbar-logo"><span class="logo-line1">ph. antonio</span><span class="logo-line2">manno</span></a>
+            <button type="button" class="hamburger" aria-label="Apri menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html#hero">Home</a></li>
+                <li><a href="index.html#biografia">Biografia</a></li>
+                <li class="nav-item-dropdown">
+                    <a href="index.html#portfolio" class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">Portfolio</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="monuments.html">Monuments</a></li>
+                        <li><a href="city.html">City</a></li>
+                        <li><a href="people.html">People</a></li>
+                        <li><a href="jazz.html">Jazz</a></li>
+                        <li><a href="landscapes.html">Landscapes</a></li>
+                        <li><a href="street.html">Street</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item-dropdown">
+                    <a href="index.html#mostre" class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">Mostre</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="auschwitz.html">Auschwitz</a></li>
+                        <li><a href="umbria-jazz.html">Umbria jazz</a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html#dicono-di-me">Dicono di me</a></li>
+                <li><a href="index.html#contatti">Contatti</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="gallery-page">
+        <section class="gallery-intro">
+            <h1 class="gallery-title">People</h1>
+            <p class="gallery-subtitle">Ritratti e sguardi</p>
+            <p class="gallery-desc">Volti, espressioni e gesti che raccontano chi siamo. Una raccolta di ritratti in cui luce e ombra costruiscono il carattere dei soggetti.</p>
+        </section>
+
+        <div class="gallery-people-wrap">
+            <div class="masonry-gallery gallery-people" id="galleryPeople">
+                <div class="masonry-item" data-index="0"><img src="assets/images/photo_people/7.jpg" alt="People 1" loading="lazy"></div>
+                <div class="masonry-item" data-index="1"><img src="assets/images/photo_people/9.jpg" alt="People 2" loading="lazy"></div>
+                <div class="masonry-item" data-index="2"><img src="assets/images/photo_people/12.jpg" alt="People 3" loading="lazy"></div>
+                <div class="masonry-item" data-index="3"><img src="assets/images/photo_people/13.jpg" alt="People 4" loading="lazy"></div>
+                <div class="masonry-item" data-index="4"><img src="assets/images/photo_people/18.jpg" alt="People 5" loading="lazy"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Lightbox: ingrandimento al centro, frecce e X (stessa struttura Jazz) -->
+    <div class="lightbox-people" id="lightboxPeople" aria-hidden="true">
+        <div class="lightbox-people__backdrop" id="lightboxPeopleBackdrop"></div>
+        <button type="button" class="lightbox-people__close" id="lightboxPeopleClose" aria-label="Chiudi">&times;</button>
+        <div class="lightbox-people__content">
+            <button type="button" class="lightbox-people__prev" id="lightboxPeoplePrev" aria-label="Foto precedente">&larr;</button>
+            <img src="" alt="" class="lightbox-people__img" id="lightboxPeopleImg">
+            <button type="button" class="lightbox-people__next" id="lightboxPeopleNext" aria-label="Foto successiva">&rarr;</button>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+    <script>
+    (function() {
+        var gallery = document.getElementById('galleryPeople');
+        var lightbox = document.getElementById('lightboxPeople');
+        var lightboxImg = document.getElementById('lightboxPeopleImg');
+        var lightboxClose = document.getElementById('lightboxPeopleClose');
+        var lightboxBackdrop = document.getElementById('lightboxPeopleBackdrop');
+        var btnPrev = document.getElementById('lightboxPeoplePrev');
+        var btnNext = document.getElementById('lightboxPeopleNext');
+        if (!gallery || !lightbox || !lightboxImg) return;
+
+        var items = gallery.querySelectorAll('.masonry-item');
+        var sources = [];
+        items.forEach(function(item) {
+            var img = item.querySelector('img');
+            if (img) sources.push({ src: img.src, alt: img.alt || 'People' });
+        });
+
+        var currentIndex = 0;
+
+        function openLightbox(index) {
+            currentIndex = (index + sources.length) % sources.length;
+            lightboxImg.src = sources[currentIndex].src;
+            lightboxImg.alt = sources[currentIndex].alt;
+            lightbox.classList.add('is-open');
+            lightbox.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+            lightbox.classList.remove('is-open');
+            lightbox.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+        function showPrev() {
+            if (sources.length === 0) return;
+            currentIndex = (currentIndex - 1 + sources.length) % sources.length;
+            lightboxImg.src = sources[currentIndex].src;
+            lightboxImg.alt = sources[currentIndex].alt;
+        }
+        function showNext() {
+            if (sources.length === 0) return;
+            currentIndex = (currentIndex + 1) % sources.length;
+            lightboxImg.src = sources[currentIndex].src;
+            lightboxImg.alt = sources[currentIndex].alt;
+        }
+
+        items.forEach(function(item) {
+            var img = item.querySelector('img');
+            if (!img) return;
+            item.style.cursor = 'pointer';
+            item.addEventListener('click', function() {
+                var i = parseInt(item.getAttribute('data-index'), 10);
+                if (!isNaN(i)) openLightbox(i);
+            });
+        });
+
+        if (lightboxClose) lightboxClose.addEventListener('click', function(e) { e.stopPropagation(); closeLightbox(); });
+        if (lightboxBackdrop) lightboxBackdrop.addEventListener('click', closeLightbox);
+        if (btnPrev) btnPrev.addEventListener('click', function(e) { e.stopPropagation(); showPrev(); });
+        if (btnNext) btnNext.addEventListener('click', function(e) { e.stopPropagation(); showNext(); });
+
+        document.addEventListener('keydown', function(e) {
+            if (!lightbox.classList.contains('is-open')) return;
+            if (e.key === 'Escape') closeLightbox();
+            else if (e.key === 'ArrowLeft') { e.preventDefault(); showPrev(); }
+            else if (e.key === 'ArrowRight') { e.preventDefault(); showNext(); }
+        });
+    })();
+    </script>
+</body>
+</html>

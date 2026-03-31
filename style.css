@@ -7,15 +7,18 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 /* ===== PALETTE ===== */
 :root {
     --colore-sfondo: #ffffff;
     --colore-testo: #000000;
     --colore-accenti: #999999;
+    /* allineato all’altezza reale della navbar (se troppo alto resta visibile l’hero sopra #biografia) */
+    --navbar-scroll-offset: 4.25rem;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--navbar-scroll-offset);
 }
 
 body {
@@ -39,7 +42,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: calc(1.5rem) 2rem;
+    padding: 1.25rem 1.5rem;
 }
 
 .navbar-logo {
@@ -57,7 +60,7 @@ body {
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: 1.5rem;
+    gap: 1.4rem;
 }
 
 .nav-menu a {
@@ -81,7 +84,7 @@ body {
     position: relative;
 }
 
-.nav-item-dropdown > .dropdown-trigger::after {
+.nav-item-dropdown>.dropdown-trigger::after {
     content: " ▾";
     font-size: 0.8em;
 }
@@ -93,7 +96,8 @@ body {
     list-style: none;
     padding: 0.5rem 0;
     min-width: 140px;
-    margin-top: 0; /* niente gap tra trigger e menu, così non \"salta\" quando scendi col mouse */
+    margin-top: 0;
+    /* niente gap tra trigger e menu, così non \"salta\" quando scendi col mouse */
     background-color: var(--colore-sfondo);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
     opacity: 0;
@@ -186,31 +190,34 @@ body {
     position: relative;
     overflow: hidden;
     box-sizing: border-box;
-    background-image: url("assets/images/photo_people/12.jpg");
+    background-image: url("assets/images/foto-bambina.webp");
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
 }
 
-/* Blocco titolo + sottotitolo: posizione fissa (36% dall'alto, destra) */
+/* Solo titolo + sottotitolo: centratura verticale a 36%; il CTA è fuori così non li sposta */
 #hero .hero-heading {
     position: absolute;
     top: 36%;
-    right: clamp(1rem, 4vw, 3rem);
-    left: auto;
+    left: clamp(1rem, 3vw, 2.25rem);
+    right: auto;
     width: auto;
     max-width: calc(100vw - 2rem);
-    padding: 0 0 0 2rem;
+    padding: 0 1.25rem 0 0;
     transform: translateY(-50%);
     box-sizing: border-box;
-    text-align: right;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 #hero .hero-title {
     margin: 0;
-    font-family: 'Offerings', serif;
-    font-size: clamp(36px, 12vmin, 96px);
-    font-weight: bold;
+    font-family: 'Offerings', sans-serif;
+    font-size: clamp(48px, 12vmin, 140px);
+    font-weight: normal;
     color: #ffffff;
     line-height: 1.1;
     text-transform: lowercase;
@@ -221,32 +228,37 @@ body {
 }
 
 #hero .hero-subtitle {
-    margin: 0.5rem 0 0 0;
-    font-family: 'Arrière Garde', sans-serif;
-    font-size: clamp(21px, 5vmin, 42px);
+    margin: 0.65rem 0 0 0;
+    font-family: 'Offerings', sans-serif;
+    font-size: clamp(26px, 5vmin, 42px);
     font-weight: normal;
     color: #ffffff;
     letter-spacing: 0.15em;
+    text-shadow: 0 3px 8px rgba(0, 0, 0, 0.7), 0 2px 2px rgba(0, 0, 0, 0.5);
     text-transform: lowercase;
 }
 
-/* CTA button hero: rettangolo contorno bianco, centrato in basso */
-.cta-button {
+/* CTA hero: fuori da .hero-heading così h1/sottotitolo restano centrati; solo il pulsante scende (aria sotto al sottotitolo) */
+#hero .cta-button {
     position: absolute;
-    bottom: clamp(2rem, 6vh, 4rem);
-    left: 50%;
-    transform: translateX(-50%);
+    left: clamp(1rem, 3vw, 2.25rem);
+    top: calc(36% + clamp(8.5rem, 26vmin, 16rem));
+    z-index: 1;
+    padding: 0.65rem 0.85rem;
+}
+
+.cta-button {
     display: inline-block;
-    padding: calc(0.5rem) calc(0.5rem);
-    font-family: 'Arrière Garde', sans-serif;
+    padding: 0.65rem 0.85rem;
+    font-family: 'Offerings', sans-serif;
     font-size: clamp(15px, 3vmin, 24px);
     font-weight: bold;
     color: #ffffff;
     text-decoration: none;
     text-transform: lowercase;
     letter-spacing: 0.12em;
-    background: transparent;
     border: 2px solid #ffffff;
+    border-radius: 10px;
     transition: background 0.25s ease, color 0.25s ease;
 }
 
@@ -258,9 +270,9 @@ body {
 /* Viewport bassi (es. iPhone SE orizzontale 667×375): titolo e sottotitolo leggibili, stessa posizione */
 @media (max-height: 500px) {
     #hero .hero-heading {
-        right: 1rem;
+        left: 1rem;
         max-width: calc(100vw - 2rem);
-        padding-left: 1.5rem;
+        padding-right: 1.15rem;
     }
 
     #hero .hero-title {
@@ -270,6 +282,10 @@ body {
     #hero .hero-subtitle {
         font-size: clamp(18px, 4vmin, 30px);
     }
+
+    #hero .cta-button {
+        top: calc(36% + clamp(6rem, 22vmin, 11rem));
+    }
 }
 
 /* ============================================
@@ -277,65 +293,70 @@ body {
    ============================================ */
 
 .biografia-section {
-  width: 100%;
-  background: #1a1a1a; /* grigio ~90% (scuro) */
-  padding: 1rem 0 0;
-  margin: 0;
+    width: 100%;
+    background: #1a1a1a;
+    /* grigio ~90% (scuro) */
+    padding: 1.25rem 0 0;
+    margin: 0;
+}
+
+/* Ancora #biografia: compenso extra rispetto all’hero subito sopra (scroll-padding troppo grande lasciava intravedere il fondo foto) */
+#biografia {
+    scroll-margin-top: -0.75rem;
 }
 
 .biografia-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 3rem;
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  min-height: 100vh;
-  min-height: 100svh;
-  padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* allinea in alto: con min-height 100vh + center il titolo restava troppo in basso vs altre sezioni */
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2.5rem;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1.25rem;
 }
 
 .biografia-foto {
-  flex: 0 1 360px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem 1.5rem;
+    flex: 0 1 360px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 1.5rem 1.25rem;
 }
 
 .biografia-quote-left {
-  font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
-  font-weight: 700;
-  color: #ffffff;
-  text-align: right;
-  text-transform: uppercase;
+    font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
+    font-weight: 700;
+    color: #ffffff;
+    text-align: right;
+    text-transform: uppercase;
 }
 
 .biografia-quote-line {
-  display: block;
-  line-height: 1.1;
+    display: block;
+    line-height: 1.1;
 }
 
 .biografia-quote-line--big {
-  font-size: clamp(2rem, 3vw, 3rem);
-  letter-spacing: 0.15em;
+    font-size: clamp(2rem, 3vw, 3rem);
+    letter-spacing: 0.15em;
 }
 
 .biografia-quote-line--small {
-  font-size: clamp(1.1rem, 1.6vw, 1.6rem);
-  letter-spacing: 0.25em;
+    font-size: clamp(1.1rem, 1.6vw, 1.6rem);
+    letter-spacing: 0.25em;
 }
 
 .biografia-quote-author {
-  display: block;
-  margin-top: 1.5rem;
-  font-size: 0.9rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.7);
+    display: block;
+    margin-top: 1.25rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
 }
 
 /* Colori alternati per le 7 righe della citazione */
@@ -343,95 +364,101 @@ body {
 .biografia-quote-left .biografia-quote-line:nth-child(3),
 .biografia-quote-left .biografia-quote-line:nth-child(4),
 .biografia-quote-left .biografia-quote-line:nth-child(7) {
-  color: #ffffff;
+    color: #ffffff;
 }
 
 .biografia-quote-left .biografia-quote-line:nth-child(2),
 .biografia-quote-left .biografia-quote-line:nth-child(6) {
-  color: rgba(255, 255, 255, 0.3); /* grigio ~30% */
+    color: rgba(255, 255, 255, 0.3);
+    /* grigio ~30% */
 }
 
 .biografia-quote-left .biografia-quote-line:nth-child(5) {
-  color: rgba(255, 255, 255, 0.5); /* grigio ~50% */
+    color: rgba(255, 255, 255, 0.5);
+    /* grigio ~50% */
 }
 
 /* Linea verticale */
 .biografia-divider {
-  display: none; /* eliminata */
+    display: none;
+    /* eliminata */
 }
 
 /* Colonna testo - font Arrière Garde per tutta la sezione */
 .biografia-content {
-  flex: 1 1 360px;
-  min-width: 0;
-  max-width: 600px;
-  padding: 0 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  background: transparent;
-  font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
+    flex: 1 1 360px;
+    min-width: 0;
+    max-width: 600px;
+    padding: 0 1.15rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background: transparent;
+    font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
 }
 
 .biografia-title {
-  font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  margin: 0 0 10px 0;
-  color: #ffffff; /* grigio ~20% (chiaro) */
-  text-align: left;
+    font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin: 0 0 10px 0;
+    color: #ffffff;
+    /* grigio ~20% (chiaro) */
+    text-align: left;
 }
 
 .biografia-subtitle {
-  font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
-  font-size: 1.3rem;
-  font-weight: 400;
-  margin: 0 0 40px 0;
-  color: #ffffff;
-  text-align: left;
+    font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin: 0 0 1.5rem 0;
+    color: #ffffff;
+    text-align: left;
 }
 
 .biografia-text {
-  font-family: 'Century Gothic', 'Century Gothic', sans-serif;
-  font-size: 1rem;
-  line-height: 1.8;
-  color: #ffffff; /* testo descrittivo bianco */
-  margin: 0 0 40px 0;
+    font-family: 'Century Gothic', 'Century Gothic', sans-serif;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #ffffff;
+    /* testo descrittivo bianco */
+    margin: 0 0 1.75rem 0;
 }
 
 .biografia-text p {
-  margin: 0 0 25px 0;
-  text-align: justify;
+    margin: 0 0 1.15rem 0;
+    text-align: justify;
 }
 
 .biografia-text p:last-child {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .biografia-quote {
-  font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
-  font-size: 1rem;
-  font-style: italic;
-  line-height: 1.6;
-  color: #ffffff;
-  margin: 0;
-  padding-top: 0.75rem;
-  margin-top: 0.75rem;
-  border-top: 1px solid #ffffff;
-  text-align: left;
+    font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
+    font-size: 1rem;
+    font-style: italic;
+    line-height: 1.6;
+    color: #ffffff;
+    margin: 0;
+    padding-top: 0.75rem;
+    margin-top: 0.75rem;
+    border-top: 1px solid #ffffff;
+    text-align: left;
 }
 
 @media (min-width: 1025px) {
-  .biografia-quote {
-    white-space: nowrap;
-  }
+    .biografia-quote {
+        white-space: nowrap;
+    }
 }
 
 .biografia-quote::before {
-  display: none; /* elimina la linea sopra la citazione */
+    display: none;
+    /* elimina la linea sopra la citazione */
 }
 
 /* ==========================================
@@ -439,130 +466,133 @@ body {
    ========================================== */
 
 @media (max-width: 768px) {
-  .biografia-container {
-    display: flex;   /* mantieni layout centrato anche su mobile */
-    flex-direction: column;
-    align-items: center;
-    min-height: auto;
-    max-width: 100%;
-  }
-  
-  .biografia-foto {
-    width: auto;
-    height: auto;
-    min-height: 0;
-    max-height: none;
-  }
-  
-  .biografia-foto img {
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    object-fit: contain;
-    object-position: center center;
-  }
-  
-  /* Contenuto testo con padding adeguato */
-  .biografia-content {
-    padding: 50px 25px;  /* Padding generoso ma non eccessivo */
-  }
-  
-  .biografia-title {
-    font-size: 2rem;  /* allinea alle altre sezioni anche su tablet */
-    letter-spacing: 0.15em;
-    text-align: center;
-    margin-bottom: 15px;
-  }
-  
-  .biografia-subtitle {
-    font-size: 1.1rem;
-    line-height: 1.5;
-    margin-bottom: 30px;
-  }
-  
-  .biografia-text {
-    font-size: 1rem;  /* Mantieni 1rem per leggibilità */
-    line-height: 1.7;  /* Line-height leggermente ridotto */
-    margin-bottom: 30px;
-  }
-  
-  .biografia-text p {
-    text-align: justify;
-    margin-bottom: 20px;
-  }
-  
-  .biografia-quote {
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
-  
-  /* Linea sopra citazione: larghezza testo su mobile */
-  .biografia-quote::before {
-    left: 0;
-    width: 100%;
-  }
+    .biografia-container {
+        display: flex;
+        /* mantieni layout centrato anche su mobile */
+        flex-direction: column;
+        align-items: center;
+        min-height: auto;
+        max-width: 100%;
+    }
+
+    .biografia-foto {
+        width: auto;
+        height: auto;
+        min-height: 0;
+        max-height: none;
+    }
+
+    .biografia-foto img {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        object-fit: contain;
+        object-position: center center;
+    }
+
+    /* Contenuto testo con padding adeguato */
+    .biografia-content {
+        padding: 2.35rem 1.5rem;
+    }
+
+    .biografia-title {
+        font-size: 2rem;
+        /* allinea alle altre sezioni anche su tablet */
+        letter-spacing: 0.15em;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .biografia-subtitle {
+        font-size: 1.1rem;
+        line-height: 1.5;
+        margin-bottom: 1.4rem;
+    }
+
+    .biografia-text {
+        font-size: 1rem;
+        /* Mantieni 1rem per leggibilità */
+        line-height: 1.7;
+        /* Line-height leggermente ridotto */
+        margin-bottom: 1.4rem;
+    }
+
+    .biografia-text p {
+        text-align: justify;
+        margin-bottom: 1.1rem;
+    }
+
+    .biografia-quote {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    /* Linea sopra citazione: larghezza testo su mobile */
+    .biografia-quote::before {
+        left: 0;
+        width: 100%;
+    }
 }
 
 /* Mobile piccolo (smartphone piccoli) */
 @media (max-width: 480px) {
-  .biografia-foto {
-    height: auto;
-    min-height: 0;
-  }
-  
-  .biografia-content {
-    padding: 40px 20px;  /* Padding ridotto per schermi piccoli */
-  }
-  
-  .biografia-title {
-    font-size: 2rem;
-    letter-spacing: 0.15em;
-    text-align: center;
-  }
-  
-  .biografia-subtitle {
-    font-size: 1rem;
-    margin-bottom: 25px;
-  }
-  
-  .biografia-text {
-    font-size: 0.95rem;
-    line-height: 1.65;
-  }
+    .biografia-foto {
+        height: auto;
+        min-height: 0;
+    }
+
+    .biografia-content {
+        padding: 1.75rem 1.2rem;
+    }
+
+    .biografia-title {
+        font-size: 2rem;
+        letter-spacing: 0.15em;
+        text-align: center;
+    }
+
+    .biografia-subtitle {
+        font-size: 1rem;
+        margin-bottom: 1.15rem;
+    }
+
+    .biografia-text {
+        font-size: 0.95rem;
+        line-height: 1.65;
+    }
 }
 
 /* Tablet / iPad - sticky come desktop, viewport stabile */
 @media (min-width: 769px) and (max-width: 1024px) {
-  .biografia-container {
-    grid-template-columns: 40% 1px 1fr;
-    min-height: 100svh;
-  }
-  
-  .biografia-foto {
-    align-self: start;
-    padding-top: 3cm;
-    padding-right: 2.5cm;
-    display: flex;
-    justify-content: flex-end;
-  }
-  
-  .biografia-foto img {
-    max-width: 400px;
-    max-height: 400px;
-  }
-  
-  .biografia-divider {
-    min-height: 100svh;
-  }
-  
-  .biografia-content {
-    padding: 60px 50px;
-  }
+    .biografia-container {
+        grid-template-columns: 40% 1px 1fr;
+    }
+
+    .biografia-foto {
+        align-self: start;
+        padding-top: 1rem;
+        padding-right: 2.5cm;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .biografia-foto img {
+        max-width: 400px;
+        max-height: 400px;
+    }
+
+    .biografia-divider {
+        min-height: 100svh;
+    }
+
+    .biografia-content {
+        padding: 2.5rem 1.5rem;
+    }
 }
 
 /* ===== PORTFOLIO ===== */
 #portfolio {
-    padding: 100px 2rem;
+    padding: 3.5rem 1.75rem;
     font-size: 1.5rem;
     background: #1a1a1a;
 }
@@ -570,9 +600,9 @@ body {
 .portfolio-title {
     font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     color: #ffffff;
-  font-size: 2rem;
+    font-size: 2rem;
 }
 
 .portfolio-tabs {
@@ -580,7 +610,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     gap: 0.5rem 1.5rem;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.75rem;
 }
 
 .portfolio-tabs [role="tab"] {
@@ -610,17 +640,17 @@ body {
 
 .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    max-width: 1300px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    max-width: 1400px;
     margin: 0 auto;
 }
 
 .portfolio-item {
     width: 100%;
     aspect-ratio: 400 / 300;
-    max-width: 400px;
-    margin: 0 auto;
+    max-width: none;
+    margin: 0;
     background-color: transparent;
     border: 1px solid #ffffff;
     transition: transform 0.3s ease;
@@ -638,6 +668,16 @@ body {
     display: block;
 }
 
+/* Customs: centrata orizzontalmente, inquadratura un po’ più verso il basso */
+#portfolio .portfolio-item--customs .portfolio-item-image {
+    object-position: 50% 28%;
+}
+
+/* Windows: ritaglio per centrare meglio la figura in finestra (affina le % se serve) */
+#portfolio .portfolio-item--windows .portfolio-item-image {
+    object-position: 40% 70%;
+}
+
 .portfolio-item-featured {
     position: relative;
     background-color: transparent;
@@ -649,7 +689,10 @@ body {
     position: absolute;
     right: 0.75rem;
     bottom: 0.75rem;
+    left: auto;
+    top: auto;
     transform: none;
+    text-align: right;
     padding: 0.4rem 1.2rem;
     border-radius: 999px;
     background: none;
@@ -657,8 +700,8 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.15em;
     font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
-    font-size: 1.25rem;
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+    font-size: clamp(0.85rem, 1.8vw, 2.0rem);
+    text-shadow: 0 3px 8px rgba(0, 0, 0, 0.7), 0 2px 2px rgba(0, 0, 0, 0.5);
 }
 
 .portfolio-item-placeholder {
@@ -710,7 +753,7 @@ body {
 }
 
 .mostra-page-content--foto-testo-row .mostra-page-foto-link,
-.mostra-page-content--foto-testo-row > .mostra-page-foto-wrap {
+.mostra-page-content--foto-testo-row>.mostra-page-foto-wrap {
     margin: 0;
     flex-shrink: 0;
 }
@@ -725,18 +768,18 @@ body {
 }
 
 /* Auschwitz: hover foto 11cop – solo zoom in avanti dell’immagine */
-.mostra-page-content--foto-testo-row > .mostra-page-foto-wrap:hover .mostra-page-foto {
+.mostra-page-content--foto-testo-row>.mostra-page-foto-wrap:hover .mostra-page-foto {
     transform: scale(1.15);
 }
 
 /* Riga articolo e trafiletto sotto: a tutta larghezza, sotto la prima riga (11cop | testo) */
-.mostra-page-content--foto-testo-row > .mostra-articolo-row {
+.mostra-page-content--foto-testo-row>.mostra-articolo-row {
     width: 100%;
     flex-basis: 100%;
     margin-top: 2.5rem;
 }
 
-.mostra-page-content--foto-testo-row > .mostra-articolo-sotto {
+.mostra-page-content--foto-testo-row>.mostra-articolo-sotto {
     width: 100%;
     flex-basis: 100%;
     margin-top: 1.5rem;
@@ -1007,10 +1050,12 @@ body {
         padding-left: 1rem;
         padding-right: 1rem;
     }
+
     .gallery-intro {
         padding-left: 1rem;
         padding-right: 1rem;
     }
+
     .gallery-intro .gallery-title {
         font-size: 1.5rem;
     }
@@ -1063,26 +1108,30 @@ body {
     column-gap: 0;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 10px; /* spazio bianco uniforme di 10px */
+    gap: 10px;
+    /* spazio bianco uniforme di 10px */
 }
 
 .gallery-people .masonry-item {
     cursor: pointer;
     transition: opacity 0.25s ease, transform 0.25s ease;
     will-change: transform;
-    margin: 0; /* niente margine extra oltre al gap */
+    margin: 0;
+    /* niente margine extra oltre al gap */
 }
 
 .gallery-people .masonry-item:hover {
     opacity: 0.95;
-    transform: scale(1.03); /* leggero zoom anche per People */
+    transform: scale(1.03);
+    /* leggero zoom anche per People */
 }
 
 /* Miniature People tutte uguali (stessa dimensione) */
 .gallery-people .masonry-item img {
     width: 100%;
     height: auto;
-    aspect-ratio: 4 / 3;      /* tutte le thumb con lo stesso rapporto */
+    aspect-ratio: 4 / 3;
+    /* tutte le thumb con lo stesso rapporto */
     object-fit: cover;
 }
 
@@ -1123,7 +1172,8 @@ body {
 
 .gallery-street .masonry-item:hover {
     opacity: 0.95;
-    transform: scale(1.03); /* leggero zoom come Jazz/People */
+    transform: scale(1.03);
+    /* leggero zoom come Jazz/People */
 }
 
 /* Miniature Street: stessa struttura People/Jazz (4/3, cover) */
@@ -1226,6 +1276,7 @@ body {
         top: 50%;
         transform: translateY(-50%);
     }
+
     .lightbox-street__next {
         position: absolute;
         right: 10px;
@@ -1393,6 +1444,7 @@ body {
         top: 50%;
         transform: translateY(-50%);
     }
+
     .lightbox-umbria__next {
         position: absolute;
         right: 10px;
@@ -1483,6 +1535,7 @@ body {
         top: 50%;
         transform: translateY(-50%);
     }
+
     .lightbox-people__next {
         position: absolute;
         right: 10px;
@@ -1584,6 +1637,7 @@ body {
         top: 50%;
         transform: translateY(-50%);
     }
+
     .lightbox-jazz__next {
         position: absolute;
         right: 10px;
@@ -1593,7 +1647,10 @@ body {
 }
 
 /* Lightbox Landscapes / Weddings / City / Monuments: stessa struttura People/Jazz (bordo 10px) */
-.lightbox-landscapes, .lightbox-weddings, .lightbox-city, .lightbox-monuments {
+.lightbox-landscapes,
+.lightbox-weddings,
+.lightbox-city,
+.lightbox-monuments {
     display: none;
     position: fixed;
     inset: 0;
@@ -1602,53 +1659,138 @@ body {
     justify-content: center;
     padding: 20px;
 }
-.lightbox-landscapes.is-open, .lightbox-weddings.is-open, .lightbox-city.is-open, .lightbox-monuments.is-open { display: flex; }
-.lightbox-landscapes__backdrop, .lightbox-weddings__backdrop, .lightbox-city__backdrop, .lightbox-monuments__backdrop {
-    position: absolute; inset: 0;
+
+.lightbox-landscapes.is-open,
+.lightbox-weddings.is-open,
+.lightbox-city.is-open,
+.lightbox-monuments.is-open {
+    display: flex;
+}
+
+.lightbox-landscapes__backdrop,
+.lightbox-weddings__backdrop,
+.lightbox-city__backdrop,
+.lightbox-monuments__backdrop {
+    position: absolute;
+    inset: 0;
     background: rgba(0, 0, 0, 0.92);
     cursor: pointer;
 }
-.lightbox-landscapes__close, .lightbox-weddings__close, .lightbox-city__close, .lightbox-monuments__close {
-    position: absolute; top: 20px; right: 20px; z-index: 1002;
-    width: 48px; height: 48px; padding: 0; border: none;
-    background: rgba(255, 255, 255, 0.15); color: #fff; font-size: 28px; line-height: 1;
-    cursor: pointer; border-radius: 50%; transition: background 0.2s ease;
+
+.lightbox-landscapes__close,
+.lightbox-weddings__close,
+.lightbox-city__close,
+.lightbox-monuments__close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1002;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border: none;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.2s ease;
 }
-.lightbox-landscapes__close:hover, .lightbox-weddings__close:hover, .lightbox-city__close:hover, .lightbox-monuments__close:hover { background: rgba(255, 255, 255, 0.35); }
-.lightbox-landscapes__content, .lightbox-weddings__content, .lightbox-city__content, .lightbox-monuments__content {
-    position: relative; z-index: 1001;
-    display: flex; align-items: center; justify-content: center; gap: 16px;
-    max-width: 95vw; max-height: 90vh;
+
+.lightbox-landscapes__close:hover,
+.lightbox-weddings__close:hover,
+.lightbox-city__close:hover,
+.lightbox-monuments__close:hover {
+    background: rgba(255, 255, 255, 0.35);
 }
-.lightbox-landscapes__img, .lightbox-weddings__img, .lightbox-city__img, .lightbox-monuments__img {
-    max-width: 85vw; max-height: 85vh; width: auto; height: auto;
-    object-fit: contain; box-shadow: 0 0 50px rgba(0, 0, 0, 0.6);
-    border: 10px solid #ffffff; box-sizing: border-box;
+
+.lightbox-landscapes__content,
+.lightbox-weddings__content,
+.lightbox-city__content,
+.lightbox-monuments__content {
+    position: relative;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    max-width: 95vw;
+    max-height: 90vh;
 }
-.lightbox-landscapes__prev, .lightbox-landscapes__next,
-.lightbox-weddings__prev, .lightbox-weddings__next,
-.lightbox-city__prev, .lightbox-city__next,
-.lightbox-monuments__prev, .lightbox-monuments__next {
-    flex-shrink: 0; width: 48px; height: 48px; padding: 0; border: none;
-    background: rgba(255, 255, 255, 0.15); color: #fff; font-size: 24px;
-    cursor: pointer; border-radius: 50%; transition: background 0.2s ease;
+
+.lightbox-landscapes__img,
+.lightbox-weddings__img,
+.lightbox-city__img,
+.lightbox-monuments__img {
+    max-width: 85vw;
+    max-height: 85vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.6);
+    border: 10px solid #ffffff;
+    box-sizing: border-box;
 }
-.lightbox-landscapes__prev:hover, .lightbox-landscapes__next:hover,
-.lightbox-weddings__prev:hover, .lightbox-weddings__next:hover,
-.lightbox-city__prev:hover, .lightbox-city__next:hover,
-.lightbox-monuments__prev:hover, .lightbox-monuments__next:hover { background: rgba(255, 255, 255, 0.35); }
+
+.lightbox-landscapes__prev,
+.lightbox-landscapes__next,
+.lightbox-weddings__prev,
+.lightbox-weddings__next,
+.lightbox-city__prev,
+.lightbox-city__next,
+.lightbox-monuments__prev,
+.lightbox-monuments__next {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border: none;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.2s ease;
+}
+
+.lightbox-landscapes__prev:hover,
+.lightbox-landscapes__next:hover,
+.lightbox-weddings__prev:hover,
+.lightbox-weddings__next:hover,
+.lightbox-city__prev:hover,
+.lightbox-city__next:hover,
+.lightbox-monuments__prev:hover,
+.lightbox-monuments__next:hover {
+    background: rgba(255, 255, 255, 0.35);
+}
+
 @media (max-width: 768px) {
-    .lightbox-landscapes__prev, .lightbox-weddings__prev, .lightbox-city__prev, .lightbox-monuments__prev {
-        position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+
+    .lightbox-landscapes__prev,
+    .lightbox-weddings__prev,
+    .lightbox-city__prev,
+    .lightbox-monuments__prev {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
     }
-    .lightbox-landscapes__next, .lightbox-weddings__next, .lightbox-city__next, .lightbox-monuments__next {
-        position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+
+    .lightbox-landscapes__next,
+    .lightbox-weddings__next,
+    .lightbox-city__next,
+    .lightbox-monuments__next {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
     }
 }
 
 /* ===== MOSTRE ===== */
 #mostre {
-    padding: 100px 2rem;
+    padding: 3.5rem 1.75rem;
     font-size: 1.5rem;
     background: #1a1a1a;
 }
@@ -1656,9 +1798,9 @@ body {
 .mostre-title {
     font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
     text-align: center;
-    margin-bottom: 2.5rem;
-  color: #ffffff;
-  font-size: 2rem;
+    margin-bottom: 1.75rem;
+    color: #ffffff;
+    font-size: 2rem;
 }
 
 .mostre-grid {
@@ -1786,7 +1928,7 @@ body {
 
 /* ===== DICONO DI ME (CAROUSEL) ===== */
 #dicono-di-me {
-    padding: 100px 2rem;
+    padding: 3.5rem 1.75rem;
     font-size: 1.5rem;
     background: #1a1a1a;
 }
@@ -1794,7 +1936,7 @@ body {
 .testimonial-title {
     font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
     text-align: center;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.75rem;
     font-size: 2rem;
     color: #ffffff;
 }
@@ -1814,7 +1956,7 @@ body {
 .carousel-slide {
     display: none;
     text-align: center;
-    padding: 1rem 2rem 2rem;
+    padding: 1.15rem 1.4rem 1.65rem;
 }
 
 .carousel-slide--active {
@@ -1871,7 +2013,7 @@ body {
     display: flex;
     justify-content: center;
     gap: 0.5rem;
-    margin-top: 1.5rem;
+    margin-top: 1.25rem;
 }
 
 .carousel-dot {
@@ -1919,14 +2061,14 @@ body {
 
 /* ===== CONTATTI ===== */
 #contatti {
-    padding: 100px 2rem;
+    padding: 3.5rem 1.75rem;
     background-color: #1a1a1a;
 }
 
 #contatti .contatti-title {
     font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
     text-align: center;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.75rem;
     font-size: 2rem;
     color: #ffffff;
 }
@@ -1934,7 +2076,7 @@ body {
 .contatti-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 3rem;
+    gap: 2.5rem;
     max-width: 900px;
     margin: 0 auto;
     align-items: start;
@@ -1977,7 +2119,7 @@ body {
 .contatti-submit {
     display: block;
     width: 100%;
-    padding: 15px 40px;
+    padding: 0.85rem 1.5rem;
     background-color: #ffffff;
     color: #1a1a1a;
     border: none;
@@ -2024,7 +2166,7 @@ body {
 
 /* ===== FOOTER ===== */
 .site-footer {
-    padding: 1.5rem 2rem;
+    padding: 1.25rem 1.5rem;
     background-color: #1a1a1a;
     text-align: center;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -2104,7 +2246,7 @@ body {
     }
 
     .navbar-inner {
-        padding: 1rem 1.25rem;
+        padding: 1.25rem 1.5rem;
     }
 
     body.nav-open {
@@ -2114,8 +2256,11 @@ body {
 
 /* Mobile: <768px */
 @media (max-width: 768px) {
+
+    /* Portfolio: due colonne in verticale (impilate a griglia) */
     .portfolio-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
     }
 
     .mostre-grid {
