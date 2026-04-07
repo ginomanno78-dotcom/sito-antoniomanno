@@ -89,3 +89,10 @@
         });
     });
 })();
+
+/* Solo Samsung Galaxy S8 (codice modello SM-G950): classe per CSS hero due righe */
+(function () {
+    if (/SM-G950/i.test(navigator.userAgent)) {
+        document.documentElement.classList.add('galaxy-s8-hero');
+    }
+})();
