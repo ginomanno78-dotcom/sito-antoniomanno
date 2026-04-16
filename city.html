@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,13 @@
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="style.css?v=2">
 </head>
+
 <body>
 
     <nav id="navbar">
         <div class="navbar-inner">
-            <a href="index.html" class="navbar-logo"><span class="logo-line1">ph. antonio</span><span class="logo-line2">manno</span></a>
+            <a href="index.html" class="navbar-logo"><span class="logo-line1">ph. antonio</span><span
+                    class="logo-line2">manno</span></a>
             <button type="button" class="hamburger" aria-label="Apri menu" aria-expanded="false">
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
@@ -21,21 +24,24 @@
                 <li><a href="index.html#hero">Home</a></li>
                 <li><a href="index.html#biografia">Biografia</a></li>
                 <li class="nav-item-dropdown">
-                    <a href="index.html#portfolio" class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">Portfolio</a>
+                    <a href="index.html#portfolio" class="dropdown-trigger" aria-haspopup="true"
+                        aria-expanded="false">Portfolio</a>
                     <ul class="dropdown-menu">
-                        <li><a href="monuments.html">Monuments</a></li>
+                        <li><a href="auschwitz.html">Auschwitz</a></li>
                         <li><a href="city.html">City</a></li>
-                        <li><a href="people.html">People</a></li>
+                        <li><a href="portraits.html">Portraits</a></li>
                         <li><a href="jazz.html">Jazz</a></li>
                         <li><a href="landscapes.html">Landscapes</a></li>
                         <li><a href="street.html">Street</a></li>
                     </ul>
                 </li>
                 <li class="nav-item-dropdown">
-                    <a href="index.html#mostre" class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">Mostre</a>
+                    <a href="index.html#mostre" class="dropdown-trigger" aria-haspopup="true"
+                        aria-expanded="false">Mostre</a>
                     <ul class="dropdown-menu">
-                        <li><a href="auschwitz.html">Auschwitz</a></li>
-                        <li><a href="umbria-jazz.html">Umbria jazz</a></li>
+                        <li><a href="mostra-auschwitz.html">Auschwitz</a></li>
+                        <li><a href="mostra-jazz.html">Jazz festival</a></li>
+                        <li><a href="mostra-storie.html">Storie</a></li>
                     </ul>
                 </li>
                 <li><a href="index.html#dicono-di-me">Dicono di me</a></li>
@@ -48,17 +54,24 @@
         <section class="gallery-intro">
             <h1 class="gallery-title">City</h1>
             <p class="gallery-subtitle">Architetture e paesaggi urbani</p>
-            <p class="gallery-desc">Le città raccontate attraverso luci, geometrie e prospettive. Scatti che catturano l'essenza degli spazi urbani e la loro continua trasformazione.</p>
+            <p class="gallery-desc">Le città raccontate attraverso luci, geometrie e prospettive. Scatti che catturano
+                l'essenza degli spazi urbani e la loro continua trasformazione.</p>
         </section>
 
         <div class="gallery-city-wrap">
             <div class="masonry-gallery gallery-city" id="galleryCity">
-                <div class="masonry-item" data-index="0"><img src="assets/images/photo_city/1.jpg" alt="City 1" loading="lazy"></div>
-                <div class="masonry-item" data-index="1"><img src="assets/images/photo_city/2.jpg" alt="City 2" loading="lazy"></div>
-                <div class="masonry-item" data-index="2"><img src="assets/images/photo_city/3.jpg" alt="City 3" loading="lazy"></div>
-                <div class="masonry-item" data-index="3"><img src="assets/images/photo_city/4.jpg" alt="City 4" loading="lazy"></div>
-                <div class="masonry-item" data-index="4"><img src="assets/images/photo_city/5.jpg" alt="City 5" loading="lazy"></div>
-                <div class="masonry-item" data-index="5"><img src="assets/images/photo_city/6.jpg" alt="City 6" loading="lazy"></div>
+                <div class="masonry-item" data-index="0"><img src="assets/images/photo_city/1.jpg" alt="City 1"
+                        loading="lazy"></div>
+                <div class="masonry-item" data-index="1"><img src="assets/images/photo_city/2.jpg" alt="City 2"
+                        loading="lazy"></div>
+                <div class="masonry-item" data-index="2"><img src="assets/images/photo_city/3.jpg" alt="City 3"
+                        loading="lazy"></div>
+                <div class="masonry-item" data-index="3"><img src="assets/images/photo_city/4.jpg" alt="City 4"
+                        loading="lazy"></div>
+                <div class="masonry-item" data-index="4"><img src="assets/images/photo_city/5.jpg" alt="City 5"
+                        loading="lazy"></div>
+                <div class="masonry-item" data-index="5"><img src="assets/images/photo_city/6.jpg" alt="City 6"
+                        loading="lazy"></div>
             </div>
         </div>
     </main>
@@ -67,75 +80,77 @@
         <div class="lightbox-city__backdrop" id="lightboxCityBackdrop"></div>
         <button type="button" class="lightbox-city__close" id="lightboxCityClose" aria-label="Chiudi">&times;</button>
         <div class="lightbox-city__content">
-            <button type="button" class="lightbox-city__prev" id="lightboxCityPrev" aria-label="Foto precedente">&larr;</button>
+            <button type="button" class="lightbox-city__prev" id="lightboxCityPrev"
+                aria-label="Foto precedente">&larr;</button>
             <img src="" alt="" class="lightbox-city__img" id="lightboxCityImg">
-            <button type="button" class="lightbox-city__next" id="lightboxCityNext" aria-label="Foto successiva">&rarr;</button>
+            <button type="button" class="lightbox-city__next" id="lightboxCityNext"
+                aria-label="Foto successiva">&rarr;</button>
         </div>
     </div>
 
     <script src="main.js"></script>
     <script>
-    (function() {
-        var gallery = document.getElementById('galleryCity');
-        var lightbox = document.getElementById('lightboxCity');
-        var lightboxImg = document.getElementById('lightboxCityImg');
-        var lightboxClose = document.getElementById('lightboxCityClose');
-        var lightboxBackdrop = document.getElementById('lightboxCityBackdrop');
-        var btnPrev = document.getElementById('lightboxCityPrev');
-        var btnNext = document.getElementById('lightboxCityNext');
-        if (!gallery || !lightbox || !lightboxImg) return;
-        var items = gallery.querySelectorAll('.masonry-item');
-        var sources = [];
-        items.forEach(function(item) {
-            var img = item.querySelector('img');
-            if (img) sources.push({ src: img.src, alt: img.alt || 'City' });
-        });
-        var currentIndex = 0;
-        function openLightbox(index) {
-            currentIndex = (index + sources.length) % sources.length;
-            lightboxImg.src = sources[currentIndex].src;
-            lightboxImg.alt = sources[currentIndex].alt;
-            lightbox.classList.add('is-open');
-            lightbox.setAttribute('aria-hidden', 'false');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeLightbox() {
-            lightbox.classList.remove('is-open');
-            lightbox.setAttribute('aria-hidden', 'true');
-            document.body.style.overflow = '';
-        }
-        function showPrev() {
-            if (sources.length === 0) return;
-            currentIndex = (currentIndex - 1 + sources.length) % sources.length;
-            lightboxImg.src = sources[currentIndex].src;
-            lightboxImg.alt = sources[currentIndex].alt;
-        }
-        function showNext() {
-            if (sources.length === 0) return;
-            currentIndex = (currentIndex + 1) % sources.length;
-            lightboxImg.src = sources[currentIndex].src;
-            lightboxImg.alt = sources[currentIndex].alt;
-        }
-        items.forEach(function(item) {
-            var img = item.querySelector('img');
-            if (!img) return;
-            item.style.cursor = 'pointer';
-            item.addEventListener('click', function() {
-                var i = parseInt(item.getAttribute('data-index'), 10);
-                if (!isNaN(i)) openLightbox(i);
+        (function () {
+            var gallery = document.getElementById('galleryCity');
+            var lightbox = document.getElementById('lightboxCity');
+            var lightboxImg = document.getElementById('lightboxCityImg');
+            var lightboxClose = document.getElementById('lightboxCityClose');
+            var lightboxBackdrop = document.getElementById('lightboxCityBackdrop');
+            var btnPrev = document.getElementById('lightboxCityPrev');
+            var btnNext = document.getElementById('lightboxCityNext');
+            if (!gallery || !lightbox || !lightboxImg) return;
+            var items = gallery.querySelectorAll('.masonry-item');
+            var sources = [];
+            items.forEach(function (item) {
+                var img = item.querySelector('img');
+                if (img) sources.push({ src: img.src, alt: img.alt || 'City' });
             });
-        });
-        if (lightboxClose) lightboxClose.addEventListener('click', function(e) { e.stopPropagation(); closeLightbox(); });
-        if (lightboxBackdrop) lightboxBackdrop.addEventListener('click', closeLightbox);
-        if (btnPrev) btnPrev.addEventListener('click', function(e) { e.stopPropagation(); showPrev(); });
-        if (btnNext) btnNext.addEventListener('click', function(e) { e.stopPropagation(); showNext(); });
-        document.addEventListener('keydown', function(e) {
-            if (!lightbox.classList.contains('is-open')) return;
-            if (e.key === 'Escape') closeLightbox();
-            else if (e.key === 'ArrowLeft') { e.preventDefault(); showPrev(); }
-            else if (e.key === 'ArrowRight') { e.preventDefault(); showNext(); }
-        });
-    })();
+            var currentIndex = 0;
+            function openLightbox(index) {
+                currentIndex = (index + sources.length) % sources.length;
+                lightboxImg.src = sources[currentIndex].src;
+                lightboxImg.alt = sources[currentIndex].alt;
+                lightbox.classList.add('is-open');
+                lightbox.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            }
+            function closeLightbox() {
+                lightbox.classList.remove('is-open');
+                lightbox.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+            function showPrev() {
+                if (sources.length === 0) return;
+                currentIndex = (currentIndex - 1 + sources.length) % sources.length;
+                lightboxImg.src = sources[currentIndex].src;
+                lightboxImg.alt = sources[currentIndex].alt;
+            }
+            function showNext() {
+                if (sources.length === 0) return;
+                currentIndex = (currentIndex + 1) % sources.length;
+                lightboxImg.src = sources[currentIndex].src;
+                lightboxImg.alt = sources[currentIndex].alt;
+            }
+            items.forEach(function (item) {
+                var img = item.querySelector('img');
+                if (!img) return;
+                item.style.cursor = 'pointer';
+                item.addEventListener('click', function () {
+                    var i = parseInt(item.getAttribute('data-index'), 10);
+                    if (!isNaN(i)) openLightbox(i);
+                });
+            });
+            if (lightboxClose) lightboxClose.addEventListener('click', function (e) { e.stopPropagation(); closeLightbox(); });
+            if (btnPrev) btnPrev.addEventListener('click', function (e) { e.stopPropagation(); showPrev(); });
+            if (btnNext) btnNext.addEventListener('click', function (e) { e.stopPropagation(); showNext(); });
+            document.addEventListener('keydown', function (e) {
+                if (!lightbox.classList.contains('is-open')) return;
+                if (e.key === 'Escape') closeLightbox();
+                else if (e.key === 'ArrowLeft') { e.preventDefault(); showPrev(); }
+                else if (e.key === 'ArrowRight') { e.preventDefault(); showNext(); }
+            });
+        })();
     </script>
 </body>
+
 </html>

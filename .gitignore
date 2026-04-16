@@ -1,0 +1,24 @@
+# Dipendenze Node.js
+node_modules/
+
+# Lock file (ricreabile con npm install)
+package-lock.json
+
+# File di sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Claude Code
+.claude/
+
+# File temporanei
+*.tmp
+*.log

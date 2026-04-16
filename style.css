@@ -184,6 +184,14 @@ body {
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'Montserrat Alternates Light';
+    src: url('assets/font/MontserratAlternates-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
 /* Hero: stesso rapporto della foto 1920×1080 (16:9) — altezza = larghezza×9/16, nessun ritaglio */
 #hero {
     width: 100%;
@@ -244,19 +252,19 @@ body {
     flex-direction: column;
     align-items: flex-start;
     /* distanza reale tra h1 e h2 (il solo margin sul sottotitolo non basta con i font display) */
-    gap: 0.2rem;
+    gap: 0.55rem;
 }
 
 #hero .hero-title {
     margin: 0;
-    font-family: 'Offerings', sans-serif;
+    font-family: 'Montserrat Alternates Light', sans-serif;
     font-size: clamp(48px, 12vmin, 140px);
-    font-weight: bold;
+    font-weight: normal;
     color: #ffffff;
     line-height: 1;
-    text-transform: lowercase;
+    text-transform: none;
     letter-spacing: 0.02em;
-    text-shadow: 0 3px 8px rgba(0, 0, 0, 0.7), 0 2px 2px rgba(0, 0, 0, 0.5);
+    text-shadow: none;
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
@@ -280,14 +288,22 @@ body {
         min-height: 100dvh;
     }
 
-    /* Soggetto a ~35% orizzontale, ~80% verticale nell'immagine originale */
+    /* Centra l'uomo+carretto: spostandosi leggermente verso il basso */
     #hero .hero-bg-image {
         object-fit: cover;
-        object-position: 35% 80%;
+        object-position: center 55%;
     }
 
     #hero .hero-heading {
-        top: calc(20% + 1cm);
+        top: 25%;
+        transform: none;
+    }
+
+    #hero .hero-title {
+        white-space: normal;
+        max-width: 8ch;
+        font-size: clamp(46px, 13.5vw, 84px);
+        line-height: 0.95;
     }
 
     #hero .hero-subtitle {
@@ -295,8 +311,8 @@ body {
     }
 }
 
-/* Hero mobile orizzontale: fullscreen, quasi 16:9 naturale */
-@media (max-width: 960px) and (orientation: landscape) {
+/* Hero mobile/tablet orizzontale: fullscreen, crop centrato */
+@media (max-width: 1024px) and (orientation: landscape) {
     #hero {
         aspect-ratio: auto;
         height: 100dvh;
@@ -305,15 +321,27 @@ body {
 
     #hero .hero-bg-image {
         object-fit: cover;
-        object-position: center 60%;
+        object-position: center 65%;
     }
 
     #hero .hero-heading {
-        top: calc(20% + 1cm);
+        top: 30%;
+        transform: none;
+    }
+
+    #hero .hero-title {
+        white-space: normal;
+        max-width: 8ch;
+        font-size: clamp(40px, 10vw, 72px);
+        line-height: 0.95;
     }
 
     #hero .hero-subtitle {
         margin-top: 0.5rem;
+    }
+
+    #hero .cta-button {
+        bottom: clamp(0.5rem, 3vh, 1rem);
     }
 }
 
@@ -337,6 +365,7 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     top: auto;
     z-index: 1;
     padding: 0.65rem 0.85rem;
+    background-color: rgba(153, 153, 153, 0.25);
 }
 
 .cta-button {
@@ -345,8 +374,8 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
     font-size: clamp(15px, 3vmin, 24px);
     font-weight: 700;
-    color: #000000;
-    background-color: rgba(153, 153, 153, 0.60);
+    color: #ffffff;
+    background-color: rgba(153, 153, 153, 0.90);
     text-decoration: none;
     text-transform: lowercase;
     letter-spacing: 0.12em;
@@ -357,7 +386,7 @@ html.galaxy-s8-hero #hero .hero-subtitle {
 
 .cta-button:hover {
     background: #333333;
-    color: #ffffff;
+    color: #000000;
 }
 
 /* Viewport bassi (es. iPhone SE orizzontale 667×375): titolo e sottotitolo leggibili, stessa posizione */
@@ -382,20 +411,29 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     }
 }
 
+/* Correzione landscape basso: evita sovrapposizione CTA su h2 */
+@media (max-height: 500px) and (orientation: landscape) {
+    #hero .cta-button {
+        bottom: clamp(0.5rem, 2.5vh, 0.9rem);
+    }
+}
+
 /* ============================================
    SEZIONE BIOGRAFIA - Layout Grid Semplificato
    ============================================ */
 
+/* ===== BIOGRAFIA — PROPOSTA MIX ===== */
 .biografia-section {
     width: 100%;
     background: #1a1a1a;
-    /* grigio ~90% (scuro) */
-    padding: 1.25rem 0 0;
+    padding: 4rem 2rem;
     margin: 0;
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    /* Evita scroll orizzontale con la fascia collaborazioni a 100vw */
+    overflow-x: hidden;
 }
 
 /* Scroll anchoring: ogni sezione si posiziona esattamente sotto la navbar */
@@ -413,287 +451,313 @@ html.galaxy-s8-hero #hero .hero-subtitle {
 }
 
 .biografia-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    /* allinea in alto: con min-height 100vh + center il titolo restava troppo in basso vs altre sezioni */
-    align-items: flex-start;
-    justify-content: center;
-    gap: 2.5rem;
-    width: 100%;
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 1.25rem;
+    width: 100%;
 }
 
+/* Hero: foto a sinistra, titolo/sottotitolo/lead a destra (desktop) */
+.biografia-hero {
+    display: grid;
+    grid-template-columns: 600px 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 0 3rem;
+    align-items: end;
+    margin-bottom: 3.5rem;
+}
+
+/* Foto occupa tutte le righe a sinistra */
 .biografia-foto {
-    flex: 0 1 360px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 1.5rem 1.25rem;
+    grid-column: 1;
+    grid-row: 1 / -1;
+    align-self: end;
 }
 
-.biografia-quote-left {
-    font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
-    font-weight: 700;
-    color: #ffffff;
-    text-align: right;
-    text-transform: uppercase;
-}
-
-.biografia-quote-line {
+.biografia-foto img {
+    width: 600px;
+    height: 400px;
+    max-width: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    border-radius: 1.5rem;
+    border: 10px solid #ffffff;
     display: block;
-    line-height: 1.1;
 }
 
-.biografia-quote-line--big {
-    font-size: clamp(2rem, 3vw, 3rem);
-    letter-spacing: 0.15em;
-}
-
-.biografia-quote-line--small {
-    font-size: clamp(1.1rem, 1.6vw, 1.6rem);
-    letter-spacing: 0.25em;
-}
-
-.biografia-quote-author {
-    display: block;
-    margin-top: 1.25rem;
-    font-size: 0.9rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.7);
-}
-
-/* Colori alternati per le 7 righe della citazione */
-.biografia-quote-left .biografia-quote-line:nth-child(1),
-.biografia-quote-left .biografia-quote-line:nth-child(3),
-.biografia-quote-left .biografia-quote-line:nth-child(4),
-.biografia-quote-left .biografia-quote-line:nth-child(7) {
-    color: #ffffff;
-}
-
-.biografia-quote-left .biografia-quote-line:nth-child(2),
-.biografia-quote-left .biografia-quote-line:nth-child(6) {
-    color: rgba(255, 255, 255, 0.3);
-    /* grigio ~30% */
-}
-
-.biografia-quote-left .biografia-quote-line:nth-child(5) {
-    color: rgba(255, 255, 255, 0.5);
-    /* grigio ~50% */
-}
-
-/* Linea verticale */
-.biografia-divider {
-    display: none;
-    /* eliminata */
-}
-
-/* Colonna testo - font Arrière Garde per tutta la sezione */
-.biografia-content {
-    flex: 1 1 360px;
-    min-width: 0;
-    max-width: 600px;
-    padding: 0 1.15rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    background: transparent;
-    font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
-}
-
+/* Titolo, sottotitolo, lead a destra */
 .biografia-title {
+    grid-column: 2;
+    grid-row: 1;
     font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
-    font-size: 2rem;
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
     font-weight: 700;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    margin: 0 0 10px 0;
     color: #ffffff;
-    /* grigio ~20% (chiaro) */
-    text-align: left;
+    margin-bottom: 0.5rem;
+    align-self: end;
 }
 
 .biografia-subtitle {
-    font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
-    font-size: 1.3rem;
-    font-weight: 400;
-    margin: 0 0 1.5rem 0;
-    color: #ffffff;
-    text-align: left;
+    grid-column: 2;
+    grid-row: 2;
+    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1rem, 1.5vw, 1.3rem);
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.08em;
+    margin-bottom: 1.5rem;
 }
 
-.biografia-text {
-    font-family: 'Century Gothic', 'Century Gothic', sans-serif;
+.biografia-lead {
+    grid-column: 2;
+    grid-row: 3;
+    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
     font-size: 1rem;
     line-height: 1.8;
-    color: #ffffff;
-    /* testo descrittivo bianco */
-    margin: 0 0 1.75rem 0;
+    color: rgba(255, 255, 255, 0.85);
+    align-self: start;
 }
 
-.biografia-text p {
-    margin: 0 0 1.15rem 0;
-    text-align: justify;
+/* Corpo testo a due colonne */
+.biografia-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    margin-bottom: 3rem;
 }
 
-.biografia-text p:last-child {
-    margin-bottom: 0;
-}
-
-.biografia-quote {
-    font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
+.biografia-col p {
+    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
     font-size: 1rem;
-    font-style: italic;
-    line-height: 1.6;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.85);
+    text-align: justify;
+    margin-bottom: 1.2rem;
+}
+
+.biografia-col p strong {
+    display: block;
     color: #ffffff;
+    font-size: 1.05rem;
+    margin-bottom: 0.3rem;
+    margin-top: 0.5rem;
+    letter-spacing: 0.03em;
+}
+
+/* Fascia bianca collaborazioni a tutta larghezza (contenuto interno in .biografia-container) */
+.biografia-collaborazioni-outer {
+    width: 100vw;
+    max-width: 100vw;
+    flex-shrink: 0;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    box-sizing: border-box;
+    background: #ffffff;
+    padding-top: 2.75rem;
+    padding-bottom: 3rem;
+    /* Ombra più leggera: stacca dal fondo scuro senza effetto “pannello” troppo marcato */
+    box-shadow: 0 6px 28px rgba(0, 0, 0, 0.12);
+}
+
+/* Ripristina margini lettura (la fascia esce dal padding della sezione) */
+.biografia-collaborazioni-outer>.biografia-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    box-sizing: border-box;
+}
+
+/* Collaborazioni di Rilievo — scheda pulita su fondo bianco */
+.biografia-collaborazioni {
+    width: 100%;
     margin: 0;
-    padding-top: 0.75rem;
+    padding: 0;
+    border: none;
+}
+
+.biografia-collaborazioni-title {
+    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
+    font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+    font-weight: 700;
+    color: #1a1a1a;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: 0 0 1.35rem;
+}
+
+.biografia-collaborazioni-list {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin: 0;
+}
+
+.biografia-collaborazioni-list li {
+    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #2d2d2d;
+    margin-bottom: 0.85rem;
+}
+
+.biografia-collaborazioni-list li::marker {
+    color: rgba(0, 0, 0, 0.35);
+}
+
+.biografia-collaborazioni-list li strong {
+    color: #111111;
+}
+
+.biografia-links {
+    display: flex;
+    gap: 1.5rem;
     margin-top: 0.75rem;
-    border-top: 1px solid #ffffff;
+    flex-wrap: wrap;
+}
+
+.biografia-links a {
+    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
+    font-size: 0.9rem;
+    color: #1a1a1a;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.3s ease;
+}
+
+.biografia-links a:hover {
+    color: #000000;
+}
+
+/* Citazione nel testo biografico (sotto «La Mia Fotografia Oggi»): corsivo elegante, più piccolo */
+.biografia-col .biografia-quote {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-size: clamp(0.88rem, 1.05vw, 0.95rem);
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.72);
     text-align: left;
+    margin: 1.2rem 0 1.45rem;
+    padding: 0;
+    border: none;
+    max-width: none;
 }
 
-@media (min-width: 1025px) {
-    .biografia-quote {
-        white-space: nowrap;
+/* ===== BIOGRAFIA — TABLET + MOBILE (≤1024px) ===== */
+@media (max-width: 1024px) {
+    .biografia-collaborazioni-outer>.biografia-container {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
     }
-}
 
-.biografia-quote::before {
-    display: none;
-    /* elimina la linea sopra la citazione */
-}
+    .biografia-section {
+        padding: 3rem 1.5rem;
+    }
 
-/* ==========================================
-   RESPONSIVE MOBILE - BIOGRAFIA OTTIMIZZATA
-   ========================================== */
-
-@media (max-width: 768px) {
-    .biografia-container {
+    .biografia-hero {
         display: flex;
-        /* mantieni layout centrato anche su mobile */
         flex-direction: column;
         align-items: center;
-        min-height: auto;
-        max-width: 100%;
+        gap: 0;
+    }
+
+    /* Ordine: titolo → foto → sottotitolo → lead */
+    .biografia-title {
+        order: 1;
+        font-size: clamp(2rem, 5vw, 3rem);
+        text-align: center;
+        margin-bottom: 1.5rem;
+        width: 100%;
+    }
+
+    .portfolio-title,
+    .mostre-title,
+    .testimonial-title,
+    #contatti .contatti-title {
+        font-size: clamp(2rem, 5vw, 3rem);
     }
 
     .biografia-foto {
-        width: auto;
-        height: auto;
-        min-height: 0;
-        max-height: none;
+        order: 2;
+        max-width: 600px;
+        width: 100%;
+        margin-bottom: 1.5rem;
     }
 
     .biografia-foto img {
-        width: auto;
+        width: 100%;
         height: auto;
-        max-width: 100%;
-        object-fit: contain;
-        object-position: center center;
-    }
-
-    /* Contenuto testo con padding adeguato */
-    .biografia-content {
-        padding: 2.35rem 1.5rem;
-    }
-
-    .biografia-title {
-        font-size: 2rem;
-        /* allinea alle altre sezioni anche su tablet */
-        letter-spacing: 0.15em;
-        text-align: center;
-        margin-bottom: 15px;
+        aspect-ratio: 3 / 2;
     }
 
     .biografia-subtitle {
-        font-size: 1.1rem;
-        line-height: 1.5;
-        margin-bottom: 1.4rem;
+        order: 3;
+        text-align: center;
+        margin-bottom: 1rem;
+        width: 100%;
     }
 
-    .biografia-text {
-        font-size: 1rem;
-        /* Mantieni 1rem per leggibilità */
-        line-height: 1.7;
-        /* Line-height leggermente ridotto */
-        margin-bottom: 1.4rem;
-    }
-
-    .biografia-text p {
+    .biografia-lead {
+        order: 4;
         text-align: justify;
-        margin-bottom: 1.1rem;
-    }
-
-    .biografia-quote {
-        font-size: 0.95rem;
-        line-height: 1.6;
-    }
-
-    /* Linea sopra citazione: larghezza testo su mobile */
-    .biografia-quote::before {
-        left: 0;
+        margin-bottom: 0;
         width: 100%;
     }
 }
 
-/* Mobile piccolo (smartphone piccoli) */
-@media (max-width: 480px) {
-    .biografia-foto {
-        height: auto;
-        min-height: 0;
+/* ===== BIOGRAFIA — MOBILE (≤768px) ===== */
+@media (max-width: 768px) {
+    .biografia-collaborazioni-outer>.biografia-container {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
     }
 
-    .biografia-content {
-        padding: 1.75rem 1.2rem;
+    .biografia-section {
+        padding: 3rem 1.25rem;
     }
 
-    .biografia-title {
-        font-size: 2rem;
-        letter-spacing: 0.15em;
-        text-align: center;
+    .biografia-title,
+    .portfolio-title,
+    .mostre-title,
+    .testimonial-title,
+    #contatti .contatti-title {
+        font-size: clamp(2rem, 8vw, 2.8rem);
     }
 
-    .biografia-subtitle {
-        font-size: 1rem;
-        margin-bottom: 1.15rem;
+    .biografia-body {
+        grid-template-columns: 1fr;
+        gap: 0;
     }
 
-    .biografia-text {
-        font-size: 0.95rem;
-        line-height: 1.65;
+    .biografia-col .biografia-quote {
+        font-size: 0.94rem;
+    }
+
+    .biografia-links {
+        flex-direction: column;
+        gap: 0.5rem;
     }
 }
 
-/* Tablet / iPad - sticky come desktop, viewport stabile */
-@media (min-width: 769px) and (max-width: 1024px) {
-    .biografia-container {
-        grid-template-columns: 40% 1px 1fr;
+/* ===== BIOGRAFIA — SMALL MOBILE (≤480px) ===== */
+@media (max-width: 480px) {
+    .biografia-collaborazioni-outer>.biografia-container {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
     }
 
-    .biografia-foto {
-        align-self: start;
-        padding-top: 1rem;
-        padding-right: 2.5cm;
-        display: flex;
-        justify-content: flex-end;
+    .biografia-section {
+        padding: 2rem 1.25rem;
     }
 
-    .biografia-foto img {
-        max-width: 400px;
-        max-height: 400px;
-    }
-
-    .biografia-divider {
-        min-height: 100svh;
-    }
-
-    .biografia-content {
-        padding: 2.5rem 1.5rem;
+    .biografia-title,
+    .portfolio-title,
+    .mostre-title,
+    .testimonial-title,
+    #contatti .contatti-title {
+        font-size: 1.8rem;
+        letter-spacing: 0.15em;
     }
 }
 
@@ -713,7 +777,8 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     text-align: center;
     margin-bottom: 1.5rem;
     color: #ffffff;
-    font-size: 2rem;
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    letter-spacing: 0.2em;
     width: 100%;
 }
 
@@ -801,12 +866,12 @@ html.galaxy-s8-hero #hero .hero-subtitle {
 .portfolio-item-label {
     position: absolute;
     right: 0.75rem;
-    bottom: 0.75rem;
+    bottom: 1.75rem;
     left: auto;
     top: auto;
     transform: none;
     text-align: right;
-    padding: 0.4rem 1.2rem;
+    padding: 0;
     border-radius: 999px;
     background: none;
     color: #ffffff;
@@ -815,6 +880,20 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
     font-size: clamp(0.85rem, 1.8vw, 2.0rem);
     text-shadow: 0 3px 8px rgba(0, 0, 0, 0.7), 0 2px 2px rgba(0, 0, 0, 0.5);
+    white-space: nowrap;
+}
+
+.portfolio-item-count {
+    position: absolute;
+    right: 0.75rem;
+    bottom: 0.55rem;
+    text-align: right;
+    color: #ffffff;
+    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
+    font-size: clamp(0.62rem, 1.1vw, 0.95rem);
+    letter-spacing: 0.08em;
+    text-shadow: 0 3px 8px rgba(0, 0, 0, 0.7), 0 2px 2px rgba(0, 0, 0, 0.5);
+    white-space: nowrap;
 }
 
 .portfolio-item-placeholder {
@@ -880,6 +959,67 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     text-align: justify;
 }
 
+/* Mostra Jazz: dopo l'elenco rassegne, immagine articolo sotto la hero + testo a fianco e sotto */
+.mostra-page-content--foto-testo-row.mostra-page-content--jazz-grid {
+    display: grid;
+    grid-template-columns: minmax(200px, 320px) 1fr;
+    column-gap: 1.5rem;
+    row-gap: 3rem;
+    align-items: start;
+}
+
+.mostra-page-content--jazz-grid .mostra-jazz-foto-hero {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.mostra-page-content--jazz-grid>.mostra-page-testo {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.mostra-page-content--jazz-grid .mostra-jazz-articolo-foto {
+    grid-column: 1;
+    grid-row: 2;
+    margin: 3mm 0 0 0;
+    max-width: 320px;
+}
+
+.mostra-page-content--jazz-grid .mostra-jazz-articolo-img {
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-sizing: border-box;
+}
+
+.mostra-page-content--jazz-grid .mostra-jazz-articolo-testo {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.mostra-page-content--jazz-grid .mostra-jazz-articolo-sotto {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    margin-top: -1rem;
+}
+
+@media (max-width: 768px) {
+    .mostra-page-content--foto-testo-row.mostra-page-content--jazz-grid {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mostra-page-content--jazz-grid .mostra-jazz-articolo-foto {
+        max-width: none;
+    }
+
+    .mostra-page-content--jazz-grid .mostra-jazz-articolo-img {
+        max-width: min(280px, 100%);
+    }
+}
+
 /* Auschwitz: hover foto 11cop – solo zoom in avanti dell’immagine */
 .mostra-page-content--foto-testo-row>.mostra-page-foto-wrap:hover .mostra-page-foto {
     transform: scale(1.15);
@@ -936,6 +1076,11 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     box-sizing: border-box;
     border: 1px solid rgba(255, 255, 255, 0.3);
     margin: 0;
+}
+
+.gallery-page--mostra-principale .mostra-page-foto-link .mostra-page-foto-wrap {
+    border-width: 4px;
+    border-color: #ffffff;
 }
 
 .mostra-page-foto-wrap .mostra-page-foto {
@@ -1015,6 +1160,56 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     text-align: justify;
 }
 
+/* Pagine Mostre: sottotitoli e testi in Century Gothic (titoli esclusi) */
+.gallery-page--mostra-principale h2,
+.gallery-page--mostra-principale .gallery-subtitle,
+.gallery-page--mostra-principale .mostra-page-desc,
+.gallery-page--mostra-principale .mostra-page-lista,
+.gallery-page--mostra-principale .mostra-page-lista li,
+.gallery-page--mostra-principale .mostra-articolo-testo,
+.gallery-page--mostra-principale .mostra-articolo-testo p {
+    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
+}
+
+/* Mostra Jazz: Century Gothic anche per sottotitolo e titoli sezione */
+.gallery-page--mostra-jazz .gallery-intro .gallery-subtitle {
+    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+}
+
+.gallery-page--mostra-jazz .mostra-page-titolo-lista {
+    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+/* Mostra Auschwitz: Century Gothic su sottotitolo e titolo sezione richiesti */
+.gallery-page--mostra-auschwitz .gallery-intro .gallery-subtitle {
+    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+}
+
+.gallery-page--mostra-auschwitz .mostra-page-titolo-lista {
+    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+/* Mostra Storie: Century Gothic su sottotitolo e titolo sezione richiesti */
+.gallery-page--mostra-storie .gallery-intro .gallery-subtitle {
+    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+}
+
+.gallery-page--mostra-storie .mostra-page-titolo-lista {
+    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
 .mostra-articolo-wrap {
     margin-top: 0;
     flex-shrink: 0;
@@ -1062,7 +1257,7 @@ html.galaxy-s8-hero #hero .hero-subtitle {
 .mostra-articolo-lightbox__backdrop {
     position: absolute;
     inset: 0;
-    cursor: pointer;
+    cursor: default;
 }
 
 .mostra-articolo-lightbox__close {
@@ -1213,14 +1408,14 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     object-position: 50% 100%;
 }
 
-/* ===== GALLERY PEOPLE: stessa struttura della Jazz ===== */
-.gallery-people-wrap {
+/* ===== GALLERY PORTRAITS: stessa struttura della Jazz ===== */
+.gallery-portraits-wrap {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 1rem 4rem;
 }
 
-.gallery-people {
+.gallery-portraits {
     /* Sovrascrive il masonry a colonne per avere griglia simmetrica */
     column-count: unset;
     column-gap: 0;
@@ -1230,7 +1425,7 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     /* spazio bianco uniforme di 10px */
 }
 
-.gallery-people .masonry-item {
+.gallery-portraits .masonry-item {
     cursor: pointer;
     transition: opacity 0.25s ease, transform 0.25s ease;
     will-change: transform;
@@ -1238,14 +1433,14 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     /* niente margine extra oltre al gap */
 }
 
-.gallery-people .masonry-item:hover {
+.gallery-portraits .masonry-item:hover {
     opacity: 0.95;
     transform: scale(1.03);
-    /* leggero zoom anche per People */
+    /* leggero zoom anche per Portraits */
 }
 
-/* Miniature People tutte uguali (stessa dimensione) */
-.gallery-people .masonry-item img {
+/* Miniature Portraits tutte uguali (stessa dimensione) */
+.gallery-portraits .masonry-item img {
     width: 100%;
     height: auto;
     aspect-ratio: 4 / 3;
@@ -1253,8 +1448,42 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     object-fit: cover;
 }
 
-/* Lightbox People: identica alla Jazz ma senza bordo bianco */
-.lightbox-people {
+/* ===== GALLERY AUSCHWITZ: stessa struttura Portraits/Jazz ===== */
+.gallery-auschwitz-wrap {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1rem 4rem;
+}
+
+.gallery-auschwitz {
+    column-count: unset;
+    column-gap: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 10px;
+}
+
+.gallery-auschwitz .masonry-item {
+    cursor: pointer;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    will-change: transform;
+    margin: 0;
+}
+
+.gallery-auschwitz .masonry-item:hover {
+    opacity: 0.95;
+    transform: scale(1.03);
+}
+
+.gallery-auschwitz .masonry-item img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+}
+
+/* Lightbox Portraits: identica alla Jazz ma senza bordo bianco */
+.lightbox-portraits {
     display: none;
     position: fixed;
     inset: 0;
@@ -1320,7 +1549,7 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     position: absolute;
     inset: 0;
     background: rgba(0, 0, 0, 0.92);
-    cursor: pointer;
+    cursor: default;
 }
 
 .lightbox-street__close {
@@ -1488,7 +1717,7 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     position: absolute;
     inset: 0;
     background: rgba(0, 0, 0, 0.92);
-    cursor: pointer;
+    cursor: default;
 }
 
 .lightbox-umbria__close {
@@ -1571,18 +1800,18 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     }
 }
 
-.lightbox-people.is-open {
+.lightbox-portraits.is-open {
     display: flex;
 }
 
-.lightbox-people__backdrop {
+.lightbox-portraits__backdrop {
     position: absolute;
     inset: 0;
     background: rgba(0, 0, 0, 0.92);
-    cursor: pointer;
+    cursor: default;
 }
 
-.lightbox-people__close {
+.lightbox-portraits__close {
     position: absolute;
     top: 20px;
     right: 20px;
@@ -1600,11 +1829,11 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     transition: background 0.2s ease;
 }
 
-.lightbox-people__close:hover {
+.lightbox-portraits__close:hover {
     background: rgba(255, 255, 255, 0.35);
 }
 
-.lightbox-people__content {
+.lightbox-portraits__content {
     position: relative;
     z-index: 1001;
     display: flex;
@@ -1615,7 +1844,7 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     max-height: 90vh;
 }
 
-.lightbox-people__img {
+.lightbox-portraits__img {
     max-width: 85vw;
     max-height: 85vh;
     width: auto;
@@ -1626,8 +1855,8 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     box-sizing: border-box;
 }
 
-.lightbox-people__prev,
-.lightbox-people__next {
+.lightbox-portraits__prev,
+.lightbox-portraits__next {
     flex-shrink: 0;
     width: 48px;
     height: 48px;
@@ -1641,24 +1870,134 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     transition: background 0.2s ease;
 }
 
-.lightbox-people__prev:hover,
-.lightbox-people__next:hover {
+.lightbox-portraits__prev:hover,
+.lightbox-portraits__next:hover {
     background: rgba(255, 255, 255, 0.35);
 }
 
 @media (max-width: 768px) {
-    .lightbox-people__prev {
+    .lightbox-portraits__prev {
         position: absolute;
         left: 10px;
         top: 50%;
         transform: translateY(-50%);
     }
 
-    .lightbox-people__next {
+    .lightbox-portraits__next {
         position: absolute;
         right: 10px;
         top: 50%;
         transform: translateY(-50%);
+    }
+}
+
+/* Lightbox Auschwitz: intero overlay bianco, foto senza cornice; controlli scuri per contrasto */
+.lightbox-auschwitz {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.lightbox-auschwitz.is-open {
+    display: flex;
+}
+
+.lightbox-auschwitz__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(33, 33, 33, 0.97);
+    cursor: default;
+}
+
+.lightbox-auschwitz__close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1002;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border: none;
+    background: #000000;
+    color: #ffffff;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.2s ease;
+}
+
+.lightbox-auschwitz__close:hover {
+    background: rgba(0, 0, 0, 0.14);
+}
+
+.lightbox-auschwitz__content {
+    position: relative;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    max-width: 95vw;
+    max-height: 90vh;
+}
+
+/* Limiti un po’ più ampi del 85vw/85vh di Jazz/Portraits: le full quadrate altrimenti restano “piccole” (il lato segue il minore tra larghezza e altezza del riquadro) */
+.lightbox-auschwitz__img {
+    display: block;
+    max-width: 92vw;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+}
+
+.lightbox-auschwitz__prev,
+.lightbox-auschwitz__next {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border: none;
+    background: #000000;
+    color: #ffffff;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.2s ease;
+}
+
+.lightbox-auschwitz__prev:hover,
+.lightbox-auschwitz__next:hover {
+    background: rgba(0, 0, 0, 0.14);
+}
+
+@media (max-width: 768px) {
+
+    /* Fixed al viewport: altrimenti absolute rispetto a __content finisce sopra la foto */
+    .lightbox-auschwitz__prev {
+        position: fixed;
+        left: max(6px, env(safe-area-inset-left, 0px));
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1003;
+    }
+
+    .lightbox-auschwitz__next {
+        position: fixed;
+        right: max(6px, env(safe-area-inset-right, 0px));
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1003;
     }
 }
 
@@ -1681,7 +2020,7 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     position: absolute;
     inset: 0;
     background: rgba(0, 0, 0, 0.92);
-    cursor: pointer;
+    cursor: default;
 }
 
 .lightbox-jazz__close {
@@ -1792,7 +2131,7 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     position: absolute;
     inset: 0;
     background: rgba(0, 0, 0, 0.92);
-    cursor: pointer;
+    cursor: default;
 }
 
 .lightbox-landscapes__close,
@@ -1906,6 +2245,22 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     }
 }
 
+/* Lightbox: swipe e pinch su touch (transform applicato da main.js) */
+.lightbox-portraits__img,
+.lightbox-auschwitz__img,
+.lightbox-jazz__img,
+.lightbox-street__img,
+.lightbox-landscapes__img,
+.lightbox-weddings__img,
+.lightbox-city__img,
+.lightbox-monuments__img,
+.mostra-articolo-lightbox__img {
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
+    transform-origin: center center;
+}
+
 /* ===== MOSTRE ===== */
 #mostre {
     padding: 3.5rem 1.75rem;
@@ -1922,7 +2277,8 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     text-align: center;
     margin-bottom: 1.75rem;
     color: #ffffff;
-    font-size: 2rem;
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    letter-spacing: 0.2em;
     width: 100%;
 }
 
@@ -1936,9 +2292,9 @@ html.galaxy-s8-hero #hero .hero-subtitle {
 }
 
 .mostre-card {
-    background: var(--colore-sfondo);
+    background: #999999;
     border-radius: 10px;
-    border: 1px solid rgba(153, 153, 153, 0.75);
+    border: 1px solid rgba(0, 0, 0, 0.75);
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -1971,6 +2327,8 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     padding: 1rem 1rem 0.25rem;
     font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
     font-size: 1.1rem;
+    color: #000000;
+    text-align: center;
 }
 
 .mostre-card-data,
@@ -2065,7 +2423,8 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
     text-align: center;
     margin-bottom: 1.75rem;
-    font-size: 2rem;
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    letter-spacing: 0.2em;
     color: #ffffff;
     width: 100%;
 }
@@ -2202,7 +2561,8 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
     text-align: center;
     margin-bottom: 1.75rem;
-    font-size: 2rem;
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    letter-spacing: 0.2em;
     color: #ffffff;
     width: 100%;
 }
@@ -2402,6 +2762,18 @@ html.galaxy-s8-hero #hero .hero-subtitle {
 
 /* Mobile: <768px */
 @media (max-width: 768px) {
+
+    /* Gallerie portfolio: sempre due colonne sui cellulari */
+    .gallery-jazz,
+    .gallery-portraits,
+    .gallery-auschwitz,
+    .gallery-street,
+    .gallery-landscapes,
+    .gallery-weddings,
+    .gallery-city,
+    .gallery-monuments {
+        grid-template-columns: repeat(2, 1fr);
+    }
 
     /* Portfolio: due colonne in verticale (impilate a griglia) */
     .portfolio-grid {

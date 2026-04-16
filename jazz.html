@@ -1,168 +1,424 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jazz - ph. antonio manno</title>
-    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="style.css?v=2">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Jazz - ph. antonio manno</title>
+        <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+        <link rel="stylesheet" href="style.css?v=2">
 </head>
+
 <body>
 
-    <nav id="navbar">
-        <div class="navbar-inner">
-            <a href="index.html" class="navbar-logo"><span class="logo-line1">ph. antonio</span><span class="logo-line2">manno</span></a>
-            <button type="button" class="hamburger" aria-label="Apri menu" aria-expanded="false">
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-            </button>
-            <ul class="nav-menu">
-                <li><a href="index.html#hero">Home</a></li>
-                <li><a href="index.html#biografia">Biografia</a></li>
-                <li class="nav-item-dropdown">
-                    <a href="index.html#portfolio" class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">Portfolio</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="monuments.html">Monuments</a></li>
-                        <li><a href="city.html">City</a></li>
-                        <li><a href="people.html">People</a></li>
-                        <li><a href="jazz.html">Jazz</a></li>
-                        <li><a href="landscapes.html">Landscapes</a></li>
-                        <li><a href="street.html">Street</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item-dropdown">
-                    <a href="index.html#mostre" class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">Mostre</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="auschwitz.html">Auschwitz</a></li>
-                        <li><a href="umbria-jazz.html">Umbria jazz</a></li>
-                    </ul>
-                </li>
-                <li><a href="index.html#dicono-di-me">Dicono di me</a></li>
-                <li><a href="index.html#contatti">Contatti</a></li>
-            </ul>
+        <nav id="navbar">
+                <div class="navbar-inner">
+                        <a href="index.html" class="navbar-logo"><span class="logo-line1">ph. antonio</span><span
+                                        class="logo-line2">manno</span></a>
+                        <button type="button" class="hamburger" aria-label="Apri menu" aria-expanded="false">
+                                <span class="hamburger-line"></span>
+                                <span class="hamburger-line"></span>
+                                <span class="hamburger-line"></span>
+                        </button>
+                        <ul class="nav-menu">
+                                <li><a href="index.html#hero">Home</a></li>
+                                <li><a href="index.html#biografia">Biografia</a></li>
+                                <li class="nav-item-dropdown">
+                                        <a href="index.html#portfolio" class="dropdown-trigger" aria-haspopup="true"
+                                                aria-expanded="false">Portfolio</a>
+                                        <ul class="dropdown-menu">
+                                                <li><a href="auschwitz.html">Auschwitz</a></li>
+                                                <li><a href="city.html">City</a></li>
+                                                <li><a href="portraits.html">Portraits</a></li>
+                                                <li><a href="jazz.html">Jazz</a></li>
+                                                <li><a href="landscapes.html">Landscapes</a></li>
+                                                <li><a href="street.html">Street</a></li>
+                                        </ul>
+                                </li>
+                                <li class="nav-item-dropdown">
+                                        <a href="index.html#mostre" class="dropdown-trigger" aria-haspopup="true"
+                                                aria-expanded="false">Mostre</a>
+                                        <ul class="dropdown-menu">
+                                                <li><a href="mostra-auschwitz.html">Auschwitz</a></li>
+                                                <li><a href="mostra-jazz.html">Jazz festival</a></li>
+                                                <li><a href="mostra-storie.html">Storie</a></li>
+                                        </ul>
+                                </li>
+                                <li><a href="index.html#dicono-di-me">Dicono di me</a></li>
+                                <li><a href="index.html#contatti">Contatti</a></li>
+                        </ul>
+                </div>
+        </nav>
+
+        <main class="gallery-page">
+                <section class="gallery-intro">
+                        <h1 class="gallery-title">Jazz</h1>
+                        <p class="gallery-subtitle">Musica e ritratti sul palco</p>
+                        <p class="gallery-desc">I grandi nomi del jazz colti durante concerti e session. Luci di scena,
+                                strumenti e
+                                espressioni che raccontano la passione e l'energia della musica dal vivo.</p>
+                </section>
+
+                <div class="gallery-jazz-wrap">
+                        <div class="masonry-gallery gallery-jazz" id="galleryJazz">
+                                <div class="masonry-item masonry-item--jazz-01" data-index="0"><img
+                                                src="assets/images/photo-jazz/thumbs/01.webp" alt="Jazz 01"
+                                                data-full="assets/images/photo-jazz/full/01.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="1"><img
+                                                src="assets/images/photo-jazz/thumbs/02.webp" alt="Jazz 02"
+                                                data-full="assets/images/photo-jazz/full/02.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="2"><img
+                                                src="assets/images/photo-jazz/thumbs/03.webp" alt="Jazz 03"
+                                                data-full="assets/images/photo-jazz/full/03.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="3"><img
+                                                src="assets/images/photo-jazz/thumbs/04.webp" alt="Jazz 04"
+                                                data-full="assets/images/photo-jazz/full/04.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="4"><img
+                                                src="assets/images/photo-jazz/thumbs/05.webp" alt="Jazz 05"
+                                                data-full="assets/images/photo-jazz/full/05.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="5"><img
+                                                src="assets/images/photo-jazz/thumbs/06.webp" alt="Jazz 06"
+                                                data-full="assets/images/photo-jazz/full/06.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="6"><img
+                                                src="assets/images/photo-jazz/thumbs/07.webp" alt="Jazz 07"
+                                                data-full="assets/images/photo-jazz/full/07.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="7"><img
+                                                src="assets/images/photo-jazz/thumbs/08.webp" alt="Jazz 08"
+                                                data-full="assets/images/photo-jazz/full/08.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="8"><img
+                                                src="assets/images/photo-jazz/thumbs/09.webp" alt="Jazz 09"
+                                                data-full="assets/images/photo-jazz/full/09.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="9"><img
+                                                src="assets/images/photo-jazz/thumbs/10.webp" alt="Jazz 10"
+                                                data-full="assets/images/photo-jazz/full/10.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="10"><img
+                                                src="assets/images/photo-jazz/thumbs/11.webp" alt="Jazz 11"
+                                                data-full="assets/images/photo-jazz/full/11.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="11"><img
+                                                src="assets/images/photo-jazz/thumbs/12.webp" alt="Jazz 12"
+                                                data-full="assets/images/photo-jazz/full/12.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="12"><img
+                                                src="assets/images/photo-jazz/thumbs/13.webp" alt="Jazz 13"
+                                                data-full="assets/images/photo-jazz/full/13.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="13"><img
+                                                src="assets/images/photo-jazz/thumbs/14.webp" alt="Jazz 14"
+                                                data-full="assets/images/photo-jazz/full/14.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="14"><img
+                                                src="assets/images/photo-jazz/thumbs/15.webp" alt="Jazz 15"
+                                                data-full="assets/images/photo-jazz/full/15.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="15"><img
+                                                src="assets/images/photo-jazz/thumbs/16.webp" alt="Jazz 16"
+                                                data-full="assets/images/photo-jazz/full/16.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="16"><img
+                                                src="assets/images/photo-jazz/thumbs/17.webp" alt="Jazz 17"
+                                                data-full="assets/images/photo-jazz/full/17.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="17"><img
+                                                src="assets/images/photo-jazz/thumbs/18.webp" alt="Jazz 18"
+                                                data-full="assets/images/photo-jazz/full/18.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="18"><img
+                                                src="assets/images/photo-jazz/thumbs/19.webp" alt="Jazz 19"
+                                                data-full="assets/images/photo-jazz/full/19.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="19"><img
+                                                src="assets/images/photo-jazz/thumbs/20.webp" alt="Jazz 20"
+                                                data-full="assets/images/photo-jazz/full/20.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="20"><img
+                                                src="assets/images/photo-jazz/thumbs/21.webp" alt="Jazz 21"
+                                                data-full="assets/images/photo-jazz/full/21.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="21"><img
+                                                src="assets/images/photo-jazz/thumbs/22.webp" alt="Jazz 22"
+                                                data-full="assets/images/photo-jazz/full/22.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="22"><img
+                                                src="assets/images/photo-jazz/thumbs/23.webp" alt="Jazz 23"
+                                                data-full="assets/images/photo-jazz/full/23.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="23"><img
+                                                src="assets/images/photo-jazz/thumbs/24.webp" alt="Jazz 24"
+                                                data-full="assets/images/photo-jazz/full/24.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="24"><img
+                                                src="assets/images/photo-jazz/thumbs/25.webp" alt="Jazz 25"
+                                                data-full="assets/images/photo-jazz/full/25.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="25"><img
+                                                src="assets/images/photo-jazz/thumbs/26.webp" alt="Jazz 26"
+                                                data-full="assets/images/photo-jazz/full/26.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="26"><img
+                                                src="assets/images/photo-jazz/thumbs/27.webp" alt="Jazz 27"
+                                                data-full="assets/images/photo-jazz/full/27.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="27"><img
+                                                src="assets/images/photo-jazz/thumbs/28.webp" alt="Jazz 28"
+                                                data-full="assets/images/photo-jazz/full/28.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="28"><img
+                                                src="assets/images/photo-jazz/thumbs/29.webp" alt="Jazz 29"
+                                                data-full="assets/images/photo-jazz/full/29.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="29"><img
+                                                src="assets/images/photo-jazz/thumbs/30.webp" alt="Jazz 30"
+                                                data-full="assets/images/photo-jazz/full/30.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="30"><img
+                                                src="assets/images/photo-jazz/thumbs/31.webp" alt="Jazz 31"
+                                                data-full="assets/images/photo-jazz/full/31.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="31"><img
+                                                src="assets/images/photo-jazz/thumbs/32.webp" alt="Jazz 32"
+                                                data-full="assets/images/photo-jazz/full/32.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="32"><img
+                                                src="assets/images/photo-jazz/thumbs/33.webp" alt="Jazz 33"
+                                                data-full="assets/images/photo-jazz/full/33.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="33"><img
+                                                src="assets/images/photo-jazz/thumbs/34.webp" alt="Jazz 34"
+                                                data-full="assets/images/photo-jazz/full/34.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="34"><img
+                                                src="assets/images/photo-jazz/thumbs/35.webp" alt="Jazz 35"
+                                                data-full="assets/images/photo-jazz/full/35.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="35"><img
+                                                src="assets/images/photo-jazz/thumbs/36.webp" alt="Jazz 36"
+                                                data-full="assets/images/photo-jazz/full/36.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="36"><img
+                                                src="assets/images/photo-jazz/thumbs/37.webp" alt="Jazz 37"
+                                                data-full="assets/images/photo-jazz/full/37.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="37"><img
+                                                src="assets/images/photo-jazz/thumbs/38.webp" alt="Jazz 38"
+                                                data-full="assets/images/photo-jazz/full/38.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="38"><img
+                                                src="assets/images/photo-jazz/thumbs/39.webp" alt="Jazz 39"
+                                                data-full="assets/images/photo-jazz/full/39.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="39"><img
+                                                src="assets/images/photo-jazz/thumbs/40.webp" alt="Jazz 40"
+                                                data-full="assets/images/photo-jazz/full/40.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="40"><img
+                                                src="assets/images/photo-jazz/thumbs/41.webp" alt="Jazz 41"
+                                                data-full="assets/images/photo-jazz/full/41.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="41"><img
+                                                src="assets/images/photo-jazz/thumbs/42.webp" alt="Jazz 42"
+                                                data-full="assets/images/photo-jazz/full/42.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="42"><img
+                                                src="assets/images/photo-jazz/thumbs/43.webp" alt="Jazz 43"
+                                                data-full="assets/images/photo-jazz/full/43.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="43"><img
+                                                src="assets/images/photo-jazz/thumbs/44.webp" alt="Jazz 44"
+                                                data-full="assets/images/photo-jazz/full/44.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="44"><img
+                                                src="assets/images/photo-jazz/thumbs/45.webp" alt="Jazz 45"
+                                                data-full="assets/images/photo-jazz/full/45.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="45"><img
+                                                src="assets/images/photo-jazz/thumbs/46.webp" alt="Jazz 46"
+                                                data-full="assets/images/photo-jazz/full/46.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="46"><img
+                                                src="assets/images/photo-jazz/thumbs/47.webp" alt="Jazz 47"
+                                                data-full="assets/images/photo-jazz/full/47.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="47"><img
+                                                src="assets/images/photo-jazz/thumbs/48.webp" alt="Jazz 48"
+                                                data-full="assets/images/photo-jazz/full/48.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="48"><img
+                                                src="assets/images/photo-jazz/thumbs/49.webp" alt="Jazz 49"
+                                                data-full="assets/images/photo-jazz/full/49.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="49"><img
+                                                src="assets/images/photo-jazz/thumbs/50.webp" alt="Jazz 50"
+                                                data-full="assets/images/photo-jazz/full/50.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="50"><img
+                                                src="assets/images/photo-jazz/thumbs/51.webp" alt="Jazz 51"
+                                                data-full="assets/images/photo-jazz/full/51.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="51"><img
+                                                src="assets/images/photo-jazz/thumbs/52.webp" alt="Jazz 52"
+                                                data-full="assets/images/photo-jazz/full/52.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="52"><img
+                                                src="assets/images/photo-jazz/thumbs/53.webp" alt="Jazz 53"
+                                                data-full="assets/images/photo-jazz/full/53.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="53"><img
+                                                src="assets/images/photo-jazz/thumbs/54.webp" alt="Jazz 54"
+                                                data-full="assets/images/photo-jazz/full/54.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="54"><img
+                                                src="assets/images/photo-jazz/thumbs/55.webp" alt="Jazz 55"
+                                                data-full="assets/images/photo-jazz/full/55.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="55"><img
+                                                src="assets/images/photo-jazz/thumbs/56.webp" alt="Jazz 56"
+                                                data-full="assets/images/photo-jazz/full/56.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="56"><img
+                                                src="assets/images/photo-jazz/thumbs/57.webp" alt="Jazz 57"
+                                                data-full="assets/images/photo-jazz/full/57.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="57"><img
+                                                src="assets/images/photo-jazz/thumbs/58.webp" alt="Jazz 58"
+                                                data-full="assets/images/photo-jazz/full/58.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="58"><img
+                                                src="assets/images/photo-jazz/thumbs/59.webp" alt="Jazz 59"
+                                                data-full="assets/images/photo-jazz/full/59.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="59"><img
+                                                src="assets/images/photo-jazz/thumbs/60.webp" alt="Jazz 60"
+                                                data-full="assets/images/photo-jazz/full/60.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="60"><img
+                                                src="assets/images/photo-jazz/thumbs/61.webp" alt="Jazz 61"
+                                                data-full="assets/images/photo-jazz/full/61.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="61"><img
+                                                src="assets/images/photo-jazz/thumbs/62.webp" alt="Jazz 62"
+                                                data-full="assets/images/photo-jazz/full/62.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="62"><img
+                                                src="assets/images/photo-jazz/thumbs/63.webp" alt="Jazz 63"
+                                                data-full="assets/images/photo-jazz/full/63.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="63"><img
+                                                src="assets/images/photo-jazz/thumbs/64.webp" alt="Jazz 64"
+                                                data-full="assets/images/photo-jazz/full/64.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="64"><img
+                                                src="assets/images/photo-jazz/thumbs/65.webp" alt="Jazz 65"
+                                                data-full="assets/images/photo-jazz/full/65.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="65"><img
+                                                src="assets/images/photo-jazz/thumbs/66.webp" alt="Jazz 66"
+                                                data-full="assets/images/photo-jazz/full/66.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="66"><img
+                                                src="assets/images/photo-jazz/thumbs/67.webp" alt="Jazz 67"
+                                                data-full="assets/images/photo-jazz/full/67.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="67"><img
+                                                src="assets/images/photo-jazz/thumbs/68.webp" alt="Jazz 68"
+                                                data-full="assets/images/photo-jazz/full/68.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="68"><img
+                                                src="assets/images/photo-jazz/thumbs/69.webp" alt="Jazz 69"
+                                                data-full="assets/images/photo-jazz/full/69.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="69"><img
+                                                src="assets/images/photo-jazz/thumbs/70.webp" alt="Jazz 70"
+                                                data-full="assets/images/photo-jazz/full/70.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="70"><img
+                                                src="assets/images/photo-jazz/thumbs/71.webp" alt="Jazz 71"
+                                                data-full="assets/images/photo-jazz/full/71.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="71"><img
+                                                src="assets/images/photo-jazz/thumbs/72.webp" alt="Jazz 72"
+                                                data-full="assets/images/photo-jazz/full/72.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="72"><img
+                                                src="assets/images/photo-jazz/thumbs/73.webp" alt="Jazz 73"
+                                                data-full="assets/images/photo-jazz/full/73.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="73"><img
+                                                src="assets/images/photo-jazz/thumbs/74.webp" alt="Jazz 74"
+                                                data-full="assets/images/photo-jazz/full/74.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="74"><img
+                                                src="assets/images/photo-jazz/thumbs/75.webp" alt="Jazz 75"
+                                                data-full="assets/images/photo-jazz/full/75.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="75"><img
+                                                src="assets/images/photo-jazz/thumbs/76.webp" alt="Jazz 76"
+                                                data-full="assets/images/photo-jazz/full/76.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="76"><img
+                                                src="assets/images/photo-jazz/thumbs/77.webp" alt="Jazz 77"
+                                                data-full="assets/images/photo-jazz/full/77.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="77"><img
+                                                src="assets/images/photo-jazz/thumbs/78.webp" alt="Jazz 78"
+                                                data-full="assets/images/photo-jazz/full/78.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="78"><img
+                                                src="assets/images/photo-jazz/thumbs/79.webp" alt="Jazz 79"
+                                                data-full="assets/images/photo-jazz/full/79.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="79"><img
+                                                src="assets/images/photo-jazz/thumbs/80.webp" alt="Jazz 80"
+                                                data-full="assets/images/photo-jazz/full/80.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="80"><img
+                                                src="assets/images/photo-jazz/thumbs/81.webp" alt="Jazz 81"
+                                                data-full="assets/images/photo-jazz/full/81.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="81"><img
+                                                src="assets/images/photo-jazz/thumbs/82.webp" alt="Jazz 82"
+                                                data-full="assets/images/photo-jazz/full/82.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="82"><img
+                                                src="assets/images/photo-jazz/thumbs/83.webp" alt="Jazz 83"
+                                                data-full="assets/images/photo-jazz/full/83.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="83"><img
+                                                src="assets/images/photo-jazz/thumbs/84.webp" alt="Jazz 84"
+                                                data-full="assets/images/photo-jazz/full/84.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="84"><img
+                                                src="assets/images/photo-jazz/thumbs/85.webp" alt="Jazz 85"
+                                                data-full="assets/images/photo-jazz/full/85.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="85"><img
+                                                src="assets/images/photo-jazz/thumbs/86.webp" alt="Jazz 86"
+                                                data-full="assets/images/photo-jazz/full/86.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="86"><img
+                                                src="assets/images/photo-jazz/thumbs/87.webp" alt="Jazz 87"
+                                                data-full="assets/images/photo-jazz/full/87.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="87"><img
+                                                src="assets/images/photo-jazz/thumbs/88.webp" alt="Jazz 88"
+                                                data-full="assets/images/photo-jazz/full/88.webp" loading="lazy"></div>
+                                <div class="masonry-item" data-index="88"><img
+                                                src="assets/images/photo-jazz/thumbs/89.webp" alt="Jazz 89"
+                                                data-full="assets/images/photo-jazz/full/89.webp" loading="lazy"></div>
+                        </div>
+                </div>
+        </main>
+
+        <!-- Lightbox: ingrandimento al centro, frecce e X -->
+        <div class="lightbox-jazz" id="lightboxJazz" aria-hidden="true">
+                <div class="lightbox-jazz__backdrop" id="lightboxJazzBackdrop"></div>
+                <button type="button" class="lightbox-jazz__close" id="lightboxJazzClose"
+                        aria-label="Chiudi">&times;</button>
+                <div class="lightbox-jazz__content">
+                        <button type="button" class="lightbox-jazz__prev" id="lightboxJazzPrev"
+                                aria-label="Foto precedente">&larr;</button>
+                        <img src="" alt="" class="lightbox-jazz__img" id="lightboxJazzImg">
+                        <button type="button" class="lightbox-jazz__next" id="lightboxJazzNext"
+                                aria-label="Foto successiva">&rarr;</button>
+                </div>
         </div>
-    </nav>
 
-    <main class="gallery-page">
-        <section class="gallery-intro">
-            <h1 class="gallery-title">Jazz</h1>
-            <p class="gallery-subtitle">Musica e ritratti sul palco</p>
-            <p class="gallery-desc">I grandi nomi del jazz colti durante concerti e session. Luci di scena, strumenti e espressioni che raccontano la passione e l'energia della musica dal vivo.</p>
-        </section>
+        <script src="main.js"></script>
+        <script>
+                (function () {
+                        var gallery = document.getElementById('galleryJazz');
+                        var lightbox = document.getElementById('lightboxJazz');
+                        var lightboxImg = document.getElementById('lightboxJazzImg');
+                        var lightboxClose = document.getElementById('lightboxJazzClose');
+                        var lightboxBackdrop = document.getElementById('lightboxJazzBackdrop');
+                        var btnPrev = document.getElementById('lightboxJazzPrev');
+                        var btnNext = document.getElementById('lightboxJazzNext');
+                        if (!gallery || !lightbox || !lightboxImg) return;
 
-        <div class="gallery-jazz-wrap">
-            <div class="masonry-gallery gallery-jazz" id="galleryJazz">
-                <div class="masonry-item masonry-item--jazz-01" data-index="0"><img src="assets/images/photo-jazz/thumbs/01.webp" alt="Jazz 01" loading="lazy"></div>
-                <div class="masonry-item" data-index="1"><img src="assets/images/photo-jazz/thumbs/02.webp" alt="Jazz 02" loading="lazy"></div>
-                <div class="masonry-item" data-index="2"><img src="assets/images/photo-jazz/thumbs/03.webp" alt="Jazz 03" loading="lazy"></div>
-                <div class="masonry-item" data-index="3"><img src="assets/images/photo-jazz/thumbs/04.webp" alt="Jazz 04" loading="lazy"></div>
-                <div class="masonry-item" data-index="4"><img src="assets/images/photo-jazz/thumbs/05.webp" alt="Jazz 05" loading="lazy"></div>
-                <div class="masonry-item" data-index="5"><img src="assets/images/photo-jazz/thumbs/06.webp" alt="Jazz 06" loading="lazy"></div>
-                <div class="masonry-item" data-index="6"><img src="assets/images/photo-jazz/thumbs/07.webp" alt="Jazz 07" loading="lazy"></div>
-                <div class="masonry-item" data-index="7"><img src="assets/images/photo-jazz/thumbs/08.webp" alt="Jazz 08" loading="lazy"></div>
-                <div class="masonry-item" data-index="8"><img src="assets/images/photo-jazz/thumbs/09.webp" alt="Jazz 09" loading="lazy"></div>
-                <div class="masonry-item" data-index="9"><img src="assets/images/photo-jazz/thumbs/010.webp" alt="Jazz 10" loading="lazy"></div>
-                <div class="masonry-item" data-index="10"><img src="assets/images/photo-jazz/thumbs/011.webp" alt="Jazz 11" loading="lazy"></div>
-                <div class="masonry-item" data-index="11"><img src="assets/images/photo-jazz/thumbs/012.webp" alt="Jazz 12" loading="lazy"></div>
-                <div class="masonry-item" data-index="12"><img src="assets/images/photo-jazz/thumbs/013.webp" alt="Jazz 13" loading="lazy"></div>
-                <div class="masonry-item" data-index="13"><img src="assets/images/photo-jazz/thumbs/014.webp" alt="Jazz 14" loading="lazy"></div>
-                <div class="masonry-item" data-index="14"><img src="assets/images/photo-jazz/thumbs/015.webp" alt="Jazz 15" loading="lazy"></div>
-                <div class="masonry-item" data-index="15"><img src="assets/images/photo-jazz/thumbs/016.webp" alt="Jazz 16" loading="lazy"></div>
-                <div class="masonry-item" data-index="16"><img src="assets/images/photo-jazz/thumbs/017.webp" alt="Jazz 17" loading="lazy"></div>
-                <div class="masonry-item" data-index="17"><img src="assets/images/photo-jazz/thumbs/018.webp" alt="Jazz 18" loading="lazy"></div>
-                <div class="masonry-item" data-index="18"><img src="assets/images/photo-jazz/thumbs/019.webp" alt="Jazz 19" loading="lazy"></div>
-                <div class="masonry-item" data-index="19"><img src="assets/images/photo-jazz/thumbs/020.webp" alt="Jazz 20" loading="lazy"></div>
-                <div class="masonry-item" data-index="20"><img src="assets/images/photo-jazz/thumbs/021.webp" alt="Jazz 21" loading="lazy"></div>
-                <div class="masonry-item" data-index="21"><img src="assets/images/photo-jazz/thumbs/022.webp" alt="Jazz 22" loading="lazy"></div>
-                <div class="masonry-item" data-index="22"><img src="assets/images/photo-jazz/thumbs/023.webp" alt="Jazz 23" loading="lazy"></div>
-                <div class="masonry-item" data-index="23"><img src="assets/images/photo-jazz/thumbs/024.webp" alt="Jazz 24" loading="lazy"></div>
-                <div class="masonry-item" data-index="24"><img src="assets/images/photo-jazz/thumbs/025.webp" alt="Jazz 25" loading="lazy"></div>
-                <div class="masonry-item" data-index="25"><img src="assets/images/photo-jazz/thumbs/026.webp" alt="Jazz 26" loading="lazy"></div>
-            </div>
-        </div>
-    </main>
+                        var items = gallery.querySelectorAll('.masonry-item');
+                        var sources = [];
+                        items.forEach(function (item) {
+                                var img = item.querySelector('img');
+                                if (!img) return;
+                                // In lightbox si usa la versione full; data-full come in portraits
+                                var full = img.getAttribute('data-full');
+                                if (!full) full = img.src;
+                                sources.push({ src: full, alt: img.alt || 'Jazz' });
+                        });
 
-    <!-- Lightbox: ingrandimento al centro, frecce e X -->
-    <div class="lightbox-jazz" id="lightboxJazz" aria-hidden="true">
-        <div class="lightbox-jazz__backdrop" id="lightboxJazzBackdrop"></div>
-        <button type="button" class="lightbox-jazz__close" id="lightboxJazzClose" aria-label="Chiudi">&times;</button>
-        <div class="lightbox-jazz__content">
-            <button type="button" class="lightbox-jazz__prev" id="lightboxJazzPrev" aria-label="Foto precedente">&larr;</button>
-            <img src="" alt="" class="lightbox-jazz__img" id="lightboxJazzImg">
-            <button type="button" class="lightbox-jazz__next" id="lightboxJazzNext" aria-label="Foto successiva">&rarr;</button>
-        </div>
-    </div>
+                        var currentIndex = 0;
 
-    <script src="main.js"></script>
-    <script>
-    (function() {
-        var gallery = document.getElementById('galleryJazz');
-        var lightbox = document.getElementById('lightboxJazz');
-        var lightboxImg = document.getElementById('lightboxJazzImg');
-        var lightboxClose = document.getElementById('lightboxJazzClose');
-        var lightboxBackdrop = document.getElementById('lightboxJazzBackdrop');
-        var btnPrev = document.getElementById('lightboxJazzPrev');
-        var btnNext = document.getElementById('lightboxJazzNext');
-        if (!gallery || !lightbox || !lightboxImg) return;
+                        function openLightbox(index) {
+                                currentIndex = (index + sources.length) % sources.length;
+                                lightboxImg.src = sources[currentIndex].src;
+                                lightboxImg.alt = sources[currentIndex].alt;
+                                lightbox.classList.add('is-open');
+                                lightbox.setAttribute('aria-hidden', 'false');
+                                document.body.style.overflow = 'hidden';
+                        }
+                        function closeLightbox() {
+                                lightbox.classList.remove('is-open');
+                                lightbox.setAttribute('aria-hidden', 'true');
+                                document.body.style.overflow = '';
+                        }
+                        function showPrev() {
+                                if (sources.length === 0) return;
+                                currentIndex = (currentIndex - 1 + sources.length) % sources.length;
+                                lightboxImg.src = sources[currentIndex].src;
+                                lightboxImg.alt = sources[currentIndex].alt;
+                        }
+                        function showNext() {
+                                if (sources.length === 0) return;
+                                currentIndex = (currentIndex + 1) % sources.length;
+                                lightboxImg.src = sources[currentIndex].src;
+                                lightboxImg.alt = sources[currentIndex].alt;
+                        }
 
-        var items = gallery.querySelectorAll('.masonry-item');
-        var sources = [];
-        items.forEach(function(item) {
-            var img = item.querySelector('img');
-            if (img) sources.push({ src: img.src, alt: img.alt || 'Jazz' });
-        });
+                        items.forEach(function (item) {
+                                var img = item.querySelector('img');
+                                if (!img) return;
+                                item.style.cursor = 'pointer';
+                                item.addEventListener('click', function () {
+                                        var i = parseInt(item.getAttribute('data-index'), 10);
+                                        if (!isNaN(i)) openLightbox(i);
+                                });
+                        });
 
-        var currentIndex = 0;
+                        if (lightboxClose) lightboxClose.addEventListener('click', function (e) { e.stopPropagation(); closeLightbox(); });
+                        if (btnPrev) btnPrev.addEventListener('click', function (e) { e.stopPropagation(); showPrev(); });
+                        if (btnNext) btnNext.addEventListener('click', function (e) { e.stopPropagation(); showNext(); });
 
-        function openLightbox(index) {
-            currentIndex = (index + sources.length) % sources.length;
-            lightboxImg.src = sources[currentIndex].src;
-            lightboxImg.alt = sources[currentIndex].alt;
-            lightbox.classList.add('is-open');
-            lightbox.setAttribute('aria-hidden', 'false');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeLightbox() {
-            lightbox.classList.remove('is-open');
-            lightbox.setAttribute('aria-hidden', 'true');
-            document.body.style.overflow = '';
-        }
-        function showPrev() {
-            if (sources.length === 0) return;
-            currentIndex = (currentIndex - 1 + sources.length) % sources.length;
-            lightboxImg.src = sources[currentIndex].src;
-            lightboxImg.alt = sources[currentIndex].alt;
-        }
-        function showNext() {
-            if (sources.length === 0) return;
-            currentIndex = (currentIndex + 1) % sources.length;
-            lightboxImg.src = sources[currentIndex].src;
-            lightboxImg.alt = sources[currentIndex].alt;
-        }
-
-        items.forEach(function(item) {
-            var img = item.querySelector('img');
-            if (!img) return;
-            item.style.cursor = 'pointer';
-            item.addEventListener('click', function() {
-                var i = parseInt(item.getAttribute('data-index'), 10);
-                if (!isNaN(i)) openLightbox(i);
-            });
-        });
-
-        if (lightboxClose) lightboxClose.addEventListener('click', function(e) { e.stopPropagation(); closeLightbox(); });
-        if (lightboxBackdrop) lightboxBackdrop.addEventListener('click', closeLightbox);
-        if (btnPrev) btnPrev.addEventListener('click', function(e) { e.stopPropagation(); showPrev(); });
-        if (btnNext) btnNext.addEventListener('click', function(e) { e.stopPropagation(); showNext(); });
-
-        document.addEventListener('keydown', function(e) {
-            if (!lightbox.classList.contains('is-open')) return;
-            if (e.key === 'Escape') closeLightbox();
-            else if (e.key === 'ArrowLeft') { e.preventDefault(); showPrev(); }
-            else if (e.key === 'ArrowRight') { e.preventDefault(); showNext(); }
-        });
-    })();
-    </script>
+                        document.addEventListener('keydown', function (e) {
+                                if (!lightbox.classList.contains('is-open')) return;
+                                if (e.key === 'Escape') closeLightbox();
+                                else if (e.key === 'ArrowLeft') { e.preventDefault(); showPrev(); }
+                                else if (e.key === 'ArrowRight') { e.preventDefault(); showNext(); }
+                        });
+                })();
+        </script>
 </body>
+
 </html>
