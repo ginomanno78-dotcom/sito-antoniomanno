@@ -2487,6 +2487,7 @@ html.galaxy-s8-hero #hero .hero-subtitle {
 }
 
 .testimonial-nome {
+    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
     font-weight: bold;
     color: #ffffff;
     margin-top: 0.5rem;
@@ -2552,6 +2553,8 @@ html.galaxy-s8-hero #hero .hero-subtitle {
 
 /* Quote style testimonial */
 .testimonial-testo {
+    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
+    font-weight: 400;
     position: relative;
     padding-left: 2rem;
     border-left: 3px solid var(--colore-accenti);
@@ -2608,6 +2611,8 @@ html.galaxy-s8-hero #hero .hero-subtitle {
 }
 
 .contatti-form label {
+    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
+    font-weight: 600;
     display: block;
     margin-bottom: 0.35rem;
     font-size: 0.95rem;
@@ -2621,7 +2626,7 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     margin-bottom: 1.25rem;
     border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 5px;
-    font-family: inherit;
+    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
     font-size: 1rem;
     color: #ffffff;
     background: rgba(255, 255, 255, 0.08);
@@ -2645,9 +2650,9 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     color: #1a1a1a;
     border: none;
     border-radius: 5px;
-    font-family: inherit;
+    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
     font-size: 1rem;
-    font-weight: bold;
+    font-weight: 700;
     cursor: pointer;
     transition: background 0.2s ease, color 0.2s ease;
 }
@@ -2657,25 +2662,48 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     color: #1a1a1a;
 }
 
+/* Titolo "Info:" nella sezione Contatti in home */
 #contatti .contatti-info-title {
+    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
+    font-weight: 700;
     margin-bottom: 1.25rem;
     font-size: 1.1rem;
     color: #ffffff;
 }
 
 .contatti-info-item {
+    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
     margin-bottom: 1rem;
     color: #ffffff;
 }
 
 .contatti-info-label {
+    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
+    font-weight: 600;
     display: block;
     font-size: 0.85rem;
     color: rgba(255, 255, 255, 0.85);
     margin-bottom: 0.25rem;
 }
 
+/* Riga con icona SVG e link affiancati */
+.contatti-info-with-icon {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    flex-wrap: wrap;
+}
+
+.contatti-info-icon {
+    flex-shrink: 0;
+    width: 1.35rem;
+    height: 1.35rem;
+    color: rgba(255, 255, 255, 0.92);
+    vertical-align: middle;
+}
+
 .contatti-info-item a {
+    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
     color: #ffffff;
     text-decoration: none;
     transition: opacity 0.2s ease;
@@ -2689,14 +2717,136 @@ html.galaxy-s8-hero #hero .hero-subtitle {
 .site-footer {
     padding: 1.25rem 1.5rem;
     background-color: #1a1a1a;
-    text-align: center;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: left;
 }
 
+/* Piedipagina con blocco contatti: tre righe centrate (index usa solo copyright) */
+.site-footer:not(.site-footer--solo-copyright) {
+    align-items: center;
+    text-align: center;
+}
+
+/* Piedipagina (tutte le pagine tranne index): CONTATTI, Info:, poi una riga tel - email con icone */
+.footer-contatti {
+    margin: 0 0 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+}
+
+.footer-contatti-heading {
+    margin: 0 0 0.35rem;
+    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.95);
+    letter-spacing: 0.02em;
+    text-align: center;
+}
+
+.footer-contatti-info-label {
+    margin: 0 0 0.6rem;
+    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.88);
+    text-align: center;
+}
+
+.footer-contatti-line {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem 0.65rem;
+    margin: 0;
+    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
+    font-size: clamp(0.72rem, 0.5rem + 1.4vw, 1rem);
+    color: rgba(255, 255, 255, 0.95);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+    text-align: center;
+}
+
+.footer-contatti-inline-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.footer-contatti-icon {
+    flex-shrink: 0;
+    width: 1.35rem;
+    height: 1.35rem;
+    color: rgba(255, 255, 255, 0.92);
+}
+
+.footer-contatti-line a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.footer-contatti-line a:hover {
+    opacity: 0.85;
+}
+
+.footer-contatti-sep {
+    color: rgba(255, 255, 255, 0.45);
+    user-select: none;
+}
+
+/* Solo smartphone in verticale: telefono e email su due righe (niente trattino tra i due; niente scroll orizzontale che sembra una “linea”) */
+@media (max-width: 640px) and (orientation: portrait) {
+    .footer-contatti-line {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.65rem;
+        overflow-x: visible;
+    }
+
+    .footer-contatti-sep {
+        display: none;
+    }
+
+    .footer-contatti-inline-group {
+        justify-content: center;
+    }
+
+    .footer-contatti-inline-group:first-child {
+        white-space: nowrap;
+    }
+
+    .footer-contatti-inline-group:last-child a {
+        overflow-wrap: anywhere;
+        text-align: center;
+    }
+}
+
+/* Copyright sempre su una sola riga (mobile, tablet, qualsiasi viewport) */
 .footer-copyright {
     margin: 0;
-    font-size: 0.9rem;
+    padding-top: 0.25rem;
+    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
+    font-size: clamp(0.5rem, 0.32rem + 1.65vw, 0.9rem);
     color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    width: 100%;
+    align-self: center;
+    white-space: nowrap;
+}
+
+/* Home: footer senza blocco contatti duplicato (già presenti in #contatti) */
+.site-footer--solo-copyright {
+    text-align: center;
 }
 
 /* ===== RESPONSIVE ===== */
@@ -2847,6 +2997,7 @@ html.galaxy-s8-hero #hero .hero-subtitle {
 
 /* iPad Air/Pro (portrait+landscape): riduce i vuoti tra sezioni */
 @media (min-width: 820px) and (max-width: 1366px) {
+
     .biografia-section,
     #portfolio,
     #mostre,
@@ -2872,6 +3023,7 @@ html.galaxy-s8-hero #hero .hero-subtitle {
 
 /* iPad Pro landscape (target dedicato): comprime gli spazi verticali tra sezioni */
 @media (min-width: 1360px) and (max-width: 1400px) and (min-height: 1000px) and (orientation: landscape) {
+
     .biografia-section,
     #portfolio,
     #mostre,
