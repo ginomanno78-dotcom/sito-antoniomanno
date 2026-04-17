@@ -153,13 +153,13 @@
                 <img src="assets/images/photo-auschwitz/thumbs/27.webp" alt="deportati in arrivo a auschwitz"
                     class="portfolio-item-image">
                 <span class="portfolio-item-label">auschwitz</span>
-                <span class="portfolio-item-count">69 photo</span>
+                <span class="portfolio-item-count">21 photo</span>
             </a>
             <a href="city.html" class="portfolio-item portfolio-item-featured">
                 <img src="assets/images/photo-city/foto-01.webp" alt="Scorcio di città con canale"
                     class="portfolio-item-image">
                 <span class="portfolio-item-label">city</span>
-                <span class="portfolio-item-count">6 photo</span>
+                <span class="portfolio-item-count">15 photo</span>
             </a>
             <a href="portraits.html" class="portfolio-item portfolio-item-featured">
                 <img src="assets/images/photo-portraits/thumbs/048.webp" alt="Ritratto in bianco e nero"
@@ -177,23 +177,24 @@
                 <img src="assets/images/photo-landscapes/foto-01.webp"
                     alt="Paesaggio marino drammatico in bianco e nero" class="portfolio-item-image">
                 <span class="portfolio-item-label">landscapes</span>
-                <span class="portfolio-item-count">5 photo</span>
+                <span class="portfolio-item-count">6 photo</span>
             </a>
             <a href="street.html" class="portfolio-item portfolio-item-featured">
                 <img src="assets/images/photo-street/foto-01.webp" alt="Scena di street photography in bianco e nero"
                     class="portfolio-item-image">
                 <span class="portfolio-item-label">street</span>
-                <span class="portfolio-item-count">5 photo</span>
+                <span class="portfolio-item-count">21 photo</span>
             </a>
             <a href="cardcustoms.html" class="portfolio-item portfolio-item-featured portfolio-item--customs">
-                <img src="assets/images/photo-customs/foto-01.webp" alt="Card customs" class="portfolio-item-image">
+                <img src="assets/images/photo-customs/fotocard-customs.webp" alt="Card customs"
+                    class="portfolio-item-image">
                 <span class="portfolio-item-label">customs</span>
-                <span class="portfolio-item-count">1 photo</span>
+                <span class="portfolio-item-count">6 photo</span>
             </a>
             <a href="windows.html" class="portfolio-item portfolio-item-featured portfolio-item--windows">
                 <img src="assets/images/photo-windows/foto-01.webp" alt="Windows" class="portfolio-item-image">
                 <span class="portfolio-item-label">windows</span>
-                <span class="portfolio-item-count">1 photo</span>
+                <span class="portfolio-item-count">7 photo</span>
             </a>
         </div>
     </section>
@@ -279,35 +280,53 @@
         <div class="contatti-grid">
             <div class="contatti-col-form">
                 <form class="contatti-form" action="#" method="post" novalidate>
-                    <label for="contatti-nome">Nome</label>
+                    <label for="contatti-nome">Nome*</label>
                     <input type="text" id="contatti-nome" name="nome" required placeholder="Il tuo nome">
-                    <label for="contatti-email">Email</label>
+                    <label for="contatti-email">Email*</label>
                     <input type="email" id="contatti-email" name="email" required placeholder="la-tua@email.it">
                     <label for="contatti-tel">Telefono</label>
                     <input type="tel" id="contatti-tel" name="tel" placeholder="+39 333 1234567">
-                    <label for="contatti-messaggio">Messaggio</label>
+                    <label for="contatti-messaggio">Messaggio*</label>
                     <textarea id="contatti-messaggio" name="messaggio" required placeholder="Scrivi il tuo messaggio..."
                         rows="5"></textarea>
                     <button type="submit" class="contatti-submit">Invia messaggio</button>
                 </form>
             </div>
             <div class="contatti-col-info">
-                <h3 class="contatti-info-title">Info</h3>
+                <h3 class="contatti-info-title">Info:</h3>
                 <p class="contatti-info-item">
                     <span class="contatti-info-label">Tel</span>
-                    <a href="tel:+393331234567">+39 333 123 4567</a>
+                    <span class="contatti-info-with-icon">
+                        <!-- Icona cellulare (decorativa; il link resta l’elemento attivabile) -->
+                        <svg class="contatti-info-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                            <rect x="7" y="2" width="10" height="20" rx="2" ry="2" />
+                            <path d="M10 18h4" />
+                        </svg>
+                        <a href="tel:+393273229713">+39 3273229713</a>
+                    </span>
                 </p>
                 <p class="contatti-info-item">
                     <span class="contatti-info-label">Email</span>
-                    <a href="mailto:info@antoniomanno.it">info@antoniomanno.it</a>
+                    <span class="contatti-info-with-icon">
+                        <!-- Icona busta / lettera (decorativa) -->
+                        <svg class="contatti-info-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                            <rect x="3" y="5" width="18" height="14" rx="1.5" />
+                            <path d="M3 7l9 6 9-6" />
+                        </svg>
+                        <a href="mailto:antoniomannoweb@gmail.com">antoniomannoweb@gmail.com</a>
+                    </span>
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Piedipagina -->
-    <footer class="site-footer">
-        <p class="footer-copyright">© 2025 ph. antonio manno. Tutti i diritti riservati.</p>
+    <!-- Piedipagina: solo copyright (tel e email sono già nella sezione Contatti sopra) -->
+    <footer class="site-footer site-footer--solo-copyright">
+        <p class="footer-copyright">© 2025 ph. antonio manno. Tutti i diritti sono riservati.</p>
     </footer>
 
     <script src="main.js"></script>
