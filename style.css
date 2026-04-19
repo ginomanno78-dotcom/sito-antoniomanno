@@ -892,7 +892,7 @@ html.galaxy-s8-hero #hero .hero-subtitle {
 .portfolio-item-label {
     position: absolute;
     right: 0.75rem;
-    bottom: 1.75rem;
+    bottom: 2.05rem;
     left: auto;
     top: auto;
     transform: none;
@@ -901,6 +901,8 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     border-radius: 999px;
     background: none;
     color: #ffffff;
+    /* Solo il titolo card in grassetto; il conteggio foto resta normale */
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.15em;
     font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
@@ -912,14 +914,35 @@ html.galaxy-s8-hero #hero .hero-subtitle {
 .portfolio-item-count {
     position: absolute;
     right: 0.75rem;
-    bottom: 0.55rem;
+    bottom: 0.48rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.45rem;
     text-align: right;
     color: #ffffff;
+    padding: 0.28rem 0.45rem 0.28rem 0.5rem;
+    background: rgba(0, 0, 0, 0.33);
+    border-radius: 6px 0 0 6px;
+    z-index: 1;
     font-family: 'Century Gothic', 'AppleGothic', sans-serif;
     font-size: clamp(0.62rem, 1.1vw, 0.95rem);
     letter-spacing: 0.08em;
     text-shadow: 0 3px 8px rgba(0, 0, 0, 0.7), 0 2px 2px rgba(0, 0, 0, 0.5);
     white-space: nowrap;
+}
+
+/* Icona fotocamera accanto al conteggio: stesso stile lineare dei contatti */
+.portfolio-item-count-icon {
+    flex-shrink: 0;
+    width: 0.9rem;
+    height: 0.9rem;
+    color: rgba(255, 255, 255, 0.92);
+    vertical-align: middle;
+}
+
+.portfolio-item-count-text {
+    display: inline;
 }
 
 .portfolio-item-placeholder {
@@ -942,6 +965,17 @@ html.galaxy-s8-hero #hero .hero-subtitle {
 
 .gallery-page .gallery-intro .gallery-subtitle {
     color: #b0b0b0;
+}
+
+/* Solo portfolio: titolo intro +5px sulle rem base; sottotitolo (h2 visivo) in maiuscolo e −2px rispetto alla base */
+.gallery-page:not(.gallery-page--mostra-principale) .gallery-intro .gallery-title {
+    font-size: calc(2rem + 5px);
+}
+
+.gallery-page:not(.gallery-page--mostra-principale) .gallery-intro .gallery-subtitle {
+    font-size: calc(1.25rem - 2px);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
 }
 
 .gallery-page .gallery-intro .gallery-desc {
@@ -1338,13 +1372,16 @@ html.galaxy-s8-hero #hero .hero-subtitle {
 }
 
 .gallery-intro .gallery-subtitle {
-    font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
+    /* Sottotitolo intro gallery: Century Gothic (il titolo .gallery-title resta con Arrière Garde) */
+    font-family: 'Century Gothic', CenturyGothic, 'AppleGothic', sans-serif;
     font-size: 1.25rem;
     color: var(--colore-accenti);
     margin: 0 0 1rem;
 }
 
 .gallery-intro .gallery-desc {
+    /* Testo descrittivo sotto il sottotitolo: Century Gothic */
+    font-family: 'Century Gothic', CenturyGothic, 'AppleGothic', sans-serif;
     font-size: 1rem;
     line-height: 1.7;
     color: var(--colore-testo);
@@ -1392,6 +1429,10 @@ html.galaxy-s8-hero #hero .hero-subtitle {
 
     .gallery-intro .gallery-title {
         font-size: 1.5rem;
+    }
+
+    .gallery-page:not(.gallery-page--mostra-principale) .gallery-intro .gallery-title {
+        font-size: calc(1.5rem + 5px);
     }
 }
 
@@ -2482,8 +2523,12 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     height: 80px;
     margin: 0 auto 1.25rem;
     border-radius: 50%;
-    background-color: var(--colore-accenti);
-    opacity: 0.5;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    border: 2px solid rgba(255, 255, 255, 0.12);
+    box-sizing: border-box;
+    background-color: #3a3a3a;
 }
 
 .testimonial-nome {
@@ -2491,6 +2536,14 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     font-weight: bold;
     color: #ffffff;
     margin-top: 0.5rem;
+}
+
+/* Data testimonianza (sotto il nome) */
+.testimonial-data {
+    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0.35rem 0 0;
 }
 
 .carousel-prev,
@@ -2963,6 +3016,40 @@ html.galaxy-s8-hero #hero .hero-subtitle {
 
     .contatti-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+/* Mobile + tablet + iPad: titolo in alto a destra; icona+conteggio in basso a sinistra con fondo scuro 33% */
+@media (max-width: 1024px) {
+    #portfolio .portfolio-item-label {
+        top: 0.45rem;
+        bottom: auto;
+        right: 0.55rem;
+        left: auto;
+        max-width: calc(100% - 1.1rem);
+        line-height: 1.15;
+        text-align: right;
+        /* +2px rispetto al desktop solo su mobile/tablet/iPad */
+        font-size: calc(clamp(0.85rem, 1.8vw, 2rem) + 2px);
+    }
+
+    #portfolio .portfolio-item-count {
+        top: auto;
+        bottom: 0.4rem;
+        left: 0.45rem;
+        right: auto;
+        justify-content: flex-start;
+        text-align: left;
+        line-height: 1.15;
+        padding: 0.3rem 0.5rem 0.3rem 0.42rem;
+        background: rgba(0, 0, 0, 0.33);
+        border-radius: 0 6px 6px 0;
+        z-index: 1;
+    }
+
+    #portfolio .portfolio-item-count-icon {
+        width: 0.9rem;
+        height: 0.9rem;
     }
 }
 
