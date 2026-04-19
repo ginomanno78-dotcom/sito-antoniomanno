@@ -33,6 +33,8 @@
                         <li><a href="jazz.html">Jazz</a></li>
                         <li><a href="landscapes.html">Landscapes</a></li>
                         <li><a href="street.html">Street</a></li>
+                        <li><a href="customs.html">Customs</a></li>
+                        <li><a href="windows.html">Windows</a></li>
                     </ul>
                 </li>
                 <li class="nav-item-dropdown">
@@ -60,18 +62,20 @@
 
         <div class="gallery-city-wrap">
             <div class="masonry-gallery gallery-city" id="galleryCity">
-                <div class="masonry-item" data-index="0"><img src="assets/images/photo_city/1.jpg" alt="City 1"
-                        loading="lazy"></div>
-                <div class="masonry-item" data-index="1"><img src="assets/images/photo_city/2.jpg" alt="City 2"
-                        loading="lazy"></div>
-                <div class="masonry-item" data-index="2"><img src="assets/images/photo_city/3.jpg" alt="City 3"
-                        loading="lazy"></div>
-                <div class="masonry-item" data-index="3"><img src="assets/images/photo_city/4.jpg" alt="City 4"
-                        loading="lazy"></div>
-                <div class="masonry-item" data-index="4"><img src="assets/images/photo_city/5.jpg" alt="City 5"
-                        loading="lazy"></div>
-                <div class="masonry-item" data-index="5"><img src="assets/images/photo_city/6.jpg" alt="City 6"
-                        loading="lazy"></div>
+                <div class="masonry-item" data-index="0"><img src="assets/images/photo-city/thumbs/01.webp" alt="City 1"
+                        data-full="assets/images/photo-city/full/01.webp" loading="lazy"></div>
+                <div class="masonry-item" data-index="1"><img src="assets/images/photo-city/thumbs/02.webp" alt="City 2"
+                        data-full="assets/images/photo-city/full/02.webp" loading="lazy"></div>
+                <div class="masonry-item" data-index="2"><img src="assets/images/photo-city/thumbs/03.webp" alt="City 3"
+                        data-full="assets/images/photo-city/full/03.webp" loading="lazy"></div>
+                <div class="masonry-item" data-index="3"><img src="assets/images/photo-city/thumbs/04.webp" alt="City 4"
+                        data-full="assets/images/photo-city/full/04.webp" loading="lazy"></div>
+                <div class="masonry-item" data-index="4"><img src="assets/images/photo-city/thumbs/05.webp" alt="City 5"
+                        data-full="assets/images/photo-city/full/05.webp" loading="lazy"></div>
+                <div class="masonry-item" data-index="5"><img src="assets/images/photo-city/thumbs/06.webp" alt="City 6"
+                        data-full="assets/images/photo-city/full/06.webp" loading="lazy"></div>
+                <div class="masonry-item" data-index="6"><img src="assets/images/photo-city/thumbs/07.jpg" alt="City 7"
+                        data-full="assets/images/photo-city/full/07.jpg" loading="lazy"></div>
             </div>
         </div>
     </main>
@@ -135,7 +139,10 @@
             var sources = [];
             items.forEach(function (item) {
                 var img = item.querySelector('img');
-                if (img) sources.push({ src: img.src, alt: img.alt || 'City' });
+                if (!img) return;
+                var full = img.getAttribute('data-full');
+                if (!full) full = img.src;
+                sources.push({ src: full, alt: img.alt || 'City' });
             });
             var currentIndex = 0;
             function openLightbox(index) {
