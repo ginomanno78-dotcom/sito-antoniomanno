@@ -3112,6 +3112,24 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     }
 }
 
+/* Desktop pieno: uniforma gli stacchi verticali tra Portfolio, Mostre e Contatti */
+@media (min-width: 1025px) {
+
+    #portfolio,
+    #mostre,
+    #contatti {
+        min-height: auto;
+        justify-content: flex-start;
+        padding-top: 3.5rem;
+        padding-bottom: 3.5rem;
+    }
+
+    /* Mostre: titolo leggermente più alto per allineamento visivo con le altre sezioni */
+    #mostre {
+        padding-top: 2.5rem;
+    }
+}
+
 /*
  * Titoli sezione (Biografia, Portfolio, Mostre, Dicono di me, Contatti):
  * le regole base con font-size (es. .portfolio-title) compaiono nel file DOPO i @media
