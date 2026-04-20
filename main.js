@@ -51,45 +51,6 @@
     });
 })();
 
-/* Carousel testimonianze: prev/next + dots */
-(function () {
-    var carousel = document.querySelector('#dicono-di-me .carousel');
-    if (!carousel) return;
-    var slides = carousel.querySelectorAll('.carousel-slide');
-    var dots = carousel.querySelectorAll('.carousel-dot');
-    var total = slides.length;
-
-    function goToSlide(index) {
-        if (index < 0) index = total - 1;
-        if (index >= total) index = 0;
-        slides.forEach(function (s) { s.classList.remove('carousel-slide--active'); });
-        dots.forEach(function (d) {
-            d.classList.remove('carousel-dot--active');
-            d.setAttribute('aria-selected', 'false');
-        });
-        slides[index].classList.add('carousel-slide--active');
-        if (dots[index]) {
-            dots[index].classList.add('carousel-dot--active');
-            dots[index].setAttribute('aria-selected', 'true');
-        }
-        carousel.currentIndex = index;
-    }
-
-    carousel.currentIndex = 0;
-
-    var btnPrev = carousel.querySelector('.carousel-prev');
-    var btnNext = carousel.querySelector('.carousel-next');
-    if (btnPrev) btnPrev.addEventListener('click', function () { goToSlide(carousel.currentIndex - 1); });
-    if (btnNext) btnNext.addEventListener('click', function () { goToSlide(carousel.currentIndex + 1); });
-
-    dots.forEach(function (dot) {
-        dot.addEventListener('click', function () {
-            var index = parseInt(this.getAttribute('data-index'), 10);
-            if (!isNaN(index)) goToSlide(index);
-        });
-    });
-})();
-
 /* Solo Samsung Galaxy S8 (codice modello SM-G950): classe per CSS hero due righe */
 (function () {
     if (/SM-G950/i.test(navigator.userAgent)) {
