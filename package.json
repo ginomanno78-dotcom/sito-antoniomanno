@@ -1,8 +1,5 @@
 {
-  "scripts": {
-    "counts:update": "node scripts/update-portfolio-counts.js",
-    "counts:watch": "node scripts/watch-portfolio-counts.js"
-  },
+  "scripts": {},
   "dependencies": {
     "sharp": "^0.34.5"
   }
