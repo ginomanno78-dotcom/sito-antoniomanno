@@ -1121,6 +1121,11 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     border-color: #ffffff;
 }
 
+.gallery-page--mostra-storie .mostra-page-foto-wrap {
+    border-width: 4px;
+    border-color: #ffffff;
+}
+
 .mostra-page-foto-wrap .mostra-page-foto {
     width: 100%;
     height: 100%;
