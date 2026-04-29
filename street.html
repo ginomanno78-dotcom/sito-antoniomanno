@@ -246,10 +246,15 @@
                 var img = item.querySelector('img');
                 if (!img) return;
                 item.style.cursor = 'pointer';
-                item.addEventListener('click', function () {
-                    var i = parseInt(item.getAttribute('data-index'), 10);
-                    if (!isNaN(i)) openLightbox(i);
-                });
+            });
+
+            gallery.addEventListener('click', function (e) {
+                var item = e.target.closest('.masonry-item');
+                if (!item || !gallery.contains(item)) return;
+                e.preventDefault();
+                e.stopPropagation();
+                var i = parseInt(item.getAttribute('data-index'), 10);
+                if (!isNaN(i)) openLightbox(i);
             });
 
             if (lightboxClose) lightboxClose.addEventListener('click', function (e) { e.stopPropagation(); closeLightbox(); });
