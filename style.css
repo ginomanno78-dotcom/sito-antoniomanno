@@ -883,8 +883,8 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     letter-spacing: 0.15em;
     font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
     font-size: calc(clamp(0.85rem, 1.8vw, 2.0rem) + 3px);
-    /* Ombra più scura e stratificata per maggiore contrasto sul titolo */
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.95), 0 2px 8px rgba(0, 0, 0, 0.9), 0 4px 18px rgba(0, 0, 0, 0.78);
+    /* Ombra più dura (meno blur) per stacco netto sul titolo */
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.98), 0 2px 3px rgba(0, 0, 0, 0.92), 0 3px 6px rgba(0, 0, 0, 0.85);
     white-space: nowrap;
 }
 
@@ -1959,7 +1959,7 @@ html.galaxy-s8-hero #hero .hero-subtitle {
 .lightbox-auschwitz__backdrop {
     position: absolute;
     inset: 0;
-    background: rgba(33, 33, 33, 0.97);
+    background: rgba(0, 0, 0, 0.92);
     cursor: default;
 }
 
@@ -1972,8 +1972,8 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     height: 48px;
     padding: 0;
     border: none;
-    background: #000000;
-    color: #ffffff;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
     font-size: 28px;
     line-height: 1;
     cursor: pointer;
@@ -1982,7 +1982,7 @@ html.galaxy-s8-hero #hero .hero-subtitle {
 }
 
 .lightbox-auschwitz__close:hover {
-    background: rgba(0, 0, 0, 0.14);
+    background: rgba(255, 255, 255, 0.35);
 }
 
 .lightbox-auschwitz__content {
@@ -1996,19 +1996,15 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     max-height: 90vh;
 }
 
-/* Limiti un po’ più ampi del 85vw/85vh di Jazz/Portraits: le full quadrate altrimenti restano “piccole” (il lato segue il minore tra larghezza e altezza del riquadro) */
 .lightbox-auschwitz__img {
-    display: block;
-    max-width: 92vw;
-    max-height: 90vh;
+    max-width: 85vw;
+    max-height: 85vh;
     width: auto;
     height: auto;
     object-fit: contain;
-    margin: 0;
-    padding: 0;
-    border: none;
-    background: transparent;
-    box-shadow: none;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.6);
+    border: 10px solid #ffffff;
+    box-sizing: border-box;
 }
 
 .lightbox-auschwitz__prev,
@@ -2018,8 +2014,8 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     height: 48px;
     padding: 0;
     border: none;
-    background: #000000;
-    color: #ffffff;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
     font-size: 24px;
     cursor: pointer;
     border-radius: 50%;
@@ -2028,7 +2024,7 @@ html.galaxy-s8-hero #hero .hero-subtitle {
 
 .lightbox-auschwitz__prev:hover,
 .lightbox-auschwitz__next:hover {
-    background: rgba(0, 0, 0, 0.14);
+    background: rgba(255, 255, 255, 0.35);
 }
 
 @media (max-width: 768px) {
