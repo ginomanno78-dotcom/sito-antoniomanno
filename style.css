@@ -235,22 +235,22 @@ body {
     }
 }
 
-/* Solo titolo + sottotitolo: centratura verticale a 36% meno 2cm (più in alto); il CTA è fuori così non li sposta */
+/* Solo titolo + sottotitolo: allineati a destra (a bandiera); il CTA è fuori così non li sposta */
 #hero .hero-heading {
     position: absolute;
     z-index: 1;
     top: calc(36% - 2.2cm);
-    left: clamp(1rem, 3vw, 2.25rem);
-    right: auto;
+    left: auto;
+    right: clamp(1rem, 3vw, 2.25rem);
     width: auto;
     max-width: calc(100vw - 2rem);
-    padding: 0 1.25rem 0 0;
+    padding: 0 0 0 1.25rem;
     transform: translateY(-50%);
     box-sizing: border-box;
-    text-align: left;
+    text-align: right;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-end;
     /* distanza reale tra h1 e h2 (il solo margin sul sottotitolo non basta con i font display) */
     gap: 0.55rem;
 }
@@ -264,7 +264,7 @@ body {
     line-height: 1;
     text-transform: none;
     letter-spacing: 0.02em;
-    text-shadow: none;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.3);
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
@@ -272,12 +272,19 @@ body {
 #hero .hero-subtitle {
     margin: -0.5cm 0 0 0;
     font-family: 'Offerings', sans-serif;
-    font-size: clamp(26px, 5vmin, 42px);
+    font-size: clamp(30px, calc(5vmin + 4px), 46px);
     font-weight: bold;
-    color: #ffffff;
+    color: hsl(0, 0%, 90%);
     letter-spacing: 0.15em;
-    text-shadow: 0 3px 8px rgba(0, 0, 0, 0.7), 0 2px 2px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.3);
     text-transform: lowercase;
+}
+
+/* Desktop: h2 hero nero (dopo la regola base per vincere la cascata) */
+@media (min-width: 769px) {
+    #hero .hero-subtitle {
+        color: #ffffff;
+    }
 }
 
 /* Hero mobile verticale: fullscreen, crop centrato sull'uomo+carretto */
@@ -288,26 +295,37 @@ body {
         min-height: 100dvh;
     }
 
-    /* Centra l'uomo+carretto: spostandosi leggermente verso il basso */
+    /* Crop centrato sul soggetto principale (uomo a sinistra nel frame) */
     #hero .hero-bg-image {
         object-fit: cover;
-        object-position: center 55%;
+        object-position: 30% 67%;
     }
 
+    /* Titoli in alto, sopra il cappello e sul cielo chiaro */
     #hero .hero-heading {
-        top: 25%;
-        transform: none;
+        top: clamp(4.5rem, 13vh, 6.5rem);
+        transform: translate(17px, -11px);
     }
 
     #hero .hero-title {
         white-space: normal;
         max-width: 8ch;
-        font-size: clamp(46px, 13.5vw, 84px);
+        font-size: clamp(40px, calc(13.5vw - 6px), 78px);
         line-height: 0.95;
+        align-self: flex-end;
+        width: max-content;
+        max-width: 100%;
+        transform: translateX(-6px);
     }
 
     #hero .hero-subtitle {
-        margin-top: 0.5rem;
+        margin-top: 0.35rem;
+        font-size: clamp(20px, calc(5vmin - 6px), 36px);
+        color: #000000;
+        align-self: flex-end;
+        width: max-content;
+        max-width: 100%;
+        transform: translateX(-6px);
     }
 }
 
@@ -319,25 +337,36 @@ body {
         min-height: 100dvh;
     }
 
+    /* Crop centrato sul soggetto principale anche in orizzontale */
     #hero .hero-bg-image {
         object-fit: cover;
-        object-position: center 65%;
+        object-position: 32% 64%;
     }
 
     #hero .hero-heading {
-        top: 30%;
-        transform: none;
+        top: clamp(3.25rem, 16vh, 5rem);
+        right: calc(clamp(1rem, 3vw, 2.25rem) + 20px);
+        transform: translate(17px, -1px);
     }
 
     #hero .hero-title {
-        white-space: normal;
-        max-width: 8ch;
-        font-size: clamp(40px, 10vw, 72px);
+        white-space: nowrap;
+        max-width: calc(100vw - 3rem);
+        font-size: clamp(34px, calc(10vw - 6px), 66px);
         line-height: 0.95;
+        align-self: flex-end;
+        width: max-content;
+        /* 8ch + nowrap faceva uscire il testo a destra; spostamento verso il centro */
+        transform: translateX(calc(-8vw - 11px));
     }
 
     #hero .hero-subtitle {
-        margin-top: 0.5rem;
+        margin-top: 0.35rem;
+        font-size: clamp(27px, calc(5vmin + 1px), 43px);
+        color: #000000;
+        align-self: flex-end;
+        width: max-content;
+        transform: translateX(calc(-8vw - 11px));
     }
 
     #hero .cta-button {
@@ -345,27 +374,35 @@ body {
     }
 }
 
+/* Mobile, tablet, iPhone: h2 hero bianco (dopo le regole mobile per vincere la cascata) */
+@media (max-width: 1024px) {
+    #hero .hero-subtitle {
+        color: #ffffff;
+    }
+}
+
 /* Solo Galaxy S8 (classe da main.js se UA contiene SM-G950): h1 una riga + h2 una riga */
 html.galaxy-s8-hero #hero .hero-title {
     white-space: nowrap;
-    font-size: clamp(34px, 9vw, 48px);
+    font-size: clamp(31px, calc(9vw - 3px), 45px);
 }
 
 html.galaxy-s8-hero #hero .hero-subtitle {
     white-space: nowrap;
-    font-size: clamp(13px, 3.4vw, 20px);
+    font-size: clamp(14px, calc(3.4vw + 1px), 21px);
     letter-spacing: 0.1em;
 }
 
-/* CTA hero: angolo basso sinistro dell’hero */
+/* CTA hero: angolo basso destro dell’hero */
 #hero .cta-button {
     position: absolute;
-    left: clamp(1rem, 3vw, 2.25rem);
+    left: auto;
+    right: clamp(1rem, 3vw, 2.25rem);
     bottom: calc(clamp(1.25rem, 5vh, 2.5rem) + 5cm);
     top: auto;
     z-index: 1;
     padding: 0.65rem 0.85rem;
-    background-color: rgba(153, 153, 153, 0.25);
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 .cta-button {
@@ -374,12 +411,12 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
     font-size: clamp(15px, 3vmin, 24px);
     font-weight: 700;
-    color: #ffffff;
-    background-color: rgba(153, 153, 153, 0.90);
+    color: #000000;
+    background-color: rgba(255, 255, 255, 0.5);
     text-decoration: none;
     text-transform: lowercase;
     letter-spacing: 0.12em;
-    border: 2px solid #ffffff;
+    border: 2px solid #ff5500;
     border-radius: 10px;
     transition: background 0.25s ease, color 0.25s ease;
 }
@@ -392,22 +429,24 @@ html.galaxy-s8-hero #hero .hero-subtitle {
 /* Viewport bassi (es. iPhone SE orizzontale 667×375): titolo e sottotitolo leggibili, stessa posizione */
 @media (max-height: 500px) {
     #hero .hero-heading {
-        left: 1rem;
+        right: 1rem;
+        left: auto;
         max-width: calc(100vw - 2rem);
-        padding-right: 1.15rem;
+        padding-left: 1.15rem;
     }
 
     #hero .hero-title {
-        font-size: clamp(42px, 11vmin, 62px);
+        font-size: clamp(39px, calc(11vmin - 3px), 59px);
     }
 
     #hero .hero-subtitle {
-        font-size: clamp(18px, 4vmin, 30px);
+        font-size: clamp(19px, calc(4vmin + 1px), 31px);
     }
 
     #hero .cta-button {
         bottom: calc(0.75rem + 3cm);
-        left: 1rem;
+        right: 1rem;
+        left: auto;
     }
 }
 
