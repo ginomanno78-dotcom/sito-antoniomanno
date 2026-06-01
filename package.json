@@ -1,8 +1,0 @@
-{
-  "scripts": {
-    "serve:local": "python -m http.server 8081"
-  },
-  "dependencies": {
-    "sharp": "^0.34.5"
-  }
-}
