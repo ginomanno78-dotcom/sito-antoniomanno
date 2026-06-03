@@ -235,59 +235,82 @@ body {
     }
 }
 
-/* Solo titolo + sottotitolo: allineati a destra (a bandiera); il CTA è fuori così non li sposta */
+/* Blocco titoli + CTA: una colonna allineata a destra, proporzioni fluide */
+#hero {
+    --hero-edge: clamp(1rem, 3vw, 2.25rem);
+}
+
 #hero .hero-heading {
     position: absolute;
     z-index: 1;
     top: calc(36% - 2.2cm);
     left: auto;
-    right: clamp(1rem, 3vw, 2.25rem);
+    right: var(--hero-edge);
     width: auto;
-    max-width: calc(100vw - 2rem);
-    padding: 0 0 0 1.25rem;
+    max-width: min(92vw, 22rem);
+    padding: 0;
     transform: translateY(-50%);
     box-sizing: border-box;
     text-align: right;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    /* distanza reale tra h1 e h2 (il solo margin sul sottotitolo non basta con i font display) */
-    gap: 0.55rem;
+    align-items: stretch;
+    gap: clamp(0.25rem, 1.2vh, 0.5rem);
 }
 
 #hero .hero-title {
     margin: 0;
     font-family: 'Montserrat Alternates Light', sans-serif;
-    font-size: clamp(48px, 12vmin, 140px);
+    font-size: clamp(32px, 11vmin, 140px);
     font-weight: normal;
     color: #ffffff;
-    line-height: 1;
+    line-height: 0.95;
     text-transform: none;
     letter-spacing: 0.02em;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.3);
     word-wrap: break-word;
     overflow-wrap: break-word;
+    align-self: flex-end;
+    width: max-content;
+    max-width: 100%;
 }
 
 #hero .hero-subtitle {
-    margin: -0.5cm 0 0 0;
+    margin: 0;
     font-family: 'Offerings', sans-serif;
-    font-size: clamp(30px, calc(5vmin + 4px), 46px);
+    font-size: clamp(18px, 4.5vmin, 46px);
     font-weight: bold;
     color: hsl(0, 0%, 90%);
     letter-spacing: 0.15em;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.3);
     text-transform: lowercase;
+    align-self: flex-end;
+    width: max-content;
+    max-width: 100%;
 }
 
-/* Desktop: h2 hero nero (dopo la regola base per vincere la cascata) */
-@media (min-width: 769px) {
+/* CTA hero: angolo basso destro (non nel blocco titoli, così non scende sul volto) */
+#hero>.cta-button {
+    position: absolute;
+    z-index: 1;
+    left: auto;
+    right: var(--hero-edge);
+    bottom: clamp(1rem, 4vh, 2rem);
+    top: auto;
+    width: max-content;
+    max-width: calc(100vw - var(--hero-edge) * 2);
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* Desktop / tablet landscape: h2 hero bianco */
+@media (min-width: 769px) and (orientation: landscape) {
     #hero .hero-subtitle {
         color: #ffffff;
     }
 }
 
-/* Hero mobile verticale: fullscreen, crop centrato sull'uomo+carretto */
+/* Hero: portrait fino a tablet (768px incluso) — fullscreen, titoli in alto a destra */
 @media (max-width: 768px) and (orientation: portrait) {
     #hero {
         aspect-ratio: auto;
@@ -295,114 +318,205 @@ body {
         min-height: 100dvh;
     }
 
-    /* Crop centrato sul soggetto principale (uomo a sinistra nel frame) */
     #hero .hero-bg-image {
-        object-fit: cover;
         object-position: 30% 67%;
     }
 
-    /* Titoli in alto, sopra il cappello e sul cielo chiaro */
     #hero .hero-heading {
-        top: clamp(4.5rem, 13vh, 6.5rem);
-        transform: translate(17px, -11px);
+        top: clamp(4.5rem, 11vh, 5.5rem);
+        transform: none;
+        max-width: min(78vw, 11.5rem);
     }
 
     #hero .hero-title {
         white-space: normal;
         max-width: 8ch;
-        font-size: clamp(40px, calc(13.5vw - 6px), 78px);
-        line-height: 0.95;
-        align-self: flex-end;
-        width: max-content;
-        max-width: 100%;
-        transform: translateX(-6px);
+        font-size: clamp(32px, 11vw, 64px);
+        line-height: 0.92;
     }
 
     #hero .hero-subtitle {
-        margin-top: 0.35rem;
-        font-size: clamp(20px, calc(5vmin - 6px), 36px);
+        font-size: clamp(17px, 4.2vw, 30px);
         color: #000000;
-        align-self: flex-end;
-        width: max-content;
-        max-width: 100%;
-        transform: translateX(-6px);
+    }
+
+    #hero>.cta-button {
+        bottom: clamp(1rem, 5vh, 1.75rem);
+        font-size: clamp(12px, 3.2vw, 16px);
+        padding: 0.5rem 0.65rem;
     }
 }
 
-/* Hero mobile/tablet orizzontale: fullscreen, crop centrato */
-@media (max-width: 1024px) and (orientation: landscape) {
+/* Hero: portrait smartphone (escluso iPhone SE 375px e tablet ≥768px) — h1/h2 +4px, h2 nero */
+@media (max-width: 374px) and (orientation: portrait),
+(min-width: 376px) and (max-width: 767px) and (orientation: portrait) {
+    #hero .hero-title {
+        font-size: clamp(36px, calc(11vw + 4px), 68px);
+    }
+
+    #hero .hero-subtitle {
+        font-size: clamp(21px, calc(4.2vw + 4px), 34px);
+        color: #000000;
+    }
+}
+
+/* Hero: landscape — titoli in alto a destra, CTA in basso, nome che non esce dallo schermo */
+@media (orientation: landscape) {
     #hero {
         aspect-ratio: auto;
         height: 100dvh;
         min-height: 100dvh;
     }
 
-    /* Crop centrato sul soggetto principale anche in orizzontale */
     #hero .hero-bg-image {
-        object-fit: cover;
         object-position: 32% 64%;
     }
 
     #hero .hero-heading {
-        top: clamp(3.25rem, 16vh, 5rem);
-        right: calc(clamp(1rem, 3vw, 2.25rem) + 20px);
-        transform: translate(17px, -1px);
+        top: clamp(3.25rem, 12vh, 4.75rem);
+        transform: none;
+        max-width: min(52vw, 14rem);
+    }
+
+    #hero .hero-title {
+        white-space: normal;
+        max-width: min(11ch, calc(100vw - var(--hero-edge) * 2 - 1rem));
+        font-size: clamp(26px, 7.5vw, 58px);
+        line-height: 0.92;
+    }
+
+    #hero .hero-subtitle {
+        font-size: clamp(15px, 3.5vw, 32px);
+        color: #ffffff;
+    }
+
+    #hero>.cta-button {
+        bottom: clamp(0.5rem, 3vh, 1rem);
+        font-size: clamp(11px, 2.2vw, 15px);
+        padding: 0.45rem 0.55rem;
+    }
+}
+
+/* Hero: landscape solo smartphone — h1 su una riga, h2 subito sotto */
+@media (orientation: landscape) and (max-height: 500px) {
+    #hero .hero-heading {
+        top: calc(clamp(3.5rem, 16vh, 4.75rem) + 5mm);
+        gap: 0.05rem;
+        max-width: calc(100vw - var(--hero-edge) * 2 - 0.5rem);
     }
 
     #hero .hero-title {
         white-space: nowrap;
-        max-width: calc(100vw - 3rem);
-        font-size: clamp(34px, calc(10vw - 6px), 66px);
-        line-height: 0.95;
-        align-self: flex-end;
+        max-width: none;
         width: max-content;
-        /* 8ch + nowrap faceva uscire il testo a destra; spostamento verso il centro */
-        transform: translateX(calc(-8vw - 11px));
+        font-size: clamp(22px, 5.8vw, 46px);
+        line-height: 1;
     }
 
     #hero .hero-subtitle {
-        margin-top: 0.35rem;
-        font-size: clamp(27px, calc(5vmin + 1px), 43px);
+        margin: 0;
+        font-size: clamp(13px, 3vw, 24px);
+        line-height: 1.05;
+        width: max-content;
+        align-self: flex-end;
+    }
+}
+
+/* Hero: desktop landscape — blocco titoli centrato verticalmente (layout originale) */
+@media (min-width: 1025px) and (orientation: landscape) {
+    #hero .hero-heading {
+        top: calc(36% - 2.2cm);
+        transform: translateY(-50%);
+        max-width: min(92vw, 22rem);
+    }
+
+    #hero .hero-title {
+        white-space: nowrap;
+        font-size: clamp(32px, 11vmin, 140px);
+    }
+
+    #hero>.cta-button {
+        bottom: calc(clamp(1.25rem, 5vh, 2.5rem) + 5cm);
+    }
+}
+
+/* Hero: portrait tablet (come Surface Duo + 15px su h1/h2) — iPad Mini/Air/Pro, Galaxy Tab S4, Surface Pro 7, Zenbook Fold */
+@media (min-width: 768px) and (max-width: 1366px) and (orientation: portrait) {
+    #hero {
+        aspect-ratio: auto;
+        height: 100dvh;
+        min-height: 100dvh;
+    }
+
+    #hero .hero-bg-image {
+        object-position: 30% 67%;
+    }
+
+    #hero .hero-heading {
+        top: clamp(4.5rem, 11vh, 5.5rem);
+        right: clamp(1.75rem, 5vw, 3.5rem);
+        left: auto;
+        transform: none;
+        width: max-content;
+        max-width: calc(100vw - clamp(1.75rem, 5vw, 3.5rem) * 2);
+        align-items: flex-end;
+        gap: clamp(0.15rem, 0.6vh, 0.35rem);
+    }
+
+    #hero .hero-title {
+        position: static;
+        top: auto;
+        white-space: normal;
+        max-width: 8ch;
+        font-size: clamp(51px, calc(11vw + 19px), 83px);
+        line-height: 0.92;
+    }
+
+    #hero .hero-subtitle {
+        margin: 0;
+        font-size: clamp(36px, calc(4.2vw + 19px), 49px);
+        letter-spacing: 0.1em;
+        max-width: 100%;
+        align-self: flex-end;
         color: #000000;
-        align-self: flex-end;
-        width: max-content;
-        transform: translateX(calc(-8vw - 11px));
     }
 
-    #hero .cta-button {
-        bottom: clamp(0.5rem, 3vh, 1rem);
+    #hero>.cta-button {
+        right: clamp(1.75rem, 5vw, 3.5rem);
+        bottom: clamp(1rem, 5vh, 1.75rem);
+        font-size: clamp(19px, calc(3.2vw + 7px), 23px);
+        padding: calc(0.5rem + 3.5px) calc(0.65rem + 3.5px);
     }
 }
 
-/* Mobile, tablet, iPhone: h2 hero bianco (dopo le regole mobile per vincere la cascata) */
-@media (max-width: 1024px) {
+/* Hero: portrait Galaxy Tab S4 (712px) — solo h2, evita taglio a destra */
+@media (width: 712px) and (orientation: portrait) {
+    #hero .hero-heading {
+        right: clamp(2.25rem, 7vw, 4rem);
+        max-width: calc(100vw - clamp(2.25rem, 7vw, 4rem) * 2);
+    }
+
     #hero .hero-subtitle {
-        color: #ffffff;
+        letter-spacing: 0.05em;
+        max-width: 100%;
+    }
+
+    #hero>.cta-button {
+        font-size: clamp(19px, calc(3.2vw + 7px), 23px);
+        padding: calc(0.5rem + 3.5px) calc(0.65rem + 3.5px);
     }
 }
 
-/* Solo Galaxy S8 (classe da main.js se UA contiene SM-G950): h1 una riga + h2 una riga */
-html.galaxy-s8-hero #hero .hero-title {
-    white-space: nowrap;
-    font-size: clamp(31px, calc(9vw - 3px), 45px);
-}
+/* Hero: portrait iPad Pro (11" 834px / 12,9" 1024px) — h1+h2 più in basso, h1 +5px */
+@media (width: 834px) and (orientation: portrait),
+(width: 1024px) and (orientation: portrait) {
+    #hero .hero-heading {
+        top: calc(clamp(4.5rem, 11vh, 5.5rem) + 2cm);
+    }
 
-html.galaxy-s8-hero #hero .hero-subtitle {
-    white-space: nowrap;
-    font-size: clamp(14px, calc(3.4vw + 1px), 21px);
-    letter-spacing: 0.1em;
-}
-
-/* CTA hero: angolo basso destro dell’hero */
-#hero .cta-button {
-    position: absolute;
-    left: auto;
-    right: clamp(1rem, 3vw, 2.25rem);
-    bottom: calc(clamp(1.25rem, 5vh, 2.5rem) + 5cm);
-    top: auto;
-    z-index: 1;
-    padding: 0.65rem 0.85rem;
-    background-color: rgba(255, 255, 255, 0.5);
+    #hero .hero-title {
+        font-size: calc(clamp(51px, calc(11vw + 19px), 83px) + 12px);
+    }
 }
 
 .cta-button {
@@ -416,7 +530,7 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     text-decoration: none;
     text-transform: lowercase;
     letter-spacing: 0.12em;
-    border: 2px solid #ff5500;
+    border: 3px solid #ff5500;
     border-radius: 10px;
     transition: background 0.25s ease, color 0.25s ease;
 }
@@ -424,37 +538,6 @@ html.galaxy-s8-hero #hero .hero-subtitle {
 .cta-button:hover {
     background: #333333;
     color: #000000;
-}
-
-/* Viewport bassi (es. iPhone SE orizzontale 667×375): titolo e sottotitolo leggibili, stessa posizione */
-@media (max-height: 500px) {
-    #hero .hero-heading {
-        right: 1rem;
-        left: auto;
-        max-width: calc(100vw - 2rem);
-        padding-left: 1.15rem;
-    }
-
-    #hero .hero-title {
-        font-size: clamp(39px, calc(11vmin - 3px), 59px);
-    }
-
-    #hero .hero-subtitle {
-        font-size: clamp(19px, calc(4vmin + 1px), 31px);
-    }
-
-    #hero .cta-button {
-        bottom: calc(0.75rem + 3cm);
-        right: 1rem;
-        left: auto;
-    }
-}
-
-/* Correzione landscape basso: evita sovrapposizione CTA su h2 */
-@media (max-height: 500px) and (orientation: landscape) {
-    #hero .cta-button {
-        bottom: clamp(0.5rem, 2.5vh, 0.9rem);
-    }
 }
 
 /* ============================================
@@ -865,26 +948,51 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     width: 100%;
 }
 
-.portfolio-item {
+/* Card portfolio: stesso linguaggio visivo delle card Mostre (.mostre-card) */
+#portfolio .portfolio-item {
     width: 100%;
-    aspect-ratio: 400 / 300;
     max-width: none;
     margin: 0;
-    background-color: transparent;
-    border: 1px solid #ffffff;
-    transition: transform 0.3s ease;
+    background: #999999;
+    border: 3px solid #ffffff;
+    border-radius: 10px;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
-.portfolio-item:hover {
-    transform: scale(1.05);
+#portfolio .portfolio-item-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    background: #999999;
+    padding: 10px 14px;
+    flex-shrink: 0;
+    min-width: 0;
 }
 
-.portfolio-item-image {
+#portfolio .portfolio-item-img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background-color: var(--colore-accenti);
+}
+
+#portfolio .portfolio-item-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform 0.45s ease-out;
+}
+
+#portfolio .portfolio-item:hover .portfolio-item-image {
+    transform: scale(1.03);
 }
 
 /* Customs: centrata orizzontalmente, inquadratura un po’ più verso il basso */
@@ -904,61 +1012,46 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     cursor: pointer;
 }
 
-.portfolio-item-label {
-    position: absolute;
-    top: 0.55rem;
-    left: 0.55rem;
-    right: auto;
-    bottom: auto;
-    transform: none;
-    text-align: left;
-    padding: 0;
-    border-radius: 999px;
-    background: none;
-    color: #ffffff;
-    /* Solo il titolo card in grassetto; il conteggio foto resta normale */
+#portfolio .portfolio-item-label {
+    color: #000000;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
-    font-size: calc(clamp(0.85rem, 1.8vw, 2.0rem) + 3px);
-    /* Ombra più dura (meno blur) per stacco netto sul titolo */
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.98), 0 2px 3px rgba(0, 0, 0, 0.92), 0 3px 6px rgba(0, 0, 0, 0.85);
+    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
+    font-size: calc(0.95rem + 3px);
+    line-height: 1.2;
+    min-width: 0;
+    flex: 1 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-.portfolio-item-count {
-    position: absolute;
-    right: 0;
-    bottom: 0;
+#portfolio .portfolio-item-count {
     display: inline-flex;
     align-items: center;
-    justify-content: flex-end;
-    gap: 0.45rem;
-    text-align: right;
-    color: #ffffff;
-    /* Attaccato all’angolo tra bordo inferiore e bordo destro della card */
-    padding: 0.22rem 0.38rem 0.2rem 0.48rem;
-    background: rgba(0, 0, 0, 0.33);
-    border-radius: 0;
-    z-index: 1;
-    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
-    font-size: clamp(0.62rem, 1.1vw, 0.95rem);
-    letter-spacing: 0.08em;
-    text-shadow: 0 3px 8px rgba(0, 0, 0, 0.7), 0 2px 2px rgba(0, 0, 0, 0.5);
-    white-space: nowrap;
-}
-
-/* Icona fotocamera accanto al conteggio: stesso stile lineare dei contatti */
-.portfolio-item-count-icon {
+    gap: 0.35rem;
     flex-shrink: 0;
-    width: 0.9rem;
-    height: 0.9rem;
-    color: rgba(255, 255, 255, 0.92);
-    vertical-align: middle;
+    color: #000000;
+    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
+    font-size: calc(0.75rem + 2px);
+    font-weight: 400;
+    border: 1px solid #999999;
+    border-radius: 12px;
+    padding: 2px 8px;
+    white-space: nowrap;
+    line-height: 1.3;
 }
 
-.portfolio-item-count-text {
+/* Icona fotocamera nel badge: linea sottile come i contatti, più piccola */
+#portfolio .portfolio-item-count-icon {
+    flex-shrink: 0;
+    width: 0.9em;
+    height: 0.9em;
+    color: currentColor;
+}
+
+#portfolio .portfolio-item-count-text {
     display: inline;
 }
 
@@ -1163,6 +1256,11 @@ html.galaxy-s8-hero #hero .hero-subtitle {
 .gallery-page--mostra-storie .mostra-page-foto-wrap {
     border-width: 4px;
     border-color: #ffffff;
+}
+
+/* Mostra Jazz: abbassa il crop per mostrare meglio il volto del musicista */
+.gallery-page--mostra-jazz .mostra-page-foto-wrap .mostra-page-foto {
+    object-position: center 20%;
 }
 
 .mostra-page-foto-wrap .mostra-page-foto {
@@ -2410,8 +2508,10 @@ html.galaxy-s8-hero #hero .hero-subtitle {
 
 .mostre-card-titolo {
     padding: 1rem 1rem 0.25rem;
-    font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
-    font-size: 1.1rem;
+    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
+    font-size: clamp(1.2rem, 2.5vw, 1.45rem);
+    font-weight: 700;
+    line-height: 1.25;
     color: #000000;
     text-align: center;
 }
@@ -3028,6 +3128,45 @@ html.galaxy-s8-hero #hero .hero-subtitle {
         gap: 1rem;
     }
 
+    /* Mobile: titolo e contatore sulla stessa riga, header basso e uniforme */
+    #portfolio .portfolio-item-header {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.25rem;
+        padding: 3px 6px;
+        min-height: 1.75rem;
+        max-height: 1.75rem;
+        overflow: hidden;
+        box-sizing: border-box;
+    }
+
+    #portfolio .portfolio-item-label {
+        flex: 1 1 auto;
+        min-width: 0;
+        max-width: none;
+        text-align: left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 0.6rem;
+        line-height: 1;
+        letter-spacing: 0.08em;
+    }
+
+    #portfolio .portfolio-item-count {
+        flex-shrink: 0;
+        font-size: 0.52rem;
+        line-height: 1;
+        padding: 1px 4px;
+        gap: 0.15rem;
+    }
+
+    #portfolio .portfolio-item-count-icon {
+        width: 0.7em;
+        height: 0.7em;
+    }
+
     .mostre-grid {
         grid-template-columns: 1fr;
     }
@@ -3037,43 +3176,95 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     }
 }
 
-/* Mobile + tablet + iPad: titolo in alto a sinistra; conteggio in basso a destra (angolo card) */
-@media (max-width: 1024px) {
-    #portfolio .portfolio-item-label {
-        top: 0.45rem;
-        bottom: auto;
-        left: 0.45rem;
-        right: auto;
-        max-width: calc(100% - 1.1rem);
-        line-height: 1.15;
-        text-align: left;
-        /* +2px (mobile) +3px (titolo card) rispetto al solo clamp */
-        font-size: calc(clamp(0.85rem, 1.8vw, 2rem) + 5px);
-    }
-
-    #portfolio .portfolio-item-count {
-        top: auto;
-        bottom: 0;
-        left: auto;
-        right: 0;
-        justify-content: flex-end;
-        text-align: right;
-        line-height: 1.15;
-        padding: 0.22rem 0.38rem 0.2rem 0.48rem;
-        background: rgba(0, 0, 0, 0.33);
-        border-radius: 0;
-        z-index: 1;
-    }
-
-    #portfolio .portfolio-item-count-icon {
-        width: 0.9rem;
-        height: 0.9rem;
-    }
-}
-
 @media (max-width: 480px) {
     .portfolio-tabs {
         gap: 0.5rem;
+    }
+
+    #portfolio .portfolio-item-header {
+        min-height: 1.65rem;
+        max-height: 1.65rem;
+        padding: 2px 5px;
+        gap: 0.2rem;
+    }
+
+    #portfolio .portfolio-item-label {
+        font-size: 0.55rem;
+        letter-spacing: 0.06em;
+    }
+
+    #portfolio .portfolio-item-count {
+        font-size: 0.48rem;
+        padding: 1px 3px;
+    }
+}
+
+/* Portfolio: tablet / 2-in-1 in portrait (iPad Air, iPad Pro, Surface, Zenbook Fold, ecc.) */
+@media (min-width: 769px) and (max-width: 1366px) and (orientation: portrait) {
+    #portfolio .portfolio-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+    }
+}
+
+/* Portfolio mobile: sempre 2 colonne; header senza overflow */
+@media (max-width: 600px) {
+    #portfolio .portfolio-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.75rem;
+    }
+
+    #portfolio .portfolio-item-header {
+        overflow: hidden;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+/* Portfolio: smartphone in landscape (larghezza >768 ma card strette) — 2 colonne + header compatto */
+@media (orientation: landscape) and (max-height: 500px) {
+    #portfolio .portfolio-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.75rem;
+    }
+
+    #portfolio .portfolio-item-header {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.25rem;
+        padding: 4px 8px;
+        min-height: 2.1rem;
+        max-height: 2.1rem;
+        overflow: hidden;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Titolo: scala omogenea con la larghezza viewport (landscape), contatore invariato */
+    #portfolio .portfolio-item-label {
+        flex: 1 1 auto;
+        min-width: 0;
+        text-align: left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: clamp(0.78rem, 3.1vw, 0.92rem);
+        line-height: 1.15;
+        letter-spacing: 0.1em;
+    }
+
+    #portfolio .portfolio-item-count {
+        flex-shrink: 0;
+        font-size: 0.52rem;
+        line-height: 1;
+        padding: 1px 4px;
+        gap: 0.15rem;
+    }
+
+    #portfolio .portfolio-item-count-icon {
+        width: 0.7em;
+        height: 0.7em;
     }
 }
 
@@ -3090,7 +3281,7 @@ html.galaxy-s8-hero #hero .hero-subtitle {
     }
 
     #mostre .mostre-card-titolo {
-        font-size: clamp(0.72rem, 2.1vw, 0.9rem);
+        font-size: clamp(0.9rem, 2.5vw, 1.15rem);
         padding: 0.55rem 0.45rem 0.2rem;
     }
 
