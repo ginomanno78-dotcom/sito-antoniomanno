@@ -33,9 +33,30 @@
 
     hamburger.addEventListener('click', toggleMenu);
 
-    // Chiudi menu mobile al click su qualsiasi link, ESCLUSO il trigger \"Portfolio\"
+    function scrollToSection(hash) {
+        var target = document.querySelector(hash);
+        if (!target) return;
+        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        target.scrollIntoView({
+            behavior: reduced ? 'auto' : 'smooth',
+            block: 'start'
+        });
+    }
+
+    // Chiudi menu mobile al click su link; sezione interna: scroll dopo chiusura (evita salti)
     navMenu.querySelectorAll('.nav-menu a:not(.dropdown-trigger)').forEach(function (link) {
-        link.addEventListener('click', function () {
+        link.addEventListener('click', function (e) {
+            var href = link.getAttribute('href');
+            if (href && href.charAt(0) === '#' && href.length > 1) {
+                if (window.innerWidth <= 1024) {
+                    e.preventDefault();
+                    closeMenu();
+                    setTimeout(function () {
+                        scrollToSection(href);
+                    }, 320);
+                    return;
+                }
+            }
             if (window.innerWidth <= 1024) closeMenu();
         });
     });
@@ -48,6 +69,48 @@
             var li = this.closest('.nav-item-dropdown');
             li.classList.toggle('dropdown--open');
         });
+    });
+})();
+
+/* Link #sezione (es. CTA hero): stesso scroll fluido su mobile */
+(function () {
+    function isInPageSectionLink(a) {
+        var href = a.getAttribute('href');
+        if (!href || href.charAt(0) !== '#' || href.length < 2) return false;
+        return !!document.querySelector(href);
+    }
+
+    document.addEventListener('click', function (e) {
+        if (window.innerWidth > 1024) return;
+        var a = e.target.closest('a[href^="#"]');
+        if (!a || a.classList.contains('dropdown-trigger') || !isInPageSectionLink(a)) return;
+        if (a.closest('.nav-menu')) return;
+
+        e.preventDefault();
+        var hash = a.getAttribute('href');
+        var navMenu = document.querySelector('.nav-menu');
+        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        function go() {
+            var el = document.querySelector(hash);
+            if (el) {
+                el.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+            }
+        }
+
+        if (navMenu && navMenu.classList.contains('nav-menu--open')) {
+            document.body.classList.remove('nav-open');
+            navMenu.classList.remove('nav-menu--open');
+            var hb = document.querySelector('.hamburger');
+            if (hb) {
+                hb.classList.remove('hamburger--active');
+                hb.setAttribute('aria-expanded', 'false');
+                hb.setAttribute('aria-label', 'Apri menu');
+            }
+            setTimeout(go, 320);
+        } else {
+            go();
+        }
     });
 })();
 
