@@ -610,16 +610,6 @@ body {
     overflow-x: hidden;
 }
 
-/* Scroll anchoring: allineato a scroll-padding-top della navbar */
-#biografia,
-#portfolio,
-#mostre,
-#dicono-di-me,
-#contatti,
-#hero {
-    scroll-margin-top: var(--navbar-scroll-offset);
-}
-
 .biografia-container {
     max-width: 1200px;
     margin: 0 auto;

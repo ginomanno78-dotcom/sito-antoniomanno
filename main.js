@@ -33,29 +33,36 @@
 
     hamburger.addEventListener('click', toggleMenu);
 
+    function getNavOffset() {
+        return nav ? nav.getBoundingClientRect().height : 0;
+    }
+
     function scrollToSection(hash) {
         var target = document.querySelector(hash);
         if (!target) return;
         var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        target.scrollIntoView({
-            behavior: reduced ? 'auto' : 'smooth',
-            block: 'start'
+        var top = window.scrollY + target.getBoundingClientRect().top - getNavOffset();
+        window.scrollTo({
+            top: Math.max(0, top),
+            behavior: reduced ? 'auto' : 'smooth'
         });
     }
 
-    // Chiudi menu mobile al click su link; sezione interna: scroll dopo chiusura (evita salti)
+    // Link #sezione: scroll preciso sotto la navbar (desktop e mobile)
     navMenu.querySelectorAll('.nav-menu a:not(.dropdown-trigger)').forEach(function (link) {
         link.addEventListener('click', function (e) {
             var href = link.getAttribute('href');
             if (href && href.charAt(0) === '#' && href.length > 1) {
+                e.preventDefault();
                 if (window.innerWidth <= 1024) {
-                    e.preventDefault();
                     closeMenu();
                     setTimeout(function () {
                         scrollToSection(href);
                     }, 320);
-                    return;
+                } else {
+                    scrollToSection(href);
                 }
+                return;
             }
             if (window.innerWidth <= 1024) closeMenu();
         });
@@ -70,6 +77,21 @@
             li.classList.toggle('dropdown--open');
         });
     });
+    /* Allinea scroll-padding all'altezza reale della navbar */
+    function syncNavScrollOffset() {
+        if (nav) {
+            document.documentElement.style.setProperty('--navbar-scroll-offset', nav.offsetHeight + 'px');
+        }
+    }
+
+    syncNavScrollOffset();
+    window.addEventListener('resize', syncNavScrollOffset);
+
+    if (location.hash) {
+        window.addEventListener('load', function () {
+            scrollToSection(location.hash);
+        });
+    }
 })();
 
 /* Link #sezione (es. CTA hero): stesso scroll fluido su mobile */
@@ -81,21 +103,25 @@
     }
 
     document.addEventListener('click', function (e) {
-        if (window.innerWidth > 1024) return;
         var a = e.target.closest('a[href^="#"]');
         if (!a || a.classList.contains('dropdown-trigger') || !isInPageSectionLink(a)) return;
         if (a.closest('.nav-menu')) return;
 
         e.preventDefault();
         var hash = a.getAttribute('href');
+        var navEl = document.getElementById('navbar');
         var navMenu = document.querySelector('.nav-menu');
         var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
         function go() {
             var el = document.querySelector(hash);
-            if (el) {
-                el.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
-            }
+            if (!el) return;
+            var offset = navEl ? navEl.getBoundingClientRect().height : 0;
+            var top = window.scrollY + el.getBoundingClientRect().top - offset;
+            window.scrollTo({
+                top: Math.max(0, top),
+                behavior: reduced ? 'auto' : 'smooth'
+            });
         }
 
         if (navMenu && navMenu.classList.contains('nav-menu--open')) {
