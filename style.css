@@ -1223,6 +1223,28 @@ body {
     margin-top: -1rem;
 }
 
+/* Mostra Jazz: Gazzetta come articolo (320px), testo intorno a destra */
+.gallery-page--mostra-jazz .mostra-jazz-articolo-sotto {
+    overflow: hidden;
+}
+
+.gallery-page--mostra-jazz .mostra-jazz-gazzetta-box {
+    float: right;
+    width: 100%;
+    max-width: 320px;
+    margin: 0.25rem 0 1rem 1.5rem;
+    border: 1px solid #ffffff;
+    box-sizing: border-box;
+}
+
+.gallery-page--mostra-jazz .mostra-jazz-gazzetta-box img {
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    vertical-align: top;
+}
+
 @media (max-width: 768px) {
     .mostra-page-content--foto-testo-row.mostra-page-content--jazz-grid {
         display: flex;
@@ -1234,6 +1256,16 @@ body {
     }
 
     .mostra-page-content--jazz-grid .mostra-jazz-articolo-img {
+        max-width: min(280px, 100%);
+    }
+
+    .gallery-page--mostra-jazz .mostra-jazz-gazzetta-box {
+        float: none;
+        max-width: min(280px, 100%);
+        margin: 1.25rem auto 1rem;
+    }
+
+    .gallery-page--mostra-jazz .mostra-jazz-gazzetta-box img {
         max-width: min(280px, 100%);
     }
 }
@@ -3071,6 +3103,7 @@ body {
 /* ===== RESPONSIVE ===== */
 /* Tablet e mobile (menu hamburger): barra compatta in verticale e orizzontale */
 @media (max-width: 1024px) {
+
     /* Evita scroll a scatti: 100dvh cambia con la barra indirizzi; smooth nativo spesso è scattoso */
     html {
         scroll-behavior: auto;
@@ -3194,7 +3227,17 @@ body {
         gap: 1rem;
     }
 
-    /* Mobile: titolo e contatore sulla stessa riga, header basso e uniforme */
+    .mostre-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contatti-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Mobile portrait: header compatto (in landscape non si applica, per non bloccare il contatore) */
+@media (max-width: 768px) and (orientation: portrait) {
     #portfolio .portfolio-item-header {
         flex-direction: row;
         align-items: center;
@@ -3222,27 +3265,19 @@ body {
 
     #portfolio .portfolio-item-count {
         flex-shrink: 0;
-        font-size: 0.52rem;
-        line-height: 1;
-        padding: 1px 4px;
-        gap: 0.15rem;
+        font-size: clamp(0.58rem, 2.4vw, 0.75rem);
+        line-height: 1.15;
+        padding: 2px 5px;
+        gap: 0.2rem;
     }
 
     #portfolio .portfolio-item-count-icon {
-        width: 0.7em;
-        height: 0.7em;
-    }
-
-    .mostre-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .contatti-grid {
-        grid-template-columns: 1fr;
+        width: 0.9em;
+        height: 0.9em;
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 480px) and (orientation: portrait) {
     .portfolio-tabs {
         gap: 0.5rem;
     }
@@ -3260,8 +3295,8 @@ body {
     }
 
     #portfolio .portfolio-item-count {
-        font-size: 0.48rem;
-        padding: 1px 3px;
+        font-size: clamp(0.55rem, 2.2vw, 0.7rem);
+        padding: 2px 4px;
     }
 }
 
@@ -3287,8 +3322,8 @@ body {
     }
 }
 
-/* Portfolio: smartphone in landscape (larghezza >768 ma card strette) — 2 colonne + header compatto */
-@media (orientation: landscape) and (max-height: 500px) {
+/* Portfolio: mobile orizzontale (aspect-ratio: più affidabile di orientation in DevTools) */
+@media (max-width: 1024px) and (min-aspect-ratio: 4/3) {
     #portfolio .portfolio-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 0.75rem;
@@ -3298,16 +3333,15 @@ body {
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        gap: 0.25rem;
-        padding: 4px 8px;
-        min-height: 2.1rem;
-        max-height: 2.1rem;
+        gap: 0.4rem;
+        padding: 6px 10px;
+        min-height: 2.5rem;
+        max-height: none;
         overflow: hidden;
         max-width: 100%;
         box-sizing: border-box;
     }
 
-    /* Titolo: scala omogenea con la larghezza viewport (landscape), contatore invariato */
     #portfolio .portfolio-item-label {
         flex: 1 1 auto;
         min-width: 0;
@@ -3315,22 +3349,28 @@ body {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        font-size: clamp(0.78rem, 3.1vw, 0.92rem);
+        font-size: clamp(14px, 3.6vw, 18px);
         line-height: 1.15;
         letter-spacing: 0.1em;
     }
 
     #portfolio .portfolio-item-count {
         flex-shrink: 0;
-        font-size: 0.52rem;
-        line-height: 1;
-        padding: 1px 4px;
-        gap: 0.15rem;
+        font-size: clamp(13px, 3.2vw, 17px);
+        line-height: 1.15;
+        padding: 3px 7px;
+        gap: 0.25rem;
+    }
+
+    #portfolio .portfolio-item-count-text {
+        font-size: inherit;
     }
 
     #portfolio .portfolio-item-count-icon {
-        width: 0.7em;
-        height: 0.7em;
+        width: 1.1em;
+        height: 1.1em;
+        max-width: none;
+        max-height: none;
     }
 }
 
@@ -3464,5 +3504,14 @@ body {
     #contatti .contatti-title {
         font-size: 1.8rem;
         letter-spacing: 0.15em;
+    }
+}
+
+/* Portfolio mobile orizzontale: in coda al file (priorità cascade) — contatore min 13px */
+@media (max-width: 1024px) and (min-aspect-ratio: 4/3) {
+
+    #portfolio .portfolio-item-count,
+    #portfolio .portfolio-item-count-text {
+        font-size: clamp(13px, 3.2vw, 17px);
     }
 }
