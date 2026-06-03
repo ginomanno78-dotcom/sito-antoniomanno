@@ -731,10 +731,27 @@ body {
     padding-bottom: 3rem;
     /* Ombra più leggera: stacca dal fondo scuro senza effetto “pannello” troppo marcato */
     box-shadow: 0 6px 28px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+}
+
+/* Sfondo jazz sotto la fascia riconoscimenti/collaborazioni (25% opacità) */
+.biografia-collaborazioni-outer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image: url('assets/images/photo-jazz/full/01.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.25;
+    pointer-events: none;
 }
 
 /* Ripristina margini lettura (la fascia esce dal padding della sezione) */
 .biografia-collaborazioni-outer>.biografia-container {
+    position: relative;
+    z-index: 1;
     padding-left: 2rem;
     padding-right: 2rem;
     box-sizing: border-box;
