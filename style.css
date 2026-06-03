@@ -758,8 +758,8 @@ body {
 .biografia-collaborazioni-title {
     font-family: 'Century Gothic', 'AppleGothic', sans-serif;
     font-size: clamp(1.35rem, 2.4vw, 1.85rem);
-    font-weight: 700;
-    color: #1a1a1a;
+    font-weight: 600;
+    color: #000000;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     margin: 0 0 1.35rem;
@@ -774,17 +774,25 @@ body {
 .biografia-collaborazioni-list li {
     font-family: 'Century Gothic', 'AppleGothic', sans-serif;
     font-size: 1rem;
+    font-weight: 400;
     line-height: 1.8;
-    color: #2d2d2d;
+    color: #000000;
     margin-bottom: 0.85rem;
 }
 
 .biografia-collaborazioni-list li::marker {
-    color: rgba(0, 0, 0, 0.35);
+    color: #000000;
 }
 
 .biografia-collaborazioni-list li strong {
-    color: #111111;
+    font-weight: 600;
+    color: #000000;
+}
+
+/* Solo il testo descrittivo: più marcato ma non grassetto (le date restano 600) */
+.biografia-collaborazioni-testo {
+    font-weight: 500;
+    letter-spacing: 0.035em;
 }
 
 .biografia-links {
@@ -797,7 +805,8 @@ body {
 .biografia-links a {
     font-family: 'Century Gothic', 'AppleGothic', sans-serif;
     font-size: 0.9rem;
-    color: #1a1a1a;
+    font-weight: 500;
+    color: #000000;
     text-decoration: underline;
     text-underline-offset: 3px;
     transition: color 0.3s ease;
