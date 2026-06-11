@@ -347,3 +347,78 @@
         init();
     }
 })();
+
+/* Hero slideshow: dissolvenza ogni 2,5 s + dot navigation */
+(function () {
+    var hero = document.getElementById('hero');
+    if (!hero || !hero.classList.contains('hero--slideshow')) return;
+
+    var slides = hero.querySelectorAll('.hero-slide');
+    var dots = hero.querySelectorAll('.hero-dot');
+    if (!slides.length) return;
+
+    var current = 0;
+    var intervalMs = 2500;
+    var timer = null;
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function animateLabel(slide) {
+        var label = slide && slide.querySelector('.hero-slide-label');
+        if (!label) return;
+        label.classList.remove('hero-slide-label--in');
+        if (reduced) {
+            label.classList.add('hero-slide-label--in');
+            return;
+        }
+        void label.offsetWidth;
+        label.classList.add('hero-slide-label--in');
+    }
+
+    function animateHeading(index) {
+        hero.setAttribute('data-active-slide', String(index));
+        hero.classList.remove('hero-heading--in');
+        if (reduced) {
+            hero.classList.add('hero-heading--in');
+            return;
+        }
+        void hero.offsetWidth;
+        hero.classList.add('hero-heading--in');
+    }
+
+    function goTo(index) {
+        if (index < 0 || index >= slides.length || index === current) return;
+        slides[current].classList.remove('is-active');
+        slides[index].classList.add('is-active');
+        if (dots.length) {
+            dots[current].classList.remove('is-active');
+            dots[current].setAttribute('aria-selected', 'false');
+            dots[index].classList.add('is-active');
+            dots[index].setAttribute('aria-selected', 'true');
+        }
+        current = index;
+        animateLabel(slides[index]);
+        animateHeading(index);
+    }
+
+    function next() {
+        goTo((current + 1) % slides.length);
+    }
+
+    function startTimer() {
+        clearInterval(timer);
+        timer = setInterval(next, intervalMs);
+    }
+
+    dots.forEach(function (dot) {
+        dot.addEventListener('click', function () {
+            var idx = parseInt(dot.getAttribute('data-index'), 10);
+            if (isNaN(idx)) return;
+            goTo(idx);
+            startTimer();
+        });
+    });
+
+    animateLabel(slides[0]);
+    animateHeading(0);
+    startTimer();
+})();
