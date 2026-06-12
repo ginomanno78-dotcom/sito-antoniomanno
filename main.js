@@ -358,9 +358,15 @@
     if (!slides.length) return;
 
     var current = 0;
-    var intervalMs = 2500;
+    var intervalDefault = 2500;
+    var intervalColours = 6000;
     var timer = null;
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* Slide colours (index 2): pausa più lunga per leggere H1/H2 */
+    function getSlideDuration(index) {
+        return index === 2 ? intervalColours : intervalDefault;
+    }
 
     function animateLabel(slide) {
         var label = slide && slide.querySelector('.hero-slide-label');
@@ -405,8 +411,11 @@
     }
 
     function startTimer() {
-        clearInterval(timer);
-        timer = setInterval(next, intervalMs);
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+            next();
+            startTimer();
+        }, getSlideDuration(current));
     }
 
     dots.forEach(function (dot) {

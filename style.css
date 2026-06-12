@@ -212,7 +212,7 @@ body {
 
 /* Mobile portrait + landscape (iPhone/Android): scritte hero -8px */
 @media (max-width: 768px),
-(orientation: landscape) and (max-height: 500px) {
+(orientation: landscape) and (max-width: 932px) and (max-height: 520px) {
     #hero.hero--slideshow {
         --hero-label-size: 40px;
     }
@@ -298,6 +298,55 @@ body {
     to {
         opacity: 1;
         transform: translateX(0);
+    }
+}
+
+/* iPhone: portraits — micro-slide da destra verso sinistra */
+@keyframes hero-portrait-label-in-se {
+    from {
+        opacity: 0;
+        transform: translateX(0.65rem);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Slide colours: H1 — dissolvenza + bianco → nero; H2 — solo opacity */
+@keyframes hero-colours-h1-fade-in {
+    from {
+        opacity: 0;
+        color: #ffffff;
+    }
+
+    to {
+        opacity: 1;
+        color: #000000;
+    }
+}
+
+@keyframes hero-colours-h2-fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Label colours: sale dal basso, centrata (desktop + mobile) */
+@keyframes hero-colours-label-in {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(2cm);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
     }
 }
 
@@ -403,30 +452,83 @@ body {
     #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-slide-label.hero-slide-label--in {
         animation: hero-colours-label-in 0.4s ease-out forwards;
     }
+}
 
-    @keyframes hero-colours-label-in {
-        from {
-            opacity: 0;
-            transform: translateX(-50%) translateY(2cm);
-        }
+/* Mobile portrait + landscape: colours — sale verso l'alto, centrata sopra i pallini */
+@media (max-width: 767px) and (orientation: portrait),
+(orientation: landscape) and (max-width: 932px) and (max-height: 520px) {
+    #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-label {
+        left: 50%;
+        right: auto;
+        bottom: calc(var(--hero-dots-bottom) + var(--hero-dot-size) + 0.35rem + 5mm);
+        text-align: center;
+        transform: translateX(-50%) translateY(2cm);
+    }
 
-        to {
+    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-slide-label.hero-slide-label--in {
+        animation: hero-colours-label-in 0.4s ease-out forwards;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-slide-label.hero-slide-label--in {
+            animation: none;
             opacity: 1;
             transform: translateX(-50%) translateY(0);
         }
     }
 }
 
-/* Mobile landscape: jazz — 1cm verso il basso (dopo desktop: su iPhone la larghezza è >769px) */
-@media (orientation: landscape) and (max-height: 500px) {
-    #hero.hero--slideshow .hero-slide[data-index="0"] .hero-slide-img {
-        object-position: center calc(50% + 1cm);
+/* CTA portfolio slide colours: nascosto di default */
+#hero.hero--slideshow .hero-colours-cta {
+    display: none;
+}
+
+/* Mobile portrait + landscape cellulari: CTA slide colours (1 cm sopra la scritta) */
+@media (max-width: 767px) and (orientation: portrait),
+(orientation: landscape) and (max-width: 932px) and (max-height: 520px) {
+    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-colours-cta {
+        display: inline-block;
+        position: absolute;
+        left: 50%;
+        z-index: 3;
+        transform: translateX(-50%);
+        bottom: calc(var(--hero-dots-bottom) + var(--hero-dot-size) + 0.35rem + 5mm + 1cm + var(--hero-label-size, 2.5rem));
+        padding: 0.6rem 0.85rem;
+        font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
+        font-size: clamp(14px, 3.6vw, 18px);
+        font-weight: 700;
+        color: #ffffff;
+        background-color: transparent;
+        border: 2px solid #ffffff;
+        border-radius: 0;
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
+        pointer-events: auto;
+        box-sizing: border-box;
+        max-width: calc(100% - 2rem);
+        white-space: nowrap;
+    }
+}
+
+/* Landscape cellulari: CTA molto più compatto */
+@media (orientation: landscape) and (max-width: 932px) and (max-height: 520px) {
+    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-colours-cta {
+        padding: 0.25rem 0.4rem;
+        font-size: clamp(9px, 1.9vmin, 11px);
+        border-width: 1px;
+        letter-spacing: 0.04em;
     }
 }
 
 /* Hero slideshow: H1 + H2 — solo desktop (misure Photoshop) */
 #hero.hero--slideshow .hero-heading {
     display: none;
+}
+
+#hero.hero--slideshow .hero-title-line:last-child {
+    text-transform: uppercase;
 }
 
 @media (min-width: 1025px) {
@@ -564,6 +666,15 @@ body {
         animation: hero-portrait-h2-in 0.4s ease-out forwards;
     }
 
+    /* Colours: 0,5 s dopo entrata immagine → H1, poi H2 subito dopo */
+    #hero.hero--slideshow[data-active-slide="2"].hero-heading--in .hero-title {
+        animation: hero-colours-h1-fade-in 0.55s ease-out 0.5s forwards;
+    }
+
+    #hero.hero--slideshow[data-active-slide="2"].hero-heading--in .hero-subtitle {
+        animation: hero-colours-h2-fade-in 0.5s ease-out 0.72s forwards;
+    }
+
     @keyframes hero-jazz-h1-in {
         from {
             opacity: 0;
@@ -625,6 +736,318 @@ body {
     }
 
     @media (prefers-reduced-motion: reduce) {
+
+        #hero.hero--slideshow.hero-heading--in .hero-title,
+        #hero.hero--slideshow.hero-heading--in .hero-subtitle {
+            animation: none;
+            opacity: 1;
+            transform: none;
+        }
+    }
+}
+
+/* Hero slideshow: H1 + H2 — mobile, tablet portrait, iPad Mini (< desktop 1025px) */
+@media (max-width: 1024px) {
+
+    #hero.hero--slideshow .hero-title,
+    #hero.hero--slideshow .hero-subtitle {
+        font-family: 'Montserrat Alternates Light', sans-serif;
+        font-weight: 300;
+        margin: 0;
+        line-height: 1;
+        letter-spacing: 0.02em;
+        text-transform: none;
+        text-shadow: none;
+        opacity: 0;
+        width: max-content;
+        max-width: none;
+    }
+
+    #hero.hero--slideshow .hero-subtitle {
+        text-transform: lowercase;
+        letter-spacing: 0.06em;
+        line-height: 1.05;
+    }
+
+    #hero.hero--slideshow .hero-title-line {
+        display: block;
+    }
+
+    #hero.hero--slideshow .hero-heading {
+        flex-direction: column;
+        position: absolute;
+        z-index: 4;
+        margin: 0;
+        padding: 0;
+        pointer-events: none;
+        box-sizing: border-box;
+        gap: 0;
+        width: auto;
+        max-width: none;
+    }
+
+    #hero.hero--slideshow.hero-heading--in .hero-title {
+        animation: hero-mobile-slideshow-h1-in 0.75s ease-out forwards;
+    }
+
+    #hero.hero--slideshow.hero-heading--in .hero-subtitle {
+        animation: hero-mobile-slideshow-h2-in 0.7s ease-out 0.14s forwards;
+    }
+
+    #hero.hero--slideshow[data-active-slide="2"].hero-heading--in .hero-title {
+        animation: hero-colours-h1-fade-in 0.55s ease-out 0.5s forwards;
+    }
+
+    #hero.hero--slideshow[data-active-slide="2"].hero-heading--in .hero-subtitle {
+        animation: hero-colours-h2-fade-in 0.5s ease-out 0.72s forwards;
+    }
+
+    @keyframes hero-mobile-slideshow-h1-in {
+        from {
+            opacity: 0;
+            transform: translateY(-0.35rem);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes hero-mobile-slideshow-h2-in {
+        from {
+            opacity: 0;
+            transform: translateY(-0.25rem);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Mobile portrait: H1/H2 solo su slide colours (cielo) */
+    @media (max-width: 767px) and (orientation: portrait) {
+        #hero.hero--slideshow .hero-heading {
+            display: none;
+        }
+
+        #hero.hero--slideshow[data-active-slide="2"] .hero-heading {
+            display: flex;
+            top: calc(var(--navbar-scroll-offset) + 0.5rem);
+            left: 50%;
+            right: auto;
+            transform: translateX(-50%);
+            text-align: center;
+            align-items: center;
+        }
+
+        #hero.hero--slideshow[data-active-slide="2"] .hero-title,
+        #hero.hero--slideshow[data-active-slide="2"] .hero-subtitle {
+            color: #000000;
+            align-self: center;
+            text-align: center;
+        }
+
+        #hero.hero--slideshow[data-active-slide="2"] .hero-title {
+            font-size: clamp(46px, calc(9.5vw + 16px), 58px);
+        }
+
+        #hero.hero--slideshow[data-active-slide="2"] .hero-subtitle {
+            font-size: clamp(31px, calc(4.8vw + 16px), 37px);
+            letter-spacing: 0.02em;
+        }
+    }
+
+    /* Mobile landscape: tre slide (layout ridotto tipo desktop) */
+    @media (orientation: landscape) and (max-height: 520px) {
+        #hero.hero--slideshow .hero-heading {
+            display: flex;
+            top: calc(var(--navbar-scroll-offset) + 0.35rem);
+            transform: none;
+        }
+
+        #hero.hero--slideshow .hero-title {
+            font-size: clamp(36px, calc(5.2vmin + 16px), 50px);
+        }
+
+        #hero.hero--slideshow .hero-subtitle {
+            font-size: clamp(26px, calc(2.6vmin + 16px), 33px);
+            letter-spacing: 0.02em;
+        }
+
+        #hero.hero--slideshow[data-active-slide="0"] .hero-heading {
+            right: clamp(0.75rem, 3vmin, 1.25rem);
+            left: auto;
+            text-align: right;
+            align-items: flex-end;
+        }
+
+        #hero.hero--slideshow[data-active-slide="0"] .hero-title {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        #hero.hero--slideshow[data-active-slide="0"] .hero-title,
+        #hero.hero--slideshow[data-active-slide="0"] .hero-subtitle {
+            color: #ffffff;
+            align-self: flex-end;
+            text-align: right;
+        }
+
+        #hero.hero--slideshow[data-active-slide="1"] .hero-heading {
+            left: clamp(0.75rem, 3vmin, 1.25rem);
+            right: auto;
+            text-align: left;
+            align-items: flex-start;
+        }
+
+        #hero.hero--slideshow[data-active-slide="1"] .hero-title {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        #hero.hero--slideshow[data-active-slide="1"] .hero-title,
+        #hero.hero--slideshow[data-active-slide="1"] .hero-subtitle {
+            color: #ffffff;
+            align-self: flex-start;
+            text-align: left;
+        }
+
+        #hero.hero--slideshow[data-active-slide="2"] .hero-heading {
+            left: 50%;
+            right: auto;
+            transform: translateX(-50%);
+            text-align: center;
+            align-items: center;
+        }
+
+        #hero.hero--slideshow[data-active-slide="2"] .hero-title,
+        #hero.hero--slideshow[data-active-slide="2"] .hero-subtitle {
+            color: #000000;
+            align-self: center;
+            text-align: center;
+        }
+    }
+
+    /* Tablet portrait: H1/H2 solo su slide colours (slide 0 e 1 nascosti) */
+    @media (min-width: 768px) and (orientation: portrait) {
+        #hero.hero--slideshow .hero-heading {
+            display: none;
+        }
+
+        #hero.hero--slideshow[data-active-slide="2"] .hero-heading {
+            display: flex;
+            top: calc(var(--navbar-scroll-offset) + 0.75rem);
+            left: 50%;
+            right: auto;
+            transform: translateX(-50%);
+            text-align: center;
+            align-items: center;
+        }
+
+        #hero.hero--slideshow[data-active-slide="2"] .hero-title,
+        #hero.hero--slideshow[data-active-slide="2"] .hero-subtitle {
+            color: #000000;
+            align-self: center;
+            text-align: center;
+        }
+
+        #hero.hero--slideshow[data-active-slide="2"] .hero-title {
+            font-size: clamp(56px, calc(7.5vw + 16px), 72px);
+        }
+
+        #hero.hero--slideshow[data-active-slide="2"] .hero-subtitle {
+            font-size: clamp(36px, calc(3.75vw + 16px), 44px);
+            letter-spacing: 0.02em;
+        }
+    }
+
+    /* iPad Mini landscape 1024×768: tre slide */
+    @media (width: 1024px) and (height: 768px) and (orientation: landscape) {
+        #hero.hero--slideshow .hero-heading {
+            display: flex;
+            top: calc(var(--navbar-scroll-offset) + 0.5rem);
+            transform: none;
+        }
+
+        #hero.hero--slideshow .hero-title {
+            font-size: clamp(52px, calc(5.5vmin + 16px), 64px);
+            white-space: nowrap;
+        }
+
+        #hero.hero--slideshow .hero-subtitle {
+            font-size: clamp(34px, calc(2.75vmin + 16px), 40px);
+            letter-spacing: 0.02em;
+        }
+
+        #hero.hero--slideshow[data-active-slide="0"] .hero-heading {
+            right: 1.5rem;
+            left: auto;
+            text-align: right;
+            align-items: flex-end;
+        }
+
+        #hero.hero--slideshow[data-active-slide="0"] .hero-title {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        #hero.hero--slideshow[data-active-slide="0"] .hero-title,
+        #hero.hero--slideshow[data-active-slide="0"] .hero-subtitle {
+            color: #ffffff;
+            align-self: flex-end;
+            text-align: right;
+        }
+
+        #hero.hero--slideshow[data-active-slide="1"] .hero-heading {
+            left: 1.5rem;
+            right: auto;
+            text-align: left;
+            align-items: flex-start;
+        }
+
+        #hero.hero--slideshow[data-active-slide="1"] .hero-title {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        #hero.hero--slideshow[data-active-slide="1"] .hero-title,
+        #hero.hero--slideshow[data-active-slide="1"] .hero-subtitle {
+            color: #ffffff;
+            align-self: flex-start;
+            text-align: left;
+        }
+
+        #hero.hero--slideshow[data-active-slide="2"] .hero-heading {
+            left: 50%;
+            right: auto;
+            transform: translateX(-50%);
+            text-align: center;
+            align-items: center;
+        }
+
+        #hero.hero--slideshow[data-active-slide="2"] .hero-title,
+        #hero.hero--slideshow[data-active-slide="2"] .hero-subtitle {
+            color: #000000;
+            align-self: center;
+            text-align: center;
+        }
+    }
+
+    /* iPad Mini portrait 768px: H1 su una riga */
+    @media (width: 768px) and (orientation: portrait) {
+        #hero.hero--slideshow .hero-title {
+            white-space: nowrap;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
         #hero.hero--slideshow.hero-heading--in .hero-title,
         #hero.hero--slideshow.hero-heading--in .hero-subtitle {
             animation: none;
@@ -836,6 +1259,27 @@ body {
         bottom: clamp(0.5rem, 3vh, 1rem);
         font-size: clamp(11px, 2.2vw, 15px);
         padding: 0.45rem 0.55rem;
+    }
+}
+
+/* Slideshow: cellulari landscape (SE, X, S8/S9, ecc.) — hero 16:9, più alto del viewport */
+@media (orientation: landscape) and (max-width: 932px) and (max-height: 520px) {
+    #hero.hero--slideshow {
+        aspect-ratio: 16 / 9;
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        --hero-label-bottom: clamp(1.25rem, 7vmin, 2.75rem);
+        --hero-dots-bottom: clamp(0.5rem, 2.2vmin, 0.9rem);
+    }
+
+    #hero.hero--slideshow .hero-slide[data-index="0"] .hero-slide-img {
+        object-position: center calc(50% + 1cm);
+    }
+
+    /* Colours: annulla pan +2cm desktop (causa striscia nera sotto navbar) */
+    #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-img {
+        object-position: center center;
     }
 }
 
@@ -3580,6 +4024,26 @@ body {
         height: 100svh;
     }
 
+    /* Slideshow landscape cellulari: override height 100svh (iPhone X, S8/S9, SE, ecc.) */
+    @media (orientation: landscape) and (max-width: 932px) and (max-height: 520px) {
+        #hero.hero--slideshow {
+            aspect-ratio: 16 / 9;
+            width: 100%;
+            height: auto;
+            min-height: 0;
+            --hero-label-bottom: clamp(1.25rem, 7vmin, 2.75rem);
+            --hero-dots-bottom: clamp(0.5rem, 2.2vmin, 0.9rem);
+        }
+
+        #hero.hero--slideshow .hero-slide[data-index="0"] .hero-slide-img {
+            object-position: center calc(50% + 1cm);
+        }
+
+        #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-img {
+            object-position: center center;
+        }
+    }
+
     :root {
         --navbar-scroll-offset: 3rem;
     }
@@ -3971,5 +4435,142 @@ body {
     #portfolio .portfolio-item-count,
     #portfolio .portfolio-item-count-text {
         font-size: clamp(13px, 3.2vw, 17px);
+    }
+}
+
+/* iPhone (tutti i modelli): regole hero — no Android / iPad / tablet */
+@supports (-webkit-touch-callout: none) {
+    /* Portrait — fino a 14 Pro Max (430px) */
+    @media (orientation: portrait) and (max-width: 430px) {
+        #hero.hero--slideshow {
+            --hero-label-size: calc(2.5rem * 2.36 / 3);
+        }
+
+        #hero.hero--slideshow .hero-slide-label {
+            font-size: calc(2.5rem * 2.36 / 3);
+        }
+    }
+
+    /* Landscape — altezza max iPhone 14 Pro Max (430px), larghezza < iPad */
+    @media (orientation: landscape) and (max-width: 932px) and (max-height: 430px) {
+        #hero.hero--slideshow {
+            --hero-label-size: calc(2.5rem * 2.36 / 3);
+        }
+
+        #hero.hero--slideshow .hero-slide-label {
+            font-size: calc(2.5rem * 2.36 / 3);
+        }
+
+        #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-label {
+            bottom: calc(1cm - 3mm);
+        }
+
+        #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-colours-cta {
+            bottom: calc(1cm - 3mm + 1cm + var(--hero-label-size));
+        }
+
+        /* CTA slide 0 (basso dx) e slide 1 (basso sx) */
+        #hero.hero--slideshow .hero-slide.is-active[data-index="0"] .hero-colours-cta,
+        #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-colours-cta {
+            display: inline-block;
+            position: absolute;
+            z-index: 3;
+            bottom: var(--hero-label-bottom);
+            padding: 0.25rem 0.4rem;
+            font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
+            font-size: clamp(9px, 1.9vmin, 11px);
+            font-weight: 700;
+            color: #ffffff;
+            background-color: transparent;
+            border: 1px solid #ffffff;
+            border-radius: 0;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
+            pointer-events: auto;
+            box-sizing: border-box;
+            max-width: calc(50% - 1rem);
+            white-space: nowrap;
+            transform: none;
+        }
+
+        #hero.hero--slideshow .hero-slide.is-active[data-index="0"] .hero-colours-cta {
+            left: auto;
+            right: 3mm;
+        }
+
+        #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-colours-cta {
+            left: 3mm;
+            right: auto;
+        }
+    }
+
+    /* Slide 1 portraits — destra, ~3 mm dal bordo, micro-slide verso sinistra */
+    @media (orientation: portrait) and (max-width: 430px),
+    (orientation: landscape) and (max-width: 932px) and (max-height: 430px) {
+        #hero.hero--slideshow .hero-slide[data-index="1"] .hero-slide-label {
+            left: auto;
+            right: 3mm;
+            text-align: right;
+            transform: translateX(0.65rem);
+        }
+
+        #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-slide-label.hero-slide-label--in {
+            animation: hero-portrait-label-in-se 1.1s ease-out forwards;
+        }
+    }
+}
+
+/* Desktop: CTA portfolio — slide 0 dx, slide 1 sx, slide 2 sopra colours */
+@media (min-width: 1025px) {
+    #hero.hero--slideshow .hero-slide.is-active[data-index="0"] .hero-colours-cta,
+    #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-colours-cta,
+    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-colours-cta {
+        display: inline-block;
+        position: absolute;
+        z-index: 3;
+        padding: 0.6rem 0.85rem;
+        font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
+        font-size: clamp(14px, 1.2vw, 18px);
+        font-weight: 700;
+        color: #ffffff;
+        background-color: transparent;
+        border: 2px solid #ffffff;
+        border-radius: 0;
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
+        pointer-events: auto;
+        box-sizing: border-box;
+        white-space: nowrap;
+    }
+
+    /* Slide 0 jazz: basso dx, stessa riga jazz, margine come H1/H2 */
+    #hero.hero--slideshow .hero-slide.is-active[data-index="0"] .hero-colours-cta {
+        bottom: var(--hero-label-bottom);
+        left: auto;
+        right: 2cm;
+        transform: none;
+    }
+
+    /* Slide 1 portraits: basso sx, stessa riga portraits, margine come H1/H2, nero */
+    #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-colours-cta {
+        bottom: var(--hero-label-bottom);
+        left: 2cm;
+        right: auto;
+        transform: none;
+        color: #000000;
+        border-color: #000000;
+        text-shadow: none;
+    }
+
+    /* Slide 2 colours: centrato, 1 cm sopra la scritta */
+    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-colours-cta {
+        left: 50%;
+        right: auto;
+        bottom: calc(2cm + 1cm + var(--hero-label-size));
+        transform: translateX(-50%);
     }
 }
