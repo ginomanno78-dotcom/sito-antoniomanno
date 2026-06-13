@@ -363,6 +363,44 @@
     var timer = null;
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+    function extractAndroidModel(source) {
+        var match = source.match(/;\s*(SM-[A-Z0-9]+)/i);
+        return match ? match[1].toUpperCase() : '';
+    }
+
+    /* Galaxy Tab S4 (SM-T830/T835/T837): regole CSS landscape slide portraits */
+    function applyTabS4Class(modelHint) {
+        var ua = navigator.userAgent || '';
+        var model = extractAndroidModel((modelHint || '') + ' ' + ua);
+        if (/^SM-T83[0-7]/i.test(model) || /SM-T83[0-7]/i.test(modelHint || '')) {
+            hero.classList.add('hero--galaxy-tab-s4');
+        }
+    }
+
+    applyTabS4Class('');
+
+    /* Samsung Galaxy mobile (no tablet SM-T): regole CSS H2 */
+    function applySamsungGalaxyClass(modelHint) {
+        var ua = navigator.userAgent || '';
+        var model = extractAndroidModel((modelHint || '') + ' ' + ua);
+        if (model && /^SM-T/i.test(model)) return;
+        if (/Android/i.test(ua) && /Samsung|SM-|Galaxy|SamsungBrowser/i.test(ua + ' ' + (modelHint || ''))) {
+            hero.classList.add('hero--samsung-galaxy');
+        }
+    }
+
+    applySamsungGalaxyClass('');
+
+    /* Chrome/Android moderno: modello via Client Hints */
+    if (navigator.userAgentData && navigator.userAgentData.getHighEntropyValues) {
+        navigator.userAgentData.getHighEntropyValues(['model', 'platform'])
+            .then(function (values) {
+                applyTabS4Class(values.model || '');
+                applySamsungGalaxyClass(values.model || '');
+            })
+            .catch(function () {});
+    }
+
     /* Slide colours (index 2): pausa più lunga per leggere H1/H2 */
     function getSlideDuration(index) {
         return index === 2 ? intervalColours : intervalDefault;
