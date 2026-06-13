@@ -391,6 +391,86 @@
 
     applySamsungGalaxyClass('');
 
+    /* iPhone / iPad Mini / iPad Air / iPad Pro: classi per regole CSS dedicate */
+    var appleClasses = ['hero--iphone', 'hero--ipad-mini', 'hero--ipad-air', 'hero--ipad-pro'];
+
+    function isAppleDevice() {
+        var ua = navigator.userAgent || '';
+        return /iPhone|iPad|iPod/i.test(ua) ||
+            (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    }
+
+    function applyAppleDeviceClasses() {
+        appleClasses.forEach(function (cls) {
+            hero.classList.remove(cls);
+        });
+
+        var ua = navigator.userAgent || '';
+        if (/iPhone/i.test(ua)) {
+            hero.classList.add('hero--iphone');
+            return;
+        }
+
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+        var minSide = Math.min(w, h);
+        var maxSide = Math.max(w, h);
+
+        /* Viewport DevTools: classi anche in emulazione desktop (non solo Safari iOS) */
+        if (minSide === 768 && maxSide === 1024) {
+            hero.classList.add('hero--ipad-mini');
+            return;
+        }
+        if (minSide === 820 && maxSide === 1180) {
+            hero.classList.add('hero--ipad-air');
+            return;
+        }
+        if ((minSide === 834 && maxSide === 1194) || (minSide === 1024 && maxSide === 1366)) {
+            hero.classList.add('hero--ipad-pro');
+            return;
+        }
+
+        if (!isAppleDevice()) return;
+
+        if (/iPad/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) {
+            if (minSide < 800) {
+                hero.classList.add('hero--ipad-mini');
+            } else if (minSide < 830) {
+                hero.classList.add('hero--ipad-air');
+            } else {
+                hero.classList.add('hero--ipad-pro');
+            }
+        }
+    }
+
+    applyAppleDeviceClasses();
+    window.addEventListener('resize', applyAppleDeviceClasses);
+    window.addEventListener('orientationchange', function () {
+        setTimeout(applyAppleDeviceClasses, 150);
+    });
+
+    /* Nest Hub (1024×600) / Nest Hub Max (1280×800): classi CSS dedicate */
+    var nestHubClasses = ['hero--nest-hub', 'hero--nest-hub-max'];
+
+    function applyNestHubClasses() {
+        nestHubClasses.forEach(function (cls) {
+            hero.classList.remove(cls);
+        });
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+        if (w === 1024 && h === 600) {
+            hero.classList.add('hero--nest-hub');
+        } else if (w === 1280 && h === 800) {
+            hero.classList.add('hero--nest-hub-max');
+        }
+    }
+
+    applyNestHubClasses();
+    window.addEventListener('resize', applyNestHubClasses);
+    window.addEventListener('orientationchange', function () {
+        setTimeout(applyNestHubClasses, 150);
+    });
+
     /* Chrome/Android moderno: modello via Client Hints */
     if (navigator.userAgentData && navigator.userAgentData.getHighEntropyValues) {
         navigator.userAgentData.getHighEntropyValues(['model', 'platform'])
