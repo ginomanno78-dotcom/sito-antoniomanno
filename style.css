@@ -1914,7 +1914,7 @@ body {
     max-width: none;
     margin: 0;
     background: #999999;
-    border: 3px solid #ffffff;
+    border: 1px solid #ffffff;
     border-radius: 10px;
     overflow: hidden;
     display: flex;

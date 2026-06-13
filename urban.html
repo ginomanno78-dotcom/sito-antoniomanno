@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>City - ph. antonio manno</title>
+    <title>Urban - ph. antonio manno</title>
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="style.css?v=2">
 </head>
@@ -28,7 +28,7 @@
                         aria-expanded="false">Portfolio</a>
                     <ul class="dropdown-menu">
                         <li><a href="auschwitz.html">Auschwitz</a></li>
-                        <li><a href="city.html">City</a></li>
+                        <li><a href="urban.html">Urban</a></li>
                         <li><a href="portraits.html">Portraits</a></li>
                         <li><a href="jazz.html">Jazz</a></li>
                         <li><a href="landscapes.html">Landscapes</a></li>
@@ -36,6 +36,7 @@
                         <li><a href="customs.html">Customs</a></li>
                         <li><a href="windows.html">Windows</a></li>
                         <li><a href="train.html">Train</a></li>
+                        <li><a href="colours.html">Colours</a></li>
                     </ul>
                 </li>
                 <li class="nav-item-dropdown">
@@ -54,7 +55,7 @@
 
     <main class="gallery-page">
         <section class="gallery-intro">
-            <h1 class="gallery-title">City</h1>
+            <h1 class="gallery-title">Urban</h1>
             <p class="gallery-subtitle">Architetture e paesaggi urbani</p>
             <p class="gallery-desc">Le città raccontate attraverso luci, geometrie e prospettive. Scatti che catturano
                 l'essenza degli spazi urbani e la loro continua trasformazione.</p>
@@ -62,19 +63,19 @@
 
         <div class="gallery-city-wrap">
             <div class="masonry-gallery gallery-city" id="galleryCity">
-                <div class="masonry-item" data-index="0"><img src="assets/images/photo-city/thumbs/01.webp" alt="City 1"
+                <div class="masonry-item" data-index="0"><img src="assets/images/photo-city/thumbs/01.webp" alt="Urban 1"
                         data-full="assets/images/photo-city/full/01.webp" loading="lazy"></div>
-                <div class="masonry-item" data-index="1"><img src="assets/images/photo-city/thumbs/02.webp" alt="City 2"
+                <div class="masonry-item" data-index="1"><img src="assets/images/photo-city/thumbs/02.webp" alt="Urban 2"
                         data-full="assets/images/photo-city/full/02.webp" loading="lazy"></div>
-                <div class="masonry-item" data-index="2"><img src="assets/images/photo-city/thumbs/03.webp" alt="City 3"
+                <div class="masonry-item" data-index="2"><img src="assets/images/photo-city/thumbs/03.webp" alt="Urban 3"
                         data-full="assets/images/photo-city/full/03.webp" loading="lazy"></div>
-                <div class="masonry-item" data-index="3"><img src="assets/images/photo-city/thumbs/04.webp" alt="City 4"
+                <div class="masonry-item" data-index="3"><img src="assets/images/photo-city/thumbs/04.webp" alt="Urban 4"
                         data-full="assets/images/photo-city/full/04.webp" loading="lazy"></div>
-                <div class="masonry-item" data-index="4"><img src="assets/images/photo-city/thumbs/05.webp" alt="City 5"
+                <div class="masonry-item" data-index="4"><img src="assets/images/photo-city/thumbs/05.webp" alt="Urban 5"
                         data-full="assets/images/photo-city/full/05.webp" loading="lazy"></div>
-                <div class="masonry-item" data-index="5"><img src="assets/images/photo-city/thumbs/06.webp" alt="City 6"
+                <div class="masonry-item" data-index="5"><img src="assets/images/photo-city/thumbs/06.webp" alt="Urban 6"
                         data-full="assets/images/photo-city/full/06.webp" loading="lazy"></div>
-                <div class="masonry-item" data-index="6"><img src="assets/images/photo-city/thumbs/07.jpg" alt="City 7"
+                <div class="masonry-item" data-index="6"><img src="assets/images/photo-city/thumbs/07.jpg" alt="Urban 7"
                         data-full="assets/images/photo-city/full/07.jpg" loading="lazy"></div>
             </div>
         </div>
@@ -142,7 +143,7 @@
                 if (!img) return;
                 var full = img.getAttribute('data-full');
                 if (!full) full = img.src;
-                sources.push({ src: full, alt: img.alt || 'City' });
+                sources.push({ src: full, alt: img.alt || 'Urban' });
             });
             var currentIndex = 0;
             function openLightbox(index) {
