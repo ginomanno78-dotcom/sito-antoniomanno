@@ -471,6 +471,22 @@
         setTimeout(applyNestHubClasses, 150);
     });
 
+    /* Google Pixel Tablet (800×1280 portrait): classe CSS dedicata */
+    function applyPixelTabletClass() {
+        hero.classList.remove('hero--pixel-tablet');
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+        if (w === 800 && h > w && h >= 1190 && h <= 1290) {
+            hero.classList.add('hero--pixel-tablet');
+        }
+    }
+
+    applyPixelTabletClass();
+    window.addEventListener('resize', applyPixelTabletClass);
+    window.addEventListener('orientationchange', function () {
+        setTimeout(applyPixelTabletClass, 150);
+    });
+
     /* Chrome/Android moderno: modello via Client Hints */
     if (navigator.userAgentData && navigator.userAgentData.getHighEntropyValues) {
         navigator.userAgentData.getHighEntropyValues(['model', 'platform'])
