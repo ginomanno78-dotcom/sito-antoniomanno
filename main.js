@@ -494,7 +494,7 @@
                 applyTabS4Class(values.model || '');
                 applySamsungGalaxyClass(values.model || '');
             })
-            .catch(function () {});
+            .catch(function () { });
     }
 
     /* Slide colours (index 2): pausa più lunga per leggere H1/H2 */
@@ -564,4 +564,24 @@
     animateLabel(slides[0]);
     animateHeading(0);
     startTimer();
+    /* Form contatti: invio fetch + messaggio conferma */
+    (function () {
+        var form = document.querySelector('.contatti-form');
+        var success = document.getElementById('form-success');
+        if (!form || !success) return;
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            }).then(function (res) {
+                if (res.ok) {
+                    form.hidden = true;
+                    success.hidden = false;
+                }
+            });
+        });
+    })();
 })();
