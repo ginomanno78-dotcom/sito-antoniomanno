@@ -7123,4 +7123,8 @@ body {
     .form-success[hidden] {
         display: none;
     }
+
+    .form-success p {
+        color: #ffffff !important;
+    }
 }
