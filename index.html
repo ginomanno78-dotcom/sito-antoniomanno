@@ -10,6 +10,14 @@
     <title>Antonio Manno - photography</title>
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="style.css?v=236">
+    <style>
+        /* Pulsante Invia messaggio: arancio su hover e click */
+        #contatti .contatti-submit:hover,
+        #contatti .contatti-submit:active {
+            background-color: #f97316;
+            color: #1a1a1a;
+        }
+    </style>
 </head>
 
 <body>
@@ -423,7 +431,7 @@
         <h2 class="contatti-title">Contatti</h2>
         <div class="contatti-grid">
             <div class="contatti-col-form">
-                <form class="contatti-form" action="#" method="post" novalidate>
+                <form class="contatti-form" action="https://formspree.io/f/mgojyloa" method="POST">
                     <label for="contatti-nome">Nome*</label>
                     <input type="text" id="contatti-nome" name="nome" required placeholder="Il tuo nome">
                     <label for="contatti-email">Email*</label>
@@ -435,6 +443,15 @@
                         rows="5"></textarea>
                     <button type="submit" class="contatti-submit">Invia messaggio</button>
                 </form>
+                <div id="form-success" class="form-success" aria-live="polite" hidden>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                        stroke="#4caf50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                        aria-hidden="true">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M7 12l3 3 7-7" />
+                    </svg>
+                    <p>Grazie per il messaggio.<br>Risponderemo entro 48 ore.</p>
+                </div>
             </div>
             <div class="contatti-col-info">
                 <h3 class="contatti-info-title">Info:</h3>
@@ -470,7 +487,7 @@
 
     <!-- Piedipagina: solo copyright (tel e email sono giÃ  nella sezione Contatti sopra) -->
     <footer class="site-footer site-footer--solo-copyright">
-        <p class="footer-copyright">Â© 2025 ph. antonio manno. Tutti i diritti sono riservati.</p>
+        <p class="footer-copyright">© 2026 - ph. antonio manno. Tutti i diritti sono riservati.</p>
     </footer>
 
     <script src="main.js?v=13"></script>
