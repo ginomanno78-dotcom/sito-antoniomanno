@@ -348,240 +348,35 @@
     }
 })();
 
-/* Hero slideshow: dissolvenza ogni 2,5 s + dot navigation */
+/* Form contatti: invio fetch + conferma o errore */
 (function () {
-    var hero = document.getElementById('hero');
-    if (!hero || !hero.classList.contains('hero--slideshow')) return;
+    var form = document.querySelector('.contatti-form');
+    var conferma = document.getElementById('contatti-conferma');
+    var errore = document.getElementById('contatti-errore');
+    if (!form || !conferma || !errore) return;
 
-    var slides = hero.querySelectorAll('.hero-slide');
-    var dots = hero.querySelectorAll('.hero-dot');
-    if (!slides.length) return;
+    var submitBtn = form.querySelector('.contatti-submit');
 
-    var current = 0;
-    var intervalDefault = 2500;
-    var intervalColours = 6000;
-    var timer = null;
-    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        errore.hidden = true;
+        if (submitBtn) submitBtn.disabled = true;
 
-    function extractAndroidModel(source) {
-        var match = source.match(/;\s*(SM-[A-Z0-9]+)/i);
-        return match ? match[1].toUpperCase() : '';
-    }
-
-    /* Galaxy Tab S4 (SM-T830/T835/T837): regole CSS landscape slide portraits */
-    function applyTabS4Class(modelHint) {
-        var ua = navigator.userAgent || '';
-        var model = extractAndroidModel((modelHint || '') + ' ' + ua);
-        if (/^SM-T83[0-7]/i.test(model) || /SM-T83[0-7]/i.test(modelHint || '')) {
-            hero.classList.add('hero--galaxy-tab-s4');
-        }
-    }
-
-    applyTabS4Class('');
-
-    /* Samsung Galaxy mobile (no tablet SM-T): regole CSS H2 */
-    function applySamsungGalaxyClass(modelHint) {
-        var ua = navigator.userAgent || '';
-        var model = extractAndroidModel((modelHint || '') + ' ' + ua);
-        if (model && /^SM-T/i.test(model)) return;
-        if (/Android/i.test(ua) && /Samsung|SM-|Galaxy|SamsungBrowser/i.test(ua + ' ' + (modelHint || ''))) {
-            hero.classList.add('hero--samsung-galaxy');
-        }
-    }
-
-    applySamsungGalaxyClass('');
-
-    /* iPhone / iPad Mini / iPad Air / iPad Pro: classi per regole CSS dedicate */
-    var appleClasses = ['hero--iphone', 'hero--ipad-mini', 'hero--ipad-air', 'hero--ipad-pro'];
-
-    function isAppleDevice() {
-        var ua = navigator.userAgent || '';
-        return /iPhone|iPad|iPod/i.test(ua) ||
-            (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-    }
-
-    function applyAppleDeviceClasses() {
-        appleClasses.forEach(function (cls) {
-            hero.classList.remove(cls);
-        });
-
-        var ua = navigator.userAgent || '';
-        if (/iPhone/i.test(ua)) {
-            hero.classList.add('hero--iphone');
-            return;
-        }
-
-        var w = window.innerWidth;
-        var h = window.innerHeight;
-        var minSide = Math.min(w, h);
-        var maxSide = Math.max(w, h);
-
-        /* Viewport DevTools: classi anche in emulazione desktop (non solo Safari iOS) */
-        if (minSide === 768 && maxSide === 1024) {
-            hero.classList.add('hero--ipad-mini');
-            return;
-        }
-        if (minSide === 820 && maxSide === 1180) {
-            hero.classList.add('hero--ipad-air');
-            return;
-        }
-        if ((minSide === 834 && maxSide === 1194) || (minSide === 1024 && maxSide === 1366)) {
-            hero.classList.add('hero--ipad-pro');
-            return;
-        }
-
-        if (!isAppleDevice()) return;
-
-        if (/iPad/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) {
-            if (minSide < 800) {
-                hero.classList.add('hero--ipad-mini');
-            } else if (minSide < 830) {
-                hero.classList.add('hero--ipad-air');
+        fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+        }).then(function (res) {
+            if (res.ok) {
+                form.hidden = true;
+                conferma.hidden = false;
             } else {
-                hero.classList.add('hero--ipad-pro');
+                errore.hidden = false;
             }
-        }
-    }
-
-    applyAppleDeviceClasses();
-    window.addEventListener('resize', applyAppleDeviceClasses);
-    window.addEventListener('orientationchange', function () {
-        setTimeout(applyAppleDeviceClasses, 150);
-    });
-
-    /* Nest Hub (1024×600) / Nest Hub Max (1280×800): classi CSS dedicate */
-    var nestHubClasses = ['hero--nest-hub', 'hero--nest-hub-max'];
-
-    function applyNestHubClasses() {
-        nestHubClasses.forEach(function (cls) {
-            hero.classList.remove(cls);
-        });
-        var w = window.innerWidth;
-        var h = window.innerHeight;
-        if (w === 1024 && h === 600) {
-            hero.classList.add('hero--nest-hub');
-        } else if (w === 1280 && h === 800) {
-            hero.classList.add('hero--nest-hub-max');
-        }
-    }
-
-    applyNestHubClasses();
-    window.addEventListener('resize', applyNestHubClasses);
-    window.addEventListener('orientationchange', function () {
-        setTimeout(applyNestHubClasses, 150);
-    });
-
-    /* Google Pixel Tablet (800×1280 portrait): classe CSS dedicata */
-    function applyPixelTabletClass() {
-        hero.classList.remove('hero--pixel-tablet');
-        var w = window.innerWidth;
-        var h = window.innerHeight;
-        if (w === 800 && h > w && h >= 1190 && h <= 1290) {
-            hero.classList.add('hero--pixel-tablet');
-        }
-    }
-
-    applyPixelTabletClass();
-    window.addEventListener('resize', applyPixelTabletClass);
-    window.addEventListener('orientationchange', function () {
-        setTimeout(applyPixelTabletClass, 150);
-    });
-
-    /* Chrome/Android moderno: modello via Client Hints */
-    if (navigator.userAgentData && navigator.userAgentData.getHighEntropyValues) {
-        navigator.userAgentData.getHighEntropyValues(['model', 'platform'])
-            .then(function (values) {
-                applyTabS4Class(values.model || '');
-                applySamsungGalaxyClass(values.model || '');
-            })
-            .catch(function () { });
-    }
-
-    /* Slide colours (index 2): pausa più lunga per leggere H1/H2 */
-    function getSlideDuration(index) {
-        return index === 2 ? intervalColours : intervalDefault;
-    }
-
-    function animateLabel(slide) {
-        var label = slide && slide.querySelector('.hero-slide-label');
-        if (!label) return;
-        label.classList.remove('hero-slide-label--in');
-        if (reduced) {
-            label.classList.add('hero-slide-label--in');
-            return;
-        }
-        void label.offsetWidth;
-        label.classList.add('hero-slide-label--in');
-    }
-
-    function animateHeading(index) {
-        hero.setAttribute('data-active-slide', String(index));
-        hero.classList.remove('hero-heading--in');
-        if (reduced) {
-            hero.classList.add('hero-heading--in');
-            return;
-        }
-        void hero.offsetWidth;
-        hero.classList.add('hero-heading--in');
-    }
-
-    function goTo(index) {
-        if (index < 0 || index >= slides.length || index === current) return;
-        slides[current].classList.remove('is-active');
-        slides[index].classList.add('is-active');
-        if (dots.length) {
-            dots[current].classList.remove('is-active');
-            dots[current].setAttribute('aria-selected', 'false');
-            dots[index].classList.add('is-active');
-            dots[index].setAttribute('aria-selected', 'true');
-        }
-        current = index;
-        animateLabel(slides[index]);
-        animateHeading(index);
-    }
-
-    function next() {
-        goTo((current + 1) % slides.length);
-    }
-
-    function startTimer() {
-        clearTimeout(timer);
-        timer = setTimeout(function () {
-            next();
-            startTimer();
-        }, getSlideDuration(current));
-    }
-
-    dots.forEach(function (dot) {
-        dot.addEventListener('click', function () {
-            var idx = parseInt(dot.getAttribute('data-index'), 10);
-            if (isNaN(idx)) return;
-            goTo(idx);
-            startTimer();
+        }).catch(function () {
+            errore.hidden = false;
+        }).finally(function () {
+            if (submitBtn) submitBtn.disabled = false;
         });
     });
-
-    animateLabel(slides[0]);
-    animateHeading(0);
-    startTimer();
-    /* Form contatti: invio fetch + messaggio conferma */
-    (function () {
-        var form = document.querySelector('.contatti-form');
-        var success = document.getElementById('form-success');
-        if (!form || !success) return;
-
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            fetch(form.action, {
-                method: 'POST',
-                body: new FormData(form),
-                headers: { 'Accept': 'application/json' }
-            }).then(function (res) {
-                if (res.ok) {
-                    form.hidden = true;
-                    success.hidden = false;
-                }
-            });
-        });
-    })();
 })();

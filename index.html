@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="Antonio Manno — fotografo professionista. Portfolio di jazz, ritratti, street photography, paesaggi e reportage. Sparanise, Caserta.">
-    <link rel="preload" as="image" href="assets/images/hero-jazz.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="assets/images/hero-828.webp" media="(max-width: 828px)" fetchpriority="high">
+    <link rel="preload" as="image" href="assets/images/hero.webp" media="(min-width: 829px)" fetchpriority="high">
     <title>Antonio Manno - photography</title>
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="style.css?v=236">
+    <link rel="stylesheet" href="style.css?v=266">
     <style>
         /* Pulsante Invia messaggio: arancio su hover e click */
         #contatti .contatti-submit:hover,
@@ -63,28 +64,12 @@
         </div>
     </nav>
 
-    <!-- Hero: slideshow 3 foto (titoli e CTA in fase successiva) -->
-    <section id="hero" class="hero--slideshow" data-active-slide="0" aria-label="Hero">
-        <div class="hero-slideshow" aria-live="polite">
-            <div class="hero-slide is-active" data-index="0">
-                <img src="assets/images/hero-jazz.webp?v=2" alt="" class="hero-slide-img" decoding="async"
-                    fetchpriority="high">
-                <a href="#portfolio" class="hero-colours-cta">scopri il portfolio</a>
-                <span class="hero-slide-label">jazz</span>
-            </div>
-            <div class="hero-slide" data-index="1">
-                <img src="assets/images/hero-portrait.webp" alt="" class="hero-slide-img" decoding="async"
-                    loading="lazy">
-                <a href="#portfolio" class="hero-colours-cta">scopri il portfolio</a>
-                <span class="hero-slide-label">portraits</span>
-            </div>
-            <div class="hero-slide" data-index="2">
-                <img src="assets/images/hero-colours.webp" alt="" class="hero-slide-img" decoding="async"
-                    loading="lazy">
-                <a href="#portfolio" class="hero-colours-cta">scopri il portfolio</a>
-                <span class="hero-slide-label">colours</span>
-            </div>
-        </div>
+    <!-- Hero: foto statica ritratto -->
+    <section id="hero" aria-label="Hero">
+        <img src="assets/images/hero-828.webp"
+            srcset="assets/images/hero-828.webp 828w, assets/images/hero-1280.webp 1280w, assets/images/hero.webp 1920w"
+            sizes="100vw" alt="Antonio Manno — ritratto fotografico" class="hero-bg-image" decoding="async"
+            fetchpriority="high">
         <div class="hero-heading">
             <h1 class="hero-title">
                 <span class="hero-title-line">Antonio</span>
@@ -92,14 +77,7 @@
             </h1>
             <h2 class="hero-subtitle">photografy</h2>
         </div>
-        <div class="hero-dots" role="tablist" aria-label="Seleziona immagine hero">
-            <button type="button" class="hero-dot is-active" role="tab" aria-label="jazz" aria-selected="true"
-                data-index="0"></button>
-            <button type="button" class="hero-dot" role="tab" aria-label="portraits" aria-selected="false"
-                data-index="1"></button>
-            <button type="button" class="hero-dot" role="tab" aria-label="colours" aria-selected="false"
-                data-index="2"></button>
-        </div>
+        <a href="#portfolio" class="cta-button">scopri il portfolio</a>
     </section>
 
     <!-- Sezione Biografia â€” Proposta Mix -->
@@ -163,17 +141,15 @@
                 <div class="biografia-collaborazioni">
                     <h4 class="biografia-collaborazioni-title">Collaborazioni di Rilievo</h4>
                     <ul class="biografia-collaborazioni-list">
-                        <li><strong>2003 - 2004</strong> <span class="biografia-collaborazioni-testo">Ho fotografato per
-                                la rivista "Jazzit" in occasione di
-                                "Umbria
-                                Jazz
-                                Winter", una delle rassegne jazz più prestigiose d'Italia.</span></li>
+                        <li><strong>2003 - 2004</strong> <span class="biografia-collaborazioni-testo">Fotografa per
+                                la rivista "Jazzit" in occasione della rassegna "Umbria Jazz Winter",
+                                tra i festival jazz più prestigiosi d'Italia.</span></li>
                         <li><strong>2004 - 2005</strong> <span class="biografia-collaborazioni-testo">Fotografo
                                 ufficiale del Campobasso Jazz Festival.</span></li>
-                        <li><strong>2006</strong> <span class="biografia-collaborazioni-testo">Repubblica.it aveva
-                                dedicato spazio a tre mie gallery sui viaggi
+                        <li><strong>2006</strong> <span class="biografia-collaborazioni-testo">Repubblica.it ha
+                                dedicato spazio a tre sue gallery, "viaggi
                                 in
-                                treno, sui ritratti della gente del mio paese e sulle foto di jazz.</span>
+                                treno" "ritratti della gente del suo paese" e una selezione di foto di "jazz".</span>
                             <div class="biografia-links">
                                 <a href="http://www.repubblica.it/2006/08/gallerie/spettacoliecultura/antonio-manno/1.html?ref=search"
                                     target="_blank" rel="noopener noreferrer">Gallery Jazz</a>
@@ -186,7 +162,7 @@
                         <li><strong>2008</strong> <span class="biografia-collaborazioni-testo">Il riconoscimento
                                 internazionale è stato quando il Tokyo Jazz
                                 Festival
-                                ha pubblicato tre mie fotografie di Ron Carter nella brochure ufficiale del
+                                ha pubblicato tre fotografie di Ron Carter nella brochure ufficiale del
                                 festival.</span></li>
                     </ul>
                 </div>
@@ -315,7 +291,7 @@
             </a>
             <a href="customs.html" class="portfolio-item portfolio-item-featured portfolio-item--customs">
                 <div class="portfolio-item-header">
-                    <span class="portfolio-item-label">customs</span>
+                    <span class="portfolio-item-label">processions</span>
                     <span class="portfolio-item-count">
                         <svg class="portfolio-item-count-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
@@ -443,14 +419,22 @@
                         rows="5"></textarea>
                     <button type="submit" class="contatti-submit">Invia messaggio</button>
                 </form>
-                <div id="form-success" class="form-success" aria-live="polite" hidden>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
-                        stroke="#4caf50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                        aria-hidden="true">
-                        <circle cx="12" cy="12" r="10" />
-                        <path d="M7 12l3 3 7-7" />
+                <!-- Conferma invio (nascosta di default) -->
+                <div id="contatti-conferma" class="contatti-conferma" aria-live="polite" hidden>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <polyline points="20,6 9,17 4,12" />
                     </svg>
-                    <p>Grazie per il messaggio.<br>Risponderemo entro 48 ore.</p>
+                    <p>Grazie! Il tuo messaggio è stato inviato con successo. Ti risponderemo entro 48 ore.</p>
+                </div>
+                <!-- Errore invio (nascosto di default) -->
+                <div id="contatti-errore" class="contatti-errore" role="alert" aria-live="assertive" hidden>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="12" y1="8" x2="12" y2="12" />
+                        <line x1="12" y1="16" x2="12.01" y2="16" />
+                    </svg>
+                    <p>Si è verificato un problema e il messaggio non è stato inviato. Riprova tra qualche istante o
+                        contattaci via email.</p>
                 </div>
             </div>
             <div class="contatti-col-info">
@@ -490,7 +474,7 @@
         <p class="footer-copyright">© 2026 - ph. antonio manno. Tutti i diritti sono riservati.</p>
     </footer>
 
-    <script src="main.js?v=13"></script>
+    <script src="main.js?v=15"></script>
 </body>
 
 </html>
