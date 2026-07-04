@@ -12,7 +12,7 @@
     --colore-sfondo: #ffffff;
     --colore-testo: #000000;
     --colore-accenti: #999999;
-    /* allineato all’altezza reale della navbar (se troppo alto resta visibile l’hero sopra #biografia) */
+    /* allineato all???altezza reale della navbar (se troppo alto resta visibile l???hero sopra #biografia) */
     --navbar-scroll-offset: 4.25rem;
 }
 
@@ -24,7 +24,7 @@ html {
 body {
     background-color: var(--colore-sfondo);
     color: var(--colore-testo);
-    font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
+    font-family: 'Arri??re Garde', 'Century Gothic', sans-serif;
 }
 
 /* ===== NAVBAR ===== */
@@ -66,7 +66,7 @@ body {
 .nav-menu a {
     color: #808080;
     text-decoration: none;
-    font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
+    font-family: 'Arri??re Garde', 'Century Gothic', sans-serif;
     display: inline-block;
     font-size: 18px;
     border-bottom: 2px solid transparent;
@@ -85,7 +85,7 @@ body {
 }
 
 .nav-item-dropdown>.dropdown-trigger::after {
-    content: " ▾";
+    content: " \25BE";
     font-size: 0.8em;
 }
 
@@ -97,7 +97,7 @@ body {
     padding: 0.5rem 0;
     min-width: 140px;
     margin-top: 0;
-    /* niente gap tra trigger e menu, così non \"salta\" quando scendi col mouse */
+    /* niente gap tra trigger e menu, cos?? non \"salta\" quando scendi col mouse */
     background-color: var(--colore-sfondo);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
     opacity: 0;
@@ -177,7 +177,7 @@ body {
 }
 
 @font-face {
-    font-family: 'Arrière Garde';
+    font-family: 'Arri??re Garde';
     src: url('assets/font/arriere_garde.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
@@ -193,878 +193,11 @@ body {
 }
 
 @font-face {
-    font-family: 'Schlbkb';
-    src: url('assets/font/SCHLBKBI.TTF') format('truetype');
+    font-family: 'Montserrat Alternates Bold';
+    src: url('assets/font/MontserratAlternates-Bold.ttf') format('truetype');
     font-weight: 700;
-    font-style: italic;
+    font-style: normal;
     font-display: swap;
-}
-
-/* Schlbki: variante per label hero iPad Mini landscape */
-@font-face {
-    font-family: 'Schlbki';
-    src: url('assets/font/SCHLBKI.TTF') format('truetype');
-    font-weight: 700;
-    font-style: italic;
-    font-display: swap;
-}
-
-/* Hero slideshow: variabili fluide (tutti i device, stessa logica) */
-#hero.hero--slideshow {
-    --hero-fade-duration: 0.9s;
-    --hero-label-size: 48px;
-    --hero-label-left: clamp(1rem, 4.5vmin, 3rem);
-    --hero-label-bottom: clamp(3rem, 12vmin, 5rem);
-    --hero-dots-bottom: clamp(0.65rem, 2.8vmin, 1.15rem);
-    --hero-dot-size: clamp(6px, 1.4vmin, 9px);
-}
-
-/* Mobile portrait + landscape (iPhone/Android): scritte hero -8px */
-@media (max-width: 768px),
-(orientation: landscape) and (max-width: 932px) and (max-height: 520px) {
-    #hero.hero--slideshow {
-        --hero-label-size: 40px;
-    }
-}
-
-#hero.hero--slideshow .hero-slideshow {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-}
-
-#hero.hero--slideshow .hero-slide {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transition: opacity var(--hero-fade-duration) ease-in-out;
-    pointer-events: none;
-}
-
-#hero.hero--slideshow .hero-slide.is-active {
-    opacity: 1;
-    pointer-events: auto;
-    z-index: 1;
-}
-
-#hero.hero--slideshow .hero-slide-img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center center;
-    pointer-events: none;
-}
-
-/* Jazz: cover a piena scala, centrata; +3 cm verso il basso senza tagliare la testa */
-#hero.hero--slideshow .hero-slide[data-index="0"] .hero-slide-img {
-    object-fit: cover;
-    object-position: center center;
-    left: 0;
-    width: 100%;
-    height: calc(100% + 6cm);
-    top: -3cm;
-    bottom: auto;
-    right: auto;
-}
-
-/* Mobile portrait: jazz — pan ~1cm verso destra (object-position, senza taglio bordo) */
-@media (max-width: 768px) and (orientation: portrait) {
-    #hero.hero--slideshow .hero-slide[data-index="0"] .hero-slide-img {
-        object-position: calc(50% + 2cm) center;
-    }
-}
-
-#hero.hero--slideshow .hero-slide-label {
-    position: absolute;
-    left: var(--hero-label-left);
-    bottom: var(--hero-label-bottom);
-    z-index: 2;
-    font-family: 'Schlbkb', Georgia, serif;
-    font-size: var(--hero-label-size);
-    font-weight: 700;
-    font-style: italic;
-    color: #ffffff;
-    text-transform: lowercase;
-    line-height: 1;
-    opacity: 0;
-    transform: translateX(-0.65rem);
-    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-    pointer-events: none;
-}
-
-#hero.hero--slideshow .hero-slide.is-active .hero-slide-label.hero-slide-label--in {
-    animation: hero-slide-label-in 1.1s ease-out forwards;
-}
-
-@keyframes hero-slide-label-in {
-    from {
-        opacity: 0;
-        transform: translateX(-0.65rem);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-/* iPhone: portraits — micro-slide da destra verso sinistra */
-@keyframes hero-portrait-label-in-se {
-    from {
-        opacity: 0;
-        transform: translateX(0.65rem);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-/* Slide colours: H1 — dissolvenza + bianco → nero; H2 — solo opacity */
-@keyframes hero-colours-h1-fade-in {
-    from {
-        opacity: 0;
-        color: #ffffff;
-    }
-
-    to {
-        opacity: 1;
-        color: #000000;
-    }
-}
-
-@keyframes hero-colours-h2-fade-in {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-/* Label colours: sale dal basso, centrata (desktop + mobile) */
-@keyframes hero-colours-label-in {
-    from {
-        opacity: 0;
-        transform: translateX(-50%) translateY(2cm);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-    }
-}
-
-#hero.hero--slideshow .hero-dots {
-    position: absolute;
-    left: 50%;
-    bottom: var(--hero-dots-bottom);
-    transform: translateX(-50%);
-    z-index: 3;
-    display: flex;
-    align-items: center;
-    gap: clamp(0.35rem, 1.5vmin, 0.55rem);
-}
-
-#hero.hero--slideshow .hero-dot {
-    width: var(--hero-dot-size);
-    height: var(--hero-dot-size);
-    padding: 12px;
-    border-radius: 50%;
-    border: 1px solid #ffffff;
-    background: transparent;
-    cursor: pointer;
-    transition: background-color 0.25s ease, transform 0.25s ease;
-}
-
-#hero.hero--slideshow .hero-dot.is-active {
-    background-color: #ffffff;
-}
-
-#hero.hero--slideshow .hero-dot:hover {
-    transform: scale(1.15);
-}
-
-@media (prefers-reduced-motion: reduce) {
-    #hero.hero--slideshow {
-        --hero-fade-duration: 0.01ms;
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active .hero-slide-label.hero-slide-label--in {
-        animation: none;
-        opacity: 1;
-        transform: none;
-    }
-}
-
-@media (min-width: 769px) {
-    #hero.hero--slideshow .hero-slide-img {
-        object-position: center bottom;
-    }
-
-    #hero.hero--slideshow .hero-slide[data-index="0"] .hero-slide-img {
-        object-position: center center;
-        top: -3cm;
-        height: calc(100% + 6cm);
-    }
-
-    /* Portrait: pan 1cm verso il basso */
-    #hero.hero--slideshow .hero-slide[data-index="1"] .hero-slide-img {
-        object-position: center calc(50% + 1cm);
-    }
-
-    /* Colours: pan 2cm verso il basso */
-    #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-img {
-        object-position: center calc(50% + 2cm);
-    }
-}
-
-/* Desktop: portraits a destra (1 cm), ingresso dal margine destro */
-@media (min-width: 1025px) {
-    #hero.hero--slideshow .hero-slide[data-index="1"] .hero-slide-label {
-        color: #000000;
-        left: auto;
-        right: 1cm;
-        text-align: right;
-        transform: translateX(100%);
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-slide-label.hero-slide-label--in {
-        animation: hero-portrait-label-in 0.4s ease-out forwards;
-    }
-
-    @keyframes hero-portrait-label-in {
-        from {
-            opacity: 0;
-            transform: translateX(100%);
-        }
-
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-
-    /* Colours: centrata in basso, sale dal margine inf. e si ferma a 2 cm */
-    #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-label {
-        left: 50%;
-        right: auto;
-        bottom: 2cm;
-        text-align: center;
-        transform: translateX(-50%) translateY(2cm);
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-slide-label.hero-slide-label--in {
-        animation: hero-colours-label-in 0.4s ease-out forwards;
-    }
-}
-
-/* Mobile portrait + landscape: colours — sale verso l'alto, centrata sopra i pallini */
-@media (max-width: 767px) and (orientation: portrait),
-(orientation: landscape) and (max-width: 932px) and (max-height: 520px) {
-    #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-label {
-        left: 50%;
-        right: auto;
-        bottom: calc(var(--hero-dots-bottom) + var(--hero-dot-size) + 0.35rem + 5mm);
-        text-align: center;
-        transform: translateX(-50%) translateY(2cm);
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-slide-label.hero-slide-label--in {
-        animation: hero-colours-label-in 0.4s ease-out forwards;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-        #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-slide-label.hero-slide-label--in {
-            animation: none;
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-    }
-}
-
-/* CTA portfolio slide colours: nascosto di default */
-#hero.hero--slideshow .hero-colours-cta {
-    display: none;
-}
-
-/* Mobile portrait + landscape cellulari: CTA slide colours (1 cm sopra la scritta) */
-@media (max-width: 767px) and (orientation: portrait),
-(orientation: landscape) and (max-width: 932px) and (max-height: 520px) {
-    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-        display: inline-block;
-        position: absolute;
-        left: 50%;
-        z-index: 3;
-        transform: translateX(-50%);
-        bottom: calc(var(--hero-dots-bottom) + var(--hero-dot-size) + 0.35rem + 5mm + 1cm + var(--hero-label-size, 2.5rem));
-        padding: 0.6rem 0.85rem;
-        font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
-        font-size: clamp(14px, 3.6vw, 18px);
-        font-weight: 700;
-        color: #ffffff;
-        background-color: transparent;
-        border: 2px solid #ffffff;
-        border-radius: 0;
-        text-decoration: none;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-        pointer-events: auto;
-        box-sizing: border-box;
-        max-width: calc(100% - 2rem);
-        white-space: nowrap;
-    }
-}
-
-/* Landscape cellulari: CTA molto più compatto */
-@media (orientation: landscape) and (max-width: 932px) and (max-height: 520px) {
-    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-        padding: 0.25rem 0.4rem;
-        font-size: clamp(9px, 1.9vmin, 11px);
-        border-width: 1px;
-        letter-spacing: 0.04em;
-    }
-}
-
-/* Hero slideshow: H1 + H2 — solo desktop (misure Photoshop) */
-#hero.hero--slideshow .hero-heading {
-    display: none;
-}
-
-#hero.hero--slideshow .hero-title-line:last-child {
-    text-transform: uppercase;
-}
-
-@media (min-width: 1024px) {
-    #hero.hero--slideshow .hero-heading {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        z-index: 4;
-        margin: 0;
-        padding: 0;
-        pointer-events: none;
-        box-sizing: border-box;
-        top: calc(var(--navbar-scroll-offset) + 1cm);
-        gap: 0;
-        width: auto;
-        max-width: none;
-        transform: none;
-    }
-
-    #hero.hero--slideshow .hero-title,
-    #hero.hero--slideshow .hero-subtitle {
-        font-family: 'Montserrat Alternates Light', sans-serif;
-        font-weight: 300;
-        margin: 0;
-        line-height: 1;
-        letter-spacing: 0.02em;
-        text-transform: none;
-        text-shadow: none;
-        opacity: 0;
-        width: max-content;
-        max-width: none;
-    }
-
-    #hero.hero--slideshow .hero-title {
-        font-size: 65pt;
-    }
-
-    #hero.hero--slideshow .hero-subtitle {
-        font-size: 32.5pt;
-        text-transform: lowercase;
-        letter-spacing: 0.06em;
-        line-height: 1.05;
-    }
-
-    #hero.hero--slideshow .hero-title-line {
-        display: block;
-    }
-
-    /* Jazz: 2 cm dal margine destro, bianco */
-    #hero.hero--slideshow[data-active-slide="0"] .hero-heading {
-        right: 2cm;
-        left: auto;
-        text-align: right;
-        align-items: flex-end;
-    }
-
-    /* Jazz: righe H1 + H2 allineate a bandiera sul bordo destro */
-    #hero.hero--slideshow[data-active-slide="0"] .hero-title {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-    }
-
-    #hero.hero--slideshow[data-active-slide="0"] .hero-title,
-    #hero.hero--slideshow[data-active-slide="0"] .hero-subtitle {
-        color: #ffffff;
-        align-self: flex-end;
-        text-align: right;
-    }
-
-    #hero.hero--slideshow[data-active-slide="0"] .hero-subtitle {
-        letter-spacing: 0.02em;
-    }
-
-    /* Portraits: 2 cm dal margine sinistro, bianco */
-    #hero.hero--slideshow[data-active-slide="1"] .hero-heading {
-        left: 2cm;
-        right: auto;
-        text-align: left;
-        align-items: flex-start;
-    }
-
-    /* Portraits: righe H1 + H2 allineate a bandiera sul bordo sinistro */
-    #hero.hero--slideshow[data-active-slide="1"] .hero-title {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    #hero.hero--slideshow[data-active-slide="1"] .hero-title,
-    #hero.hero--slideshow[data-active-slide="1"] .hero-subtitle {
-        color: #ffffff;
-        align-self: flex-start;
-        text-align: left;
-    }
-
-    #hero.hero--slideshow[data-active-slide="1"] .hero-subtitle {
-        letter-spacing: 0.02em;
-    }
-
-    /* Colours: centrato, nero */
-    #hero.hero--slideshow[data-active-slide="2"] .hero-heading {
-        left: 50%;
-        right: auto;
-        transform: translateX(-50%);
-        text-align: center;
-        align-items: center;
-    }
-
-    #hero.hero--slideshow[data-active-slide="2"] .hero-title,
-    #hero.hero--slideshow[data-active-slide="2"] .hero-subtitle {
-        color: #000000;
-        align-self: center;
-    }
-
-    #hero.hero--slideshow.hero-heading--in .hero-title {
-        animation: hero-slideshow-h1-in 0.75s ease-out forwards;
-    }
-
-    #hero.hero--slideshow.hero-heading--in .hero-subtitle {
-        animation: hero-slideshow-h2-in 0.7s ease-out 0.14s forwards;
-    }
-
-    /* Jazz + portraits: H1 da sotto navbar, H2 da margine dx — simultanei, rapidi, dissolvenza */
-    #hero.hero--slideshow[data-active-slide="0"].hero-heading--in .hero-title,
-    #hero.hero--slideshow[data-active-slide="1"].hero-heading--in .hero-title {
-        animation: hero-jazz-h1-in 0.4s ease-out forwards;
-    }
-
-    #hero.hero--slideshow[data-active-slide="0"].hero-heading--in .hero-subtitle {
-        animation: hero-jazz-h2-in 0.4s ease-out forwards;
-    }
-
-    #hero.hero--slideshow[data-active-slide="1"].hero-heading--in .hero-subtitle {
-        animation: hero-portrait-h2-in 0.4s ease-out forwards;
-    }
-
-    /* Colours: 0,5 s dopo entrata immagine → H1, poi H2 subito dopo */
-    #hero.hero--slideshow[data-active-slide="2"].hero-heading--in .hero-title {
-        animation: hero-colours-h1-fade-in 0.55s ease-out 0.5s forwards;
-    }
-
-    #hero.hero--slideshow[data-active-slide="2"].hero-heading--in .hero-subtitle {
-        animation: hero-colours-h2-fade-in 0.5s ease-out 0.72s forwards;
-    }
-
-    @keyframes hero-jazz-h1-in {
-        from {
-            opacity: 0;
-            transform: translateY(calc(-1 * (var(--navbar-scroll-offset) + 1cm)));
-        }
-
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    @keyframes hero-jazz-h2-in {
-        from {
-            opacity: 0;
-            transform: translateX(45vw);
-        }
-
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-
-    @keyframes hero-portrait-h2-in {
-        from {
-            opacity: 0;
-            transform: translateX(-45vw);
-        }
-
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-
-    @keyframes hero-slideshow-h1-in {
-        from {
-            opacity: 0;
-            transform: translateY(-0.35rem);
-        }
-
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    @keyframes hero-slideshow-h2-in {
-        from {
-            opacity: 0;
-            transform: translateY(-0.25rem);
-        }
-
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-
-        #hero.hero--slideshow.hero-heading--in .hero-title,
-        #hero.hero--slideshow.hero-heading--in .hero-subtitle {
-            animation: none;
-            opacity: 1;
-            transform: none;
-        }
-    }
-}
-
-/* Hero slideshow: H1 + H2 — mobile, tablet portrait, iPad Mini (< desktop 1024px) */
-@media (max-width: 1023px) {
-
-    #hero.hero--slideshow .hero-title,
-    #hero.hero--slideshow .hero-subtitle {
-        font-family: 'Montserrat Alternates Light', sans-serif;
-        font-weight: 300;
-        margin: 0;
-        line-height: 1;
-        letter-spacing: 0.02em;
-        text-transform: none;
-        text-shadow: none;
-        opacity: 0;
-        width: max-content;
-        max-width: none;
-    }
-
-    #hero.hero--slideshow .hero-subtitle {
-        text-transform: lowercase;
-        letter-spacing: 0.06em;
-        line-height: 1.05;
-    }
-
-    #hero.hero--slideshow .hero-title-line {
-        display: block;
-    }
-
-    #hero.hero--slideshow .hero-heading {
-        flex-direction: column;
-        position: absolute;
-        z-index: 4;
-        margin: 0;
-        padding: 0;
-        pointer-events: none;
-        box-sizing: border-box;
-        gap: 0;
-        width: auto;
-        max-width: none;
-    }
-
-    #hero.hero--slideshow.hero-heading--in .hero-title {
-        animation: hero-mobile-slideshow-h1-in 0.75s ease-out forwards;
-    }
-
-    #hero.hero--slideshow.hero-heading--in .hero-subtitle {
-        animation: hero-mobile-slideshow-h2-in 0.7s ease-out 0.14s forwards;
-    }
-
-    #hero.hero--slideshow[data-active-slide="2"].hero-heading--in .hero-title {
-        animation: hero-colours-h1-fade-in 0.55s ease-out 0.5s forwards;
-    }
-
-    #hero.hero--slideshow[data-active-slide="2"].hero-heading--in .hero-subtitle {
-        animation: hero-colours-h2-fade-in 0.5s ease-out 0.72s forwards;
-    }
-
-    @keyframes hero-mobile-slideshow-h1-in {
-        from {
-            opacity: 0;
-            transform: translateY(-0.35rem);
-        }
-
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    @keyframes hero-mobile-slideshow-h2-in {
-        from {
-            opacity: 0;
-            transform: translateY(-0.25rem);
-        }
-
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    /* Mobile portrait: H1/H2 solo su slide colours (cielo) */
-    @media (max-width: 767px) and (orientation: portrait) {
-        #hero.hero--slideshow .hero-heading {
-            display: none;
-        }
-
-        #hero.hero--slideshow[data-active-slide="2"] .hero-heading {
-            display: flex;
-            top: calc(var(--navbar-scroll-offset) + 0.5rem);
-            left: 50%;
-            right: auto;
-            transform: translateX(-50%);
-            text-align: center;
-            align-items: center;
-        }
-
-        #hero.hero--slideshow[data-active-slide="2"] .hero-title,
-        #hero.hero--slideshow[data-active-slide="2"] .hero-subtitle {
-            color: #000000;
-            align-self: center;
-            text-align: center;
-        }
-
-        #hero.hero--slideshow[data-active-slide="2"] .hero-title {
-            font-size: clamp(46px, calc(9.5vw + 16px), 58px);
-        }
-
-        #hero.hero--slideshow[data-active-slide="2"] .hero-subtitle {
-            font-size: clamp(31px, calc(4.8vw + 16px), 37px);
-            letter-spacing: 0.02em;
-        }
-    }
-
-    /* Mobile landscape: tre slide (layout ridotto tipo desktop) */
-    @media (orientation: landscape) and (max-height: 520px) {
-        #hero.hero--slideshow .hero-heading {
-            display: flex;
-            top: calc(var(--navbar-scroll-offset) + 0.35rem);
-            transform: none;
-        }
-
-        #hero.hero--slideshow .hero-title {
-            font-size: clamp(36px, calc(5.2vmin + 16px), 50px);
-        }
-
-        #hero.hero--slideshow .hero-subtitle {
-            font-size: clamp(26px, calc(2.6vmin + 16px), 33px);
-            letter-spacing: 0.02em;
-        }
-
-        #hero.hero--slideshow[data-active-slide="0"] .hero-heading {
-            right: clamp(0.75rem, 3vmin, 1.25rem);
-            left: auto;
-            text-align: right;
-            align-items: flex-end;
-        }
-
-        #hero.hero--slideshow[data-active-slide="0"] .hero-title {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-        }
-
-        #hero.hero--slideshow[data-active-slide="0"] .hero-title,
-        #hero.hero--slideshow[data-active-slide="0"] .hero-subtitle {
-            color: #ffffff;
-            align-self: flex-end;
-            text-align: right;
-        }
-
-        #hero.hero--slideshow[data-active-slide="1"] .hero-heading {
-            left: clamp(0.75rem, 3vmin, 1.25rem);
-            right: auto;
-            text-align: left;
-            align-items: flex-start;
-        }
-
-        #hero.hero--slideshow[data-active-slide="1"] .hero-title {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        #hero.hero--slideshow[data-active-slide="1"] .hero-title,
-        #hero.hero--slideshow[data-active-slide="1"] .hero-subtitle {
-            color: #ffffff;
-            align-self: flex-start;
-            text-align: left;
-        }
-
-        #hero.hero--slideshow[data-active-slide="2"] .hero-heading {
-            left: 50%;
-            right: auto;
-            transform: translateX(-50%);
-            text-align: center;
-            align-items: center;
-        }
-
-        #hero.hero--slideshow[data-active-slide="2"] .hero-title,
-        #hero.hero--slideshow[data-active-slide="2"] .hero-subtitle {
-            color: #000000;
-            align-self: center;
-            text-align: center;
-        }
-    }
-
-    /* Tablet portrait: H1/H2 solo su slide colours (slide 0 e 1 nascosti) */
-    @media (min-width: 768px) and (orientation: portrait) {
-        #hero.hero--slideshow .hero-heading {
-            display: none;
-        }
-
-        #hero.hero--slideshow[data-active-slide="2"] .hero-heading {
-            display: flex;
-            top: calc(var(--navbar-scroll-offset) + 0.75rem);
-            left: 50%;
-            right: auto;
-            transform: translateX(-50%);
-            text-align: center;
-            align-items: center;
-        }
-
-        #hero.hero--slideshow[data-active-slide="2"] .hero-title,
-        #hero.hero--slideshow[data-active-slide="2"] .hero-subtitle {
-            color: #000000;
-            align-self: center;
-            text-align: center;
-        }
-
-        #hero.hero--slideshow[data-active-slide="2"] .hero-title {
-            font-size: clamp(56px, calc(7.5vw + 16px), 72px);
-        }
-
-        #hero.hero--slideshow[data-active-slide="2"] .hero-subtitle {
-            font-size: clamp(36px, calc(3.75vw + 16px), 44px);
-            letter-spacing: 0.02em;
-        }
-    }
-
-    /* Tablet landscape (768–1023px): tre slide — famiglia viewport, non singolo modello */
-    @media (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) and (min-height: 521px) {
-        #hero.hero--slideshow .hero-heading {
-            display: flex;
-            top: calc(var(--navbar-scroll-offset) + 0.5rem);
-            transform: none;
-        }
-
-        #hero.hero--slideshow .hero-title {
-            font-size: clamp(52px, calc(5.5vmin + 16px), 64px);
-            white-space: nowrap;
-        }
-
-        #hero.hero--slideshow .hero-subtitle {
-            font-size: clamp(27px, calc(2.75vmin + 9px), 33px);
-            letter-spacing: 0.02em;
-        }
-
-        #hero.hero--slideshow[data-active-slide="0"] .hero-heading {
-            right: 1.5rem;
-            left: auto;
-            text-align: right;
-            align-items: flex-end;
-        }
-
-        #hero.hero--slideshow[data-active-slide="0"] .hero-title {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-        }
-
-        #hero.hero--slideshow[data-active-slide="0"] .hero-title,
-        #hero.hero--slideshow[data-active-slide="0"] .hero-subtitle {
-            color: #ffffff;
-            align-self: flex-end;
-            text-align: right;
-        }
-
-        #hero.hero--slideshow[data-active-slide="1"] .hero-heading {
-            left: 1.5rem;
-            right: auto;
-            text-align: left;
-            align-items: flex-start;
-        }
-
-        #hero.hero--slideshow[data-active-slide="1"] .hero-title {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        #hero.hero--slideshow[data-active-slide="1"] .hero-title,
-        #hero.hero--slideshow[data-active-slide="1"] .hero-subtitle {
-            color: #ffffff;
-            align-self: flex-start;
-            text-align: left;
-        }
-
-        #hero.hero--slideshow[data-active-slide="2"] .hero-heading {
-            left: 50%;
-            right: auto;
-            top: calc(var(--navbar-scroll-offset) + 0.5rem + 0.5cm);
-            transform: translateX(-50%);
-            text-align: center;
-            align-items: center;
-        }
-
-        #hero.hero--slideshow[data-active-slide="2"] .hero-title,
-        #hero.hero--slideshow[data-active-slide="2"] .hero-subtitle {
-            color: #000000;
-            align-self: center;
-            text-align: center;
-        }
-    }
-
-    /* iPad Mini portrait 768px: H1 su una riga */
-    @media (width: 768px) and (orientation: portrait) {
-        #hero.hero--slideshow .hero-title {
-            white-space: nowrap;
-        }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-
-        #hero.hero--slideshow.hero-heading--in .hero-title,
-        #hero.hero--slideshow.hero-heading--in .hero-subtitle {
-            animation: none;
-            opacity: 1;
-            transform: none;
-        }
-    }
 }
 
 /* Hero: stesso rapporto della foto 1920×1080 (16:9) — altezza = larghezza×9/16, nessun ritaglio */
@@ -1097,7 +230,7 @@ body {
     }
 
     #hero .hero-bg-image {
-        object-position: center bottom;
+        object-position: center calc(50% + 1cm);
     }
 
     #hero .hero-title {
@@ -1152,7 +285,7 @@ body {
 
 #hero .hero-subtitle {
     margin: 0;
-    font-family: 'Offerings', sans-serif;
+    font-family: 'Montserrat Alternates Light', sans-serif;
     font-size: clamp(18px, 4.5vmin, 46px);
     font-weight: bold;
     color: hsl(0, 0%, 90%);
@@ -1178,14 +311,135 @@ body {
     box-sizing: border-box;
 }
 
-/* Desktop / tablet landscape: h2 hero bianco */
-@media (min-width: 769px) and (orientation: landscape) {
+/* Hero desktop: titoli Photoshop — nero, margine destro 2 cm */
+@keyframes hero-desktop-h1-in {
+    from {
+        opacity: 0;
+        transform: translateY(calc(-1 * (var(--navbar-scroll-offset) + 1cm)));
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes hero-desktop-h2-in {
+    from {
+        opacity: 0;
+        transform: translateX(45vw);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@media (min-width: 1024px) {
+    #hero .hero-heading {
+        top: calc(var(--navbar-scroll-offset) + 1cm + 30px);
+        right: 2cm;
+        left: auto;
+        transform: none;
+        align-items: flex-end;
+        text-align: right;
+        max-width: none;
+        z-index: 2;
+    }
+
+    #hero .hero-title,
+    #hero .hero-subtitle {
+        font-weight: 300;
+        color: #ffffff;
+        text-shadow: none;
+        line-height: 1;
+        letter-spacing: 0.02em;
+        align-self: flex-end;
+        text-align: right;
+        width: max-content;
+    }
+
+    #hero .hero-title {
+        font-size: 87px;
+        color: #ffffff;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 0.35ch;
+        white-space: nowrap;
+        align-items: flex-end;
+        justify-content: flex-end;
+        text-transform: capitalize;
+        opacity: 0;
+        animation: hero-desktop-h1-in 0.4s ease-out forwards;
+    }
+
+    #hero .hero-subtitle {
+        font-size: 43px;
+        font-weight: 300;
+        color: #000000;
+        text-transform: lowercase;
+        letter-spacing: 0.02em;
+        line-height: 1.05;
+        opacity: 0;
+        animation: hero-desktop-h2-in 0.4s ease-out forwards;
+    }
+
+    #hero .hero-title-line {
+        display: inline;
+    }
+
+    #hero>.cta-button {
+        right: 2cm;
+    }
+
+    #hero>.cta-button:hover {
+        background-color: #2b2b2b;
+        color: #ffffff;
+        border-color: #ff5500;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+        #hero .hero-title,
+        #hero .hero-subtitle {
+            animation: none;
+            opacity: 1;
+            transform: none;
+        }
+    }
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 0.65rem 0.85rem;
+    font-family: 'Montserrat Alternates Bold', sans-serif;
+    font-size: clamp(15px, 3vmin, 24px);
+    font-weight: 700;
+    color: #000000;
+    background-color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    text-transform: lowercase;
+    letter-spacing: 0.12em;
+    border: 3px solid #ff5500;
+    border-radius: 10px;
+    transition: background 0.25s ease, color 0.25s ease;
+}
+
+.cta-button:hover {
+    background: #333333;
+    color: #000000;
+}
+
+/* Tablet landscape: h2 hero bianco (sotto desktop 1024px) */
+@media (min-width: 769px) and (max-width: 1023px) and (orientation: landscape) {
     #hero .hero-subtitle {
         color: #ffffff;
     }
 }
 
-/* Hero: portrait fino a tablet (768px incluso) — fullscreen, titoli in alto a destra */
+/* Hero: portrait fino a tablet (768px incluso) — titoli nello spazio sopra il soggetto */
 @media (max-width: 768px) and (orientation: portrait) {
     #hero {
         aspect-ratio: auto;
@@ -1198,21 +452,40 @@ body {
     }
 
     #hero .hero-heading {
-        top: clamp(4.5rem, 11vh, 5.5rem);
+        top: calc(var(--navbar-scroll-offset) + 5px);
+        right: var(--hero-edge);
+        left: auto;
         transform: none;
-        max-width: min(78vw, 11.5rem);
+        max-width: calc(100vw - var(--hero-edge) * 2);
+        align-items: flex-end;
+        gap: 0.15rem;
     }
 
     #hero .hero-title {
-        white-space: normal;
-        max-width: 8ch;
-        font-size: clamp(32px, 11vw, 64px);
-        line-height: 0.92;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 0.35ch;
+        white-space: nowrap;
+        max-width: none;
+        font-size: clamp(27px, calc(11vw - 5px), 59px);
+        line-height: 1;
+        color: #ffffff;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45), 0 1px 4px rgba(0, 0, 0, 0.35);
+    }
+
+    #hero .hero-title-line {
+        display: inline;
+    }
+
+    #hero .hero-title-line:last-child {
+        text-transform: none;
     }
 
     #hero .hero-subtitle {
-        font-size: clamp(17px, 4.2vw, 30px);
+        font-size: clamp(14px, calc(4.2vw - 3px), 27px);
         color: #000000;
+        text-shadow: none;
     }
 
     #hero>.cta-button {
@@ -1222,21 +495,31 @@ body {
     }
 }
 
-/* Hero: portrait smartphone (escluso iPhone SE 375px e tablet ≥768px) — h1/h2 +4px, h2 nero */
+/* Hero: portrait smartphone — h1/h2 leggermente più grandi */
 @media (max-width: 374px) and (orientation: portrait),
 (min-width: 376px) and (max-width: 767px) and (orientation: portrait) {
     #hero .hero-title {
-        font-size: clamp(36px, calc(11vw + 4px), 68px);
+        font-size: clamp(31px, calc(11vw - 1px), 63px);
     }
 
     #hero .hero-subtitle {
-        font-size: clamp(21px, calc(4.2vw + 4px), 34px);
+        font-size: clamp(18px, calc(4.2vw + 1px), 31px);
         color: #000000;
+        text-shadow: none;
     }
 }
 
-/* Hero: landscape — titoli in alto a destra, CTA in basso, nome che non esce dallo schermo */
-@media (orientation: landscape) {
+/* Hero: tablet portrait 769–1023px — ombra titoli più netta */
+@media (min-width: 769px) and (max-width: 1023px) and (orientation: portrait) {
+
+    #hero .hero-title,
+    #hero .hero-subtitle {
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.8), 0 1px 3px rgba(0, 0, 0, 0.9);
+    }
+}
+
+/* Hero: landscape mobile/tablet — titoli in alto a destra (non desktop ≥1024px) */
+@media (orientation: landscape) and (max-width: 1023px) {
     #hero {
         aspect-ratio: auto;
         height: 100dvh;
@@ -1258,11 +541,13 @@ body {
         max-width: min(11ch, calc(100vw - var(--hero-edge) * 2 - 1rem));
         font-size: clamp(26px, 7.5vw, 58px);
         line-height: 0.92;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.33), 0 1px 4px rgba(0, 0, 0, 0.5);
     }
 
     #hero .hero-subtitle {
-        font-size: clamp(15px, 3.5vw, 32px);
+        font-size: clamp(12px, calc(3.5vw - 3px), 29px);
         color: #ffffff;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.33), 0 1px 4px rgba(0, 0, 0, 0.5);
     }
 
     #hero>.cta-button {
@@ -1272,28 +557,7 @@ body {
     }
 }
 
-/* Slideshow: cellulari landscape (SE, X, S8/S9, ecc.) — hero 16:9, più alto del viewport */
-@media (orientation: landscape) and (max-width: 932px) and (max-height: 520px) {
-    #hero.hero--slideshow {
-        aspect-ratio: 16 / 9;
-        width: 100%;
-        height: auto;
-        min-height: 0;
-        --hero-label-bottom: clamp(1.25rem, 7vmin, 2.75rem);
-        --hero-dots-bottom: clamp(0.5rem, 2.2vmin, 0.9rem);
-    }
-
-    #hero.hero--slideshow .hero-slide[data-index="0"] .hero-slide-img {
-        object-position: center calc(50% + 1cm);
-    }
-
-    /* Colours: annulla pan +2cm desktop (causa striscia nera sotto navbar) */
-    #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-img {
-        object-position: center center;
-    }
-}
-
-/* Hero: landscape solo smartphone — h1 su una riga, h2 subito sotto */
+/* Hero: landscape solo smartphone ??? h1 su una riga, h2 subito sotto */
 @media (orientation: landscape) and (max-height: 500px) {
     #hero .hero-heading {
         top: calc(clamp(3.5rem, 16vh, 4.75rem) + 5mm);
@@ -1311,47 +575,21 @@ body {
 
     #hero .hero-subtitle {
         margin: 0;
-        font-size: clamp(16px, calc(3vw + 3px), 27px);
+        font-size: clamp(13px, calc(3vw), 24px);
         line-height: 1.05;
         width: max-content;
         align-self: flex-end;
     }
 }
 
-/* Hero: desktop landscape — blocco titoli centrato verticalmente (layout originale) */
+/* Hero: desktop landscape — solo hover CTA (titoli in blocco ≥1024px sopra) */
 @media (min-width: 1025px) and (orientation: landscape) {
-    #hero .hero-heading {
-        top: calc(36% - 2.2cm);
-        right: clamp(2rem, 4vw, 4rem);
-        transform: translateY(-50%);
-        width: max-content;
-        max-width: calc(100vw - clamp(2rem, 4vw, 4rem) * 2);
-        align-items: flex-end;
-    }
-
-    #hero .hero-title {
-        white-space: nowrap;
-        max-width: 100%;
-        font-size: clamp(32px, 11vmin, 140px);
-    }
-
-    #hero .hero-subtitle {
-        font-size: calc(clamp(18px, 4.5vmin, 46px) + 12px);
-    }
-
     #hero>.cta-button {
-        right: clamp(2rem, 4vw, 4rem);
         bottom: calc(clamp(1.25rem, 5vh, 2.5rem) + 0.5cm);
-    }
-
-    #hero>.cta-button:hover {
-        background-color: #2b2b2b;
-        color: #ffffff;
-        border-color: #ff5500;
     }
 }
 
-/* Hero: portrait tablet (come Surface Duo + 15px su h1/h2) — iPad Mini/Air/Pro, Galaxy Tab S4, Surface Pro 7, ecc. */
+/* Hero: portrait tablet (come Surface Duo + 15px su h1/h2) ??? iPad Mini/Air/Pro, Galaxy Tab S4, Surface Pro 7, ecc. */
 @media (min-width: 768px) and (max-width: 1366px) and (orientation: portrait) {
     #hero {
         aspect-ratio: auto;
@@ -1400,7 +638,7 @@ body {
     }
 }
 
-/* Hero: portrait iPad Mini (768px) — h1 su una riga, dimensioni invariate */
+/* Hero: portrait iPad Mini (768px) ??? h1 su una riga, dimensioni invariate */
 @media (width: 768px) and (orientation: portrait) {
     #hero .hero-title {
         white-space: nowrap;
@@ -1408,7 +646,7 @@ body {
     }
 }
 
-/* Hero: landscape iPad Mini (1024×768) — h1 su una riga, dimensioni invariate */
+/* Hero: landscape iPad Mini (1024??768) ??? h1 su una riga, dimensioni invariate */
 @media (width: 1024px) and (height: 768px) and (orientation: landscape) {
     #hero .hero-title {
         white-space: nowrap;
@@ -1416,7 +654,7 @@ body {
     }
 }
 
-/* Hero: portrait Galaxy Tab S4 (712px) — solo h2, evita taglio a destra */
+/* Hero: portrait Galaxy Tab S4 (712px) ??? solo h2, evita taglio a destra */
 @media (width: 712px) and (orientation: portrait) {
     #hero .hero-heading {
         right: clamp(2.25rem, 7vw, 4rem);
@@ -1434,7 +672,7 @@ body {
     }
 }
 
-/* Hero: portrait iPad Pro (11" 834px / 12,9" 1024px) — h1+h2 più in basso, h1 +5px */
+/* Hero: portrait iPad Pro (11" 834px / 12,9" 1024px) ??? h1+h2 pi?? in basso, h1 +5px */
 @media (width: 834px) and (orientation: portrait),
 (width: 1024px) and (orientation: portrait) {
     #hero .hero-heading {
@@ -1446,14 +684,14 @@ body {
     }
 }
 
-/* Hero: landscape iPad Air — SOLO h1 -7px (come desktop landscape) */
+/* Hero: landscape iPad Air ??? SOLO h1 -7px (come desktop landscape) */
 @media (orientation: landscape) and (min-width: 1025px) and (max-width: 1210px) and (min-height: 760px) and (max-height: 880px) {
     #hero .hero-title {
         font-size: calc(clamp(32px, 11vmin, 140px) - 7px);
     }
 }
 
-/* Hero: landscape iPad Pro — h1 come Air (11vmin su ~820px − 7px ≈ 83px, non 11vmin su 1024) */
+/* Hero: landscape iPad Pro ??? h1 come Air (11vmin su ~820px ??? 7px ??? 83px, non 11vmin su 1024) */
 @media (orientation: landscape) and (min-width: 1360px) and (max-width: 1390px) and (min-height: 950px) and (max-height: 1100px) {
     #hero .hero-title {
         font-size: clamp(32px, 8.05vmin, 83px);
@@ -1467,32 +705,10 @@ body {
     }
 }
 
-.cta-button {
-    display: inline-block;
-    padding: 0.65rem 0.85rem;
-    font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
-    font-size: clamp(15px, 3vmin, 24px);
-    font-weight: 700;
-    color: #000000;
-    background-color: rgba(255, 255, 255, 0.5);
-    text-decoration: none;
-    text-transform: lowercase;
-    letter-spacing: 0.12em;
-    border: 3px solid #ff5500;
-    border-radius: 10px;
-    transition: background 0.25s ease, color 0.25s ease;
-}
-
-.cta-button:hover {
-    background: #333333;
-    color: #000000;
-}
-
 /* ============================================
    SEZIONE BIOGRAFIA - Layout Grid Semplificato
    ============================================ */
-
-/* ===== BIOGRAFIA — PROPOSTA MIX ===== */
+/* ===== BIOGRAFIA ??? PROPOSTA MIX ===== */
 .biografia-section {
     width: 100%;
     background: #1a1a1a;
@@ -1544,7 +760,7 @@ body {
 .biografia-title {
     grid-column: 2;
     grid-row: 1;
-    font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
+    font-family: 'Arri??re Garde', 'Century Gothic', sans-serif;
     font-size: clamp(2.5rem, 4vw, 3.5rem);
     font-weight: 700;
     letter-spacing: 0.2em;
@@ -1615,12 +831,12 @@ body {
     background: #ffffff;
     padding-top: 2.75rem;
     padding-bottom: 3rem;
-    /* Ombra più leggera: stacca dal fondo scuro senza effetto “pannello” troppo marcato */
+    /* Ombra pi?? leggera: stacca dal fondo scuro senza effetto ???pannello??? troppo marcato */
     box-shadow: 0 6px 28px rgba(0, 0, 0, 0.12);
     overflow: hidden;
 }
 
-/* Sfondo jazz sotto la fascia riconoscimenti/collaborazioni (25% opacità) */
+/* Sfondo jazz sotto la fascia riconoscimenti/collaborazioni (25% opacit??) */
 .biografia-collaborazioni-outer::before {
     content: '';
     position: absolute;
@@ -1643,7 +859,7 @@ body {
     box-sizing: border-box;
 }
 
-/* Collaborazioni di Rilievo — scheda pulita su fondo bianco */
+/* Collaborazioni di Rilievo ??? scheda pulita su fondo bianco */
 .biografia-collaborazioni {
     width: 100%;
     margin: 0;
@@ -1685,7 +901,7 @@ body {
     color: #000000;
 }
 
-/* Solo il testo descrittivo: più marcato ma non grassetto (le date restano 600) */
+/* Solo il testo descrittivo: pi?? marcato ma non grassetto (le date restano 600) */
 .biografia-collaborazioni-testo {
     font-weight: 500;
     letter-spacing: 0.035em;
@@ -1712,7 +928,7 @@ body {
     color: #000000;
 }
 
-/* Citazione nel testo biografico (sotto «La Mia Fotografia Oggi»): corsivo elegante, più piccolo */
+/* Citazione nel testo biografico (sotto ??La Mia Fotografia Oggi??): corsivo elegante, pi?? piccolo */
 .biografia-col .biografia-quote {
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-style: italic;
@@ -1726,7 +942,7 @@ body {
     max-width: none;
 }
 
-/* ===== BIOGRAFIA — TABLET + MOBILE (≤1024px) ===== */
+/* ===== BIOGRAFIA ??? TABLET + MOBILE (???1024px) ===== */
 @media (max-width: 1024px) {
     .biografia-collaborazioni-outer>.biografia-container {
         padding-left: 1.5rem;
@@ -1744,7 +960,7 @@ body {
         gap: 0;
     }
 
-    /* Ordine: titolo → foto → sottotitolo → lead */
+    /* Ordine: titolo ??? foto ??? sottotitolo ??? lead */
     .biografia-title {
         order: 1;
         text-align: center;
@@ -1780,7 +996,7 @@ body {
     }
 }
 
-/* ===== BIOGRAFIA — MOBILE (≤768px) ===== */
+/* ===== BIOGRAFIA ??? MOBILE (???768px) ===== */
 @media (max-width: 768px) {
     .biografia-collaborazioni-outer>.biografia-container {
         padding-left: 1.25rem;
@@ -1832,7 +1048,7 @@ body {
     }
 }
 
-/* ===== BIOGRAFIA — SMALL MOBILE (≤480px) ===== */
+/* ===== BIOGRAFIA ??? SMALL MOBILE (???480px) ===== */
 @media (max-width: 480px) {
     .biografia-collaborazioni-outer>.biografia-container {
         padding-left: 1.25rem;
@@ -1842,7 +1058,6 @@ body {
     .biografia-section {
         padding: 2rem 1.25rem;
     }
-
 }
 
 /* ===== PORTFOLIO ===== */
@@ -1857,7 +1072,7 @@ body {
 }
 
 .portfolio-title {
-    font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
+    font-family: 'Arri??re Garde', 'Century Gothic', sans-serif;
     text-align: center;
     margin-bottom: 1.5rem;
     color: #ffffff;
@@ -1955,7 +1170,7 @@ body {
     transform: scale(1.03);
 }
 
-/* Customs: centrata orizzontalmente, inquadratura un po’ più verso il basso */
+/* Customs: centrata orizzontalmente, inquadratura un po??? pi?? verso il basso */
 #portfolio .portfolio-item--customs .portfolio-item-image {
     object-position: 50% 28%;
 }
@@ -2003,7 +1218,7 @@ body {
     line-height: 1.3;
 }
 
-/* Icona fotocamera nel badge: linea sottile come i contatti, più piccola */
+/* Icona fotocamera nel badge: linea sottile come i contatti, pi?? piccola */
 #portfolio .portfolio-item-count-icon {
     flex-shrink: 0;
     width: 0.9em;
@@ -2037,7 +1252,7 @@ body {
     color: #b0b0b0;
 }
 
-/* Solo portfolio: titolo intro +5px sulle rem base; sottotitolo (h2 visivo) in maiuscolo e −2px rispetto alla base */
+/* Solo portfolio: titolo intro +5px sulle rem base; sottotitolo (h2 visivo) in maiuscolo e ???2px rispetto alla base */
 .gallery-page:not(.gallery-page--mostra-principale) .gallery-intro .gallery-title {
     font-size: calc(2rem + 5px);
 }
@@ -2182,7 +1397,7 @@ body {
     }
 }
 
-/* Auschwitz: hover foto 11cop – solo zoom in avanti dell’immagine */
+/* Auschwitz: hover foto 11cop ??? solo zoom in avanti dell???immagine */
 .mostra-page-content--foto-testo-row>.mostra-page-foto-wrap:hover .mostra-page-foto {
     transform: scale(1.15);
 }
@@ -2277,7 +1492,7 @@ body {
 }
 
 .mostra-page-titolo-lista {
-    font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
+    font-family: 'Arri??re Garde', 'Century Gothic', sans-serif;
     font-size: 1rem;
     font-weight: 700;
     letter-spacing: 0.1em;
@@ -2474,7 +1689,7 @@ body {
 }
 
 .gallery-intro .gallery-title {
-    font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
+    font-family: 'Arri??re Garde', 'Century Gothic', sans-serif;
     font-size: 2rem;
     font-weight: 700;
     letter-spacing: 0.15em;
@@ -2484,7 +1699,7 @@ body {
 }
 
 .gallery-intro .gallery-subtitle {
-    /* Sottotitolo intro gallery: Century Gothic (il titolo .gallery-title resta con Arrière Garde) */
+    /* Sottotitolo intro gallery: Century Gothic (il titolo .gallery-title resta con Arri??re Garde) */
     font-family: 'Century Gothic', CenturyGothic, 'AppleGothic', sans-serif;
     font-size: 1.25rem;
     color: var(--colore-accenti);
@@ -2692,7 +1907,7 @@ body {
     cursor: pointer;
     transition: opacity 0.25s ease, transform 0.25s ease;
     will-change: transform;
-    /* Niente margini extra: tutto lo spazio è gestito da gap: 10px */
+    /* Niente margini extra: tutto lo spazio ?? gestito da gap: 10px */
     margin: 0;
 }
 
@@ -3448,7 +2663,7 @@ body {
 }
 
 .mostre-title {
-    font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
+    font-family: 'Arri??re Garde', 'Century Gothic', sans-serif;
     text-align: center;
     margin-bottom: 1.75rem;
     color: #ffffff;
@@ -3596,7 +2811,7 @@ body {
 }
 
 .testimonial-title {
-    font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
+    font-family: 'Arri??re Garde', 'Century Gothic', sans-serif;
     text-align: center;
     margin-bottom: 1.75rem;
     font-size: clamp(2.5rem, 4vw, 3.5rem);
@@ -3749,7 +2964,7 @@ body {
 }
 
 #contatti .contatti-title {
-    font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
+    font-family: 'Arri??re Garde', 'Century Gothic', sans-serif;
     text-align: center;
     margin-bottom: 1.75rem;
     font-size: clamp(2.5rem, 4vw, 3.5rem);
@@ -3822,6 +3037,41 @@ body {
 .contatti-submit:hover {
     background-color: rgba(255, 255, 255, 0.9);
     color: #1a1a1a;
+}
+
+/* Messaggi conferma ed errore form contatti */
+.contatti-conferma,
+.contatti-errore {
+    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem 1rem;
+    text-align: center;
+    color: #ffffff;
+}
+
+.contatti-conferma svg,
+.contatti-errore svg {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+}
+
+.contatti-conferma svg {
+    stroke: #22c55e;
+}
+
+.contatti-errore svg {
+    stroke: #f97316;
+}
+
+.contatti-conferma p,
+.contatti-errore p {
+    margin: 0;
+    line-height: 1.5;
+    max-width: 28rem;
 }
 
 /* Titolo "Info:" nella sezione Contatti in home */
@@ -3965,7 +3215,7 @@ body {
     user-select: none;
 }
 
-/* Solo smartphone in verticale: telefono e email su due righe (niente trattino tra i due; niente scroll orizzontale che sembra una “linea”) */
+/* Solo smartphone in verticale: telefono e email su due righe (niente trattino tra i due; niente scroll orizzontale che sembra una ???linea???) */
 @media (max-width: 640px) and (orientation: portrait) {
     .footer-contatti-line {
         flex-direction: column;
@@ -4006,7 +3256,7 @@ body {
     white-space: nowrap;
 }
 
-/* Home: footer senza blocco contatti duplicato (già presenti in #contatti) */
+/* Home: footer senza blocco contatti duplicato (gi?? presenti in #contatti) */
 .site-footer--solo-copyright {
     text-align: center;
 }
@@ -4015,7 +3265,7 @@ body {
 /* Tablet e mobile (menu hamburger): barra compatta in verticale e orizzontale */
 @media (max-width: 1024px) {
 
-    /* Evita scroll a scatti: 100dvh cambia con la barra indirizzi; smooth nativo spesso è scattoso */
+    /* Evita scroll a scatti: 100dvh cambia con la barra indirizzi; smooth nativo spesso ?? scattoso */
     html {
         scroll-behavior: auto;
     }
@@ -4031,26 +3281,6 @@ body {
 
     #hero {
         height: 100svh;
-    }
-
-    /* Slideshow landscape cellulari: override height 100svh (iPhone X, S8/S9, SE, ecc.) */
-    @media (orientation: landscape) and (max-width: 932px) and (max-height: 520px) {
-        #hero.hero--slideshow {
-            aspect-ratio: 16 / 9;
-            width: 100%;
-            height: auto;
-            min-height: 0;
-            --hero-label-bottom: clamp(1.25rem, 7vmin, 2.75rem);
-            --hero-dots-bottom: clamp(0.5rem, 2.2vmin, 0.9rem);
-        }
-
-        #hero.hero--slideshow .hero-slide[data-index="0"] .hero-slide-img {
-            object-position: center calc(50% + 1cm);
-        }
-
-        #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-img {
-            object-position: center center;
-        }
     }
 
     :root {
@@ -4253,7 +3483,7 @@ body {
     }
 }
 
-/* Portfolio: mobile orizzontale (aspect-ratio: più affidabile di orientation in DevTools) */
+/* Portfolio: mobile orizzontale (aspect-ratio: pi?? affidabile di orientation in DevTools) */
 @media (max-width: 1023px) and (min-aspect-ratio: 4/3) {
     #portfolio .portfolio-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -4305,7 +3535,7 @@ body {
     }
 }
 
-/* Portfolio mobile (≤932px): base header fluido */
+/* Portfolio mobile (???932px): base header fluido */
 @media (max-width: 932px) {
     #portfolio .portfolio-item-header {
         container-type: inline-size;
@@ -4331,7 +3561,7 @@ body {
     }
 }
 
-/* Portfolio mobile portrait: titoli più grandi (2 colonne, più spazio orizzontale) */
+/* Portfolio mobile portrait: titoli pi?? grandi (2 colonne, pi?? spazio orizzontale) */
 @media (max-width: 932px) and (orientation: portrait) {
     #portfolio .portfolio-item-label {
         font-size: clamp(10px, 8.5cqi, 14px);
@@ -4350,7 +3580,7 @@ body {
     }
 }
 
-/* Portfolio: cellulari landscape — 3 colonne + titoli dominanti sui contatori */
+/* Portfolio: cellulari landscape ??? 3 colonne + titoli dominanti sui contatori */
 @media (orientation: landscape) and (max-width: 932px) and (max-height: 520px) {
     #portfolio .portfolio-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -4460,7 +3690,7 @@ body {
         padding-bottom: 3.5rem;
     }
 
-    /* Mostre: titolo leggermente più alto per allineamento visivo con le altre sezioni */
+    /* Mostre: titolo leggermente pi?? alto per allineamento visivo con le altre sezioni */
     #mostre {
         padding-top: 2.5rem;
     }
@@ -4470,7 +3700,7 @@ body {
  * Titoli sezione (Biografia, Portfolio, Mostre, Dicono di me, Contatti):
  * le regole base con font-size (es. .portfolio-title) compaiono nel file DOPO i @media
  * della sezione Biografia, quindi il clamp grande vinceva sempre sulle regole responsive
- * e solo Biografia risultava più piccola. Questi @media stanno in fondo, dopo tutte le basi.
+ * e solo Biografia risultava pi?? piccola. Questi @media stanno in fondo, dopo tutte le basi.
  */
 @media (max-width: 1024px) {
 
@@ -4506,7 +3736,7 @@ body {
     }
 }
 
-/* Portfolio mobile orizzontale: in coda al file (priorità cascade) — contatore min 13px */
+/* Portfolio mobile orizzontale: in coda al file (priorit?? cascade) ??? contatore min 13px */
 @media (max-width: 1024px) and (min-aspect-ratio: 4/3) {
 
     #portfolio .portfolio-item-count,
@@ -4515,2489 +3745,52 @@ body {
     }
 }
 
-/* iPhone (tutti i modelli): regole hero — no Android / iPad / tablet */
-@supports (-webkit-touch-callout: none) {
-    /* Portrait — fino a 14 Pro Max (430px) */
-    @media (orientation: portrait) and (max-width: 430px) {
-        #hero.hero--slideshow {
-            --hero-label-size: calc(2.5rem * 2.36 / 3);
-        }
-
-        #hero.hero--slideshow .hero-slide-label {
-            font-size: calc(2.5rem * 2.36 / 3);
-        }
-    }
-
-    /* Landscape — altezza max iPhone 14 Pro Max (430px), larghezza < iPad */
-    @media (orientation: landscape) and (max-width: 932px) and (max-height: 430px) {
-        #hero.hero--slideshow {
-            --hero-label-size: calc(2.5rem * 2.36 / 3);
-        }
-
-        #hero.hero--slideshow .hero-slide-label {
-            font-size: calc(2.5rem * 2.36 / 3);
-        }
-
-        #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-label {
-            bottom: calc(1cm - 3mm);
-        }
-
-        #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-            bottom: calc(1cm - 3mm + 1cm + var(--hero-label-size));
-        }
-
-        /* CTA slide 0 (basso dx) e slide 1 (basso sx) */
-        #hero.hero--slideshow .hero-slide.is-active[data-index="0"] .hero-colours-cta,
-        #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-colours-cta {
-            display: inline-block;
-            position: absolute;
-            z-index: 3;
-            bottom: var(--hero-label-bottom);
-            padding: 0.25rem 0.4rem;
-            font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
-            font-size: clamp(9px, 1.9vmin, 11px);
-            font-weight: 700;
-            color: #ffffff;
-            background-color: transparent;
-            border: 1px solid #ffffff;
-            border-radius: 0;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-            pointer-events: auto;
-            box-sizing: border-box;
-            max-width: calc(50% - 1rem);
-            white-space: nowrap;
-            transform: none;
-        }
-
-        #hero.hero--slideshow .hero-slide.is-active[data-index="0"] .hero-colours-cta {
-            left: auto;
-            right: 3mm;
-        }
-
-        #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-colours-cta {
-            left: 3mm;
-            right: auto;
-        }
-    }
-
-    /* Slide 1 portraits — destra, ~3 mm dal bordo, micro-slide verso sinistra */
-    @media (orientation: portrait) and (max-width: 430px),
-    (orientation: landscape) and (max-width: 932px) and (max-height: 430px) {
-        #hero.hero--slideshow .hero-slide[data-index="1"] .hero-slide-label {
-            left: auto;
-            right: 3mm;
-            text-align: right;
-            transform: translateX(0.65rem);
-        }
-
-        #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-slide-label.hero-slide-label--in {
-            animation: hero-portrait-label-in-se 1.1s ease-out forwards;
-        }
-    }
-}
-
-/* Desktop: CTA portfolio — slide 0 dx, slide 1 sx, slide 2 sopra colours */
-@media (min-width: 1025px) {
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="0"] .hero-colours-cta,
-    #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-colours-cta,
-    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-        display: inline-block;
-        position: absolute;
-        z-index: 3;
-        padding: 0.6rem 0.85rem;
-        font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
-        font-size: clamp(14px, 1.2vw, 18px);
-        font-weight: 700;
-        color: #ffffff;
-        background-color: transparent;
-        border: 2px solid #ffffff;
-        border-radius: 0;
-        text-decoration: none;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-        pointer-events: auto;
-        box-sizing: border-box;
-        white-space: nowrap;
-    }
-
-    /* Slide 0 jazz: basso dx, stessa riga jazz, margine come H1/H2 */
-    #hero.hero--slideshow .hero-slide.is-active[data-index="0"] .hero-colours-cta {
-        bottom: var(--hero-label-bottom);
-        left: auto;
-        right: 2cm;
-        transform: none;
-    }
-
-    /* Slide 1 portraits: basso sx, stessa riga portraits, margine come H1/H2, nero */
-    #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-colours-cta {
-        bottom: var(--hero-label-bottom);
-        left: 2cm;
-        right: auto;
-        transform: none;
-        color: #000000;
-        border-color: #000000;
-        text-shadow: none;
-    }
-
-    /* Slide 2 colours: centrato, 1 cm sopra la scritta */
-    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-        left: 50%;
-        right: auto;
-        bottom: calc(2cm + 1cm + var(--hero-label-size));
-        transform: translateX(-50%);
-    }
-}
-
-/* Mobile landscape iPhone/Android: jazz, portraits, colours — label -10px */
-@media (orientation: landscape) and (max-width: 932px) and (max-height: 520px) {
-
-    /* Cellulari landscape: animazioni H1/H2 direzionali come desktop (solo opacity/transform) */
-    #hero.hero--slideshow[data-active-slide="0"].hero-heading--in .hero-title,
-    #hero.hero--slideshow[data-active-slide="1"].hero-heading--in .hero-title {
-        animation: hero-jazz-h1-in 0.4s ease-out forwards;
-    }
-
-    #hero.hero--slideshow[data-active-slide="0"].hero-heading--in .hero-subtitle {
-        animation: hero-jazz-h2-in 0.4s ease-out forwards;
-    }
-
-    #hero.hero--slideshow[data-active-slide="1"].hero-heading--in .hero-subtitle {
-        animation: hero-portrait-h2-in 0.4s ease-out forwards;
-    }
-
-    @keyframes hero-jazz-h1-in {
-        from {
-            opacity: 0;
-            transform: translateY(calc(-1 * (var(--navbar-scroll-offset) + 1cm)));
-        }
-
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    @keyframes hero-jazz-h2-in {
-        from {
-            opacity: 0;
-            transform: translateX(45vw);
-        }
-
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-
-    @keyframes hero-portrait-h2-in {
-        from {
-            opacity: 0;
-            transform: translateX(-45vw);
-        }
-
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-
-    #hero.hero--slideshow .hero-slide-label {
-        font-size: calc(var(--hero-label-size) - 17px);
-    }
-
-    /* Slide 2: CTA +5px, 1 cm più in basso */
-    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-        font-size: clamp(14px, calc(1.9vmin + 5px), 16px);
-        transform: translateX(-50%) translateY(1cm);
-    }
-
-    /* Slide 0 e 1: CTA come slide 2, allineati a bandiera con H1/H2 */
-    #hero.hero--slideshow .hero-slide.is-active[data-index="0"] .hero-colours-cta,
-    #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-colours-cta {
-        display: inline-block;
-        position: absolute;
-        z-index: 3;
-        bottom: var(--hero-label-bottom);
-        padding: 0.25rem 0.4rem;
-        font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
-        font-size: clamp(14px, calc(1.9vmin + 5px), 16px);
-        font-weight: 700;
-        color: #ffffff;
-        background-color: transparent;
-        border: 1px solid #ffffff;
-        border-radius: 0;
-        text-decoration: none;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-        pointer-events: auto;
-        box-sizing: border-box;
-        max-width: calc(50% - 1rem);
-        white-space: nowrap;
-        transform: none;
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="0"] .hero-colours-cta {
-        left: auto;
-        right: clamp(0.75rem, 3vmin, 1.25rem);
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-colours-cta {
-        left: clamp(0.75rem, 3vmin, 1.25rem);
-        right: auto;
-    }
-
-    /* Slide 1 portraits: allineata a destra, animazione da dx verso sx */
-    #hero.hero--slideshow .hero-slide[data-index="1"] .hero-slide-label {
-        left: auto;
-        right: 3mm;
-        text-align: right;
-        transform: translateX(0.65rem);
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-slide-label.hero-slide-label--in {
-        animation: hero-portrait-label-in-se 1.1s ease-out forwards;
-    }
-}
-
-/* Galaxy Tab S4 landscape: slide portraits — CTA e label bianche */
-@media (orientation: landscape) {
-    #hero.hero--slideshow.hero--galaxy-tab-s4 .hero-slide[data-index="1"] .hero-slide-label {
-        color: #ffffff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-    }
-
-    #hero.hero--slideshow.hero--galaxy-tab-s4 .hero-slide.is-active[data-index="1"] .hero-colours-cta {
-        color: #ffffff;
-        border-color: #ffffff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-    }
-
-    /* Slide colours: annulla pan +2cm desktop (striscia nera sotto navbar) */
-    #hero.hero--slideshow.hero--galaxy-tab-s4 .hero-slide[data-index="2"] .hero-slide-img {
-        object-position: center center;
-    }
-}
-
-/* Fallback DevTools Tab S4 landscape (viewport ~1138×711–712) */
-@media (orientation: landscape) and (min-width: 1100px) and (max-width: 1145px) and (min-height: 680px) and (max-height: 740px) {
-
-    /* H1/H2 desktop −10px (tutte e tre le slide) */
-    #hero.hero--slideshow .hero-title {
-        font-size: calc(65pt - 10px);
-    }
-
-    #hero.hero--slideshow .hero-subtitle {
-        font-size: calc(32.5pt - 10px);
-    }
-
-    /* Scritte jazz / portraits / colours −10px */
-    #hero.hero--slideshow .hero-slide-label {
-        font-size: calc(var(--hero-label-size) - 10px);
-    }
-
-    #hero.hero--slideshow .hero-slide[data-index="1"] .hero-slide-label {
-        color: #ffffff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-colours-cta {
-        color: #ffffff;
-        border-color: #ffffff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-    }
-
-    #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-img {
-        object-position: center center;
-    }
-}
-
-/* Surface Pro portrait (912×1368): slide colours — CTA e label centrate in basso */
-@media (width: 912px) and (orientation: portrait) {
-
-    /* Slide colours: annulla pan +2cm (striscia nera sotto navbar) */
-    #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-img {
-        object-position: center center;
-    }
-
-    /* Slide colours: H1/H2 +12px */
-    #hero.hero--slideshow[data-active-slide="2"] .hero-title {
-        font-size: calc(clamp(56px, calc(7.5vw + 16px), 72px) + 12px);
-    }
-
-    #hero.hero--slideshow[data-active-slide="2"] .hero-subtitle {
-        font-size: calc(clamp(36px, calc(3.75vw + 16px), 44px) + 12px);
-    }
-
-    #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-label {
-        left: 50%;
-        right: auto;
-        bottom: 2cm;
-        text-align: center;
-        transform: translateX(-50%) translateY(2cm);
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-slide-label.hero-slide-label--in {
-        animation: hero-colours-label-in 0.4s ease-out forwards;
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-        display: inline-block;
-        position: absolute;
-        z-index: 3;
-        left: 50%;
-        right: auto;
-        bottom: calc(2cm + 1cm + var(--hero-label-size));
-        transform: translateX(-50%);
-        padding: 0.6rem 0.85rem;
-        font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
-        font-size: clamp(24px, calc(1.2vw + 10px), 28px);
-        font-weight: 700;
-        color: #ffffff;
-        background-color: transparent;
-        border: 2px solid #ffffff;
-        border-radius: 0;
-        text-decoration: none;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-        pointer-events: auto;
-        box-sizing: border-box;
-        white-space: nowrap;
-    }
-}
-
-/* Surface Pro landscape (1368×912): slide portraits — CTA e label bianche */
-@media (width: 1368px) and (height: 912px) and (orientation: landscape) {
-
-    /* Slide colours: annulla pan +2cm (striscia nera sotto navbar) */
-    #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-img {
-        object-position: center center;
-    }
-
-    #hero.hero--slideshow .hero-slide[data-index="1"] .hero-slide-label {
-        color: #ffffff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-colours-cta {
-        color: #ffffff;
-        border-color: #ffffff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-    }
-
-    /* Slide colours: CTA +10px */
-    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-        font-size: clamp(24px, calc(1.2vw + 10px), 28px);
-    }
-}
-
-/* Surface Duo portrait (540×720): slide colours — CTA e label centrate in basso */
-@media (width: 540px) and (orientation: portrait) {
-    #hero.hero--slideshow .hero-slide-label {
-        font-size: calc(var(--hero-label-size) - 7px);
-    }
-
-    #hero.hero--slideshow .hero-subtitle {
-        font-size: clamp(21px, calc(4.8vw + 6px), 27px);
-    }
-
-    #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-label {
-        left: 50%;
-        right: auto;
-        bottom: 2cm;
-        text-align: center;
-        transform: translateX(-50%) translateY(2cm);
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-slide-label.hero-slide-label--in {
-        animation: hero-colours-label-in 0.4s ease-out forwards;
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-        display: inline-block;
-        position: absolute;
-        z-index: 3;
-        left: 50%;
-        right: auto;
-        bottom: calc(2cm + 1cm + var(--hero-label-size));
-        transform: translateX(-50%);
-        padding: 0.6rem 0.85rem;
-        font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
-        font-size: clamp(24px, calc(1.2vw + 10px), 28px);
-        font-weight: 700;
-        color: #ffffff;
-        background-color: transparent;
-        border: 2px solid #ffffff;
-        border-radius: 0;
-        text-decoration: none;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-        pointer-events: auto;
-        box-sizing: border-box;
-        white-space: nowrap;
-    }
-}
-
-/* Surface Duo landscape (720×540): slide portraits bianche, slide colours CTA +10px */
-@media (width: 720px) and (height: 540px) and (orientation: landscape) {
-    #hero.hero--slideshow .hero-slide-label {
-        font-size: calc(var(--hero-label-size) - 7px);
-    }
-
-    /* H1/H2 su tutte e tre le slide (come mobile landscape) */
-    #hero.hero--slideshow .hero-heading {
-        display: flex;
-        top: calc(var(--navbar-scroll-offset) + 0.35rem);
-        transform: none;
-    }
-
-    #hero.hero--slideshow .hero-title {
-        font-size: clamp(36px, calc(5.2vmin + 16px), 50px);
-    }
-
-    #hero.hero--slideshow .hero-subtitle {
-        font-size: clamp(16px, calc(2.6vmin + 6px), 23px);
-        letter-spacing: 0.02em;
-    }
-
-    #hero.hero--slideshow[data-active-slide="0"] .hero-heading {
-        right: clamp(0.75rem, 3vmin, 1.25rem);
-        left: auto;
-        text-align: right;
-        align-items: flex-end;
-    }
-
-    #hero.hero--slideshow[data-active-slide="0"] .hero-title {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-    }
-
-    #hero.hero--slideshow[data-active-slide="0"] .hero-title,
-    #hero.hero--slideshow[data-active-slide="0"] .hero-subtitle {
-        color: #ffffff;
-        align-self: flex-end;
-        text-align: right;
-    }
-
-    #hero.hero--slideshow[data-active-slide="1"] .hero-heading {
-        left: clamp(0.75rem, 3vmin, 1.25rem);
-        right: auto;
-        text-align: left;
-        align-items: flex-start;
-    }
-
-    #hero.hero--slideshow[data-active-slide="1"] .hero-title {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    #hero.hero--slideshow[data-active-slide="1"] .hero-title,
-    #hero.hero--slideshow[data-active-slide="1"] .hero-subtitle {
-        color: #ffffff;
-        align-self: flex-start;
-        text-align: left;
-    }
-
-    #hero.hero--slideshow[data-active-slide="2"] .hero-heading {
-        left: 50%;
-        right: auto;
-        transform: translateX(-50%);
-        text-align: center;
-        align-items: center;
-    }
-
-    #hero.hero--slideshow[data-active-slide="2"] .hero-title,
-    #hero.hero--slideshow[data-active-slide="2"] .hero-subtitle {
-        color: #000000;
-        align-self: center;
-        text-align: center;
-    }
-
-    #hero.hero--slideshow .hero-slide[data-index="1"] .hero-slide-label {
-        color: #ffffff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-        left: auto;
-        right: 1cm;
-        text-align: right;
-    }
-
-    /* Slide 0 e 1: CTA a bandiera con H1/H2 */
-    #hero.hero--slideshow .hero-slide.is-active[data-index="0"] .hero-colours-cta,
-    #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-colours-cta {
-        display: inline-block;
-        position: absolute;
-        z-index: 3;
-        bottom: var(--hero-label-bottom);
-        padding: 0.25rem 0.4rem;
-        font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
-        font-size: clamp(14px, calc(1.9vmin + 5px), 16px);
-        font-weight: 700;
-        color: #ffffff;
-        background-color: transparent;
-        border: 1px solid #ffffff;
-        border-radius: 0;
-        text-decoration: none;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-        pointer-events: auto;
-        box-sizing: border-box;
-        max-width: calc(50% - 1rem);
-        white-space: nowrap;
-        transform: none;
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="0"] .hero-colours-cta {
-        left: auto;
-        right: clamp(0.75rem, 3vmin, 1.25rem);
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-colours-cta {
-        left: clamp(0.75rem, 3vmin, 1.25rem);
-        right: auto;
-    }
-
-    #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-label {
-        left: 50%;
-        right: auto;
-        bottom: 2cm;
-        text-align: center;
-        transform: translateX(-50%) translateY(2cm);
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-slide-label.hero-slide-label--in {
-        animation: hero-colours-label-in 0.4s ease-out forwards;
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-        display: inline-block;
-        position: absolute;
-        z-index: 3;
-        left: 50%;
-        right: auto;
-        bottom: calc(2cm + 1cm + var(--hero-label-size));
-        transform: translateX(-50%);
-        padding: 0.6rem 0.85rem;
-        font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
-        font-size: clamp(14px, 1.2vw, 18px);
-        font-weight: 700;
-        color: #ffffff;
-        background-color: transparent;
-        border: 2px solid #ffffff;
-        border-radius: 0;
-        text-decoration: none;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-        pointer-events: auto;
-        box-sizing: border-box;
-        white-space: nowrap;
-    }
-}
-
-/* Samsung Galaxy mobile: H2 −8px (portrait + landscape) */
-@media (max-width: 767px) and (orientation: portrait) {
-    #hero.hero--slideshow.hero--samsung-galaxy .hero-subtitle {
-        font-size: clamp(23px, calc(4.8vw + 8px), 29px);
-    }
-}
-
-@media (orientation: landscape) and (max-width: 932px) and (max-height: 520px) {
-    #hero.hero--slideshow.hero--samsung-galaxy .hero-subtitle {
-        font-size: clamp(18px, calc(2.6vmin + 8px), 25px);
-    }
-}
-
-/* ===== Apple: iPhone / iPad Mini / iPad Air / iPad Pro (slideshow hero) ===== */
-
-/* iPhone: H2 −8px (portrait + landscape) */
-@media (orientation: portrait) and (max-width: 430px) {
-    #hero.hero--slideshow.hero--iphone .hero-subtitle {
-        font-size: clamp(23px, calc(4.8vw + 8px), 29px);
-    }
-}
-
-@media (orientation: landscape) and (max-width: 932px) and (max-height: 520px) {
-    #hero.hero--slideshow.hero--iphone .hero-subtitle {
-        font-size: clamp(18px, calc(2.6vmin + 8px), 25px);
-    }
-}
-
-/* iPad portrait (Mini/Air/Pro): slide colours — label + CTA centrate in basso */
-@media (orientation: portrait) {
-
-    #hero.hero--slideshow.hero--ipad-mini .hero-slide[data-index="2"] .hero-slide-label,
-    #hero.hero--slideshow.hero--ipad-air .hero-slide[data-index="2"] .hero-slide-label,
-    #hero.hero--slideshow.hero--ipad-pro .hero-slide[data-index="2"] .hero-slide-label {
-        left: 50%;
-        right: auto;
-        bottom: 2cm;
-        text-align: center;
-        transform: translateX(-50%) translateY(2cm);
-    }
-
-    #hero.hero--slideshow.hero--ipad-mini .hero-slide.is-active[data-index="2"] .hero-slide-label.hero-slide-label--in,
-    #hero.hero--slideshow.hero--ipad-air .hero-slide.is-active[data-index="2"] .hero-slide-label.hero-slide-label--in,
-    #hero.hero--slideshow.hero--ipad-pro .hero-slide.is-active[data-index="2"] .hero-slide-label.hero-slide-label--in {
-        animation: hero-colours-label-in 0.4s ease-out forwards;
-    }
-
-    #hero.hero--slideshow.hero--ipad-mini .hero-slide.is-active[data-index="2"] .hero-colours-cta,
-    #hero.hero--slideshow.hero--ipad-air .hero-slide.is-active[data-index="2"] .hero-colours-cta,
-    #hero.hero--slideshow.hero--ipad-pro .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-        display: inline-block;
-        position: absolute;
-        z-index: 3;
-        left: 50%;
-        right: auto;
-        bottom: calc(2cm + 1cm + var(--hero-label-size));
-        transform: translateX(-50%);
-        padding: 0.6rem 0.85rem;
-        font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
-        font-size: clamp(18px, calc(1.2vw + 4px), 22px);
-        font-weight: 700;
-        color: #ffffff;
-        background-color: transparent;
-        border: 2px solid #ffffff;
-        border-radius: 0;
-        text-decoration: none;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-        pointer-events: auto;
-        box-sizing: border-box;
-        white-space: nowrap;
-    }
-}
-
-/* iPad Pro portrait (11" 834×1194 / 12,9" 1024×1366): slide colours */
-@media (orientation: portrait) {
-    #hero.hero--slideshow.hero--ipad-pro .hero-slide[data-index="2"] .hero-slide-img {
-        object-position: center center;
-    }
-
-    #hero.hero--slideshow.hero--ipad-pro[data-active-slide="2"] .hero-heading {
-        top: calc(var(--navbar-scroll-offset) + 0.75rem + 2cm);
-    }
-
-    #hero.hero--slideshow.hero--ipad-pro[data-active-slide="2"] .hero-title {
-        font-size: clamp(63px, calc(7.5vw + 23px), 79px);
-    }
-
-    #hero.hero--slideshow.hero--ipad-pro[data-active-slide="2"] .hero-subtitle {
-        font-size: clamp(43px, calc(3.75vw + 23px), 51px);
-    }
-
-    #hero.hero--slideshow.hero--ipad-pro .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-        font-size: clamp(25px, calc(1.2vw + 11px), 29px);
-    }
-}
-
-/* iPad Air portrait (820×1180): slide colours — immagine, H1/H2, CTA */
-@media (orientation: portrait) {
-    #hero.hero--slideshow.hero--ipad-air .hero-slide[data-index="2"] .hero-slide-img {
-        object-position: center center;
-    }
-
-    #hero.hero--slideshow.hero--ipad-air[data-active-slide="2"] .hero-heading {
-        top: calc(var(--navbar-scroll-offset) + 0.75rem + 0.5cm);
-    }
-
-    #hero.hero--slideshow.hero--ipad-air .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-        font-size: clamp(23px, calc(1.2vw + 9px), 27px);
-    }
-}
-
-/* iPad Mini landscape: CTA, label, H2, slide colours (viewport 1024×768) */
-@media (orientation: landscape) {
-    #hero.hero--slideshow.hero--ipad-mini .hero-subtitle {
-        font-size: clamp(27px, calc(2.75vmin + 9px), 33px);
-    }
-
-    #hero.hero--slideshow.hero--ipad-mini .hero-slide-label {
-        font-family: 'Schlbki', 'Schlbkb', Georgia, serif;
-        font-size: calc(var(--hero-label-size) - 7px);
-    }
-
-    /* Slide colours: annulla pan +2cm (striscia nera sotto navbar) */
-    #hero.hero--slideshow.hero--ipad-mini .hero-slide[data-index="2"] .hero-slide-img {
-        object-position: center center;
-    }
-
-    #hero.hero--slideshow.hero--ipad-mini[data-active-slide="2"] .hero-heading {
-        top: calc(var(--navbar-scroll-offset) + 0.5rem + 0.5cm);
-    }
-
-    /* Slide 0 e 1: H1/H2 a bandiera con CTA (stesso margine 1.5rem) */
-    #hero.hero--slideshow.hero--ipad-mini[data-active-slide="0"] .hero-heading {
-        right: 1.5rem;
-        left: auto;
-    }
-
-    #hero.hero--slideshow.hero--ipad-mini[data-active-slide="1"] .hero-heading {
-        left: 1.5rem;
-        right: auto;
-    }
-
-    #hero.hero--slideshow.hero--ipad-mini .hero-slide.is-active[data-index="0"] .hero-colours-cta,
-    #hero.hero--slideshow.hero--ipad-mini .hero-slide.is-active[data-index="1"] .hero-colours-cta,
-    #hero.hero--slideshow.hero--ipad-mini .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-        display: inline-block;
-        position: absolute;
-        z-index: 3;
-        padding: 0.6rem 0.85rem;
-        font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
-        font-size: clamp(14px, 1.2vw, 18px);
-        font-weight: 700;
-        color: #ffffff;
-        background-color: transparent;
-        border: 2px solid #ffffff;
-        border-radius: 0;
-        text-decoration: none;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-        pointer-events: auto;
-        box-sizing: border-box;
-        white-space: nowrap;
-    }
-
-    /* Slide 0 jazz: CTA a bandiera con H1/H2 (destra) */
-    #hero.hero--slideshow.hero--ipad-mini .hero-slide.is-active[data-index="0"] .hero-colours-cta {
-        bottom: var(--hero-label-bottom);
-        left: auto;
-        right: 1.5rem;
-        transform: none;
-    }
-
-    /* Slide 1 portraits: label a destra, CTA bianco a sinistra (a bandiera con H1/H2) */
-    #hero.hero--slideshow.hero--ipad-mini .hero-slide[data-index="1"] .hero-slide-label {
-        left: auto;
-        right: 1.5rem;
-        text-align: right;
-        transform: translateX(0.65rem);
-    }
-
-    #hero.hero--slideshow.hero--ipad-mini .hero-slide.is-active[data-index="1"] .hero-slide-label.hero-slide-label--in {
-        animation: hero-portrait-label-in-se 1.1s ease-out forwards;
-    }
-
-    #hero.hero--slideshow.hero--ipad-mini .hero-slide.is-active[data-index="1"] .hero-colours-cta {
-        bottom: var(--hero-label-bottom);
-        left: 1.5rem;
-        right: auto;
-        transform: none;
-        color: #ffffff;
-        border-color: #ffffff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-    }
-
-    #hero.hero--slideshow.hero--ipad-mini .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-        left: 50%;
-        right: auto;
-        bottom: calc(2cm + 1cm + var(--hero-label-size));
-        transform: translateX(-50%);
-    }
-
-    #hero.hero--slideshow.hero--ipad-mini .hero-slide[data-index="2"] .hero-slide-label {
-        left: 50%;
-        right: auto;
-        bottom: 2cm;
-        text-align: center;
-        transform: translateX(-50%) translateY(2cm);
-    }
-
-    #hero.hero--slideshow.hero--ipad-mini .hero-slide.is-active[data-index="2"] .hero-slide-label.hero-slide-label--in {
-        animation: hero-colours-label-in 0.4s ease-out forwards;
-    }
-}
-
-/* iPad Air landscape (1180×820) */
-@media (orientation: landscape) {
-    #hero.hero--slideshow.hero--ipad-air .hero-title {
-        font-size: calc(65pt - 7px);
-    }
-
-    #hero.hero--slideshow.hero--ipad-air .hero-slide-label {
-        font-family: 'Schlbki', 'Schlbkb', Georgia, serif;
-    }
-
-    #hero.hero--slideshow.hero--ipad-air .hero-slide[data-index="2"] .hero-slide-img {
-        object-position: center center;
-    }
-
-    #hero.hero--slideshow.hero--ipad-air .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-        font-size: clamp(19px, calc(1.2vw + 5px), 23px);
-    }
-
-    /* Slide 1 portraits: label bianca a destra */
-    #hero.hero--slideshow.hero--ipad-air .hero-slide[data-index="1"] .hero-slide-label {
-        left: auto;
-        right: 1cm;
-        text-align: right;
-        color: #ffffff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-        transform: translateX(0.65rem);
-    }
-
-    #hero.hero--slideshow.hero--ipad-air .hero-slide.is-active[data-index="1"] .hero-slide-label.hero-slide-label--in {
-        animation: hero-portrait-label-in-se 1.1s ease-out forwards;
-    }
-
-    /* Slide 1: CTA bianco a bandiera con H1/H2 (sinistra 2cm) */
-    #hero.hero--slideshow.hero--ipad-air .hero-slide.is-active[data-index="1"] .hero-colours-cta {
-        left: 2cm;
-        right: auto;
-        color: #ffffff;
-        border-color: #ffffff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-    }
-}
-
-/* iPad Pro landscape (11" 1194×834 / 12,9" 1366×1024) */
-@media (orientation: landscape) {
-    #hero.hero--slideshow.hero--ipad-pro .hero-title {
-        font-size: clamp(52px, 8.05vmin, 83px);
-    }
-
-    #hero.hero--slideshow.hero--ipad-pro .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-        font-size: clamp(19px, calc(1.2vw + 5px), 23px);
-    }
-
-    /* Slide 1 portraits: label bianca a destra */
-    #hero.hero--slideshow.hero--ipad-pro .hero-slide[data-index="1"] .hero-slide-label {
-        left: auto;
-        right: 1cm;
-        text-align: right;
-        color: #ffffff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-        transform: translateX(0.65rem);
-    }
-
-    #hero.hero--slideshow.hero--ipad-pro .hero-slide.is-active[data-index="1"] .hero-slide-label.hero-slide-label--in {
-        animation: hero-portrait-label-in-se 1.1s ease-out forwards;
-    }
-
-    /* Slide 1: CTA bianco a sinistra (a bandiera con H1/H2) */
-    #hero.hero--slideshow.hero--ipad-pro .hero-slide.is-active[data-index="1"] .hero-colours-cta {
-        left: 2cm;
-        right: auto;
-        color: #ffffff;
-        border-color: #ffffff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-    }
-}
-
-/* Fallback DevTools iOS — stesse regole senza classe JS */
-@supports (-webkit-touch-callout: none) {
-    @media (width: 768px) and (orientation: portrait) {
-        #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-label {
-            left: 50%;
-            right: auto;
-            bottom: 2cm;
-            text-align: center;
-            transform: translateX(-50%) translateY(2cm);
-        }
-
-        #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-            display: inline-block;
-            position: absolute;
-            z-index: 3;
-            left: 50%;
-            right: auto;
-            bottom: calc(2cm + 1cm + var(--hero-label-size));
-            transform: translateX(-50%);
-            padding: 0.6rem 0.85rem;
-            font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
-            font-size: clamp(18px, calc(1.2vw + 4px), 22px);
-            font-weight: 700;
-            color: #ffffff;
-            background-color: transparent;
-            border: 2px solid #ffffff;
-            border-radius: 0;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-            pointer-events: auto;
-            box-sizing: border-box;
-            white-space: nowrap;
-        }
-    }
-
-    @media (width: 820px) and (orientation: portrait),
-    (width: 834px) and (orientation: portrait),
-    (width: 1024px) and (orientation: portrait) {
-        #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-label {
-            left: 50%;
-            right: auto;
-            bottom: 2cm;
-            text-align: center;
-            transform: translateX(-50%) translateY(2cm);
-        }
-
-        #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-            display: inline-block;
-            position: absolute;
-            z-index: 3;
-            left: 50%;
-            right: auto;
-            bottom: calc(2cm + 1cm + var(--hero-label-size));
-            transform: translateX(-50%);
-            padding: 0.6rem 0.85rem;
-            font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
-            font-size: clamp(18px, calc(1.2vw + 4px), 22px);
-            font-weight: 700;
-            color: #ffffff;
-            background-color: transparent;
-            border: 2px solid #ffffff;
-            border-radius: 0;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-            pointer-events: auto;
-            box-sizing: border-box;
-            white-space: nowrap;
-        }
-    }
-
-    @media (width: 834px) and (orientation: portrait),
-    (width: 1024px) and (orientation: portrait) {
-        #hero.hero--slideshow[data-active-slide="2"] .hero-heading {
-            top: calc(var(--navbar-scroll-offset) + 0.75rem + 2cm);
-        }
-    }
-
-    @media (width: 1024px) and (height: 768px) and (orientation: landscape) {
-        #hero.hero--slideshow .hero-subtitle {
-            font-size: clamp(27px, calc(2.75vmin + 9px), 33px);
-        }
-
-        #hero.hero--slideshow .hero-slide-label {
-            font-family: 'Schlbki', 'Schlbkb', Georgia, serif;
-            font-size: calc(var(--hero-label-size) - 7px);
-        }
-
-        #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-img {
-            object-position: center center;
-        }
-
-        #hero.hero--slideshow[data-active-slide="2"] .hero-heading {
-            top: calc(var(--navbar-scroll-offset) + 0.5rem + 0.5cm);
-        }
-
-        #hero.hero--slideshow .hero-slide.is-active[data-index="0"] .hero-colours-cta,
-        #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-colours-cta,
-        #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-            display: inline-block;
-            position: absolute;
-            z-index: 3;
-            padding: 0.6rem 0.85rem;
-            font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
-            font-size: clamp(14px, 1.2vw, 18px);
-            font-weight: 700;
-            color: #ffffff;
-            background-color: transparent;
-            border: 2px solid #ffffff;
-            border-radius: 0;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-            pointer-events: auto;
-            box-sizing: border-box;
-            white-space: nowrap;
-        }
-
-        #hero.hero--slideshow .hero-slide.is-active[data-index="0"] .hero-colours-cta {
-            bottom: var(--hero-label-bottom);
-            left: auto;
-            right: 1.5rem;
-            transform: none;
-        }
-
-        #hero.hero--slideshow .hero-slide[data-index="1"] .hero-slide-label {
-            left: auto;
-            right: 1.5rem;
-            text-align: right;
-            transform: translateX(0.65rem);
-        }
-
-        #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-slide-label.hero-slide-label--in {
-            animation: hero-portrait-label-in-se 1.1s ease-out forwards;
-        }
-
-        #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-colours-cta {
-            bottom: var(--hero-label-bottom);
-            left: 1.5rem;
-            right: auto;
-            transform: none;
-            color: #ffffff;
-            border-color: #ffffff;
-            text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-        }
-
-        #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-            left: 50%;
-            right: auto;
-            bottom: calc(2cm + 1cm + var(--hero-label-size));
-            transform: translateX(-50%);
-        }
-
-        #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-label {
-            left: 50%;
-            right: auto;
-            bottom: 2cm;
-            text-align: center;
-            transform: translateX(-50%) translateY(2cm);
-        }
-    }
-
-    @media (width: 1180px) and (height: 820px) and (orientation: landscape) {
-        #hero.hero--slideshow .hero-title {
-            font-size: calc(65pt - 7px);
-        }
-
-        #hero.hero--slideshow .hero-slide-label {
-            font-family: 'Schlbki', 'Schlbkb', Georgia, serif;
-        }
-
-        #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-img {
-            object-position: center center;
-        }
-
-        #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-            font-size: clamp(19px, calc(1.2vw + 5px), 23px);
-        }
-
-        #hero.hero--slideshow .hero-slide[data-index="1"] .hero-slide-label {
-            left: auto;
-            right: 1cm;
-            text-align: right;
-            color: #ffffff;
-            text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-            transform: translateX(0.65rem);
-        }
-
-        #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-slide-label.hero-slide-label--in {
-            animation: hero-portrait-label-in-se 1.1s ease-out forwards;
-        }
-
-        #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-colours-cta {
-            left: 2cm;
-            right: auto;
-            color: #ffffff;
-            border-color: #ffffff;
-            text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-        }
-    }
-}
-
-/* iPad Air landscape 1180×820: fallback senza @supports (DevTools desktop + Safari) */
-@media (orientation: landscape) and (min-width: 1165px) and (max-width: 1185px) and (min-height: 810px) and (max-height: 828px) {
-    #hero.hero--slideshow .hero-title {
-        font-size: calc(65pt - 7px);
-    }
-
-    #hero.hero--slideshow .hero-slide-label {
-        font-family: 'Schlbki', 'Schlbkb', Georgia, serif;
-    }
-
-    #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-img {
-        object-position: center center;
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-        font-size: clamp(19px, calc(1.2vw + 5px), 23px);
-    }
-
-    #hero.hero--slideshow .hero-slide[data-index="1"] .hero-slide-label {
-        left: auto;
-        right: 1cm;
-        text-align: right;
-        color: #ffffff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-        transform: translateX(0.65rem);
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-slide-label.hero-slide-label--in {
-        animation: hero-portrait-label-in-se 1.1s ease-out forwards;
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-colours-cta {
-        left: 2cm;
-        right: auto;
-        color: #ffffff;
-        border-color: #ffffff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-    }
-}
-
-/* iPad Air portrait 820×1180: fallback senza @supports (DevTools desktop + Safari) */
-@media (orientation: portrait) and (min-width: 815px) and (max-width: 825px) and (min-height: 1170px) and (max-height: 1185px) {
-    #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-img {
-        object-position: center center;
-    }
-
-    #hero.hero--slideshow[data-active-slide="2"] .hero-heading {
-        top: calc(var(--navbar-scroll-offset) + 0.75rem + 0.5cm);
-    }
-
-    /* Slide colours: H1/H2 +10px */
-    #hero.hero--slideshow[data-active-slide="2"] .hero-title {
-        font-size: calc(clamp(56px, calc(7.5vw + 16px), 72px) + 10px);
-    }
-
-    #hero.hero--slideshow[data-active-slide="2"] .hero-subtitle {
-        font-size: calc(clamp(36px, calc(3.75vw + 16px), 44px) + 10px);
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-        font-size: clamp(23px, calc(1.2vw + 9px), 27px);
-    }
-}
-
-/* iPad Pro 11" landscape 1194×834: fallback senza @supports */
-@media (orientation: landscape) and (min-width: 1188px) and (max-width: 1200px) and (min-height: 828px) and (max-height: 840px) {
-    #hero.hero--slideshow .hero-title {
-        font-size: clamp(52px, 8.05vmin, 83px);
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-        font-size: clamp(19px, calc(1.2vw + 5px), 23px);
-    }
-
-    #hero.hero--slideshow .hero-slide[data-index="1"] .hero-slide-label {
-        left: auto;
-        right: 1cm;
-        text-align: right;
-        color: #ffffff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-        transform: translateX(0.65rem);
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-slide-label.hero-slide-label--in {
-        animation: hero-portrait-label-in-se 1.1s ease-out forwards;
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-colours-cta {
-        left: 2cm;
-        right: auto;
-        color: #ffffff;
-        border-color: #ffffff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-    }
-}
-
-/* iPad Pro 12,9" landscape 1366×1024: fallback senza @supports */
-@media (orientation: landscape) and (min-width: 1360px) and (max-width: 1372px) and (min-height: 1018px) and (max-height: 1030px) {
-    #hero.hero--slideshow .hero-title {
-        font-size: clamp(52px, 8.05vmin, 83px);
-    }
-
-    /* Slide colours: annulla pan +2cm (striscia nera sotto navbar) */
-    #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-img {
-        object-position: center center;
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-        font-size: clamp(19px, calc(1.2vw + 5px), 23px);
-    }
-
-    #hero.hero--slideshow .hero-slide[data-index="1"] .hero-slide-label {
-        left: auto;
-        right: 1cm;
-        text-align: right;
-        color: #ffffff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-        transform: translateX(0.65rem);
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-slide-label.hero-slide-label--in {
-        animation: hero-portrait-label-in-se 1.1s ease-out forwards;
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-colours-cta {
-        left: 2cm;
-        right: auto;
-        color: #ffffff;
-        border-color: #ffffff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-    }
-}
-
-/* iPad Pro 11" portrait 834×1194: fallback senza @supports */
-@media (orientation: portrait) and (min-width: 829px) and (max-width: 839px) and (min-height: 1189px) and (max-height: 1199px) {
-    #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-img {
-        object-position: center center;
-    }
-
-    #hero.hero--slideshow[data-active-slide="2"] .hero-title {
-        font-size: clamp(63px, calc(7.5vw + 23px), 79px);
-    }
-
-    #hero.hero--slideshow[data-active-slide="2"] .hero-subtitle {
-        font-size: clamp(43px, calc(3.75vw + 23px), 51px);
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-        font-size: clamp(25px, calc(1.2vw + 11px), 29px);
-    }
-}
-
-/* iPad Pro 12,9" portrait 1024×1366: fallback senza @supports */
-@media (orientation: portrait) and (min-width: 1019px) and (max-width: 1029px) and (min-height: 1361px) and (max-height: 1371px) {
-    #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-img {
-        object-position: center center;
-    }
-
-    /* Slide colours: H1/H2 +7px */
-    #hero.hero--slideshow[data-active-slide="2"] .hero-title {
-        font-size: calc(clamp(56px, calc(7.5vw + 16px), 72px) + 7px);
-    }
-
-    #hero.hero--slideshow[data-active-slide="2"] .hero-subtitle {
-        font-size: calc(clamp(36px, calc(3.75vw + 16px), 44px) + 7px);
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-        font-size: clamp(25px, calc(1.2vw + 11px), 29px);
-    }
-}
-
-/* ===== Nest Hub (1024×600) / Nest Hub Max (1280×800) — slideshow hero ===== */
-
+/* iPhone (tutti i modelli): regole hero ??? no Android / iPad / tablet */
+/* Desktop: CTA portfolio ??? slide 0 dx, slide 1 sx, slide 2 sopra colours */
+/* Mobile landscape iPhone/Android: jazz, portraits, colours ??? label -10px */
+/* Galaxy Tab S4 landscape: slide portraits ??? CTA e label bianche */
+/* Fallback DevTools Tab S4 landscape (viewport ~1138??711???712) */
+/* Surface Pro landscape (1368??912): slide portraits ??? CTA e label bianche */
+/* Samsung Galaxy mobile: H2 ???8px (portrait + landscape) */
+/* iPhone: H2 ???8px (portrait + landscape) */
+/* iPad Air landscape (1180??820) */
+/* iPad Pro landscape (11" 1194??834 / 12,9" 1366??1024) */
+/* Fallback DevTools iOS ??? stesse regole senza classe JS */
+/* iPad Air landscape 1180??820: fallback senza @supports (DevTools desktop + Safari) */
+/* iPad Air portrait 820??1180: fallback senza @supports (DevTools desktop + Safari) */
+/* iPad Pro 11" landscape 1194??834: fallback senza @supports */
+/* iPad Pro 12,9" landscape 1366??1024: fallback senza @supports */
+/* iPad Pro 11" portrait 834??1194: fallback senza @supports */
+/* iPad Pro 12,9" portrait 1024??1366: fallback senza @supports */
 /* Nest Hub landscape: H1/H2 tutte le slide + CTA (viewport sotto desktop, altezza > 520px) */
-@media (orientation: landscape) {
-    #hero.hero--slideshow.hero--nest-hub .hero-heading {
-        display: flex;
-        top: calc(var(--navbar-scroll-offset) + 0.35rem);
-        transform: none;
-    }
-
-    #hero.hero--slideshow.hero--nest-hub .hero-title {
-        font-size: clamp(32px, calc(5.2vmin + 12px), 44px);
-        white-space: nowrap;
-    }
-
-    #hero.hero--slideshow.hero--nest-hub .hero-subtitle {
-        font-size: clamp(22px, calc(2.6vmin + 12px), 28px);
-        letter-spacing: 0.02em;
-    }
-
-    #hero.hero--slideshow.hero--nest-hub[data-active-slide="0"] .hero-heading {
-        right: clamp(0.75rem, 3vmin, 1.25rem);
-        left: auto;
-        text-align: right;
-        align-items: flex-end;
-    }
-
-    #hero.hero--slideshow.hero--nest-hub[data-active-slide="0"] .hero-title {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-    }
-
-    #hero.hero--slideshow.hero--nest-hub[data-active-slide="0"] .hero-title,
-    #hero.hero--slideshow.hero--nest-hub[data-active-slide="0"] .hero-subtitle {
-        color: #ffffff;
-        align-self: flex-end;
-        text-align: right;
-    }
-
-    #hero.hero--slideshow.hero--nest-hub[data-active-slide="1"] .hero-heading {
-        left: clamp(0.75rem, 3vmin, 1.25rem);
-        right: auto;
-        text-align: left;
-        align-items: flex-start;
-    }
-
-    #hero.hero--slideshow.hero--nest-hub[data-active-slide="1"] .hero-title {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    #hero.hero--slideshow.hero--nest-hub[data-active-slide="1"] .hero-title,
-    #hero.hero--slideshow.hero--nest-hub[data-active-slide="1"] .hero-subtitle {
-        color: #ffffff;
-        align-self: flex-start;
-        text-align: left;
-    }
-
-    #hero.hero--slideshow.hero--nest-hub[data-active-slide="2"] .hero-heading {
-        left: 50%;
-        right: auto;
-        transform: translateX(-50%);
-        text-align: center;
-        align-items: center;
-    }
-
-    #hero.hero--slideshow.hero--nest-hub[data-active-slide="2"] .hero-title,
-    #hero.hero--slideshow.hero--nest-hub[data-active-slide="2"] .hero-subtitle {
-        color: #000000;
-        align-self: center;
-        text-align: center;
-    }
-
-    #hero.hero--slideshow.hero--nest-hub .hero-slide-label {
-        font-family: 'Schlbki', 'Schlbkb', Georgia, serif;
-        font-size: calc(var(--hero-label-size) - 7px);
-    }
-
-    #hero.hero--slideshow.hero--nest-hub .hero-slide[data-index="2"] .hero-slide-img {
-        object-position: center center;
-    }
-
-    #hero.hero--slideshow.hero--nest-hub .hero-slide.is-active[data-index="0"] .hero-colours-cta,
-    #hero.hero--slideshow.hero--nest-hub .hero-slide.is-active[data-index="1"] .hero-colours-cta,
-    #hero.hero--slideshow.hero--nest-hub .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-        display: inline-block;
-        position: absolute;
-        z-index: 3;
-        padding: 0.4rem 0.65rem;
-        font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
-        font-size: clamp(12px, 1.2vw, 16px);
-        font-weight: 700;
-        color: #ffffff;
-        background-color: transparent;
-        border: 2px solid #ffffff;
-        border-radius: 0;
-        text-decoration: none;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-        pointer-events: auto;
-        box-sizing: border-box;
-        white-space: nowrap;
-    }
-
-    #hero.hero--slideshow.hero--nest-hub .hero-slide.is-active[data-index="0"] .hero-colours-cta {
-        bottom: var(--hero-label-bottom);
-        left: auto;
-        right: clamp(0.75rem, 3vmin, 1.25rem);
-        transform: none;
-    }
-
-    #hero.hero--slideshow.hero--nest-hub .hero-slide[data-index="1"] .hero-slide-label {
-        left: auto;
-        right: clamp(0.75rem, 3vmin, 1.25rem);
-        text-align: right;
-        color: #ffffff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-        transform: translateX(0.65rem);
-    }
-
-    #hero.hero--slideshow.hero--nest-hub .hero-slide.is-active[data-index="1"] .hero-slide-label.hero-slide-label--in {
-        animation: hero-portrait-label-in-se 1.1s ease-out forwards;
-    }
-
-    #hero.hero--slideshow.hero--nest-hub .hero-slide.is-active[data-index="1"] .hero-colours-cta {
-        bottom: var(--hero-label-bottom);
-        left: clamp(0.75rem, 3vmin, 1.25rem);
-        right: auto;
-        transform: none;
-        color: #ffffff;
-        border-color: #ffffff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-    }
-
-    #hero.hero--slideshow.hero--nest-hub .hero-slide[data-index="2"] .hero-slide-label {
-        left: 50%;
-        right: auto;
-        bottom: 2cm;
-        text-align: center;
-        transform: translateX(-50%) translateY(2cm);
-    }
-
-    #hero.hero--slideshow.hero--nest-hub .hero-slide.is-active[data-index="2"] .hero-slide-label.hero-slide-label--in {
-        animation: hero-colours-label-in 0.4s ease-out forwards;
-    }
-
-    #hero.hero--slideshow.hero--nest-hub .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-        left: 50%;
-        right: auto;
-        bottom: calc(2cm + 1cm + var(--hero-label-size));
-        transform: translateX(-50%);
-    }
-}
-
-/* Nest Hub Max landscape: slide 1 bianca + slide colours fix */
-@media (orientation: landscape) {
-    #hero.hero--slideshow.hero--nest-hub-max .hero-slide-label {
-        font-family: 'Schlbki', 'Schlbkb', Georgia, serif;
-    }
-
-    #hero.hero--slideshow.hero--nest-hub-max .hero-slide[data-index="2"] .hero-slide-img {
-        object-position: center center;
-    }
-
-    #hero.hero--slideshow.hero--nest-hub-max .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-        font-size: clamp(19px, calc(1.2vw + 5px), 23px);
-    }
-
-    #hero.hero--slideshow.hero--nest-hub-max .hero-slide[data-index="1"] .hero-slide-label {
-        left: auto;
-        right: 1cm;
-        text-align: right;
-        color: #ffffff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-        transform: translateX(0.65rem);
-    }
-
-    #hero.hero--slideshow.hero--nest-hub-max .hero-slide.is-active[data-index="1"] .hero-slide-label.hero-slide-label--in {
-        animation: hero-portrait-label-in-se 1.1s ease-out forwards;
-    }
-
-    #hero.hero--slideshow.hero--nest-hub-max .hero-slide.is-active[data-index="1"] .hero-colours-cta {
-        left: 2cm;
-        right: auto;
-        color: #ffffff;
-        border-color: #ffffff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-    }
-}
-
-/* Nest Hub 1024×600: fallback viewport DevTools */
-@media (width: 1024px) and (height: 600px) and (orientation: landscape) {
-    #hero.hero--slideshow .hero-heading {
-        display: flex;
-        top: calc(var(--navbar-scroll-offset) + 0.35rem);
-        transform: none;
-    }
-
-    #hero.hero--slideshow .hero-title {
-        font-size: clamp(32px, calc(5.2vmin + 12px), 44px);
-        white-space: nowrap;
-    }
-
-    #hero.hero--slideshow .hero-subtitle {
-        font-size: clamp(22px, calc(2.6vmin + 12px), 28px);
-        letter-spacing: 0.02em;
-    }
-
-    #hero.hero--slideshow[data-active-slide="0"] .hero-heading {
-        right: clamp(0.75rem, 3vmin, 1.25rem);
-        left: auto;
-        text-align: right;
-        align-items: flex-end;
-    }
-
-    #hero.hero--slideshow[data-active-slide="0"] .hero-title {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-    }
-
-    #hero.hero--slideshow[data-active-slide="0"] .hero-title,
-    #hero.hero--slideshow[data-active-slide="0"] .hero-subtitle {
-        color: #ffffff;
-        align-self: flex-end;
-        text-align: right;
-    }
-
-    #hero.hero--slideshow[data-active-slide="1"] .hero-heading {
-        left: clamp(0.75rem, 3vmin, 1.25rem);
-        right: auto;
-        text-align: left;
-        align-items: flex-start;
-    }
-
-    #hero.hero--slideshow[data-active-slide="1"] .hero-title {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    #hero.hero--slideshow[data-active-slide="1"] .hero-title,
-    #hero.hero--slideshow[data-active-slide="1"] .hero-subtitle {
-        color: #ffffff;
-        align-self: flex-start;
-        text-align: left;
-    }
-
-    #hero.hero--slideshow[data-active-slide="2"] .hero-heading {
-        left: 50%;
-        right: auto;
-        transform: translateX(-50%);
-        text-align: center;
-        align-items: center;
-    }
-
-    #hero.hero--slideshow[data-active-slide="2"] .hero-title,
-    #hero.hero--slideshow[data-active-slide="2"] .hero-subtitle {
-        color: #000000;
-        align-self: center;
-        text-align: center;
-    }
-
-    #hero.hero--slideshow .hero-slide-label {
-        font-family: 'Schlbki', 'Schlbkb', Georgia, serif;
-        font-size: calc(var(--hero-label-size) - 7px);
-    }
-
-    #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-img {
-        object-position: center center;
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="0"] .hero-colours-cta,
-    #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-colours-cta,
-    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-        display: inline-block;
-        position: absolute;
-        z-index: 3;
-        padding: 0.4rem 0.65rem;
-        font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
-        font-size: clamp(12px, 1.2vw, 16px);
-        font-weight: 700;
-        color: #ffffff;
-        background-color: transparent;
-        border: 2px solid #ffffff;
-        border-radius: 0;
-        text-decoration: none;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-        pointer-events: auto;
-        box-sizing: border-box;
-        white-space: nowrap;
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="0"] .hero-colours-cta {
-        bottom: var(--hero-label-bottom);
-        left: auto;
-        right: clamp(0.75rem, 3vmin, 1.25rem);
-        transform: none;
-    }
-
-    #hero.hero--slideshow .hero-slide[data-index="1"] .hero-slide-label {
-        left: auto;
-        right: clamp(0.75rem, 3vmin, 1.25rem);
-        text-align: right;
-        color: #ffffff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-        transform: translateX(0.65rem);
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-slide-label.hero-slide-label--in {
-        animation: hero-portrait-label-in-se 1.1s ease-out forwards;
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-colours-cta {
-        bottom: var(--hero-label-bottom);
-        left: clamp(0.75rem, 3vmin, 1.25rem);
-        right: auto;
-        transform: none;
-        color: #ffffff;
-        border-color: #ffffff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-    }
-
-    #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-label {
-        left: 50%;
-        right: auto;
-        bottom: 2cm;
-        text-align: center;
-        transform: translateX(-50%) translateY(2cm);
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-slide-label.hero-slide-label--in {
-        animation: hero-colours-label-in 0.4s ease-out forwards;
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-        left: 50%;
-        right: auto;
-        bottom: calc(2cm + 1cm + var(--hero-label-size));
-        transform: translateX(-50%);
-    }
-}
-
-/* Nest Hub Max 1280×800: fallback viewport DevTools */
-@media (width: 1280px) and (height: 800px) and (orientation: landscape) {
-    #hero.hero--slideshow .hero-slide-label {
-        font-family: 'Schlbki', 'Schlbkb', Georgia, serif;
-    }
-
-    #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-img {
-        object-position: center center;
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-        font-size: clamp(19px, calc(1.2vw + 5px), 23px);
-    }
-
-    #hero.hero--slideshow .hero-slide[data-index="1"] .hero-slide-label {
-        left: auto;
-        right: 1cm;
-        text-align: right;
-        color: #ffffff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-        transform: translateX(0.65rem);
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-slide-label.hero-slide-label--in {
-        animation: hero-portrait-label-in-se 1.1s ease-out forwards;
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-colours-cta {
-        left: 2cm;
-        right: auto;
-        color: #ffffff;
-        border-color: #ffffff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-    }
-}
-
-/* Google Pixel Tablet / Lenovo Tab P12 Pro portrait (800×1280): slide colours — label + CTA centrate */
-@media (width: 800px) and (height: 1280px) and (orientation: portrait) {
-
-    /* Slide colours: annulla pan +2cm (striscia nera sotto navbar) */
-    #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-img {
-        object-position: center center;
-    }
-
-    #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-label {
-        left: 50%;
-        right: auto;
-        bottom: 2cm;
-        text-align: center;
-        transform: translateX(-50%) translateY(2cm);
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-slide-label.hero-slide-label--in {
-        animation: hero-colours-label-in 0.4s ease-out forwards;
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-        display: inline-block;
-        position: absolute;
-        z-index: 3;
-        left: 50%;
-        right: auto;
-        bottom: calc(2cm + 1cm + var(--hero-label-size));
-        transform: translateX(-50%);
-        padding: 0.6rem 0.85rem;
-        font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
-        font-size: clamp(24px, calc(1.2vw + 10px), 28px);
-        font-weight: 700;
-        color: #ffffff;
-        background-color: transparent;
-        border: 2px solid #ffffff;
-        border-radius: 0;
-        text-decoration: none;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-        pointer-events: auto;
-        box-sizing: border-box;
-        white-space: nowrap;
-    }
-}
-
-/* Lenovo Tab M10 landscape (960×600): H1/H2, label, CTA ed effetti su tutte le slide */
-@media (width: 960px) and (height: 600px) and (orientation: landscape) {
-    #hero.hero--slideshow .hero-heading {
-        display: flex;
-        top: calc(var(--navbar-scroll-offset) + 0.35rem);
-        transform: none;
-    }
-
-    #hero.hero--slideshow .hero-title {
-        font-size: clamp(32px, calc(5.2vmin + 12px), 44px);
-        white-space: nowrap;
-    }
-
-    #hero.hero--slideshow .hero-subtitle {
-        font-size: clamp(22px, calc(2.6vmin + 12px), 28px);
-        letter-spacing: 0.02em;
-    }
-
-    #hero.hero--slideshow[data-active-slide="0"] .hero-heading {
-        right: clamp(0.75rem, 3vmin, 1.25rem);
-        left: auto;
-        text-align: right;
-        align-items: flex-end;
-    }
-
-    #hero.hero--slideshow[data-active-slide="0"] .hero-title {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-    }
-
-    #hero.hero--slideshow[data-active-slide="0"] .hero-title,
-    #hero.hero--slideshow[data-active-slide="0"] .hero-subtitle {
-        color: #ffffff;
-        align-self: flex-end;
-        text-align: right;
-    }
-
-    #hero.hero--slideshow[data-active-slide="1"] .hero-heading {
-        left: clamp(0.75rem, 3vmin, 1.25rem);
-        right: auto;
-        text-align: left;
-        align-items: flex-start;
-    }
-
-    #hero.hero--slideshow[data-active-slide="1"] .hero-title {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    #hero.hero--slideshow[data-active-slide="1"] .hero-title,
-    #hero.hero--slideshow[data-active-slide="1"] .hero-subtitle {
-        color: #ffffff;
-        align-self: flex-start;
-        text-align: left;
-    }
-
-    #hero.hero--slideshow[data-active-slide="2"] .hero-heading {
-        left: 50%;
-        right: auto;
-        transform: translateX(-50%);
-        text-align: center;
-        align-items: center;
-    }
-
-    #hero.hero--slideshow[data-active-slide="2"] .hero-title,
-    #hero.hero--slideshow[data-active-slide="2"] .hero-subtitle {
-        color: #000000;
-        align-self: center;
-        text-align: center;
-    }
-
-    #hero.hero--slideshow .hero-slide-label {
-        font-family: 'Schlbki', 'Schlbkb', Georgia, serif;
-        font-size: calc(var(--hero-label-size) - 7px);
-    }
-
-    /* Slide colours: annulla pan +2cm (striscia nera sotto navbar) */
-    #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-img {
-        object-position: center center;
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="0"] .hero-colours-cta,
-    #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-colours-cta,
-    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-        display: inline-block;
-        position: absolute;
-        z-index: 3;
-        padding: 0.4rem 0.65rem;
-        font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
-        font-size: clamp(12px, 1.2vw, 16px);
-        font-weight: 700;
-        color: #ffffff;
-        background-color: transparent;
-        border: 2px solid #ffffff;
-        border-radius: 0;
-        text-decoration: none;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-        pointer-events: auto;
-        box-sizing: border-box;
-        white-space: nowrap;
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="0"] .hero-colours-cta {
-        bottom: var(--hero-label-bottom);
-        left: auto;
-        right: clamp(0.75rem, 3vmin, 1.25rem);
-        transform: none;
-    }
-
-    #hero.hero--slideshow .hero-slide[data-index="1"] .hero-slide-label {
-        left: auto;
-        right: clamp(0.75rem, 3vmin, 1.25rem);
-        text-align: right;
-        color: #ffffff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-        transform: translateX(0.65rem);
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-slide-label.hero-slide-label--in {
-        animation: hero-portrait-label-in-se 1.1s ease-out forwards;
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-colours-cta {
-        bottom: var(--hero-label-bottom);
-        left: clamp(0.75rem, 3vmin, 1.25rem);
-        right: auto;
-        transform: none;
-        color: #ffffff;
-        border-color: #ffffff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-    }
-
-    #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-label {
-        left: 50%;
-        right: auto;
-        bottom: 2cm;
-        text-align: center;
-        transform: translateX(-50%) translateY(2cm);
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-slide-label.hero-slide-label--in {
-        animation: hero-colours-label-in 0.4s ease-out forwards;
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-        left: 50%;
-        right: auto;
-        bottom: calc(2cm + 1cm + var(--hero-label-size));
-        transform: translateX(-50%);
-    }
-}
-
-/* Samsung Galaxy Tab A7 landscape (1000×600): H1/H2, label, CTA ed effetti su tutte le slide */
-@media (min-width: 990px) and (max-width: 1010px) and (min-height: 590px) and (max-height: 610px) {
-    #hero.hero--slideshow .hero-heading {
-        display: flex;
-        top: calc(var(--navbar-scroll-offset) + 0.35rem);
-        transform: none;
-    }
-
-    #hero.hero--slideshow .hero-title {
-        font-size: clamp(32px, calc(5.2vmin + 12px), 44px);
-        white-space: nowrap;
-    }
-
-    #hero.hero--slideshow .hero-subtitle {
-        font-size: clamp(22px, calc(2.6vmin + 12px), 28px);
-        letter-spacing: 0.02em;
-    }
-
-    #hero.hero--slideshow[data-active-slide="0"] .hero-heading {
-        right: clamp(0.75rem, 3vmin, 1.25rem);
-        left: auto;
-        text-align: right;
-        align-items: flex-end;
-    }
-
-    #hero.hero--slideshow[data-active-slide="0"] .hero-title {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-    }
-
-    #hero.hero--slideshow[data-active-slide="0"] .hero-title,
-    #hero.hero--slideshow[data-active-slide="0"] .hero-subtitle {
-        color: #ffffff;
-        align-self: flex-end;
-        text-align: right;
-    }
-
-    #hero.hero--slideshow[data-active-slide="1"] .hero-heading {
-        left: clamp(0.75rem, 3vmin, 1.25rem);
-        right: auto;
-        text-align: left;
-        align-items: flex-start;
-    }
-
-    #hero.hero--slideshow[data-active-slide="1"] .hero-title {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    #hero.hero--slideshow[data-active-slide="1"] .hero-title,
-    #hero.hero--slideshow[data-active-slide="1"] .hero-subtitle {
-        color: #ffffff;
-        align-self: flex-start;
-        text-align: left;
-    }
-
-    #hero.hero--slideshow[data-active-slide="2"] .hero-heading {
-        left: 50%;
-        right: auto;
-        transform: translateX(-50%);
-        text-align: center;
-        align-items: center;
-    }
-
-    #hero.hero--slideshow[data-active-slide="2"] .hero-title,
-    #hero.hero--slideshow[data-active-slide="2"] .hero-subtitle {
-        color: #000000;
-        align-self: center;
-        text-align: center;
-    }
-
-    #hero.hero--slideshow .hero-slide-label {
-        font-family: 'Schlbki', 'Schlbkb', Georgia, serif;
-        font-size: calc(var(--hero-label-size) - 7px);
-    }
-
-    /* Slide colours: annulla pan +2cm (striscia nera sotto navbar) */
-    #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-img {
-        object-position: center center;
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="0"] .hero-colours-cta,
-    #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-colours-cta,
-    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-        display: inline-block;
-        position: absolute;
-        z-index: 3;
-        padding: 0.4rem 0.65rem;
-        font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
-        font-size: clamp(12px, 1.2vw, 16px);
-        font-weight: 700;
-        color: #ffffff;
-        background-color: transparent;
-        border: 2px solid #ffffff;
-        border-radius: 0;
-        text-decoration: none;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-        pointer-events: auto;
-        box-sizing: border-box;
-        white-space: nowrap;
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="0"] .hero-colours-cta {
-        bottom: var(--hero-label-bottom);
-        left: auto;
-        right: clamp(0.75rem, 3vmin, 1.25rem);
-        transform: none;
-    }
-
-    #hero.hero--slideshow .hero-slide[data-index="1"] .hero-slide-label {
-        left: auto;
-        right: clamp(0.75rem, 3vmin, 1.25rem);
-        text-align: right;
-        color: #ffffff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-        transform: translateX(0.65rem);
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-slide-label.hero-slide-label--in {
-        animation: hero-portrait-label-in-se 1.1s ease-out forwards;
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-colours-cta {
-        bottom: var(--hero-label-bottom);
-        left: clamp(0.75rem, 3vmin, 1.25rem);
-        right: auto;
-        transform: none;
-        color: #ffffff;
-        border-color: #ffffff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-    }
-
-    #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-label {
-        left: 50%;
-        right: auto;
-        bottom: 2cm;
-        text-align: center;
-        transform: translateX(-50%) translateY(2cm);
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-slide-label.hero-slide-label--in {
-        animation: hero-colours-label-in 0.4s ease-out forwards;
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-        left: 50%;
-        right: auto;
-        bottom: calc(2cm + 1cm + var(--hero-label-size));
-        transform: translateX(-50%);
-    }
-}
-
-/* OnePlus Pad landscape (933×667): H1/H2, label, CTA ed effetti su tutte le slide */
-@media (min-width: 931px) and (max-width: 935px) and (min-height: 665px) and (max-height: 669px) {
-    #hero.hero--slideshow .hero-heading {
-        display: flex;
-        top: calc(var(--navbar-scroll-offset) + 0.35rem);
-        transform: none;
-    }
-
-    #hero.hero--slideshow .hero-title {
-        font-size: clamp(32px, calc(5.2vmin + 12px), 44px);
-        white-space: nowrap;
-    }
-
-    #hero.hero--slideshow .hero-subtitle {
-        font-size: clamp(22px, calc(2.6vmin + 12px), 28px);
-        letter-spacing: 0.02em;
-    }
-
-    #hero.hero--slideshow[data-active-slide="0"] .hero-heading {
-        right: clamp(0.75rem, 3vmin, 1.25rem);
-        left: auto;
-        text-align: right;
-        align-items: flex-end;
-    }
-
-    #hero.hero--slideshow[data-active-slide="0"] .hero-title {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-    }
-
-    #hero.hero--slideshow[data-active-slide="0"] .hero-title,
-    #hero.hero--slideshow[data-active-slide="0"] .hero-subtitle {
-        color: #ffffff;
-        align-self: flex-end;
-        text-align: right;
-    }
-
-    #hero.hero--slideshow[data-active-slide="1"] .hero-heading {
-        left: clamp(0.75rem, 3vmin, 1.25rem);
-        right: auto;
-        text-align: left;
-        align-items: flex-start;
-    }
-
-    #hero.hero--slideshow[data-active-slide="1"] .hero-title {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    #hero.hero--slideshow[data-active-slide="1"] .hero-title,
-    #hero.hero--slideshow[data-active-slide="1"] .hero-subtitle {
-        color: #ffffff;
-        align-self: flex-start;
-        text-align: left;
-    }
-
-    #hero.hero--slideshow[data-active-slide="2"] .hero-heading {
-        left: 50%;
-        right: auto;
-        transform: translateX(-50%);
-        text-align: center;
-        align-items: center;
-    }
-
-    #hero.hero--slideshow[data-active-slide="2"] .hero-title,
-    #hero.hero--slideshow[data-active-slide="2"] .hero-subtitle {
-        color: #000000;
-        align-self: center;
-        text-align: center;
-    }
-
-    #hero.hero--slideshow .hero-slide-label {
-        font-family: 'Schlbki', 'Schlbkb', Georgia, serif;
-        font-size: calc(var(--hero-label-size) - 7px);
-    }
-
-    #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-img {
-        object-position: center center;
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="0"] .hero-colours-cta,
-    #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-colours-cta,
-    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-        display: inline-block;
-        position: absolute;
-        z-index: 3;
-        padding: 0.4rem 0.65rem;
-        font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
-        font-size: clamp(12px, 1.2vw, 16px);
-        font-weight: 700;
-        color: #ffffff;
-        background-color: transparent;
-        border: 2px solid #ffffff;
-        border-radius: 0;
-        text-decoration: none;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-        pointer-events: auto;
-        box-sizing: border-box;
-        white-space: nowrap;
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="0"] .hero-colours-cta {
-        bottom: var(--hero-label-bottom);
-        left: auto;
-        right: clamp(0.75rem, 3vmin, 1.25rem);
-        transform: none;
-    }
-
-    #hero.hero--slideshow .hero-slide[data-index="1"] .hero-slide-label {
-        left: auto;
-        right: clamp(0.75rem, 3vmin, 1.25rem);
-        text-align: right;
-        color: #ffffff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-        transform: translateX(0.65rem);
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-slide-label.hero-slide-label--in {
-        animation: hero-portrait-label-in-se 1.1s ease-out forwards;
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-colours-cta {
-        bottom: var(--hero-label-bottom);
-        left: clamp(0.75rem, 3vmin, 1.25rem);
-        right: auto;
-        transform: none;
-        color: #ffffff;
-        border-color: #ffffff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-    }
-
-    #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-label {
-        left: 50%;
-        right: auto;
-        bottom: 2cm;
-        text-align: center;
-        transform: translateX(-50%) translateY(2cm);
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-slide-label.hero-slide-label--in {
-        animation: hero-colours-label-in 0.4s ease-out forwards;
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="2"] .hero-colours-cta {
-        left: 50%;
-        right: auto;
-        bottom: calc(2cm + 1cm + var(--hero-label-size));
-        transform: translateX(-50%);
-    }
-}
-
-/* Samsung Galaxy Tab A9 landscape (1116×670): slide 1 bianca + slide colours senza striscia nera */
-@media (min-width: 1113px) and (max-width: 1119px) and (min-height: 667px) and (max-height: 673px) {
-
-    /* H1/H2 desktop −10px (tutte e tre le slide) */
-    #hero.hero--slideshow .hero-title {
-        font-size: calc(65pt - 10px);
-    }
-
-    #hero.hero--slideshow .hero-subtitle {
-        font-size: calc(32.5pt - 10px);
-    }
-
-    /* Scritte jazz / portraits / colours −12px */
-    #hero.hero--slideshow .hero-slide-label {
-        font-size: calc(var(--hero-label-size) - 12px);
-    }
-
-    #hero.hero--slideshow .hero-slide[data-index="1"] .hero-slide-label {
-        color: #ffffff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-colours-cta {
-        color: #ffffff;
-        border-color: #ffffff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-    }
-
-    /* Slide colours: annulla pan +2cm (striscia nera sotto navbar) */
-    #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-img {
-        object-position: center center;
-    }
-}
-
-/* Samsung Galaxy Tab S10 FE landscape (1152×720): slide 1 bianca + slide colours senza striscia nera */
-@media (min-width: 1149px) and (max-width: 1155px) and (min-height: 717px) and (max-height: 723px) {
-    #hero.hero--slideshow .hero-slide[data-index="1"] .hero-slide-label {
-        color: #ffffff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-    }
-
-    #hero.hero--slideshow .hero-slide.is-active[data-index="1"] .hero-colours-cta {
-        color: #ffffff;
-        border-color: #ffffff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-    }
-
-    /* Slide colours: annulla pan +2cm (striscia nera sotto navbar) */
-    #hero.hero--slideshow .hero-slide[data-index="2"] .hero-slide-img {
-        object-position: center center;
-    }
-}
-
-/* Samsung Galaxy Tab S4 portrait (712×1138): slide colours — H1/H2 +12px */
-@media (min-width: 709px) and (max-width: 715px) and (min-height: 1135px) and (max-height: 1141px) and (orientation: portrait) {
-    #hero.hero--slideshow[data-active-slide="2"] .hero-title {
-        font-size: calc(clamp(46px, calc(9.5vw + 16px), 58px) + 12px);
-    }
-
-    #hero.hero--slideshow[data-active-slide="2"] .hero-subtitle {
-        font-size: calc(clamp(31px, calc(4.8vw + 16px), 37px) + 12px);
-    }
-}
-
-/* Google Pixel 7 landscape (915×412): H1 +7px, H2 −5px (tutte e tre le slide) */
-@media (orientation: landscape) and (min-width: 912px) and (max-width: 918px) and (min-height: 409px) and (max-height: 415px) {
-    #hero.hero--slideshow .hero-title {
-        font-size: calc(clamp(36px, calc(5.2vmin + 16px), 50px) + 7px);
-    }
-
-    #hero.hero--slideshow .hero-subtitle {
-        font-size: calc(clamp(26px, calc(2.6vmin + 16px), 33px) - 5px);
-    }
-}
-
-/* Samsung Galaxy S8+ landscape (740×360): H1 +5px, H2 −3px (tutte e tre le slide) */
-@media (orientation: landscape) and (min-width: 737px) and (max-width: 743px) and (min-height: 357px) and (max-height: 363px) {
-    #hero.hero--slideshow .hero-title {
-        font-size: calc(clamp(36px, calc(5.2vmin + 16px), 50px) + 5px);
-    }
-
-    #hero.hero--slideshow .hero-subtitle {
-        font-size: calc(clamp(26px, calc(2.6vmin + 16px), 33px) - 3px);
-    }
-}
-
-/* iPad Pro 12,9" portrait (1024×1366): slide colours — H1/H2 +12px */
-@media (orientation: portrait) and (min-width: 1015px) and (max-width: 1035px) and (min-height: 1355px) and (max-height: 1375px) {
-
-    #hero.hero--slideshow.hero--ipad-pro[data-active-slide="2"] .hero-title,
-    #hero.hero--slideshow[data-active-slide="2"] .hero-title {
-        font-size: calc(clamp(56px, calc(7.5vw + 16px), 72px) + 12px);
-    }
-
-    #hero.hero--slideshow.hero--ipad-pro[data-active-slide="2"] .hero-subtitle,
-    #hero.hero--slideshow[data-active-slide="2"] .hero-subtitle {
-        font-size: calc(clamp(36px, calc(3.75vw + 16px), 44px) + 12px);
-    }
-}
-
-/* Nest Hub landscape (1024×600): H1 +8px (tutte e tre le slide) */
-@media (width: 1024px) and (height: 600px) and (orientation: landscape) {
-
-    #hero.hero--slideshow.hero--nest-hub .hero-title,
-    #hero.hero--slideshow .hero-title {
-        font-size: calc(clamp(32px, calc(5.2vmin + 12px), 44px) + 8px);
-    }
-}
-
-/* Apple iPhone 17e landscape (844×390): H1 +8px, H2 −8px (tutte e tre le slide) */
-@media (orientation: landscape) and (min-width: 841px) and (max-width: 847px) and (min-height: 387px) and (max-height: 393px) {
-
-    #hero.hero--slideshow.hero--iphone .hero-title,
-    #hero.hero--slideshow .hero-title {
-        font-size: calc(clamp(36px, calc(5.2vmin + 16px), 50px) + 8px);
-    }
-
-    #hero.hero--slideshow.hero--iphone .hero-subtitle,
-    #hero.hero--slideshow .hero-subtitle {
-        font-size: calc(clamp(26px, calc(2.6vmin + 16px), 33px) - 8px);
-    }
-}
-
-/* Google Pixel Tablet portrait (800×1280): slide colours — H1/H2 +10px */
-@media (width: 800px) and (orientation: portrait) and (min-height: 1190px) and (max-height: 1290px) {
-
-    #hero.hero--slideshow.hero--pixel-tablet[data-active-slide="2"] .hero-title,
-    #hero.hero--slideshow[data-active-slide="2"] .hero-title {
-        font-size: calc(clamp(56px, calc(7.5vw + 16px), 72px) + 10px);
-    }
-
-    #hero.hero--slideshow.hero--pixel-tablet[data-active-slide="2"] .hero-subtitle,
-    #hero.hero--slideshow[data-active-slide="2"] .hero-subtitle {
-        font-size: calc(clamp(36px, calc(3.75vw + 16px), 44px) + 10px);
-    }
-}
-
-/* Huawei P40 landscape (780×360): H1 +8px, H2 −4px (tutte e tre le slide) */
-@media (orientation: landscape) and (min-width: 777px) and (max-width: 783px) and (min-height: 357px) and (max-height: 363px) {
-    #hero.hero--slideshow .hero-title {
-        font-size: calc(clamp(36px, calc(5.2vmin + 16px), 50px) + 8px);
-    }
-
-    #hero.hero--slideshow .hero-subtitle {
-        font-size: calc(clamp(26px, calc(2.6vmin + 16px), 33px) - 4px);
-    }
-}
-
-/* Huawei P60 Pro landscape (796×360): H1 +8px, H2 −4px (tutte e tre le slide) */
-@media (orientation: landscape) and (min-width: 793px) and (max-width: 799px) and (min-height: 357px) and (max-height: 363px) {
-    #hero.hero--slideshow .hero-title {
-        font-size: calc(clamp(36px, calc(5.2vmin + 16px), 50px) + 8px);
-    }
-
-    #hero.hero--slideshow .hero-subtitle {
-        font-size: calc(clamp(26px, calc(2.6vmin + 16px), 33px) - 4px);
-    }
-}
-
-/* Huawei Pura 90 Pro landscape (790×360): H1 +8px, H2 −4px (tutte e tre le slide) */
-@media (orientation: landscape) and (min-width: 787px) and (max-width: 793px) and (min-height: 357px) and (max-height: 363px) {
-    #hero.hero--slideshow .hero-title {
-        font-size: calc(clamp(36px, calc(5.2vmin + 16px), 50px) + 8px);
-    }
-
-    #hero.hero--slideshow .hero-subtitle {
-        font-size: calc(clamp(26px, calc(2.6vmin + 16px), 33px) - 4px);
-    }
-}
-
-/* Lenovo Tab M10 landscape (960×600): H1 +8px, H2 −4px (tutte e tre le slide) */
-@media (width: 960px) and (height: 600px) and (orientation: landscape) {
-    #hero.hero--slideshow .hero-title {
-        font-size: calc(clamp(32px, calc(5.2vmin + 12px), 44px) + 8px);
-    }
-
-    #hero.hero--slideshow .hero-subtitle {
-        font-size: calc(clamp(22px, calc(2.6vmin + 12px), 28px) - 4px);
-    }
-}
-
-/* OnePlus Pad landscape (933×667): H1 +8px, H2 −4px (tutte e tre le slide) */
-@media (min-width: 931px) and (max-width: 935px) and (min-height: 665px) and (max-height: 669px) and (orientation: landscape) {
-    #hero.hero--slideshow .hero-title {
-        font-size: calc(clamp(32px, calc(5.2vmin + 12px), 44px) + 8px);
-    }
-
-    #hero.hero--slideshow .hero-subtitle {
-        font-size: calc(clamp(22px, calc(2.6vmin + 12px), 28px) - 4px);
-    }
-}
-
-/* Oppo Find X6 landscape (805×360): H1 +8px, H2 −4px (tutte e tre le slide) */
-@media (orientation: landscape) and (min-width: 802px) and (max-width: 808px) and (min-height: 357px) and (max-height: 363px) {
-    #hero.hero--slideshow .hero-title {
-        font-size: calc(clamp(36px, calc(5.2vmin + 16px), 50px) + 8px);
-    }
-
-    #hero.hero--slideshow .hero-subtitle {
-        font-size: calc(clamp(26px, calc(2.6vmin + 16px), 33px) - 4px);
-    }
-}
-
-/* Samsung Galaxy Tab A7 landscape (1000×600): H1 +10px, H2 −3px (tutte e tre le slide) */
-@media (min-width: 990px) and (max-width: 1010px) and (min-height: 590px) and (max-height: 610px) and (orientation: landscape) {
-    #hero.hero--slideshow .hero-title {
-        font-size: calc(clamp(32px, calc(5.2vmin + 12px), 44px) + 10px);
-    }
-
-    #hero.hero--slideshow .hero-subtitle {
-        font-size: calc(clamp(22px, calc(2.6vmin + 12px), 28px) - 3px);
-    }
-}
-
-/* Samsung Galaxy Tab A7 portrait (600×1000): slide colours — H1 +8px, H2 +5px */
-@media (width: 600px) and (orientation: portrait) and (min-height: 995px) and (max-height: 1005px) {
-    #hero.hero--slideshow[data-active-slide="2"] .hero-title {
-        font-size: calc(clamp(46px, calc(9.5vw + 16px), 58px) + 8px);
-    }
-
-    #hero.hero--slideshow[data-active-slide="2"] .hero-subtitle {
-        font-size: calc(clamp(31px, calc(4.8vw + 16px), 37px) + 5px);
-    }
-}
-
-/* Samsung Galaxy Tab A9 landscape (1116×670): slide colours — H1/H2 −5px */
-@media (min-width: 1113px) and (max-width: 1119px) and (min-height: 667px) and (max-height: 673px) and (orientation: landscape) {
-    #hero.hero--slideshow[data-active-slide="2"] .hero-title {
-        font-size: calc(65pt - 15px);
-    }
-
-    #hero.hero--slideshow[data-active-slide="2"] .hero-subtitle {
-        font-size: calc(32.5pt - 15px);
-    }
-}
-
-/* Samsung Galaxy Tab A9 portrait (670×1116): slide colours — H1 +18px, H2 +12px */
-@media (min-width: 667px) and (max-width: 673px) and (min-height: 1113px) and (max-height: 1119px) and (orientation: portrait) {
-    #hero.hero--slideshow[data-active-slide="2"] .hero-title {
-        font-size: calc(clamp(46px, calc(9.5vw + 16px), 58px) + 18px);
-    }
-
-    #hero.hero--slideshow[data-active-slide="2"] .hero-subtitle {
-        font-size: calc(clamp(31px, calc(4.8vw + 16px), 37px) + 12px);
-    }
-}
-
-/* Samsung Galaxy Tab S10 FE portrait (720×1152): slide colours — H1 +18px, H2 +10px */
-@media (min-width: 717px) and (max-width: 723px) and (min-height: 1149px) and (max-height: 1155px) and (orientation: portrait) {
-    #hero.hero--slideshow[data-active-slide="2"] .hero-title {
-        font-size: calc(clamp(46px, calc(9.5vw + 16px), 58px) + 18px);
-    }
-
-    #hero.hero--slideshow[data-active-slide="2"] .hero-subtitle {
-        font-size: calc(clamp(31px, calc(4.8vw + 16px), 37px) + 10px);
-    }
-}
-
-/* Samsung Galaxy Tab S10 FE landscape (1152×720): slide colours — H1/H2 −8px */
-@media (min-width: 1149px) and (max-width: 1155px) and (min-height: 717px) and (max-height: 723px) and (orientation: landscape) {
-    #hero.hero--slideshow[data-active-slide="2"] .hero-title {
-        font-size: calc(65pt - 8px);
-    }
-
-    #hero.hero--slideshow[data-active-slide="2"] .hero-subtitle {
-        font-size: calc(32.5pt - 8px);
-    }
-}
-
-/* Sony Xperia 1 II landscape (840×360): H1/H2 +10px (tutte e tre le slide) */
-@media (orientation: landscape) and (min-width: 837px) and (max-width: 843px) and (min-height: 357px) and (max-height: 363px) {
-    #hero.hero--slideshow .hero-title {
-        font-size: calc(clamp(36px, calc(5.2vmin + 16px), 50px) + 10px);
-    }
-
-    #hero.hero--slideshow .hero-subtitle {
-        font-size: calc(clamp(26px, calc(2.6vmin + 16px), 33px) + 10px);
-    }
-}
-
-/* Xiaomi 13 landscape (800×360): H1 +10px, H2 base (tutte e tre le slide) */
-@media (orientation: landscape) and (min-width: 797px) and (max-width: 803px) and (min-height: 357px) and (max-height: 363px) {
-    #hero.hero--slideshow .hero-title {
-        font-size: calc(clamp(36px, calc(5.2vmin + 16px), 50px) + 10px);
-    }
-
-    #hero.hero--slideshow .hero-subtitle {
-        font-size: clamp(26px, calc(2.6vmin + 16px), 33px);
-    }
-}
-
-/* Xiaomi 17 landscape (784×360): H1 +10px, H2 −3px (tutte e tre le slide) */
-@media (orientation: landscape) and (min-width: 781px) and (max-width: 787px) and (min-height: 357px) and (max-height: 363px) {
-    #hero.hero--slideshow .hero-title {
-        font-size: calc(clamp(36px, calc(5.2vmin + 16px), 50px) + 10px);
-    }
-
-    #hero.hero--slideshow .hero-subtitle {
-        font-size: calc(clamp(26px, calc(2.6vmin + 16px), 33px) - 3px);
-    }
-}
-
-/* Xiaomi 17 portrait (360×784): slide colours — H2 −4px */
-@media (orientation: portrait) and (min-width: 357px) and (max-width: 363px) and (min-height: 781px) and (max-height: 787px) {
-    #hero.hero--slideshow[data-active-slide="2"] .hero-subtitle {
-        font-size: calc(clamp(31px, calc(4.8vw + 16px), 37px) - 4px);
-    }
-}
-
-/* Xiaomi Pad 5 portrait (800×1280): slide colours — H1 +8px */
-@media (width: 800px) and (height: 1280px) and (orientation: portrait) {
-    #hero.hero--slideshow[data-active-slide="2"] .hero-title {
-        font-size: calc(clamp(56px, calc(7.5vw + 16px), 72px) + 8px);
-    }
-}
-
-/* ===== FONDAMENTA — famiglie viewport + browser legacy (non sostituisce i fix device già testati) ===== */
-
-/* Tablet landscape (769–1024px): portfolio 3 colonne */
+/* Nest Hub 1024??600: fallback viewport DevTools */
+/* Nest Hub Max 1280??800: fallback viewport DevTools */
+/* Lenovo Tab M10 landscape (960??600): H1/H2, label, CTA ed effetti su tutte le slide */
+/* Samsung Galaxy Tab A7 landscape (1000??600): H1/H2, label, CTA ed effetti su tutte le slide */
+/* OnePlus Pad landscape (933??667): H1/H2, label, CTA ed effetti su tutte le slide */
+/* Google Pixel 7 landscape (915??412): H1 +7px, H2 ???5px (tutte e tre le slide) */
+/* Samsung Galaxy S8+ landscape (740??360): H1 +5px, H2 ???3px (tutte e tre le slide) */
+/* Nest Hub landscape (1024??600): H1 +8px (tutte e tre le slide) */
+/* Apple iPhone 17e landscape (844??390): H1 +8px, H2 ???8px (tutte e tre le slide) */
+/* Huawei P40 landscape (780??360): H1 +8px, H2 ???4px (tutte e tre le slide) */
+/* Huawei P60 Pro landscape (796??360): H1 +8px, H2 ???4px (tutte e tre le slide) */
+/* Huawei Pura 90 Pro landscape (790??360): H1 +8px, H2 ???4px (tutte e tre le slide) */
+/* Lenovo Tab M10 landscape (960??600): H1 +8px, H2 ???4px (tutte e tre le slide) */
+/* OnePlus Pad landscape (933??667): H1 +8px, H2 ???4px (tutte e tre le slide) */
+/* Oppo Find X6 landscape (805??360): H1 +8px, H2 ???4px (tutte e tre le slide) */
+/* Samsung Galaxy Tab A7 landscape (1000??600): H1 +10px, H2 ???3px (tutte e tre le slide) */
+/* Sony Xperia 1 II landscape (840??360): H1/H2 +10px (tutte e tre le slide) */
+/* Xiaomi 13 landscape (800??360): H1 +10px, H2 base (tutte e tre le slide) */
+/* Xiaomi 17 landscape (784??360): H1 +10px, H2 ???3px (tutte e tre le slide) */
+/* ===== FONDAMENTA ??? famiglie viewport + browser legacy (non sostituisce i fix device gi?? testati) ===== */
+/* Tablet landscape (769???1024px): portfolio 3 colonne */
 @media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
     #portfolio .portfolio-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 }
 
-/* Altezza hero: fallback se 100dvh non è supportato (iPad/Safari vecchi) */
+/* Altezza hero: fallback se 100dvh non ?? supportato (iPad/Safari vecchi) */
 @supports not (height: 100dvh) {
     @media (min-width: 769px) {
         #hero {
@@ -7018,67 +3811,6 @@ body {
             height: 100vh;
             min-height: 100vh;
         }
-    }
-}
-
-/* Hero slideshow: tipografia e visibilità senza clamp() (Safari iOS < 13.4) */
-@supports not (font-size: clamp(1rem, 1vw, 2rem)) {
-    @media (max-width: 1023px) and (orientation: landscape) and (max-height: 520px) {
-        #hero.hero--slideshow .hero-title {
-            font-size: 2.25rem;
-        }
-
-        #hero.hero--slideshow .hero-subtitle {
-            font-size: 1.625rem;
-        }
-    }
-
-    @media (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) and (min-height: 521px) {
-        #hero.hero--slideshow .hero-title {
-            font-size: 3.25rem;
-        }
-
-        #hero.hero--slideshow .hero-subtitle {
-            font-size: 1.75rem;
-        }
-    }
-
-    @media (min-width: 768px) and (max-width: 1023px) and (orientation: portrait) {
-        #hero.hero--slideshow[data-active-slide="2"] .hero-title {
-            font-size: 3.5rem;
-        }
-
-        #hero.hero--slideshow[data-active-slide="2"] .hero-subtitle {
-            font-size: 2.25rem;
-        }
-    }
-
-    @media (max-width: 767px) and (orientation: portrait) {
-        #hero.hero--slideshow[data-active-slide="2"] .hero-title {
-            font-size: 3rem;
-        }
-
-        #hero.hero--slideshow[data-active-slide="2"] .hero-subtitle {
-            font-size: 2rem;
-        }
-    }
-
-    @media (min-width: 1024px) {
-        #hero.hero--slideshow .hero-title {
-            font-size: 52px;
-        }
-
-        #hero.hero--slideshow .hero-subtitle {
-            font-size: 26px;
-        }
-    }
-
-    /* Testi visibili anche se le animazioni non partono */
-    #hero.hero--slideshow.hero-heading--in .hero-title,
-    #hero.hero--slideshow.hero-heading--in .hero-subtitle {
-        animation: none;
-        opacity: 1;
-        transform: none;
     }
 }
 
