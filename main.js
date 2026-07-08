@@ -68,7 +68,7 @@
         });
     });
 
-    // Su mobile il click su \"Portfolio\" apre/chiude il dropdown invece di seguire il link
+    // Su mobile il click su "Portfolio" apre/chiude il dropdown invece di seguire il link
     document.querySelectorAll('.nav-item-dropdown .dropdown-trigger').forEach(function (trigger) {
         trigger.addEventListener('click', function (e) {
             if (window.innerWidth > 1024) return;
@@ -86,6 +86,42 @@
 
     syncNavScrollOffset();
     window.addEventListener('resize', syncNavScrollOffset);
+
+    // Hero portrait (mobile + tablet): blocca una sorgente unica per evitare "salti" tra modelli
+    (function lockHeroPortraitSource() {
+        var heroImg = document.querySelector('#hero .hero-bg-image');
+        if (!heroImg) return;
+
+        var baseSrc = heroImg.getAttribute('src') || '';
+        var baseSrcset = heroImg.getAttribute('srcset') || '';
+        var baseSizes = heroImg.getAttribute('sizes') || '';
+        var portraitSrc = 'assets/images/hero-1280.webp';
+        var portraitMql = window.matchMedia('(max-width: 768px) and (orientation: portrait)');
+        var tabletPortraitMql = window.matchMedia('(min-width: 769px) and (max-width: 1366px) and (orientation: portrait)');
+
+        function syncHeroSource() {
+            if (portraitMql.matches || tabletPortraitMql.matches) {
+                heroImg.setAttribute('src', portraitSrc);
+                heroImg.setAttribute('srcset', portraitSrc + ' 1280w');
+                heroImg.setAttribute('sizes', '1280px');
+                return;
+            }
+            heroImg.setAttribute('src', baseSrc);
+            heroImg.setAttribute('srcset', baseSrcset);
+            heroImg.setAttribute('sizes', baseSizes);
+        }
+
+        syncHeroSource();
+        window.addEventListener('orientationchange', syncHeroSource);
+        window.addEventListener('resize', syncHeroSource);
+        if (typeof portraitMql.addEventListener === 'function') {
+            portraitMql.addEventListener('change', syncHeroSource);
+            tabletPortraitMql.addEventListener('change', syncHeroSource);
+        } else if (typeof portraitMql.addListener === 'function') {
+            portraitMql.addListener(syncHeroSource);
+            tabletPortraitMql.addListener(syncHeroSource);
+        }
+    })();
 
     if (location.hash) {
         window.addEventListener('load', function () {
@@ -356,9 +392,19 @@
     if (!form || !conferma || !errore) return;
 
     var submitBtn = form.querySelector('.contatti-submit');
+    // Evita stato "bloccato": al caricamento pagina il form torna sempre pulito.
+    function resetContattiState() {
+        form.hidden = false;
+        conferma.hidden = true;
+        errore.hidden = true;
+    }
+
+    resetContattiState();
+    window.addEventListener('pageshow', resetContattiState);
 
     form.addEventListener('submit', function (e) {
         e.preventDefault();
+        conferma.hidden = true;
         errore.hidden = true;
         if (submitBtn) submitBtn.disabled = true;
 
@@ -371,9 +417,11 @@
                 form.hidden = true;
                 conferma.hidden = false;
             } else {
+                conferma.hidden = true;
                 errore.hidden = false;
             }
         }).catch(function () {
+            conferma.hidden = true;
             errore.hidden = false;
         }).finally(function () {
             if (submitBtn) submitBtn.disabled = false;

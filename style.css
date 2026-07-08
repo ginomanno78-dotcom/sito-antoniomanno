@@ -12,7 +12,7 @@
     --colore-sfondo: #ffffff;
     --colore-testo: #000000;
     --colore-accenti: #999999;
-    /* allineato all???altezza reale della navbar (se troppo alto resta visibile l???hero sopra #biografia) */
+    /* allineato all'altezza reale della navbar (se troppo alto resta visibile l'hero sopra #biografia) */
     --navbar-scroll-offset: 4.25rem;
 }
 
@@ -24,7 +24,7 @@ html {
 body {
     background-color: var(--colore-sfondo);
     color: var(--colore-testo);
-    font-family: 'Arri??re Garde', 'Century Gothic', sans-serif;
+    font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
 }
 
 /* ===== NAVBAR ===== */
@@ -54,7 +54,7 @@ body {
 }
 
 .navbar-logo:hover {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 .nav-menu {
@@ -66,7 +66,7 @@ body {
 .nav-menu a {
     color: #808080;
     text-decoration: none;
-    font-family: 'Arri??re Garde', 'Century Gothic', sans-serif;
+    font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
     display: inline-block;
     font-size: 18px;
     border-bottom: 2px solid transparent;
@@ -97,7 +97,7 @@ body {
     padding: 0.5rem 0;
     min-width: 140px;
     margin-top: 0;
-    /* niente gap tra trigger e menu, cos?? non \"salta\" quando scendi col mouse */
+    /* niente gap tra trigger e menu, così non \"salta\" quando scendi col mouse */
     background-color: var(--colore-sfondo);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
     opacity: 0;
@@ -177,7 +177,7 @@ body {
 }
 
 @font-face {
-    font-family: 'Arri??re Garde';
+    font-family: 'Arrière Garde';
     src: url('assets/font/arriere_garde.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
@@ -351,7 +351,7 @@ body {
     #hero .hero-title,
     #hero .hero-subtitle {
         font-weight: 300;
-        color: #ffffff;
+        color: #ffffff !important;
         text-shadow: none;
         line-height: 1;
         letter-spacing: 0.02em;
@@ -363,6 +363,7 @@ body {
     #hero .hero-title {
         font-size: 87px;
         color: #ffffff;
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.55), 0 1px 3px rgba(0, 0, 0, 0.5);
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
@@ -378,7 +379,7 @@ body {
     #hero .hero-subtitle {
         font-size: 43px;
         font-weight: 300;
-        color: #000000;
+        color: #000000 !important;
         text-transform: lowercase;
         letter-spacing: 0.02em;
         line-height: 1.05;
@@ -443,8 +444,6 @@ body {
 @media (max-width: 768px) and (orientation: portrait) {
     #hero {
         aspect-ratio: auto;
-        height: 100dvh;
-        min-height: 100dvh;
     }
 
     #hero .hero-bg-image {
@@ -452,46 +451,54 @@ body {
     }
 
     #hero .hero-heading {
-        top: calc(var(--navbar-scroll-offset) + 5px);
-        right: var(--hero-edge);
-        left: auto;
-        transform: none;
+        top: calc(50% + 1cm);
+        left: 50%;
+        right: auto;
+        transform: translate(-50%, -50%);
         max-width: calc(100vw - var(--hero-edge) * 2);
-        align-items: flex-end;
+        align-items: center;
+        text-align: center;
         gap: 0.15rem;
     }
 
     #hero .hero-title {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        gap: 0.35ch;
-        white-space: nowrap;
-        max-width: none;
-        font-size: clamp(27px, calc(11vw - 5px), 59px);
+        display: block;
+        white-space: normal;
+        max-width: 7ch;
+        font-size: clamp(35px, calc(11vw + 3px), 67px);
+        font-weight: 600;
         line-height: 1;
         color: #ffffff;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45), 0 1px 4px rgba(0, 0, 0, 0.35);
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.95), 0 1px 3px rgba(0, 0, 0, 0.5);
     }
 
     #hero .hero-title-line {
-        display: inline;
+        display: block;
     }
 
     #hero .hero-title-line:last-child {
         text-transform: none;
+        font-size: calc(1em + 2px);
     }
 
     #hero .hero-subtitle {
-        font-size: clamp(14px, calc(4.2vw - 3px), 27px);
+        font-size: clamp(19px, calc(4.2vw + 2px), 32px);
         color: #000000;
         text-shadow: none;
+        align-self: center;
+        text-align: center;
     }
 
     #hero>.cta-button {
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        top: auto;
         bottom: clamp(1rem, 5vh, 1.75rem);
         font-size: clamp(12px, 3.2vw, 16px);
         padding: 0.5rem 0.65rem;
+        background-color: transparent;
+        color: #ffffff;
     }
 }
 
@@ -499,11 +506,11 @@ body {
 @media (max-width: 374px) and (orientation: portrait),
 (min-width: 376px) and (max-width: 767px) and (orientation: portrait) {
     #hero .hero-title {
-        font-size: clamp(31px, calc(11vw - 1px), 63px);
+        font-size: clamp(39px, calc(11vw + 7px), 71px);
     }
 
     #hero .hero-subtitle {
-        font-size: clamp(18px, calc(4.2vw + 1px), 31px);
+        font-size: clamp(23px, calc(4.2vw + 6px), 36px);
         color: #000000;
         text-shadow: none;
     }
@@ -518,18 +525,8 @@ body {
     }
 }
 
-/* Hero: landscape mobile/tablet — titoli in alto a destra (non desktop ≥1024px) */
+/* Hero: landscape mobile/tablet — tipografia (box model hero → fondo file) */
 @media (orientation: landscape) and (max-width: 1023px) {
-    #hero {
-        aspect-ratio: auto;
-        height: 100dvh;
-        min-height: 100dvh;
-    }
-
-    #hero .hero-bg-image {
-        object-position: 32% 64%;
-    }
-
     #hero .hero-heading {
         top: clamp(3.25rem, 12vh, 4.75rem);
         transform: none;
@@ -541,13 +538,14 @@ body {
         max-width: min(11ch, calc(100vw - var(--hero-edge) * 2 - 1rem));
         font-size: clamp(26px, 7.5vw, 58px);
         line-height: 0.92;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.33), 0 1px 4px rgba(0, 0, 0, 0.5);
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.55), 0 1px 3px rgba(0, 0, 0, 0.5);
     }
 
     #hero .hero-subtitle {
         font-size: clamp(12px, calc(3.5vw - 3px), 29px);
-        color: #ffffff;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.33), 0 1px 4px rgba(0, 0, 0, 0.5);
+        font-weight: 400;
+        color: #000000;
+        text-shadow: none;
     }
 
     #hero>.cta-button {
@@ -557,7 +555,7 @@ body {
     }
 }
 
-/* Hero: landscape solo smartphone ??? h1 su una riga, h2 subito sotto */
+/* Hero: landscape solo smartphone — h1 su una riga, h2 subito sotto */
 @media (orientation: landscape) and (max-height: 500px) {
     #hero .hero-heading {
         top: calc(clamp(3.5rem, 16vh, 4.75rem) + 5mm);
@@ -576,6 +574,9 @@ body {
     #hero .hero-subtitle {
         margin: 0;
         font-size: clamp(13px, calc(3vw), 24px);
+        font-weight: 400;
+        color: #000000;
+        text-shadow: none;
         line-height: 1.05;
         width: max-content;
         align-self: flex-end;
@@ -589,78 +590,159 @@ body {
     }
 }
 
-/* Hero: portrait tablet (come Surface Duo + 15px su h1/h2) ??? iPad Mini/Air/Pro, Galaxy Tab S4, Surface Pro 7, ecc. */
-@media (min-width: 768px) and (max-width: 1366px) and (orientation: portrait) {
+/* Hero: portrait tablet (come Surface Duo + 15px su h1/h2) — iPad Mini/Air/Pro, Galaxy Tab S4, Surface Pro 7, ecc. */
+@media (min-width: 712px) and (max-width: 1366px) and (orientation: portrait) {
     #hero {
         aspect-ratio: auto;
-        height: 100dvh;
-        min-height: 100dvh;
     }
 
     #hero .hero-bg-image {
-        object-position: 30% 67%;
+        object-position: 30% 67% !important;
     }
 
     #hero .hero-heading {
-        top: clamp(4.5rem, 11vh, 5.5rem);
-        right: clamp(1.75rem, 5vw, 3.5rem);
-        left: auto;
-        transform: none;
-        width: max-content;
-        max-width: calc(100vw - clamp(1.75rem, 5vw, 3.5rem) * 2);
-        align-items: flex-end;
-        gap: clamp(0.15rem, 0.6vh, 0.35rem);
+        top: calc(50% + 1cm + 4mm) !important;
+        left: 50%;
+        right: auto;
+        transform: translate(-50%, -50%);
+        max-width: calc(100vw - var(--hero-edge) * 2);
+        align-items: center;
+        text-align: center;
+        gap: 0.15rem;
     }
 
     #hero .hero-title {
-        position: static;
-        top: auto;
+        display: block;
         white-space: normal;
-        max-width: 8ch;
-        font-size: clamp(51px, calc(11vw + 19px), 83px);
-        line-height: 0.92;
+        max-width: 7ch;
+        font-size: clamp(49px, calc(11vw + 17px), 81px);
+        font-weight: 600;
+        line-height: 1;
+        color: #ffffff;
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.95), 0 1px 3px rgba(0, 0, 0, 0.5);
+        align-self: center;
+        text-align: center;
+    }
+
+    #hero .hero-title-line {
+        display: block;
+    }
+
+    #hero .hero-title-line:last-child {
+        text-transform: none;
+        font-size: calc(1em + 2px);
     }
 
     #hero .hero-subtitle {
-        margin: 0;
-        font-size: clamp(36px, calc(4.2vw + 19px), 49px);
-        letter-spacing: 0.1em;
-        max-width: 100%;
-        align-self: flex-end;
+        font-size: clamp(26px, calc(4.2vw + 9px), 39px);
         color: #000000;
+        text-shadow: none;
+        align-self: center;
+        text-align: center;
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+
+    #hero .hero-title {
+        animation: none;
+        opacity: 1;
+        transform: none;
     }
 
     #hero>.cta-button {
-        right: clamp(1.75rem, 5vw, 3.5rem);
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        top: auto;
         bottom: clamp(1rem, 5vh, 1.75rem);
         font-size: clamp(19px, calc(3.2vw + 7px), 23px);
         padding: calc(0.5rem + 3.5px) calc(0.65rem + 3.5px);
+        background-color: transparent;
+        color: #ffffff;
     }
 }
 
-/* Hero: portrait iPad Mini (768px) ??? h1 su una riga, dimensioni invariate */
+/* Hero: portrait iPad Mini (768px) — h1 su una riga, dimensioni invariate */
 @media (width: 768px) and (orientation: portrait) {
     #hero .hero-title {
-        white-space: nowrap;
-        max-width: none;
+        white-space: normal;
+        max-width: 7ch;
     }
 }
 
-/* Hero: landscape iPad Mini (1024??768) ??? h1 su una riga, dimensioni invariate */
-@media (width: 1024px) and (height: 768px) and (orientation: landscape) {
-    #hero .hero-title {
-        white-space: nowrap;
-        max-width: none;
-    }
-}
-
-/* Hero: portrait Galaxy Tab S4 (712px) ??? solo h2, evita taglio a destra */
-@media (width: 712px) and (orientation: portrait) {
+/* Hero: Surface Duo portrait (540px) — allineamento come tablet portrait centrato */
+@media (width: 540px) and (orientation: portrait) {
     #hero .hero-heading {
-        right: clamp(2.25rem, 7vw, 4rem);
-        max-width: calc(100vw - clamp(2.25rem, 7vw, 4rem) * 2);
+        top: calc(50% + 1cm + 4mm) !important;
+        left: 50%;
+        right: auto;
+        transform: translate(-50%, -50%);
+        align-items: center;
+        text-align: center;
     }
 
+    #hero .hero-title {
+        font-size: clamp(42px, calc(11vw + 10px), 74px);
+        align-self: center;
+        text-align: center;
+    }
+
+    #hero .hero-subtitle {
+        font-size: clamp(26px, calc(4.2vw + 9px), 39px);
+        align-self: center;
+        text-align: center;
+    }
+
+    #hero>.cta-button {
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        top: auto;
+        bottom: clamp(1rem, 5vh, 1.75rem);
+    }
+}
+
+/* Hero: tablet portrait stretti (es. 600px) — titoli e CTA centrati */
+@media (min-width: 600px) and (max-width: 711px) and (orientation: portrait) {
+    #hero .hero-heading {
+        top: calc(50% + 1cm + 4mm) !important;
+        left: 50%;
+        right: auto;
+        transform: translate(-50%, -50%);
+        align-items: center;
+        text-align: center;
+    }
+
+    #hero .hero-title {
+        font-size: clamp(42px, calc(11vw + 10px), 74px);
+        align-self: center;
+        text-align: center;
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+
+    #hero .hero-subtitle {
+        font-size: clamp(26px, calc(4.2vw + 9px), 39px);
+        align-self: center;
+        text-align: center;
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+
+    #hero>.cta-button {
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        top: auto;
+        bottom: clamp(1rem, 5vh, 1.75rem);
+    }
+}
+
+/* Hero: portrait Galaxy Tab S4 (712px) — solo h2, evita taglio a destra */
+@media (width: 712px) and (orientation: portrait) {
     #hero .hero-subtitle {
         letter-spacing: 0.05em;
         max-width: 100%;
@@ -672,26 +754,22 @@ body {
     }
 }
 
-/* Hero: portrait iPad Pro (11" 834px / 12,9" 1024px) ??? h1+h2 pi?? in basso, h1 +5px */
+/* Hero: portrait iPad Pro (11" 834px / 12,9" 1024px) — h1+h2 più in basso, h1 +5px */
 @media (width: 834px) and (orientation: portrait),
 (width: 1024px) and (orientation: portrait) {
-    #hero .hero-heading {
-        top: calc(clamp(4.5rem, 11vh, 5.5rem) + 2cm);
-    }
-
     #hero .hero-title {
         font-size: calc(clamp(51px, calc(11vw + 19px), 83px) + 12px);
     }
 }
 
-/* Hero: landscape iPad Air ??? SOLO h1 -7px (come desktop landscape) */
+/* Hero: landscape iPad Air — SOLO h1 -7px (come desktop landscape) */
 @media (orientation: landscape) and (min-width: 1025px) and (max-width: 1210px) and (min-height: 760px) and (max-height: 880px) {
     #hero .hero-title {
         font-size: calc(clamp(32px, 11vmin, 140px) - 7px);
     }
 }
 
-/* Hero: landscape iPad Pro ??? h1 come Air (11vmin su ~820px ??? 7px ??? 83px, non 11vmin su 1024) */
+/* Hero: landscape iPad Pro — h1 come Air (11vmin su ~820px — 7px — 83px, non 11vmin su 1024) */
 @media (orientation: landscape) and (min-width: 1360px) and (max-width: 1390px) and (min-height: 950px) and (max-height: 1100px) {
     #hero .hero-title {
         font-size: clamp(32px, 8.05vmin, 83px);
@@ -708,7 +786,7 @@ body {
 /* ============================================
    SEZIONE BIOGRAFIA - Layout Grid Semplificato
    ============================================ */
-/* ===== BIOGRAFIA ??? PROPOSTA MIX ===== */
+/* ===== BIOGRAFIA — PROPOSTA MIX ===== */
 .biografia-section {
     width: 100%;
     background: #1a1a1a;
@@ -760,7 +838,7 @@ body {
 .biografia-title {
     grid-column: 2;
     grid-row: 1;
-    font-family: 'Arri??re Garde', 'Century Gothic', sans-serif;
+    font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
     font-size: clamp(2.5rem, 4vw, 3.5rem);
     font-weight: 700;
     letter-spacing: 0.2em;
@@ -831,12 +909,12 @@ body {
     background: #ffffff;
     padding-top: 2.75rem;
     padding-bottom: 3rem;
-    /* Ombra pi?? leggera: stacca dal fondo scuro senza effetto ???pannello??? troppo marcato */
+    /* Ombra più leggera: stacca dal fondo scuro senza effetto «pannello» troppo marcato */
     box-shadow: 0 6px 28px rgba(0, 0, 0, 0.12);
     overflow: hidden;
 }
 
-/* Sfondo jazz sotto la fascia riconoscimenti/collaborazioni (25% opacit??) */
+/* Sfondo jazz sotto la fascia riconoscimenti/collaborazioni (25% opacità) */
 .biografia-collaborazioni-outer::before {
     content: '';
     position: absolute;
@@ -859,7 +937,7 @@ body {
     box-sizing: border-box;
 }
 
-/* Collaborazioni di Rilievo ??? scheda pulita su fondo bianco */
+/* Collaborazioni di Rilievo — scheda pulita su fondo bianco */
 .biografia-collaborazioni {
     width: 100%;
     margin: 0;
@@ -901,7 +979,7 @@ body {
     color: #000000;
 }
 
-/* Solo il testo descrittivo: pi?? marcato ma non grassetto (le date restano 600) */
+/* Solo il testo descrittivo: più marcato ma non grassetto (le date restano 600) */
 .biografia-collaborazioni-testo {
     font-weight: 500;
     letter-spacing: 0.035em;
@@ -928,7 +1006,7 @@ body {
     color: #000000;
 }
 
-/* Citazione nel testo biografico (sotto ??La Mia Fotografia Oggi??): corsivo elegante, pi?? piccolo */
+/* Citazione nel testo biografico (sotto «La Mia Fotografia Oggià): corsivo elegante, più piccolo */
 .biografia-col .biografia-quote {
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-style: italic;
@@ -942,7 +1020,7 @@ body {
     max-width: none;
 }
 
-/* ===== BIOGRAFIA ??? TABLET + MOBILE (???1024px) ===== */
+/* ===== BIOGRAFIA — TABLET + MOBILE (≤1024px) ===== */
 @media (max-width: 1024px) {
     .biografia-collaborazioni-outer>.biografia-container {
         padding-left: 1.5rem;
@@ -960,7 +1038,7 @@ body {
         gap: 0;
     }
 
-    /* Ordine: titolo ??? foto ??? sottotitolo ??? lead */
+    /* Ordine: titolo — foto — sottotitolo — lead */
     .biografia-title {
         order: 1;
         text-align: center;
@@ -996,7 +1074,7 @@ body {
     }
 }
 
-/* ===== BIOGRAFIA ??? MOBILE (???768px) ===== */
+/* ===== BIOGRAFIA — MOBILE (≤768px) ===== */
 @media (max-width: 768px) {
     .biografia-collaborazioni-outer>.biografia-container {
         padding-left: 1.25rem;
@@ -1048,7 +1126,7 @@ body {
     }
 }
 
-/* ===== BIOGRAFIA ??? SMALL MOBILE (???480px) ===== */
+/* ===== BIOGRAFIA — SMALL MOBILE (≤480px) ===== */
 @media (max-width: 480px) {
     .biografia-collaborazioni-outer>.biografia-container {
         padding-left: 1.25rem;
@@ -1072,46 +1150,13 @@ body {
 }
 
 .portfolio-title {
-    font-family: 'Arri??re Garde', 'Century Gothic', sans-serif;
+    font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
     text-align: center;
     margin-bottom: 1.5rem;
     color: #ffffff;
     font-size: clamp(2.5rem, 4vw, 3.5rem);
     letter-spacing: 0.2em;
     width: 100%;
-}
-
-.portfolio-tabs {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.5rem 1.5rem;
-    margin-bottom: 1.75rem;
-}
-
-.portfolio-tabs [role="tab"] {
-    padding: 0.5rem 1rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-family: inherit;
-    font-size: 1rem;
-    color: var(--colore-testo);
-    border-bottom: 2px solid transparent;
-    transition: color 0.2s ease, border-color 0.2s ease;
-}
-
-.portfolio-tabs [role="tab"]:hover,
-.portfolio-tabs [role="tab"][aria-selected="true"] {
-    color: var(--colore-accenti);
-}
-
-.portfolio-tabs [role="tab"][aria-selected="true"] {
-    border-bottom-color: var(--colore-testo);
-}
-
-.portfolio-panel[hidden] {
-    display: none;
 }
 
 .portfolio-grid {
@@ -1170,7 +1215,7 @@ body {
     transform: scale(1.03);
 }
 
-/* Customs: centrata orizzontalmente, inquadratura un po??? pi?? verso il basso */
+/* Customs: centrata orizzontalmente, inquadratura un po' più verso il basso */
 #portfolio .portfolio-item--customs .portfolio-item-image {
     object-position: 50% 28%;
 }
@@ -1218,7 +1263,7 @@ body {
     line-height: 1.3;
 }
 
-/* Icona fotocamera nel badge: linea sottile come i contatti, pi?? piccola */
+/* Icona fotocamera nel badge: linea sottile come i contatti, più piccola */
 #portfolio .portfolio-item-count-icon {
     flex-shrink: 0;
     width: 0.9em;
@@ -1252,7 +1297,7 @@ body {
     color: #b0b0b0;
 }
 
-/* Solo portfolio: titolo intro +5px sulle rem base; sottotitolo (h2 visivo) in maiuscolo e ???2px rispetto alla base */
+/* Solo portfolio: titolo intro +5px sulle rem base; sottotitolo (h2 visivo) in maiuscolo e −2px rispetto alla base */
 .gallery-page:not(.gallery-page--mostra-principale) .gallery-intro .gallery-title {
     font-size: calc(2rem + 5px);
 }
@@ -1397,7 +1442,7 @@ body {
     }
 }
 
-/* Auschwitz: hover foto 11cop ??? solo zoom in avanti dell???immagine */
+/* Auschwitz: hover foto 11cop — solo zoom in avanti dell'immagine */
 .mostra-page-content--foto-testo-row>.mostra-page-foto-wrap:hover .mostra-page-foto {
     transform: scale(1.15);
 }
@@ -1492,7 +1537,7 @@ body {
 }
 
 .mostra-page-titolo-lista {
-    font-family: 'Arri??re Garde', 'Century Gothic', sans-serif;
+    font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
     font-size: 1rem;
     font-weight: 700;
     letter-spacing: 0.1em;
@@ -1689,7 +1734,7 @@ body {
 }
 
 .gallery-intro .gallery-title {
-    font-family: 'Arri??re Garde', 'Century Gothic', sans-serif;
+    font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
     font-size: 2rem;
     font-weight: 700;
     letter-spacing: 0.15em;
@@ -1699,7 +1744,7 @@ body {
 }
 
 .gallery-intro .gallery-subtitle {
-    /* Sottotitolo intro gallery: Century Gothic (il titolo .gallery-title resta con Arri??re Garde) */
+    /* Sottotitolo intro gallery: Century Gothic (il titolo .gallery-title resta con Arrière Garde) */
     font-family: 'Century Gothic', CenturyGothic, 'AppleGothic', sans-serif;
     font-size: 1.25rem;
     color: var(--colore-accenti);
@@ -1907,7 +1952,7 @@ body {
     cursor: pointer;
     transition: opacity 0.25s ease, transform 0.25s ease;
     will-change: transform;
-    /* Niente margini extra: tutto lo spazio ?? gestito da gap: 10px */
+    /* Niente margini extra: tutto lo spazio è gestito da gap: 10px */
     margin: 0;
 }
 
@@ -2663,7 +2708,7 @@ body {
 }
 
 .mostre-title {
-    font-family: 'Arri??re Garde', 'Century Gothic', sans-serif;
+    font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
     text-align: center;
     margin-bottom: 1.75rem;
     color: #ffffff;
@@ -2799,160 +2844,6 @@ body {
     margin-bottom: 0.25rem;
 }
 
-/* ===== DICONO DI ME (CAROUSEL) ===== */
-#dicono-di-me {
-    padding: 3.5rem 1.75rem;
-    font-size: 1.5rem;
-    background: #1a1a1a;
-    min-height: 100dvh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.testimonial-title {
-    font-family: 'Arri??re Garde', 'Century Gothic', sans-serif;
-    text-align: center;
-    margin-bottom: 1.75rem;
-    font-size: clamp(2.5rem, 4vw, 3.5rem);
-    letter-spacing: 0.2em;
-    color: #ffffff;
-    width: 100%;
-}
-
-.carousel {
-    position: relative;
-    max-width: 700px;
-    margin: 0 auto;
-    color: #ffffff;
-}
-
-.carousel-inner {
-    position: relative;
-    min-height: 280px;
-}
-
-.carousel-slide {
-    display: none;
-    text-align: center;
-    padding: 1.15rem 1.4rem 1.65rem;
-}
-
-.carousel-slide--active {
-    display: block;
-}
-
-.testimonial-foto {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 1.25rem;
-    border-radius: 50%;
-    display: block;
-    object-fit: cover;
-    object-position: center;
-    border: 2px solid rgba(255, 255, 255, 0.12);
-    box-sizing: border-box;
-    background-color: #3a3a3a;
-}
-
-.testimonial-nome {
-    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
-    font-weight: bold;
-    color: #ffffff;
-    margin-top: 0.5rem;
-}
-
-/* Data testimonianza (sotto il nome) */
-.testimonial-data {
-    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.7);
-    margin: 0.35rem 0 0;
-}
-
-.carousel-prev,
-.carousel-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 44px;
-    height: 44px;
-    border: none;
-    background: var(--colore-sfondo);
-    color: var(--colore-testo);
-    font-size: 1.5rem;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 4px;
-    transition: background 0.2s ease, color 0.2s ease;
-}
-
-.carousel-prev:hover,
-.carousel-next:hover {
-    background: var(--colore-accenti);
-    color: var(--colore-sfondo);
-}
-
-.carousel-prev {
-    left: -1rem;
-}
-
-.carousel-next {
-    right: -1rem;
-}
-
-.carousel-dots {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-top: 1.25rem;
-}
-
-.carousel-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    border: none;
-    background: var(--colore-accenti);
-    opacity: 0.4;
-    cursor: pointer;
-    transition: opacity 0.2s ease, background 0.2s ease;
-}
-
-.carousel-dot:hover,
-.carousel-dot--active {
-    opacity: 1;
-}
-
-.carousel-dot--active {
-    background: var(--colore-testo);
-}
-
-/* Quote style testimonial */
-.testimonial-testo {
-    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
-    font-weight: 400;
-    position: relative;
-    padding-left: 2rem;
-    border-left: 3px solid var(--colore-accenti);
-    font-style: italic;
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin: 0 0 1rem;
-}
-
-.testimonial-testo::before {
-    content: '"';
-    position: absolute;
-    left: 0;
-    top: -0.2em;
-    font-size: 3rem;
-    line-height: 1;
-    color: var(--colore-accenti);
-    opacity: 0.6;
-    font-family: Georgia, serif;
-}
-
 /* ===== CONTATTI ===== */
 #contatti {
     padding: 3.5rem 1.75rem;
@@ -2964,7 +2855,7 @@ body {
 }
 
 #contatti .contatti-title {
-    font-family: 'Arri??re Garde', 'Century Gothic', sans-serif;
+    font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
     text-align: center;
     margin-bottom: 1.75rem;
     font-size: clamp(2.5rem, 4vw, 3.5rem);
@@ -3072,6 +2963,11 @@ body {
     margin: 0;
     line-height: 1.5;
     max-width: 28rem;
+}
+
+#contatti-conferma[hidden],
+#contatti-errore[hidden] {
+    display: none !important;
 }
 
 /* Titolo "Info:" nella sezione Contatti in home */
@@ -3215,7 +3111,7 @@ body {
     user-select: none;
 }
 
-/* Solo smartphone in verticale: telefono e email su due righe (niente trattino tra i due; niente scroll orizzontale che sembra una ???linea???) */
+/* Solo smartphone in verticale: telefono e email su due righe (niente trattino tra i due; niente scroll orizzontale che sembra una «linea») */
 @media (max-width: 640px) and (orientation: portrait) {
     .footer-contatti-line {
         flex-direction: column;
@@ -3256,7 +3152,7 @@ body {
     white-space: nowrap;
 }
 
-/* Home: footer senza blocco contatti duplicato (gi?? presenti in #contatti) */
+/* Home: footer senza blocco contatti duplicato (già presenti in #contatti) */
 .site-footer--solo-copyright {
     text-align: center;
 }
@@ -3265,7 +3161,7 @@ body {
 /* Tablet e mobile (menu hamburger): barra compatta in verticale e orizzontale */
 @media (max-width: 1024px) {
 
-    /* Evita scroll a scatti: 100dvh cambia con la barra indirizzi; smooth nativo spesso ?? scattoso */
+    /* Evita scroll a scatti: 100dvh cambia con la barra indirizzi; smooth nativo spesso è scattoso */
     html {
         scroll-behavior: auto;
     }
@@ -3274,7 +3170,6 @@ body {
     .biografia-section,
     #portfolio,
     #mostre,
-    #dicono-di-me,
     #contatti {
         min-height: 100svh;
     }
@@ -3439,10 +3334,6 @@ body {
 }
 
 @media (max-width: 480px) and (orientation: portrait) {
-    .portfolio-tabs {
-        gap: 0.5rem;
-    }
-
     #portfolio .portfolio-item-header {
         min-height: 1.65rem;
         max-height: 1.65rem;
@@ -3483,7 +3374,7 @@ body {
     }
 }
 
-/* Portfolio: mobile orizzontale (aspect-ratio: pi?? affidabile di orientation in DevTools) */
+/* Portfolio: mobile orizzontale (aspect-ratio: più affidabile di orientation in DevTools) */
 @media (max-width: 1023px) and (min-aspect-ratio: 4/3) {
     #portfolio .portfolio-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -3535,7 +3426,7 @@ body {
     }
 }
 
-/* Portfolio mobile (???932px): base header fluido */
+/* Portfolio mobile (≤932px): base header fluido */
 @media (max-width: 932px) {
     #portfolio .portfolio-item-header {
         container-type: inline-size;
@@ -3561,7 +3452,7 @@ body {
     }
 }
 
-/* Portfolio mobile portrait: titoli pi?? grandi (2 colonne, pi?? spazio orizzontale) */
+/* Portfolio mobile portrait: titoli più grandi (2 colonne, più spazio orizzontale) */
 @media (max-width: 932px) and (orientation: portrait) {
     #portfolio .portfolio-item-label {
         font-size: clamp(10px, 8.5cqi, 14px);
@@ -3580,7 +3471,7 @@ body {
     }
 }
 
-/* Portfolio: cellulari landscape ??? 3 colonne + titoli dominanti sui contatori */
+/* Portfolio: cellulari landscape — 3 colonne + titoli dominanti sui contatori */
 @media (orientation: landscape) and (max-width: 932px) and (max-height: 520px) {
     #portfolio .portfolio-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -3632,7 +3523,6 @@ body {
     .biografia-section,
     #portfolio,
     #mostre,
-    #dicono-di-me,
     #contatti {
         min-height: auto;
         justify-content: flex-start;
@@ -3645,7 +3535,6 @@ body {
 
     #portfolio,
     #mostre,
-    #dicono-di-me,
     #contatti {
         padding-top: 2.75rem;
         padding-bottom: 2.75rem;
@@ -3658,7 +3547,6 @@ body {
     .biografia-section,
     #portfolio,
     #mostre,
-    #dicono-di-me,
     #contatti {
         min-height: auto !important;
         justify-content: flex-start !important;
@@ -3671,7 +3559,6 @@ body {
 
     #portfolio,
     #mostre,
-    #dicono-di-me,
     #contatti {
         padding-top: 2rem !important;
         padding-bottom: 2rem !important;
@@ -3690,7 +3577,7 @@ body {
         padding-bottom: 3.5rem;
     }
 
-    /* Mostre: titolo leggermente pi?? alto per allineamento visivo con le altre sezioni */
+    /* Mostre: titolo leggermente più alto per allineamento visivo con le altre sezioni */
     #mostre {
         padding-top: 2.5rem;
     }
@@ -3700,14 +3587,13 @@ body {
  * Titoli sezione (Biografia, Portfolio, Mostre, Dicono di me, Contatti):
  * le regole base con font-size (es. .portfolio-title) compaiono nel file DOPO i @media
  * della sezione Biografia, quindi il clamp grande vinceva sempre sulle regole responsive
- * e solo Biografia risultava pi?? piccola. Questi @media stanno in fondo, dopo tutte le basi.
+ * e solo Biografia risultava più piccola. Questi @media stanno in fondo, dopo tutte le basi.
  */
 @media (max-width: 1024px) {
 
     .biografia-title,
     .portfolio-title,
     .mostre-title,
-    .testimonial-title,
     #contatti .contatti-title {
         font-size: clamp(2rem, 5vw, 3rem);
     }
@@ -3718,7 +3604,6 @@ body {
     .biografia-title,
     .portfolio-title,
     .mostre-title,
-    .testimonial-title,
     #contatti .contatti-title {
         font-size: clamp(2rem, 8vw, 2.8rem);
     }
@@ -3729,14 +3614,13 @@ body {
     .biografia-title,
     .portfolio-title,
     .mostre-title,
-    .testimonial-title,
     #contatti .contatti-title {
         font-size: 1.8rem;
         letter-spacing: 0.15em;
     }
 }
 
-/* Portfolio mobile orizzontale: in coda al file (priorit?? cascade) ??? contatore min 13px */
+/* Portfolio mobile orizzontale: in coda al file (priorità cascade) — contatore min 13px */
 @media (max-width: 1024px) and (min-aspect-ratio: 4/3) {
 
     #portfolio .portfolio-item-count,
@@ -3745,52 +3629,37 @@ body {
     }
 }
 
-/* iPhone (tutti i modelli): regole hero ??? no Android / iPad / tablet */
-/* Desktop: CTA portfolio ??? slide 0 dx, slide 1 sx, slide 2 sopra colours */
-/* Mobile landscape iPhone/Android: jazz, portraits, colours ??? label -10px */
-/* Galaxy Tab S4 landscape: slide portraits ??? CTA e label bianche */
-/* Fallback DevTools Tab S4 landscape (viewport ~1138??711???712) */
-/* Surface Pro landscape (1368??912): slide portraits ??? CTA e label bianche */
-/* Samsung Galaxy mobile: H2 ???8px (portrait + landscape) */
-/* iPhone: H2 ???8px (portrait + landscape) */
-/* iPad Air landscape (1180??820) */
-/* iPad Pro landscape (11" 1194??834 / 12,9" 1366??1024) */
-/* Fallback DevTools iOS ??? stesse regole senza classe JS */
-/* iPad Air landscape 1180??820: fallback senza @supports (DevTools desktop + Safari) */
-/* iPad Air portrait 820??1180: fallback senza @supports (DevTools desktop + Safari) */
-/* iPad Pro 11" landscape 1194??834: fallback senza @supports */
-/* iPad Pro 12,9" landscape 1366??1024: fallback senza @supports */
-/* iPad Pro 11" portrait 834??1194: fallback senza @supports */
-/* iPad Pro 12,9" portrait 1024??1366: fallback senza @supports */
-/* Nest Hub landscape: H1/H2 tutte le slide + CTA (viewport sotto desktop, altezza > 520px) */
-/* Nest Hub 1024??600: fallback viewport DevTools */
-/* Nest Hub Max 1280??800: fallback viewport DevTools */
-/* Lenovo Tab M10 landscape (960??600): H1/H2, label, CTA ed effetti su tutte le slide */
-/* Samsung Galaxy Tab A7 landscape (1000??600): H1/H2, label, CTA ed effetti su tutte le slide */
-/* OnePlus Pad landscape (933??667): H1/H2, label, CTA ed effetti su tutte le slide */
-/* Google Pixel 7 landscape (915??412): H1 +7px, H2 ???5px (tutte e tre le slide) */
-/* Samsung Galaxy S8+ landscape (740??360): H1 +5px, H2 ???3px (tutte e tre le slide) */
-/* Nest Hub landscape (1024??600): H1 +8px (tutte e tre le slide) */
-/* Apple iPhone 17e landscape (844??390): H1 +8px, H2 ???8px (tutte e tre le slide) */
-/* Huawei P40 landscape (780??360): H1 +8px, H2 ???4px (tutte e tre le slide) */
-/* Huawei P60 Pro landscape (796??360): H1 +8px, H2 ???4px (tutte e tre le slide) */
-/* Huawei Pura 90 Pro landscape (790??360): H1 +8px, H2 ???4px (tutte e tre le slide) */
-/* Lenovo Tab M10 landscape (960??600): H1 +8px, H2 ???4px (tutte e tre le slide) */
-/* OnePlus Pad landscape (933??667): H1 +8px, H2 ???4px (tutte e tre le slide) */
-/* Oppo Find X6 landscape (805??360): H1 +8px, H2 ???4px (tutte e tre le slide) */
-/* Samsung Galaxy Tab A7 landscape (1000??600): H1 +10px, H2 ???3px (tutte e tre le slide) */
-/* Sony Xperia 1 II landscape (840??360): H1/H2 +10px (tutte e tre le slide) */
-/* Xiaomi 13 landscape (800??360): H1 +10px, H2 base (tutte e tre le slide) */
-/* Xiaomi 17 landscape (784??360): H1 +10px, H2 ???3px (tutte e tre le slide) */
-/* ===== FONDAMENTA ??? famiglie viewport + browser legacy (non sostituisce i fix device gi?? testati) ===== */
-/* Tablet landscape (769???1024px): portfolio 3 colonne */
+/* ===== FONDAMENTA — famiglie viewport + browser legacy ===== */
+/* Hero mobile: portrait stabile e landscape con pattern hero-scroll 16:9 */
+@media (orientation: landscape) and (max-width: 1023px) {
+    #hero {
+        aspect-ratio: 16 / 9;
+        height: auto;
+        min-height: 0;
+    }
+
+    #hero .hero-bg-image {
+        object-position: 30% 67%;
+    }
+}
+
+/* Tablet landscape (769≤1024px): portfolio 3 colonne */
 @media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
     #portfolio .portfolio-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 }
 
-/* Altezza hero: fallback se 100dvh non ?? supportato (iPad/Safari vecchi) */
+/* Hero tablet/iPad: regole unificate per evitare differenze tra modelli */
+@media (min-width: 769px) and (max-width: 1366px) and (orientation: landscape) {
+    #hero .hero-title {
+        font-size: clamp(52px, 6.5vw, 74px) !important;
+        white-space: nowrap;
+        max-width: none;
+    }
+}
+
+/* Altezza hero: fallback se 100dvh non è supportato (iPad/Safari vecchi) */
 @supports not (height: 100dvh) {
     @media (min-width: 769px) {
         #hero {
@@ -3841,22 +3710,16 @@ body {
         height: 135px;
         object-fit: cover;
     }
+}
 
-    .form-success {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 12px;
-        padding: 2rem;
-        text-align: center;
-        color: #ffffff;
-    }
-
-    .form-success[hidden] {
-        display: none;
-    }
-
-    .form-success p {
-        color: #ffffff !important;
+/* Mobile landscape smartphone: CTA a 5mm dal bordo inferiore, ancorato alla hero (scorre con lei) */
+@media (orientation: landscape) and (max-height: 520px) {
+    #hero > .cta-button {
+        position: absolute !important;
+        bottom: auto !important;
+        top: calc(100vh - 5mm) !important;
+        top: calc(100dvh - 5mm) !important;
+        transform: translateY(-100%) !important;
+        z-index: 2;
     }
 }
