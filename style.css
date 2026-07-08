@@ -48,9 +48,10 @@ body {
 .navbar-logo {
     color: #808080;
     text-decoration: none;
-    font-weight: bold;
-    font-family: 'Offerings', serif;
+    font-weight: 300;
+    font-family: 'Montserrat Alternates Light', sans-serif;
     font-size: 19px;
+    white-space: nowrap;
 }
 
 .navbar-logo:hover {
@@ -1215,8 +1216,8 @@ body {
     transform: scale(1.03);
 }
 
-/* Customs: centrata orizzontalmente, inquadratura un po' più verso il basso */
-#portfolio .portfolio-item--customs .portfolio-item-image {
+/* Processions: centrata orizzontalmente, inquadratura verso il basso */
+#portfolio .portfolio-item--processions .portfolio-item-image {
     object-position: 50% 28%;
 }
 
@@ -1310,6 +1311,174 @@ body {
 
 .gallery-page .gallery-intro .gallery-desc {
     color: #cccccc;
+}
+
+/* ===== PROCESSIONS HUB ===== */
+.processions-hub {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem 4rem;
+    display: grid;
+    gap: 2.5rem;
+}
+
+.processions-hub-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    height: 100%;
+}
+
+.processions-hub-card__media {
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.processions-hub-card__media img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border: 1px solid #ffffff;
+    box-sizing: border-box;
+    transition: transform 0.35s ease;
+}
+
+.processions-hub-card__media:hover img {
+    transform: scale(1.04);
+}
+
+.processions-hub-card__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+    width: 100%;
+}
+
+.processions-hub-card__title,
+.processions-hub-card__location {
+    margin: 0;
+    font-family: 'Century Gothic', CenturyGothic, 'AppleGothic', sans-serif;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1.35;
+}
+
+.processions-hub-card__title {
+    font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+    font-weight: 400;
+    min-height: calc(2 * 1.35em);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+/* Titolo su una riga: min-height a 2 righe compensa lo spazio come Cascano */
+.processions-hub-card__title--one-row {
+    justify-content: flex-start;
+}
+
+.processions-hub-card__title--two-rows {
+    justify-content: flex-start;
+}
+
+.processions-hub-card__title-line {
+    display: block;
+}
+
+/* Desktop: titoli su una riga nelle colonne laterali */
+@media (min-width: 1024px) {
+    .processions-hub-card__title {
+        font-size: clamp(0.78rem, 0.95vw, 0.92rem);
+    }
+
+    .processions-hub-card__title--one-row .processions-hub-card__title-line {
+        white-space: nowrap;
+    }
+}
+
+.processions-hub-card__location {
+    font-size: clamp(1rem, 2.8vw, 1.2rem);
+    font-weight: 700;
+}
+
+.processions-hub-card__cta {
+    display: inline-block;
+    margin-top: auto;
+    padding: 0.55rem 1rem;
+    font-family: 'Montserrat Alternates Bold', sans-serif;
+    font-size: clamp(11px, 2vw, 14px);
+    font-weight: 700;
+    color: #000000;
+    background-color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    text-transform: lowercase;
+    letter-spacing: 0.12em;
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+    transition: background 0.25s ease, color 0.25s ease;
+}
+
+.processions-hub-card__cta:hover {
+    background: #333333;
+    color: #ffffff;
+}
+
+/* Tablet: layout a riga come mockup */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .processions-hub-card {
+        flex-direction: row;
+        align-items: center;
+        text-align: left;
+        gap: 1.5rem;
+    }
+
+    .processions-hub-card__media {
+        width: min(42vw, 280px);
+        max-width: none;
+    }
+
+    .processions-hub-card__body {
+        align-items: flex-start;
+        flex: 1;
+    }
+}
+
+/* Desktop: tre colonne come mockup */
+@media (min-width: 1024px) {
+    .processions-hub {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.75rem;
+    }
+
+    .processions-hub-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .processions-hub-card__media {
+        width: 100%;
+        max-width: none;
+    }
+
+    .processions-hub-card__body {
+        align-items: center;
+    }
+}
+
+/* Sotto-pagine processions: solo titolo in intro */
+.gallery-page--processions-sub .gallery-intro {
+    margin-bottom: 2rem;
 }
 
 /* Miniature: bordo bianco 1px in tutte le photogallery */
@@ -3714,7 +3883,7 @@ body {
 
 /* Mobile landscape smartphone: CTA a 5mm dal bordo inferiore, ancorato alla hero (scorre con lei) */
 @media (orientation: landscape) and (max-height: 520px) {
-    #hero > .cta-button {
+    #hero>.cta-button {
         position: absolute !important;
         bottom: auto !important;
         top: calc(100vh - 5mm) !important;
