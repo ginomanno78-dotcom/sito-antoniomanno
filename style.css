@@ -378,8 +378,9 @@ body {
     }
 
     #hero .hero-subtitle {
+        font-family: 'Montserrat Alternates Light', sans-serif;
         font-size: 43px;
-        font-weight: 300;
+        font-weight: 700;
         color: #000000 !important;
         text-transform: lowercase;
         letter-spacing: 0.02em;
@@ -581,6 +582,24 @@ body {
         line-height: 1.05;
         width: max-content;
         align-self: flex-end;
+    }
+}
+
+/* Telefono mobile: h2 hero «photography» in grassetto (portrait e landscape) */
+@media (max-width: 768px) and (orientation: portrait) {
+    #hero .hero-subtitle {
+        font-family: 'Montserrat Alternates Light', sans-serif;
+        font-weight: 700;
+        margin-top: 0.4rem;
+        -webkit-text-stroke: 0.5px #000000;
+        paint-order: stroke fill;
+    }
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+    #hero .hero-subtitle {
+        font-family: 'Montserrat Alternates Light', sans-serif;
+        font-weight: 700;
     }
 }
 
@@ -1345,7 +1364,7 @@ body {
     height: auto;
     aspect-ratio: 4 / 3;
     object-fit: cover;
-    border: 1px solid #ffffff;
+    border: 5px solid #ffffff;
     box-sizing: border-box;
     transition: transform 0.35s ease;
 }
