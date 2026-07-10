@@ -60,37 +60,7 @@
                 l'essenza degli spazi urbani e la loro continua trasformazione.</p>
         </section>
 
-        <div class="gallery-city-wrap">
-            <div class="masonry-gallery gallery-city" id="galleryCity">
-                <div class="masonry-item" data-index="0"><img src="assets/images/photo-city/thumbs/01.webp" alt="Urban 1"
-                        data-full="assets/images/photo-city/full/01.webp" loading="lazy"></div>
-                <div class="masonry-item" data-index="1"><img src="assets/images/photo-city/thumbs/02.webp" alt="Urban 2"
-                        data-full="assets/images/photo-city/full/02.webp" loading="lazy"></div>
-                <div class="masonry-item" data-index="2"><img src="assets/images/photo-city/thumbs/03.webp" alt="Urban 3"
-                        data-full="assets/images/photo-city/full/03.webp" loading="lazy"></div>
-                <div class="masonry-item" data-index="3"><img src="assets/images/photo-city/thumbs/04.webp" alt="Urban 4"
-                        data-full="assets/images/photo-city/full/04.webp" loading="lazy"></div>
-                <div class="masonry-item" data-index="4"><img src="assets/images/photo-city/thumbs/05.webp" alt="Urban 5"
-                        data-full="assets/images/photo-city/full/05.webp" loading="lazy"></div>
-                <div class="masonry-item" data-index="5"><img src="assets/images/photo-city/thumbs/06.webp" alt="Urban 6"
-                        data-full="assets/images/photo-city/full/06.webp" loading="lazy"></div>
-                <div class="masonry-item" data-index="6"><img src="assets/images/photo-city/thumbs/07.jpg" alt="Urban 7"
-                        data-full="assets/images/photo-city/full/07.jpg" loading="lazy"></div>
-            </div>
-        </div>
     </main>
-
-    <div class="lightbox-city" id="lightboxCity" aria-hidden="true">
-        <div class="lightbox-city__backdrop" id="lightboxCityBackdrop"></div>
-        <button type="button" class="lightbox-city__close" id="lightboxCityClose" aria-label="Chiudi">&times;</button>
-        <div class="lightbox-city__content">
-            <button type="button" class="lightbox-city__prev" id="lightboxCityPrev"
-                aria-label="Foto precedente">&larr;</button>
-            <img src="" alt="" class="lightbox-city__img" id="lightboxCityImg">
-            <button type="button" class="lightbox-city__next" id="lightboxCityNext"
-                aria-label="Foto successiva">&rarr;</button>
-        </div>
-    </div>
 
     <!-- Piedipagina -->
     <footer class="site-footer">
@@ -125,71 +95,6 @@
     </footer>
 
     <script src="main.js"></script>
-    <script>
-        (function () {
-            var gallery = document.getElementById('galleryCity');
-            var lightbox = document.getElementById('lightboxCity');
-            var lightboxImg = document.getElementById('lightboxCityImg');
-            var lightboxClose = document.getElementById('lightboxCityClose');
-            var lightboxBackdrop = document.getElementById('lightboxCityBackdrop');
-            var btnPrev = document.getElementById('lightboxCityPrev');
-            var btnNext = document.getElementById('lightboxCityNext');
-            if (!gallery || !lightbox || !lightboxImg) return;
-            var items = gallery.querySelectorAll('.masonry-item');
-            var sources = [];
-            items.forEach(function (item) {
-                var img = item.querySelector('img');
-                if (!img) return;
-                var full = img.getAttribute('data-full');
-                if (!full) full = img.src;
-                sources.push({ src: full, alt: img.alt || 'Urban' });
-            });
-            var currentIndex = 0;
-            function openLightbox(index) {
-                currentIndex = (index + sources.length) % sources.length;
-                lightboxImg.src = sources[currentIndex].src;
-                lightboxImg.alt = sources[currentIndex].alt;
-                lightbox.classList.add('is-open');
-                lightbox.setAttribute('aria-hidden', 'false');
-                document.body.style.overflow = 'hidden';
-            }
-            function closeLightbox() {
-                lightbox.classList.remove('is-open');
-                lightbox.setAttribute('aria-hidden', 'true');
-                document.body.style.overflow = '';
-            }
-            function showPrev() {
-                if (sources.length === 0) return;
-                currentIndex = (currentIndex - 1 + sources.length) % sources.length;
-                lightboxImg.src = sources[currentIndex].src;
-                lightboxImg.alt = sources[currentIndex].alt;
-            }
-            function showNext() {
-                if (sources.length === 0) return;
-                currentIndex = (currentIndex + 1) % sources.length;
-                lightboxImg.src = sources[currentIndex].src;
-                lightboxImg.alt = sources[currentIndex].alt;
-            }
-            items.forEach(function (item) {
-                var img = item.querySelector('img');
-                if (!img) return;
-                item.style.cursor = 'pointer';
-                item.addEventListener('click', function () {
-                    var i = parseInt(item.getAttribute('data-index'), 10);
-                    if (!isNaN(i)) openLightbox(i);
-                });
-            });
-            if (lightboxClose) lightboxClose.addEventListener('click', function (e) { e.stopPropagation(); closeLightbox(); });
-            if (btnPrev) btnPrev.addEventListener('click', function (e) { e.stopPropagation(); showPrev(); });
-            if (btnNext) btnNext.addEventListener('click', function (e) { e.stopPropagation(); showNext(); });
-            document.addEventListener('keydown', function (e) {
-                if (!lightbox.classList.contains('is-open')) return;
-                if (e.key === 'Escape') closeLightbox();
-                else if (e.key === 'ArrowLeft') { e.preventDefault(); showPrev(); }
-                else if (e.key === 'ArrowRight') { e.preventDefault(); showNext(); }
-            });
-        })();
-    </script>
 </body>
 
 </html>
