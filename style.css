@@ -2726,6 +2726,267 @@ body {
     }
 }
 
+/* Portfolio lightbox: mobile portrait — frecce sotto il bordo bianco della foto full */
+@media (max-width: 768px) and (orientation: portrait) {
+
+    .lightbox-jazz:not(#lightboxMostraStorie) .lightbox-jazz__content,
+    .lightbox-portraits .lightbox-portraits__content,
+    .lightbox-landscapes .lightbox-landscapes__content,
+    .lightbox-auschwitz .lightbox-auschwitz__content,
+    .lightbox-street .lightbox-street__content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        column-gap: 1rem;
+        row-gap: 0.5rem;
+        align-items: center;
+        justify-items: center;
+    }
+
+    .lightbox-jazz:not(#lightboxMostraStorie) .lightbox-jazz__img,
+    .lightbox-portraits .lightbox-portraits__img,
+    .lightbox-landscapes .lightbox-landscapes__img,
+    .lightbox-auschwitz .lightbox-auschwitz__img,
+    .lightbox-street .lightbox-street__img {
+        grid-column: 1 / -1;
+        grid-row: 1;
+    }
+
+    .lightbox-jazz:not(#lightboxMostraStorie) .lightbox-jazz__prev,
+    .lightbox-jazz:not(#lightboxMostraStorie) .lightbox-jazz__next,
+    .lightbox-portraits .lightbox-portraits__prev,
+    .lightbox-portraits .lightbox-portraits__next,
+    .lightbox-landscapes .lightbox-landscapes__prev,
+    .lightbox-landscapes .lightbox-landscapes__next,
+    .lightbox-auschwitz .lightbox-auschwitz__prev,
+    .lightbox-auschwitz .lightbox-auschwitz__next,
+    .lightbox-street .lightbox-street__prev,
+    .lightbox-street .lightbox-street__next {
+        position: static;
+        top: auto;
+        left: auto;
+        right: auto;
+        transform: none;
+    }
+
+    .lightbox-jazz:not(#lightboxMostraStorie) .lightbox-jazz__prev,
+    .lightbox-portraits .lightbox-portraits__prev,
+    .lightbox-landscapes .lightbox-landscapes__prev,
+    .lightbox-auschwitz .lightbox-auschwitz__prev,
+    .lightbox-street .lightbox-street__prev {
+        grid-column: 1;
+        grid-row: 2;
+        justify-self: end;
+    }
+
+    .lightbox-jazz:not(#lightboxMostraStorie) .lightbox-jazz__next,
+    .lightbox-portraits .lightbox-portraits__next,
+    .lightbox-landscapes .lightbox-landscapes__next,
+    .lightbox-auschwitz .lightbox-auschwitz__next,
+    .lightbox-street .lightbox-street__next {
+        grid-column: 2;
+        grid-row: 2;
+        justify-self: start;
+    }
+}
+
+/* Portfolio lightbox: tablet e iPad portrait — frecce sotto il bordo bianco della foto full */
+@media (min-width: 769px) and (max-width: 1366px) and (orientation: portrait) {
+
+    .lightbox-jazz:not(#lightboxMostraStorie) .lightbox-jazz__content,
+    .lightbox-portraits .lightbox-portraits__content,
+    .lightbox-landscapes .lightbox-landscapes__content,
+    .lightbox-auschwitz .lightbox-auschwitz__content,
+    .lightbox-street .lightbox-street__content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        column-gap: 1rem;
+        row-gap: 0.5rem;
+        align-items: center;
+        justify-items: center;
+    }
+
+    .lightbox-jazz:not(#lightboxMostraStorie) .lightbox-jazz__img,
+    .lightbox-portraits .lightbox-portraits__img,
+    .lightbox-landscapes .lightbox-landscapes__img,
+    .lightbox-auschwitz .lightbox-auschwitz__img,
+    .lightbox-street .lightbox-street__img {
+        grid-column: 1 / -1;
+        grid-row: 1;
+    }
+
+    .lightbox-jazz:not(#lightboxMostraStorie) .lightbox-jazz__prev,
+    .lightbox-jazz:not(#lightboxMostraStorie) .lightbox-jazz__next,
+    .lightbox-portraits .lightbox-portraits__prev,
+    .lightbox-portraits .lightbox-portraits__next,
+    .lightbox-landscapes .lightbox-landscapes__prev,
+    .lightbox-landscapes .lightbox-landscapes__next,
+    .lightbox-auschwitz .lightbox-auschwitz__prev,
+    .lightbox-auschwitz .lightbox-auschwitz__next,
+    .lightbox-street .lightbox-street__prev,
+    .lightbox-street .lightbox-street__next {
+        position: static;
+        top: auto;
+        left: auto;
+        right: auto;
+        transform: none;
+    }
+
+    .lightbox-jazz:not(#lightboxMostraStorie) .lightbox-jazz__prev,
+    .lightbox-portraits .lightbox-portraits__prev,
+    .lightbox-landscapes .lightbox-landscapes__prev,
+    .lightbox-auschwitz .lightbox-auschwitz__prev,
+    .lightbox-street .lightbox-street__prev {
+        grid-column: 1;
+        grid-row: 2;
+        justify-self: end;
+    }
+
+    .lightbox-jazz:not(#lightboxMostraStorie) .lightbox-jazz__next,
+    .lightbox-portraits .lightbox-portraits__next,
+    .lightbox-landscapes .lightbox-landscapes__next,
+    .lightbox-auschwitz .lightbox-auschwitz__next,
+    .lightbox-street .lightbox-street__next {
+        grid-column: 2;
+        grid-row: 2;
+        justify-self: start;
+    }
+}
+
+/* Portfolio lightbox: tablet e iPad landscape — frecce ai lati, appena fuori il bordo bianco */
+@media (min-width: 769px) and (max-width: 1366px) and (orientation: landscape) {
+
+    .lightbox-jazz:not(#lightboxMostraStorie) .lightbox-jazz__content,
+    .lightbox-portraits .lightbox-portraits__content,
+    .lightbox-landscapes .lightbox-landscapes__content,
+    .lightbox-auschwitz .lightbox-auschwitz__content,
+    .lightbox-street .lightbox-street__content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+    }
+
+    .lightbox-jazz:not(#lightboxMostraStorie) .lightbox-jazz__prev,
+    .lightbox-jazz:not(#lightboxMostraStorie) .lightbox-jazz__next,
+    .lightbox-portraits .lightbox-portraits__prev,
+    .lightbox-portraits .lightbox-portraits__next,
+    .lightbox-landscapes .lightbox-landscapes__prev,
+    .lightbox-landscapes .lightbox-landscapes__next,
+    .lightbox-auschwitz .lightbox-auschwitz__prev,
+    .lightbox-auschwitz .lightbox-auschwitz__next,
+    .lightbox-street .lightbox-street__prev,
+    .lightbox-street .lightbox-street__next {
+        position: static;
+        top: auto;
+        left: auto;
+        right: auto;
+        transform: none;
+        flex-shrink: 0;
+    }
+}
+
+/* Mostra Storie lightbox: mobile portrait — frecce sotto il bordo bianco della foto full */
+@media (max-width: 768px) and (orientation: portrait) {
+    #lightboxMostraStorie .lightbox-jazz__content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        column-gap: 1rem;
+        row-gap: 0.5rem;
+        align-items: center;
+        justify-items: center;
+    }
+
+    #lightboxMostraStorie .lightbox-jazz__img {
+        grid-column: 1 / -1;
+        grid-row: 1;
+    }
+
+    #lightboxMostraStorie .lightbox-jazz__prev,
+    #lightboxMostraStorie .lightbox-jazz__next {
+        position: static;
+        top: auto;
+        left: auto;
+        right: auto;
+        transform: none;
+    }
+
+    #lightboxMostraStorie .lightbox-jazz__prev {
+        grid-column: 1;
+        grid-row: 2;
+        justify-self: end;
+    }
+
+    #lightboxMostraStorie .lightbox-jazz__next {
+        grid-column: 2;
+        grid-row: 2;
+        justify-self: start;
+    }
+}
+
+/* Mostra Storie lightbox: tablet e iPad portrait — frecce sotto il bordo bianco della foto full */
+@media (min-width: 769px) and (max-width: 1366px) and (orientation: portrait) {
+    #lightboxMostraStorie .lightbox-jazz__content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        column-gap: 1rem;
+        row-gap: 0.5rem;
+        align-items: center;
+        justify-items: center;
+    }
+
+    #lightboxMostraStorie .lightbox-jazz__img {
+        grid-column: 1 / -1;
+        grid-row: 1;
+    }
+
+    #lightboxMostraStorie .lightbox-jazz__prev,
+    #lightboxMostraStorie .lightbox-jazz__next {
+        position: static;
+        top: auto;
+        left: auto;
+        right: auto;
+        transform: none;
+    }
+
+    #lightboxMostraStorie .lightbox-jazz__prev {
+        grid-column: 1;
+        grid-row: 2;
+        justify-self: end;
+    }
+
+    #lightboxMostraStorie .lightbox-jazz__next {
+        grid-column: 2;
+        grid-row: 2;
+        justify-self: start;
+    }
+}
+
+/* Mostra Storie lightbox: tablet e iPad landscape — frecce ai lati, appena fuori il bordo bianco */
+@media (min-width: 769px) and (max-width: 1366px) and (orientation: landscape) {
+    #lightboxMostraStorie .lightbox-jazz__content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+    }
+
+    #lightboxMostraStorie .lightbox-jazz__prev,
+    #lightboxMostraStorie .lightbox-jazz__next {
+        position: static;
+        top: auto;
+        left: auto;
+        right: auto;
+        transform: none;
+        flex-shrink: 0;
+    }
+}
+
 /* Lightbox Landscapes / Weddings / City / Monuments: stessa struttura People/Jazz (bordo 10px) */
 .lightbox-landscapes,
 .lightbox-weddings,
