@@ -2888,6 +2888,41 @@ body {
     }
 }
 
+/* Portfolio lightbox: mobile landscape — frecce ai lati, appena fuori il bordo bianco */
+@media (max-width: 768px) and (orientation: landscape) {
+
+    .lightbox-jazz:not(#lightboxMostraStorie) .lightbox-jazz__content,
+    .lightbox-portraits .lightbox-portraits__content,
+    .lightbox-landscapes .lightbox-landscapes__content,
+    .lightbox-auschwitz .lightbox-auschwitz__content,
+    .lightbox-street .lightbox-street__content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+    }
+
+    .lightbox-jazz:not(#lightboxMostraStorie) .lightbox-jazz__prev,
+    .lightbox-jazz:not(#lightboxMostraStorie) .lightbox-jazz__next,
+    .lightbox-portraits .lightbox-portraits__prev,
+    .lightbox-portraits .lightbox-portraits__next,
+    .lightbox-landscapes .lightbox-landscapes__prev,
+    .lightbox-landscapes .lightbox-landscapes__next,
+    .lightbox-auschwitz .lightbox-auschwitz__prev,
+    .lightbox-auschwitz .lightbox-auschwitz__next,
+    .lightbox-street .lightbox-street__prev,
+    .lightbox-street .lightbox-street__next {
+        position: static;
+        top: auto;
+        left: auto;
+        right: auto;
+        transform: none;
+        flex-shrink: 0;
+        z-index: auto;
+    }
+}
+
 /* Mostra Storie lightbox: mobile portrait — frecce sotto il bordo bianco della foto full */
 @media (max-width: 768px) and (orientation: portrait) {
     #lightboxMostraStorie .lightbox-jazz__content {
@@ -2968,6 +3003,27 @@ body {
 
 /* Mostra Storie lightbox: tablet e iPad landscape — frecce ai lati, appena fuori il bordo bianco */
 @media (min-width: 769px) and (max-width: 1366px) and (orientation: landscape) {
+    #lightboxMostraStorie .lightbox-jazz__content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+    }
+
+    #lightboxMostraStorie .lightbox-jazz__prev,
+    #lightboxMostraStorie .lightbox-jazz__next {
+        position: static;
+        top: auto;
+        left: auto;
+        right: auto;
+        transform: none;
+        flex-shrink: 0;
+    }
+}
+
+/* Mostra Storie lightbox: mobile landscape — frecce ai lati, appena fuori il bordo bianco */
+@media (max-width: 768px) and (orientation: landscape) {
     #lightboxMostraStorie .lightbox-jazz__content {
         display: flex;
         flex-direction: row;
