@@ -96,7 +96,7 @@ body {
     left: 0;
     list-style: none;
     padding: 0.5rem 0;
-    min-width: 140px;
+    min-width: 175px;
     margin-top: 0;
     /* niente gap tra trigger e menu, così non \"salta\" quando scendi col mouse */
     background-color: var(--colore-sfondo);
@@ -127,6 +127,7 @@ body {
     color: #000000;
     border-bottom: none;
     padding-bottom: 0;
+    white-space: nowrap;
     transition: color 0.2s ease;
 }
 
@@ -3659,7 +3660,21 @@ body {
 
 /* Home: footer senza blocco contatti duplicato (già presenti in #contatti) */
 .site-footer--solo-copyright {
+    position: relative;
     text-align: center;
+    padding-bottom: 1.75rem;
+}
+
+.footer-visits {
+    position: absolute;
+    left: 1rem;
+    bottom: 0.45rem;
+    margin: 0;
+    font-family: 'Century Gothic', CenturyGothic, 'AppleGothic', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.42);
+    letter-spacing: 0.03em;
 }
 
 /* ===== RESPONSIVE ===== */
