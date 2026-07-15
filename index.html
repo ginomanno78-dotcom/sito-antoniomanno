@@ -425,9 +425,9 @@
             var el = document.getElementById('footerVisits');
             if (!el) return;
 
-            var namespace = 'antoniomanno.it';
+            var keyPrefix = 'antoniomanno-it-home';
             var sessionKey = 'antoniomanno_home_visit';
-            var apiBase = 'https://api.countapi.xyz';
+            var apiBase = 'https://countapi.mileshilliard.com/api/v1';
             var alreadyCounted = sessionStorage.getItem(sessionKey);
             var action = alreadyCounted ? 'get' : 'hit';
 
@@ -435,7 +435,7 @@
                 var d = new Date();
                 var month = String(d.getMonth() + 1).padStart(2, '0');
                 var day = String(d.getDate()).padStart(2, '0');
-                return 'home-' + d.getFullYear() + '-' + month + '-' + day;
+                return keyPrefix + '-' + d.getFullYear() + '-' + month + '-' + day;
             }
 
             function formatCount(value) {
@@ -443,20 +443,23 @@
             }
 
             function fetchCount(key) {
-                return fetch(apiBase + '/' + action + '/' + namespace + '/' + key)
-                    .then(function (response) { return response.json(); });
+                return fetch(apiBase + '/' + action + '/' + key)
+                    .then(function (response) { return response.json(); })
+                    .then(function (data) {
+                        if (data.error || typeof data.value !== 'number') {
+                            throw new Error('Risposta contatore non valida');
+                        }
+                        return data;
+                    });
             }
 
             Promise.all([
-                fetchCount('home-total'),
+                fetchCount(keyPrefix + '-total'),
                 fetchCount(todayKey())
             ])
                 .then(function (results) {
                     var total = results[0].value;
                     var today = results[1].value;
-                    if (typeof total !== 'number' || typeof today !== 'number') {
-                        throw new Error('Risposta contatore non valida');
-                    }
                     el.textContent = 'Oggi: ' + formatCount(today) + ' · Totali: ' + formatCount(total);
                     if (!alreadyCounted) {
                         sessionStorage.setItem(sessionKey, '1');
