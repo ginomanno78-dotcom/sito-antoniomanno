@@ -3416,6 +3416,45 @@ body {
     min-height: 120px;
 }
 
+/* Checkbox consenso privacy (GDPR) */
+.contatti-privacy {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    margin: 0.25rem 0 1.35rem;
+}
+
+.contatti-form .contatti-privacy input[type="checkbox"] {
+    width: auto;
+    min-width: 1.1rem;
+    height: 1.1rem;
+    margin: 0.2rem 0 0;
+    padding: 0;
+    flex-shrink: 0;
+    accent-color: #ffffff;
+    cursor: pointer;
+}
+
+.contatti-privacy label {
+    display: inline;
+    margin: 0;
+    font-weight: 400;
+    font-size: 0.82rem;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.88);
+    cursor: pointer;
+}
+
+.contatti-privacy a {
+    color: #ffffff;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.contatti-privacy a:hover {
+    color: rgba(255, 255, 255, 0.75);
+}
+
 .contatti-submit {
     display: block;
     width: 100%;
@@ -3656,6 +3695,97 @@ body {
     width: 100%;
     align-self: center;
     white-space: nowrap;
+}
+
+.footer-privacy-link {
+    margin: 0.35rem 0 0;
+    text-align: center;
+    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
+    font-size: 0.75rem;
+}
+
+.footer-privacy-link a {
+    color: rgba(255, 255, 255, 0.65);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.footer-privacy-link a:hover {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Pagina Privacy Policy */
+.privacy-page {
+    width: 100%;
+    min-height: 70vh;
+    padding: 6.5rem 1.25rem 3rem;
+    background-color: #1a1a1a;
+}
+
+/* Sfondo scuro come le altre pagine del sito (il body di default è bianco) */
+body:has(.privacy-page) {
+    background-color: #1a1a1a;
+}
+
+.privacy-content {
+    max-width: 760px;
+    margin: 0 auto;
+    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.65;
+}
+
+.privacy-title {
+    font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    letter-spacing: 0.12em;
+    color: #ffffff;
+    margin: 0 0 0.5rem;
+}
+
+.privacy-updated {
+    margin: 0 0 1.75rem;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.privacy-content h2 {
+    margin: 1.75rem 0 0.65rem;
+    font-size: 1.15rem;
+    color: #ffffff;
+}
+
+.privacy-content p,
+.privacy-content ul {
+    margin: 0 0 0.9rem;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.privacy-content ul {
+    padding-left: 1.25rem;
+}
+
+.privacy-content li {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.privacy-content a {
+    color: #ffffff;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.privacy-content a:hover {
+    opacity: 0.8;
+}
+
+.privacy-back {
+    margin-top: 2.5rem;
+}
+
+body:has(.privacy-page) .site-footer {
+    background-color: #1a1a1a;
 }
 
 /* Home: footer senza blocco contatti duplicato (già presenti in #contatti) */
