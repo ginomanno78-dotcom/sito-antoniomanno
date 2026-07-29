@@ -384,6 +384,13 @@
     }
 })();
 
+/* Anno copyright footer: calcolato dal browser, sempre aggiornato senza intervento manuale */
+(function () {
+    var yearEl = document.getElementById('footerYear');
+    if (!yearEl) return;
+    yearEl.textContent = new Date().getFullYear();
+})();
+
 /* Form contatti: invio fetch + conferma o errore */
 (function () {
     var form = document.querySelector('.contatti-form');
