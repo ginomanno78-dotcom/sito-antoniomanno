@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/privacy.html",
+      "destination": "https://www.iubenda.com/privacy-policy/75255023",
+      "statusCode": 301
+    }
+  ]
+}
