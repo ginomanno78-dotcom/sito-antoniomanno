@@ -827,19 +827,19 @@ body {
     width: 100%;
 }
 
-/* Hero: foto a sinistra, titolo/sottotitolo/lead a destra (desktop) */
+/* Hero: titolo/sottotitolo/lead a sinistra, foto a destra (desktop) */
 .biografia-hero {
     display: grid;
-    grid-template-columns: 600px 1fr;
+    grid-template-columns: 1fr 600px;
     grid-template-rows: auto auto auto;
     gap: 0 3rem;
     align-items: end;
     margin-bottom: 3.5rem;
 }
 
-/* Foto occupa tutte le righe a sinistra */
+/* Foto occupa tutte le righe a destra */
 .biografia-foto {
-    grid-column: 1;
+    grid-column: 2;
     grid-row: 1 / -1;
     align-self: end;
 }
@@ -855,9 +855,9 @@ body {
     display: block;
 }
 
-/* Titolo, sottotitolo, lead a destra */
+/* Titolo, sottotitolo, lead a sinistra */
 .biografia-title {
-    grid-column: 2;
+    grid-column: 1;
     grid-row: 1;
     font-family: 'Arrière Garde', 'Century Gothic', sans-serif;
     font-size: clamp(2.5rem, 4vw, 3.5rem);
@@ -870,7 +870,7 @@ body {
 }
 
 .biografia-subtitle {
-    grid-column: 2;
+    grid-column: 1;
     grid-row: 2;
     font-family: 'Century Gothic', 'AppleGothic', sans-serif;
     font-weight: 700;
@@ -881,7 +881,7 @@ body {
 }
 
 .biografia-lead {
-    grid-column: 2;
+    grid-column: 1;
     grid-row: 3;
     font-family: 'Century Gothic', 'AppleGothic', sans-serif;
     font-size: 1rem;
@@ -3803,7 +3803,8 @@ body:has(.privacy-page) .site-footer {
     font-family: 'Century Gothic', CenturyGothic, 'AppleGothic', sans-serif;
     font-size: 0.68rem;
     font-weight: 400;
-    color: rgba(255, 255, 255, 0.42);
+    /* Contrasto WCAG: testo chiaro su footer scuro (prima 0.42 era troppo basso) */
+    color: rgba(255, 255, 255, 0.78);
     letter-spacing: 0.03em;
 }
 
@@ -4372,4 +4373,118 @@ body:has(.privacy-page) .site-footer {
         transform: translateY(-100%) !important;
         z-index: 2;
     }
+}
+/* ===== NOVITÀ FOTO (hero CTA, badge portfolio, gallery) ===== */
+.cta-button {
+    position: relative;
+}
+
+/* Larghezza fissa: lo sizer invisibile impone la misura del testo più lungo */
+.cta-button--has-novita {
+    display: inline-grid;
+    justify-items: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.cta-button__label,
+.cta-button__sizer {
+    grid-area: 1 / 1;
+    white-space: nowrap;
+}
+
+.cta-button__sizer {
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.cta-button__label {
+    display: inline-block;
+}
+
+/* Rimbalzo sul pulsante intero (desktop / non centrato con translateX) */
+.cta-button--bounce {
+    animation: cta-novita-bounce-y 2.2s ease-in-out infinite;
+}
+
+@keyframes cta-novita-bounce-y {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+/*
+ * Mobile + tablet portrait: il CTA è centrato con left:50% + translateX(-50%).
+ * Il rimbalzo deve preservare il -50% sull'asse X, altrimenti il bottone va a destra.
+ */
+@media (max-width: 768px) and (orientation: portrait),
+(min-width: 712px) and (max-width: 1366px) and (orientation: portrait) {
+    #hero > .cta-button.cta-button--bounce {
+        animation-name: cta-novita-bounce-centered;
+    }
+}
+
+@keyframes cta-novita-bounce-centered {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, -12px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cta-button--bounce {
+        animation: none;
+    }
+}
+
+#portfolio .portfolio-item-img {
+    position: relative;
+}
+
+.portfolio-novita-badge {
+    position: absolute;
+    top: 0.45rem;
+    left: 0.45rem;
+    z-index: 2;
+    padding: 0.28rem 0.55rem;
+    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: #ffffff;
+    background: #e11d1d;
+    border: none;
+    border-radius: 4px;
+    line-height: 1.2;
+    pointer-events: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.gallery-novita-banner {
+    display: block;
+    width: fit-content;
+    max-width: calc(100% - 2rem);
+    margin: 0 auto 1.25rem;
+    padding: 0.55rem 1.1rem;
+    font-family: 'Century Gothic', 'AppleGothic', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #ffffff;
+    background: rgba(225, 29, 29, 0.92);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.gallery-novita-banner:hover {
+    background: rgba(185, 20, 20, 0.95);
+}
+
+.gallery-novita-banner:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
+}
+
+/* Miniature nuove: bordo rosso (le altre restano bianche) */
+.gallery-page .masonry-item--novita img {
+    border-color: #e11d1d;
 }
