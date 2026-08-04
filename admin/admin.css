@@ -1,0 +1,218 @@
+/* Pannello admin — stile sobrio, solo per Antonio */
+:root {
+    --bg: #141210;
+    --panel: #1e1c19;
+    --text: #f2ebe3;
+    --muted: #9a9086;
+    --line: #3a3530;
+    --accent: #c4a574;
+    --err: #d45c4a;
+    --ok: #6a9a6a;
+    --font: "Segoe UI", "Helvetica Neue", sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+        radial-gradient(ellipse at top, #2a241c 0%, transparent 55%),
+        var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 16px;
+    line-height: 1.45;
+}
+
+.wrap {
+    width: min(560px, calc(100% - 2rem));
+    margin: 0 auto;
+    padding: 2.5rem 0 4rem;
+}
+
+.top {
+    margin-bottom: 1.75rem;
+}
+
+.brand {
+    margin: 0 0 0.35rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+h1 {
+    margin: 0 0 0.4rem;
+    font-size: 1.75rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+.sub {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+.panel {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    padding: 1.35rem 1.25rem;
+}
+
+label,
+.field {
+    display: block;
+    margin-bottom: 1rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+input[type="email"],
+input[type="password"],
+select {
+    display: block;
+    width: 100%;
+    margin-top: 0.4rem;
+    padding: 0.7rem 0.75rem;
+    border: 1px solid var(--line);
+    background: #12100e;
+    color: var(--text);
+    font: inherit;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.85rem 1rem;
+    border: none;
+    background: var(--accent);
+    color: #16130f;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.btn--ghost {
+    width: auto;
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--line);
+    padding: 0.45rem 0.85rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+}
+
+.meta {
+    margin: -0.4rem 0 1.1rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+.upload-grid {
+    display: grid;
+    gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+    .upload-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.drop {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 7rem;
+    margin: 0;
+    padding: 1rem;
+    border: 1px dashed var(--line);
+    background: #12100e;
+    text-align: center;
+    cursor: pointer;
+    text-transform: none;
+    letter-spacing: normal;
+    font-size: 0.9rem;
+    color: var(--text);
+}
+
+.drop span {
+    color: var(--muted);
+    margin-bottom: 0.65rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.drop input {
+    width: 100%;
+    font-size: 0.8rem;
+    color: var(--muted);
+}
+
+.hint {
+    margin: 0.85rem 0 1rem;
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+.pair-list {
+    list-style: none;
+    margin: 0 0 1rem;
+    padding: 0;
+}
+
+.pair-list li {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.88rem;
+}
+
+.pair-list .ok {
+    color: var(--ok);
+}
+
+.pair-list .bad {
+    color: var(--err);
+}
+
+.msg {
+    margin: 0.85rem 0 0;
+    font-size: 0.9rem;
+}
+
+.msg--err {
+    color: var(--err);
+}
+
+.msg--ok {
+    color: var(--ok);
+}

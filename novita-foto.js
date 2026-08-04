@@ -52,16 +52,30 @@
         return Date.now() < end;
     }
 
-    function isGallerySeen(galleryId) {
+    function getSeenCount(galleryId) {
         var map = getSeenMap();
         var batch = map[NOVITA_CONFIG.batchId];
-        return !!(batch && batch[galleryId]);
+        if (!batch || batch[galleryId] == null) return 0;
+        var v = batch[galleryId];
+        /* Vecchio formato true: rivaluta (così nuove foto sulla stessa gallery ripartono) */
+        if (v === true) return 0;
+        if (typeof v === 'object' && v && typeof v.count === 'number') return v.count;
+        if (typeof v === 'number') return v;
+        return 0;
+    }
+
+    function isGallerySeen(galleryId) {
+        var item = getItemById(galleryId);
+        if (!item) return true;
+        return getSeenCount(galleryId) >= item.count;
     }
 
     function markGallerySeen(galleryId) {
+        var item = getItemById(galleryId);
+        if (!item) return;
         var map = getSeenMap();
         if (!map[NOVITA_CONFIG.batchId]) map[NOVITA_CONFIG.batchId] = {};
-        map[NOVITA_CONFIG.batchId][galleryId] = true;
+        map[NOVITA_CONFIG.batchId][galleryId] = { count: item.count };
         setSeenMap(map);
     }
 
@@ -82,12 +96,11 @@
 
     function detectPage() {
         var path = (window.location.pathname || '').toLowerCase();
-        if (path.indexOf('street.html') !== -1) return 'street';
-        if (path.indexOf('portraits.html') !== -1) return 'portraits';
-        if (path.indexOf('jazz.html') !== -1) return 'jazz';
-        if (path === '/' || path.indexOf('index.html') !== -1 || /\/$/.test(path)) return 'home';
-        /* home spesso è solo / sul dominio */
-        if (!path.split('/').pop()) return 'home';
+        var file = path.split('/').pop() || '';
+        if (path === '/' || file === '' || file === 'index.html' || /\/$/.test(path)) return 'home';
+        var id = file.replace(/\.html$/, '');
+        /* Qualsiasi gallery presente in NOVITA_CONFIG (anche aggiunta dal CMS) */
+        if (id && getItemById(id)) return id;
         return 'other';
     }
 
@@ -164,11 +177,7 @@
         if (!item || !isBatchActive()) return;
 
         var alreadySeen = isGallerySeen(galleryId);
-        var gallery =
-            document.getElementById('galleryStreet') ||
-            document.getElementById('galleryPortraits') ||
-            document.getElementById('galleryJazz') ||
-            document.querySelector('.masonry-gallery');
+        var gallery = document.querySelector('.masonry-gallery');
         if (!gallery) return;
 
         var items = gallery.querySelectorAll('.masonry-item');
@@ -217,5 +226,5 @@
 
     var page = detectPage();
     if (page === 'home') initHome();
-    else if (page === 'street' || page === 'portraits' || page === 'jazz') initGallery(page);
+    else if (page !== 'other') initGallery(page);
 })();

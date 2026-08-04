@@ -4,6 +4,47 @@
       "source": "/privacy.html",
       "destination": "https://www.iubenda.com/privacy-policy/75255023",
       "statusCode": 301
+    },
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "ph.antoniomanno.it" }],
+      "destination": "/admin",
+      "statusCode": 302
     }
-  ]
+  ],
+  "rewrites": [
+    {
+      "source": "/admin",
+      "destination": "/admin/index.html"
+    },
+    {
+      "source": "/admin/",
+      "destination": "/admin/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/admin/(.*)",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
+        { "key": "Cache-Control", "value": "no-store" }
+      ]
+    },
+    {
+      "source": "/admin",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
+        { "key": "Cache-Control", "value": "no-store" }
+      ]
+    }
+  ],
+  "functions": {
+    "api/publish.js": {
+      "maxDuration": 60,
+      "memory": 1024
+    },
+    "api/galleries.js": {
+      "maxDuration": 30
+    }
+  }
 }

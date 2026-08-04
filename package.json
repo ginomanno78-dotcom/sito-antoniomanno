@@ -1,0 +1,7 @@
+{
+  "name": "sito-antoniomanno",
+  "private": true,
+  "engines": {
+    "node": ">=18"
+  }
+}
