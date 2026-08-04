@@ -1,17 +1,27 @@
 /**
  * Novità foto — config unica + UI (hero, portfolio, gallery)
  * Quando Antonio pubblica: aggiorna solo NOVITA_CONFIG qui sotto.
+ *
+ * REGOLA FISSA (somma sempre):
+ * - Ogni nuova pubblicazione si SOMME alle novità già attive, non le sostituisce.
+ * - Stesso batchId + aggiungi/aggiorna voci in items + rinnova publishedAt (riparte il TTL 48h).
+ * - Chi ha già visto una gallery non rivede quel badge; le gallery nuove sì.
+ * - Solo dopo che il TTL è scaduto (nessuna novità attiva) si può partire con un batchId nuovo.
  */
 (function () {
     /* ===== CONFIG — modificare solo questo blocco ===== */
     var NOVITA_CONFIG = {
+        /* Non cambiare mentre ci sono novità attive: serve a ricordare cosa l’utente ha già visto */
         batchId: '2026-08-03-street-portraits',
         /* Data/ora pubblicazione (ISO). Dopo ttlHours i segnali spariscono da soli. */
-        publishedAt: '2026-08-03T08:00:00+02:00',
+        /* A ogni nuova aggiunta: aggiornare questa data → le novità sommate restano altre 48h */
+        publishedAt: '2026-08-04T20:00:00+02:00',
         ttlHours: 48,
+        /* Elenco cumulativo: aggiungere qui le gallery nuove, lasciare le precedenti */
         items: [
             { id: 'street', count: 3 },
-            { id: 'portraits', count: 1 }
+            { id: 'portraits', count: 1 },
+            { id: 'jazz', count: 4 }
         ]
     };
     /* ===== fine config ===== */
@@ -74,6 +84,7 @@
         var path = (window.location.pathname || '').toLowerCase();
         if (path.indexOf('street.html') !== -1) return 'street';
         if (path.indexOf('portraits.html') !== -1) return 'portraits';
+        if (path.indexOf('jazz.html') !== -1) return 'jazz';
         if (path === '/' || path.indexOf('index.html') !== -1 || /\/$/.test(path)) return 'home';
         /* home spesso è solo / sul dominio */
         if (!path.split('/').pop()) return 'home';
@@ -156,6 +167,7 @@
         var gallery =
             document.getElementById('galleryStreet') ||
             document.getElementById('galleryPortraits') ||
+            document.getElementById('galleryJazz') ||
             document.querySelector('.masonry-gallery');
         if (!gallery) return;
 
@@ -205,5 +217,5 @@
 
     var page = detectPage();
     if (page === 'home') initHome();
-    else if (page === 'street' || page === 'portraits') initGallery(page);
+    else if (page === 'street' || page === 'portraits' || page === 'jazz') initGallery(page);
 })();
