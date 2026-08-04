@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Photo Admin — Antonio Manno</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="wrap">
+        <header class="top">
+            <p class="brand">Antonio Manno</p>
+            <h1>Photo Admin</h1>
+            <p class="sub">Carica thumb + full già in WebP, poi pubblica.</p>
+        </header>
+
+        <!-- Login -->
+        <section id="viewLogin" class="panel">
+            <form id="formLogin" autocomplete="on">
+                <label>
+                    Email
+                    <input type="email" id="loginEmail" name="email" required autocomplete="username">
+                </label>
+                <label>
+                    Password
+                    <input type="password" id="loginPassword" name="password" required autocomplete="current-password">
+                </label>
+                <button type="submit" class="btn">Accedi</button>
+                <p id="loginError" class="msg msg--err" hidden></p>
+            </form>
+        </section>
+
+        <!-- Pannello -->
+        <section id="viewApp" class="panel" hidden>
+            <div class="toolbar">
+                <button type="button" id="btnLogout" class="btn btn--ghost">Esci</button>
+            </div>
+
+            <label class="field">
+                Gallery
+                <select id="gallerySelect"></select>
+            </label>
+            <p id="galleryMeta" class="meta"></p>
+
+            <div class="upload-grid">
+                <label class="drop">
+                    <span>Miniature (thumb WebP)</span>
+                    <input type="file" id="inputThumbs" accept=".webp,image/webp" multiple>
+                </label>
+                <label class="drop">
+                    <span>Full (WebP)</span>
+                    <input type="file" id="inputFulls" accept=".webp,image/webp" multiple>
+                </label>
+            </div>
+
+            <p class="hint">Stesso numero di file in entrambe le caselle, nello stesso ordine. Max 5 coppie per volta.</p>
+
+            <ul id="pairList" class="pair-list"></ul>
+
+            <button type="button" id="btnPublish" class="btn" disabled>Pubblica</button>
+            <p id="publishMsg" class="msg" hidden></p>
+        </section>
+    </div>
+    <script src="admin.js"></script>
+</body>
+</html>
