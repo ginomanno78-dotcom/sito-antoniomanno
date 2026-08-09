@@ -1,5 +1,5 @@
 /**
- * Photo Admin — login, coppie thumb/full, publish
+ * Photo Admin — aggiungi / elimina / inserisci
  */
 (function () {
     var TOKEN_KEY = 'am_cms_token';
@@ -17,10 +17,22 @@
     var btnPublish = document.getElementById('btnPublish');
     var publishMsg = document.getElementById('publishMsg');
     var btnLogout = document.getElementById('btnLogout');
+    var deleteGrid = document.getElementById('deleteGrid');
+    var btnDelete = document.getElementById('btnDelete');
+    var deleteMsg = document.getElementById('deleteMsg');
+    var insertPosition = document.getElementById('insertPosition');
+    var inputInsertThumb = document.getElementById('inputInsertThumb');
+    var inputInsertFull = document.getElementById('inputInsertFull');
+    var btnInsert = document.getElementById('btnInsert');
+    var insertMsg = document.getElementById('insertMsg');
 
     var galleries = [];
     var thumbFiles = [];
     var fullFiles = [];
+    var currentPhotos = [];
+    var selectedDelete = {};
+    var insertThumb = null;
+    var insertFull = null;
 
     function getToken() {
         try {
@@ -97,10 +109,21 @@
         });
     }
 
+    function currentGallery() {
+        var id = gallerySelect.value;
+        for (var i = 0; i < galleries.length; i++) {
+            if (galleries[i].id === id) return galleries[i];
+        }
+        return null;
+    }
+
     function refreshPairsUi() {
         pairList.innerHTML = '';
         var n = Math.max(thumbFiles.length, fullFiles.length);
-        var ready = thumbFiles.length > 0 && thumbFiles.length === fullFiles.length && thumbFiles.length <= MAX_PAIRS;
+        var ready =
+            thumbFiles.length > 0 &&
+            thumbFiles.length === fullFiles.length &&
+            thumbFiles.length <= MAX_PAIRS;
 
         for (var i = 0; i < n; i++) {
             var li = document.createElement('li');
@@ -126,25 +149,108 @@
     }
 
     function updateGalleryMeta() {
-        var id = gallerySelect.value;
-        var g = null;
-        for (var i = 0; i < galleries.length; i++) {
-            if (galleries[i].id === id) {
-                g = galleries[i];
-                break;
-            }
-        }
+        var g = currentGallery();
         if (!g) {
             galleryMeta.textContent = '';
             return;
         }
         galleryMeta.textContent =
-            'Ora: ' + g.count + ' foto · prossimo file: ' + String(g.next).padStart(g.pad, '0') + '.webp';
+            'Ora: ' +
+            g.count +
+            ' foto · prossimo in coda: ' +
+            String(g.next).padStart(g.pad, '0') +
+            '.webp';
+    }
+
+    function selectedDeleteCount() {
+        return Object.keys(selectedDelete).filter(function (k) {
+            return selectedDelete[k];
+        }).length;
+    }
+
+    function refreshDeleteUi() {
+        btnDelete.disabled = selectedDeleteCount() === 0;
+    }
+
+    function renderDeleteGrid() {
+        deleteGrid.innerHTML = '';
+        selectedDelete = {};
+        if (!currentPhotos.length) {
+            deleteGrid.innerHTML = '<p class="hint">Nessuna foto in questa gallery.</p>';
+            refreshDeleteUi();
+            return;
+        }
+        currentPhotos.forEach(function (p) {
+            var label = document.createElement('label');
+            label.className = 'photo-card';
+            label.innerHTML =
+                '<input type="checkbox" data-num="' +
+                p.num +
+                '">' +
+                '<img src="' +
+                p.thumbUrl +
+                '?v=' +
+                Date.now() +
+                '" alt="' +
+                p.name +
+                '" loading="lazy">' +
+                '<span>' +
+                p.name +
+                '</span>';
+            var input = label.querySelector('input');
+            input.addEventListener('change', function () {
+                selectedDelete[p.num] = input.checked;
+                if (input.checked) label.classList.add('is-selected');
+                else label.classList.remove('is-selected');
+                refreshDeleteUi();
+            });
+            deleteGrid.appendChild(label);
+        });
+        refreshDeleteUi();
+    }
+
+    function renderInsertPositions() {
+        insertPosition.innerHTML = '';
+        currentPhotos.forEach(function (p) {
+            var opt = document.createElement('option');
+            opt.value = String(p.num);
+            opt.textContent = p.name + ' (diventa ' + p.name + ' → successiva +1)';
+            insertPosition.appendChild(opt);
+        });
+        refreshInsertUi();
+    }
+
+    function refreshInsertUi() {
+        btnInsert.disabled = !(insertThumb && insertFull && insertPosition.value);
+    }
+
+    async function loadGalleryPhotos() {
+        var g = currentGallery();
+        if (!g) return;
+        setMsg(deleteMsg, 'Carico elenco foto…', null);
+        setMsg(insertMsg, '', null);
+        try {
+            var data = await api('/api/galleries?id=' + encodeURIComponent(g.id));
+            currentPhotos = (data.gallery && data.gallery.photos) || [];
+            /* aggiorna count/next dalla risposta dettaglio */
+            g.count = data.gallery.count;
+            g.next = data.gallery.next;
+            updateGalleryMeta();
+            renderDeleteGrid();
+            renderInsertPositions();
+            setMsg(deleteMsg, '', null);
+        } catch (err) {
+            currentPhotos = [];
+            renderDeleteGrid();
+            renderInsertPositions();
+            setMsg(deleteMsg, err.message || 'Errore caricamento foto', 'err');
+        }
     }
 
     async function loadGalleries() {
         var data = await api('/api/galleries');
         galleries = data.galleries || [];
+        var prev = gallerySelect.value;
         gallerySelect.innerHTML = '';
         galleries.forEach(function (g) {
             var opt = document.createElement('option');
@@ -152,8 +258,23 @@
             opt.textContent = g.label;
             gallerySelect.appendChild(opt);
         });
+        if (prev) gallerySelect.value = prev;
         updateGalleryMeta();
+        await loadGalleryPhotos();
     }
+
+    /* Tabs */
+    document.querySelectorAll('.tab').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            var tab = btn.getAttribute('data-tab');
+            document.querySelectorAll('.tab').forEach(function (b) {
+                b.classList.toggle('is-active', b === btn);
+            });
+            document.getElementById('tabAdd').hidden = tab !== 'add';
+            document.getElementById('tabDelete').hidden = tab !== 'delete';
+            document.getElementById('tabInsert').hidden = tab !== 'insert';
+        });
+    });
 
     formLogin.addEventListener('submit', async function (e) {
         e.preventDefault();
@@ -178,13 +299,20 @@
         setToken('');
         thumbFiles = [];
         fullFiles = [];
+        insertThumb = null;
+        insertFull = null;
         inputThumbs.value = '';
         inputFulls.value = '';
+        inputInsertThumb.value = '';
+        inputInsertFull.value = '';
         refreshPairsUi();
         showLogin();
     });
 
-    gallerySelect.addEventListener('change', updateGalleryMeta);
+    gallerySelect.addEventListener('change', async function () {
+        updateGalleryMeta();
+        await loadGalleryPhotos();
+    });
 
     inputThumbs.addEventListener('change', function () {
         thumbFiles = Array.prototype.slice.call(inputThumbs.files || []);
@@ -195,6 +323,18 @@
         fullFiles = Array.prototype.slice.call(inputFulls.files || []);
         refreshPairsUi();
     });
+
+    inputInsertThumb.addEventListener('change', function () {
+        insertThumb = (inputInsertThumb.files && inputInsertThumb.files[0]) || null;
+        refreshInsertUi();
+    });
+
+    inputInsertFull.addEventListener('change', function () {
+        insertFull = (inputInsertFull.files && inputInsertFull.files[0]) || null;
+        refreshInsertUi();
+    });
+
+    insertPosition.addEventListener('change', refreshInsertUi);
 
     btnPublish.addEventListener('click', async function () {
         if (btnPublish.disabled) return;
@@ -241,7 +381,80 @@
         }
     });
 
-    /* Avvio: se c’è token, prova a caricare le gallery */
+    btnDelete.addEventListener('click', async function () {
+        var nums = Object.keys(selectedDelete)
+            .filter(function (k) {
+                return selectedDelete[k];
+            })
+            .map(function (k) {
+                return parseInt(k, 10);
+            });
+        if (!nums.length) return;
+        if (
+            !window.confirm(
+                'Eliminare ' + nums.length + ' foto? I numeri non verranno rinumerati.'
+            )
+        ) {
+            return;
+        }
+        btnDelete.disabled = true;
+        setMsg(deleteMsg, 'Eliminazione in corso…', null);
+        try {
+            var data = await api('/api/delete', {
+                method: 'POST',
+                body: {
+                    galleryId: gallerySelect.value,
+                    numbers: nums
+                }
+            });
+            setMsg(
+                deleteMsg,
+                data.message + ' Rimosse: ' + data.numbers.join(', ') + '. Totale: ' + data.newTotal + '.',
+                'ok'
+            );
+            await loadGalleries();
+        } catch (err) {
+            setMsg(deleteMsg, err.message || 'Eliminazione fallita', 'err');
+            refreshDeleteUi();
+        }
+    });
+
+    btnInsert.addEventListener('click', async function () {
+        if (btnInsert.disabled) return;
+        var pos = insertPosition.value;
+        if (
+            !window.confirm(
+                'Inserire la nuova foto come ' +
+                    pos +
+                    '? Quella e tutte le successive verranno rinominate (+1).'
+            )
+        ) {
+            return;
+        }
+        btnInsert.disabled = true;
+        setMsg(insertMsg, 'Inserimento in corso… può richiedere un minuto.', null);
+        try {
+            var data = await api('/api/insert', {
+                method: 'POST',
+                body: {
+                    galleryId: gallerySelect.value,
+                    position: parseInt(pos, 10),
+                    thumbBase64: await fileToBase64(insertThumb),
+                    fullBase64: await fileToBase64(insertFull)
+                }
+            });
+            setMsg(insertMsg, data.message + ' Totale: ' + data.newTotal + '.', 'ok');
+            insertThumb = null;
+            insertFull = null;
+            inputInsertThumb.value = '';
+            inputInsertFull.value = '';
+            await loadGalleries();
+        } catch (err) {
+            setMsg(insertMsg, err.message || 'Inserimento fallito', 'err');
+            refreshInsertUi();
+        }
+    });
+
     (async function boot() {
         if (!getToken()) {
             showLogin();
