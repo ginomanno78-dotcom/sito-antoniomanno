@@ -216,3 +216,79 @@ select {
 .msg--ok {
     color: var(--ok);
 }
+
+.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0 0 1.1rem;
+}
+
+.tab {
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--muted);
+    padding: 0.5rem 0.7rem;
+    font: inherit;
+    font-size: 0.82rem;
+    cursor: pointer;
+}
+
+.tab.is-active {
+    background: var(--accent);
+    color: #16130f;
+    border-color: var(--accent);
+}
+
+.tab-panel {
+    margin-top: 0.25rem;
+}
+
+.btn--danger {
+    background: var(--err);
+    color: #fff;
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
+    gap: 0.55rem;
+    max-height: 22rem;
+    overflow: auto;
+    margin: 0 0 1rem;
+    padding: 0.25rem;
+    border: 1px solid var(--line);
+    background: #12100e;
+}
+
+.photo-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin: 0;
+    padding: 0.35rem;
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-align: center;
+}
+
+.photo-card.is-selected {
+    border-color: var(--accent);
+    color: var(--text);
+}
+
+.photo-card img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    display: block;
+    background: #000;
+}
+
+.photo-card input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}

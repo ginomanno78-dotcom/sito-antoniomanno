@@ -43,6 +43,13 @@
       "maxDuration": 60,
       "memory": 1024
     },
+    "api/insert.js": {
+      "maxDuration": 60,
+      "memory": 1024
+    },
+    "api/delete.js": {
+      "maxDuration": 60
+    },
     "api/galleries.js": {
       "maxDuration": 30
     }

@@ -12,10 +12,9 @@
         <header class="top">
             <p class="brand">Antonio Manno</p>
             <h1>Photo Admin</h1>
-            <p class="sub">Carica thumb + full già in WebP, poi pubblica.</p>
+            <p class="sub">Aggiungi, elimina o inserisci foto già in WebP.</p>
         </header>
 
-        <!-- Login -->
         <section id="viewLogin" class="panel">
             <form id="formLogin" autocomplete="on">
                 <label>
@@ -31,7 +30,6 @@
             </form>
         </section>
 
-        <!-- Pannello -->
         <section id="viewApp" class="panel" hidden>
             <div class="toolbar">
                 <button type="button" id="btnLogout" class="btn btn--ghost">Esci</button>
@@ -43,23 +41,58 @@
             </label>
             <p id="galleryMeta" class="meta"></p>
 
-            <div class="upload-grid">
-                <label class="drop">
-                    <span>Miniature (thumb WebP)</span>
-                    <input type="file" id="inputThumbs" accept=".webp,image/webp" multiple>
-                </label>
-                <label class="drop">
-                    <span>Full (WebP)</span>
-                    <input type="file" id="inputFulls" accept=".webp,image/webp" multiple>
-                </label>
+            <div class="tabs" role="tablist">
+                <button type="button" class="tab is-active" data-tab="add">Aggiungi in coda</button>
+                <button type="button" class="tab" data-tab="delete">Elimina</button>
+                <button type="button" class="tab" data-tab="insert">Inserisci in posizione</button>
             </div>
 
-            <p class="hint">Stesso numero di file in entrambe le caselle, nello stesso ordine. Max 5 coppie per volta.</p>
+            <!-- TAB: aggiungi in coda -->
+            <div id="tabAdd" class="tab-panel">
+                <div class="upload-grid">
+                    <label class="drop">
+                        <span>Miniature (thumb WebP)</span>
+                        <input type="file" id="inputThumbs" accept=".webp,image/webp" multiple>
+                    </label>
+                    <label class="drop">
+                        <span>Full (WebP)</span>
+                        <input type="file" id="inputFulls" accept=".webp,image/webp" multiple>
+                    </label>
+                </div>
+                <p class="hint">Stesso numero di file, stesso ordine. Max 5 coppie. Vanno in fondo alla gallery.</p>
+                <ul id="pairList" class="pair-list"></ul>
+                <button type="button" id="btnPublish" class="btn" disabled>Pubblica in coda</button>
+                <p id="publishMsg" class="msg" hidden></p>
+            </div>
 
-            <ul id="pairList" class="pair-list"></ul>
+            <!-- TAB: elimina -->
+            <div id="tabDelete" class="tab-panel" hidden>
+                <p class="hint">Seleziona le foto da togliere. I numeri non vengono rinumerati (restano i buchi).</p>
+                <div id="deleteGrid" class="photo-grid"></div>
+                <button type="button" id="btnDelete" class="btn btn--danger" disabled>Elimina selezionate</button>
+                <p id="deleteMsg" class="msg" hidden></p>
+            </div>
 
-            <button type="button" id="btnPublish" class="btn" disabled>Pubblica</button>
-            <p id="publishMsg" class="msg" hidden></p>
+            <!-- TAB: inserisci -->
+            <div id="tabInsert" class="tab-panel" hidden>
+                <p class="hint">La nuova foto prende il numero scelto; quella e tutte le successive si spostano di +1.</p>
+                <label class="field">
+                    Posizione (numero file)
+                    <select id="insertPosition"></select>
+                </label>
+                <div class="upload-grid">
+                    <label class="drop">
+                        <span>Thumb WebP (1 file)</span>
+                        <input type="file" id="inputInsertThumb" accept=".webp,image/webp">
+                    </label>
+                    <label class="drop">
+                        <span>Full WebP (1 file)</span>
+                        <input type="file" id="inputInsertFull" accept=".webp,image/webp">
+                    </label>
+                </div>
+                <button type="button" id="btnInsert" class="btn" disabled>Inserisci qui</button>
+                <p id="insertMsg" class="msg" hidden></p>
+            </div>
         </section>
     </div>
     <script src="/admin/admin.js"></script>
