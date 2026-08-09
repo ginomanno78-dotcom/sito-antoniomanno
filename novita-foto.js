@@ -15,12 +15,12 @@
         batchId: '2026-08-03-street-portraits',
         /* Data/ora pubblicazione (ISO). Dopo ttlHours i segnali spariscono da soli. */
         /* A ogni nuova aggiunta: aggiornare questa data → le novità sommate restano altre 48h */
-        publishedAt: '2026-08-09T10:44:49+02:00',
+        publishedAt: '2026-08-09T11:38:23+02:00',
         ttlHours: 48,
         /* Elenco cumulativo: aggiungere qui le gallery nuove, lasciare le precedenti */
         items: [
             { id: 'street', count: 3 },
-            { id: 'portraits', count: 2 },
+            { id: 'portraits', count: 3 },
             { id: 'jazz', count: 4 }
         ]
     };
