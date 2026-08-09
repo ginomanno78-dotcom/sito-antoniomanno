@@ -17,8 +17,9 @@
         /* publishedAt per gallery: dopo ttlHours quel badge sparisce da solo */
         items: [
             { id: 'street', count: 3, publishedAt: '2026-08-03T08:00:00+02:00' },
-            { id: 'portraits', count: 3, publishedAt: '2026-08-09T11:38:23+02:00' },
-            { id: 'jazz', count: 4, publishedAt: '2026-08-04T20:00:00+02:00' }
+            { id: 'portraits', count: 3, publishedAt: '2026-08-07T08:00:00+02:00' },
+            { id: 'jazz', count: 4, publishedAt: '2026-08-04T20:00:00+02:00' },
+            { id: 'arti-mestieri', count: 18, publishedAt: '2026-08-09T20:10:00+02:00' }
         ]
     };
     /* ===== fine config ===== */
@@ -179,7 +180,7 @@
         });
     }
 
-    /* ----- GALLERY: banner + bordo rosso ultime N ----- */
+    /* ----- GALLERY: bordo rosso ultime N + atterraggio in coda (niente pulsante banner) ----- */
     function initGallery(galleryId) {
         var item = getItemById(galleryId);
         if (!item || !isItemActive(item)) return;
@@ -195,22 +196,10 @@
         var firstNew = items[items.length - count];
         if (firstNew) firstNew.id = 'novita-foto-ancora';
 
-        /* Prima visita: evidenzia in rosso + banner + atterraggio automatico in coda */
+        /* Prima visita: evidenzia in rosso + scroll automatico in coda */
         if (!alreadySeen) {
             for (var i = items.length - count; i < items.length; i++) {
                 items[i].classList.add('masonry-item--novita');
-            }
-
-            var intro = document.querySelector('.gallery-intro');
-            if (intro && !document.querySelector('.gallery-novita-banner')) {
-                var banner = document.createElement('button');
-                banner.type = 'button';
-                banner.className = 'gallery-novita-banner';
-                banner.textContent = count === 1 ? '1 nuova foto' : count + ' nuove foto';
-                banner.addEventListener('click', function () {
-                    scrollToNovita();
-                });
-                intro.insertAdjacentElement('afterend', banner);
             }
 
             function scrollToNovita() {
