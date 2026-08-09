@@ -1,27 +1,24 @@
 /**
  * Novità foto — config unica + UI (hero, portfolio, gallery)
- * Quando Antonio pubblica: aggiorna solo NOVITA_CONFIG qui sotto.
+ * Quando Antonio pubblica: aggiorna solo NOVITA_CONFIG qui sotto (il CMS lo fa da solo).
  *
- * REGOLA FISSA (somma sempre):
- * - Ogni nuova pubblicazione si SOMME alle novità già attive, non le sostituisce.
- * - Stesso batchId + aggiungi/aggiorna voci in items + rinnova publishedAt (riparte il TTL 48h).
- * - Chi ha già visto una gallery non rivede quel badge; le gallery nuove sì.
- * - Solo dopo che il TTL è scaduto (nessuna novità attiva) si può partire con un batchId nuovo.
+ * REGOLA:
+ * - Le novità si possono sommare (più gallery in items).
+ * - Ogni gallery ha il PROPRIO publishedAt: le 48h valgono per quella gallery.
+ * - Pubblicare su Portraits NON rinnova i badge di Street/Jazz.
+ * - Chi ha già visto una gallery non rivede quel badge (finché count non cresce).
  */
 (function () {
     /* ===== CONFIG — modificare solo questo blocco ===== */
     var NOVITA_CONFIG = {
-        /* Non cambiare mentre ci sono novità attive: serve a ricordare cosa l’utente ha già visto */
+        /* Chiave localStorage “già visto” (non cambia a ogni foto) */
         batchId: '2026-08-03-street-portraits',
-        /* Data/ora pubblicazione (ISO). Dopo ttlHours i segnali spariscono da soli. */
-        /* A ogni nuova aggiunta: aggiornare questa data → le novità sommate restano altre 48h */
-        publishedAt: '2026-08-09T11:38:23+02:00',
         ttlHours: 48,
-        /* Elenco cumulativo: aggiungere qui le gallery nuove, lasciare le precedenti */
+        /* publishedAt per gallery: dopo ttlHours quel badge sparisce da solo */
         items: [
-            { id: 'street', count: 3 },
-            { id: 'portraits', count: 3 },
-            { id: 'jazz', count: 4 }
+            { id: 'street', count: 3, publishedAt: '2026-08-03T08:00:00+02:00' },
+            { id: 'portraits', count: 3, publishedAt: '2026-08-09T11:38:23+02:00' },
+            { id: 'jazz', count: 4, publishedAt: '2026-08-04T20:00:00+02:00' }
         ]
     };
     /* ===== fine config ===== */
@@ -45,8 +42,14 @@
         } catch (e) { /* ignore */ }
     }
 
-    function isBatchActive() {
-        var start = Date.parse(NOVITA_CONFIG.publishedAt);
+    /* Compat: se manca publishedAt sull’item, usa eventuale data globale legacy */
+    function getItemPublishedAt(item) {
+        if (item && item.publishedAt) return item.publishedAt;
+        return NOVITA_CONFIG.publishedAt || '';
+    }
+
+    function isItemActive(item) {
+        var start = Date.parse(getItemPublishedAt(item));
         if (isNaN(start)) return false;
         var end = start + (NOVITA_CONFIG.ttlHours || 48) * 60 * 60 * 1000;
         return Date.now() < end;
@@ -80,9 +83,14 @@
     }
 
     function getActiveUnseenItems() {
-        if (!isBatchActive()) return [];
         return (NOVITA_CONFIG.items || []).filter(function (item) {
-            return item && item.id && item.count > 0 && !isGallerySeen(item.id);
+            return (
+                item &&
+                item.id &&
+                item.count > 0 &&
+                isItemActive(item) &&
+                !isGallerySeen(item.id)
+            );
         });
     }
 
@@ -174,7 +182,7 @@
     /* ----- GALLERY: banner + bordo rosso ultime N ----- */
     function initGallery(galleryId) {
         var item = getItemById(galleryId);
-        if (!item || !isBatchActive()) return;
+        if (!item || !isItemActive(item)) return;
 
         var alreadySeen = isGallerySeen(galleryId);
         var gallery = document.querySelector('.masonry-gallery');
@@ -187,7 +195,7 @@
         var firstNew = items[items.length - count];
         if (firstNew) firstNew.id = 'novita-foto-ancora';
 
-        /* Prima visita del batch: evidenzia in rosso + banner + atterraggio automatico in coda */
+        /* Prima visita: evidenzia in rosso + banner + atterraggio automatico in coda */
         if (!alreadySeen) {
             for (var i = items.length - count; i < items.length; i++) {
                 items[i].classList.add('masonry-item--novita');
@@ -205,7 +213,6 @@
                 intro.insertAdjacentElement('afterend', banner);
             }
 
-            /* Atterraggio automatico sulle nuove foto in coda */
             function scrollToNovita() {
                 var target = document.getElementById('novita-foto-ancora');
                 if (!target) return;
@@ -215,7 +222,6 @@
                 });
             }
 
-            /* Attende il layout delle immagini poi scorre in coda */
             requestAnimationFrame(function () {
                 setTimeout(scrollToNovita, 120);
             });
