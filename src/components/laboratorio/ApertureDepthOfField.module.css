@@ -1,0 +1,268 @@
+/* Modulo profondità di campo — allineato al nero della sezione Laboratorio */
+
+.root {
+  font-family: var(--font-body), "Century Gothic", "AppleGothic", sans-serif;
+  background: transparent;
+  padding: 0;
+  color: #fff;
+}
+
+.root p {
+  hyphens: auto;
+}
+
+.mainContainer {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-body), "Century Gothic", sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: left;
+  color: #fff;
+}
+
+.lead {
+  margin: 0.75rem auto 0;
+  max-width: none;
+  padding: 0;
+  font-size: 14px;
+  line-height: 1.65;
+  text-align: justify;
+  text-align-last: left;
+  hyphens: auto;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.imgContainer {
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+  margin: 0 auto;
+  padding: 1.5rem 0 0.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  gap: 1rem;
+}
+
+.mediaCol {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.exampleLabel {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0 0 0.65rem;
+}
+
+/* Stessa altezza (quadrato) e larghezza che scala con la colonna */
+.sampleImgContainer,
+.ringImgContainer {
+  width: 100%;
+  aspect-ratio: 1;
+  position: relative;
+  margin-top: 0;
+}
+
+.sampleImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  box-sizing: border-box;
+  position: absolute;
+  inset: 0;
+  border: 6px solid white;
+  box-shadow: 0px 4px 20px 5px rgba(0, 0, 0, 0.2);
+  display: none;
+}
+
+.sampleImgVisible {
+  display: block;
+}
+
+.ringImgContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ringImg {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  object-fit: contain;
+  position: absolute;
+  inset: 0;
+  display: none;
+}
+
+.ringImgVisible {
+  display: block;
+}
+
+.flare {
+  display: block;
+  opacity: 0.35;
+}
+
+.reflection {
+  display: block;
+  opacity: 0.5;
+  rotate: 180deg;
+}
+
+.sliderContainer {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1.25rem 0 0;
+}
+
+.sliderLabel {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.apertureSlider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 1.5px;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.apertureSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  outline: 1.5px solid #f63724;
+  cursor: pointer;
+}
+
+.apertureSlider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border: none;
+  border-radius: 50%;
+  background: #fff;
+  outline: 1.5px solid #f63724;
+  cursor: pointer;
+}
+
+.sliderScale {
+  width: 97%;
+  height: 50px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0.75rem;
+  padding-bottom: 1.5rem;
+}
+
+.scaleValue {
+  width: 2px;
+  height: 12px;
+  position: relative;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.scaleValueActive {
+  color: #f63724;
+}
+
+.scaleValueSm {
+  width: 2px;
+  height: 5px;
+  position: relative;
+  border-left: 2px solid rgba(255, 255, 255, 0.35);
+}
+
+.value1 {
+  border-right: 2px solid rgba(255, 255, 255, 0.35);
+}
+
+.value1::after {
+  content: "1.8";
+  position: relative;
+  left: -2px;
+  top: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  color: inherit;
+}
+
+.value2 {
+  border-left: 2px solid rgba(255, 255, 255, 0.35);
+}
+
+.value2::after {
+  content: "2.8";
+  position: relative;
+  left: -4px;
+  top: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  color: inherit;
+}
+
+.value3 {
+  border-right: 2px solid rgba(255, 255, 255, 0.35);
+}
+
+.value3::after {
+  content: "4";
+  position: relative;
+  left: -2px;
+  top: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  color: inherit;
+}
+
+.value4 {
+  border-right: 2px solid rgba(255, 255, 255, 0.35);
+}
+
+.value4::after {
+  content: "8";
+  position: relative;
+  top: 8px;
+  left: -4px;
+  font-size: 15px;
+  font-weight: 700;
+  color: inherit;
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: 25px;
+  }
+
+  .lead {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .sliderScale {
+    width: 96%;
+  }
+}

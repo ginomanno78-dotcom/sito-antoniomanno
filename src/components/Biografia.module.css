@@ -1,0 +1,421 @@
+/* ——— Titolo sezione: markup + Tailwind/inline in Biografia.tsx ——— */
+
+/* ——— Intro: testo (layout riga gestito con Tailwind in Biografia.tsx) ——— */
+
+.introText {
+  width: 100%;
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+}
+
+.introHeading {
+  margin: 0;
+  color: #fff;
+  font-family: var(--font-body), "Century Gothic", sans-serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+.introCopy {
+  margin: 0.75rem 0 0;
+  max-width: 36rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: var(--font-body), "Century Gothic", sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.introQuote {
+  margin: 1rem 0 0;
+  max-width: 36rem;
+  padding-left: 0.75rem;
+  border-left: 2px solid rgba(255, 122, 24, 0.65);
+  font-style: italic;
+  font-family: var(--font-body), "Century Gothic", sans-serif;
+  color: #e8ecf2;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .introHeading {
+    font-size: 2rem;
+  }
+
+  .introCopy {
+    font-size: 17px;
+  }
+
+  .introQuote {
+    font-size: 1rem;
+  }
+}
+
+/* ——— Card capitoli: foto sopra, testo sotto ——— */
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  width: 100%;
+  margin-top: 2.5rem;
+  align-items: stretch;
+}
+
+.cardSlot {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+}
+
+.chapterCard {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid #f63724;
+  background: #0d0d0c;
+  box-shadow: 0 0 48px -18px rgba(255, 255, 255, 0.35);
+  font-family: var(--font-body), "Century Gothic", sans-serif;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.chapterCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 56px -16px rgba(255, 255, 255, 0.45);
+}
+
+.chapterMedia {
+  position: relative;
+  width: 100%;
+  /* Più bassa del quadrato 1:1 per ridurre l’altezza card */
+  aspect-ratio: 5 / 4;
+  overflow: hidden;
+  background: #1a1a1a;
+  flex-shrink: 0;
+}
+
+.chapterMedia img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.chapterBody {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0.3rem;
+  padding: 0.75rem 0.9rem 0.95rem;
+  text-align: left;
+}
+
+.chapterBody h3 {
+  margin: 0;
+  color: #fff;
+  font-family: var(--font-body), "Century Gothic", sans-serif;
+  font-weight: 400;
+  font-size: 1.05rem;
+  line-height: 1.2;
+}
+
+.chapterBody h4 {
+  margin: 0 0 0.25rem;
+  color: #f63724;
+  font-family: var(--font-body), "Century Gothic", sans-serif;
+  font-weight: 400;
+  font-size: 0.78rem;
+}
+
+.text {
+  margin: 0 0 0.4rem;
+  color: #cfd6e1;
+  font-family: var(--font-body), "Century Gothic", sans-serif;
+  font-size: 0.76rem;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.text:last-child {
+  margin-bottom: 0;
+}
+
+.quoteFooter {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  font-style: normal;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* Tablet: 2 colonne */
+@media (min-width: 768px) {
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem 1.75rem;
+    margin-top: 3rem;
+  }
+
+  .chapterBody h3 {
+    font-size: 1.1rem;
+  }
+}
+
+/* Desktop: 4 card stessa riga, stessa altezza */
+@media (min-width: 1024px) {
+  .cards {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.75rem;
+    margin-top: 3.5rem;
+    align-items: stretch;
+  }
+
+  .chapterMedia {
+    aspect-ratio: 4 / 3;
+  }
+
+  .chapterBody {
+    padding: 0.7rem 0.8rem 0.85rem;
+  }
+
+  .chapterBody h3 {
+    font-size: 0.98rem;
+  }
+
+  .text {
+    font-size: 0.7rem;
+    line-height: 1.35;
+  }
+}
+
+/* ——— Obiettivo / diaframma sulla foto profilo ——— */
+
+.apertureOuter {
+  width: min(100%, 280px);
+  margin-inline: auto;
+  padding: 3mm;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .apertureOuter {
+    width: min(100%, 320px);
+    margin-inline: 0;
+  }
+}
+
+.apertureWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid #fff;
+  background: #111;
+}
+
+.aperturePhoto {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 46% 22%;
+  transform: translateX(-1.5mm);
+  display: block;
+  pointer-events: none;
+}
+
+.aperture {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.diaph {
+  width: 100%;
+  height: 100%;
+  background: #000;
+  border-bottom: solid 2px #fff;
+  position: absolute;
+  box-sizing: border-box;
+  clip-path: polygon(0 0, 28% 0, 88% 100%, 0% 100%);
+  transition: top 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.diaph:nth-child(1) {
+  top: -37.5%;
+  left: 50%;
+  border-bottom: solid 1px #fff;
+  transform: translate(-50%, -50%) rotate(0deg) scale(1.14);
+}
+
+.diaph:nth-child(2) {
+  top: 10%;
+  left: 127%;
+  transform: translate(-50%, -50%) rotate(60deg) scale(1.14);
+}
+
+.diaph:nth-child(3) {
+  top: 90%;
+  left: 127%;
+  transform: translate(-50%, -50%) rotate(120deg) scale(1.14);
+}
+
+.diaph:nth-child(4) {
+  top: 137.5%;
+  left: 50%;
+  border-bottom: solid 1px #fff;
+  transform: translate(-50%, -50%) rotate(180deg) scale(1.14);
+}
+
+.diaph:nth-child(5) {
+  top: 90%;
+  left: -27%;
+  transform: translate(-50%, -50%) rotate(240deg) scale(1.14);
+}
+
+.diaph:nth-child(6) {
+  top: 10%;
+  left: -27%;
+  transform: translate(-50%, -50%) rotate(300deg) scale(1.14);
+}
+
+.apertureOuter:hover .diaph:nth-child(1) {
+  top: -68%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0deg) scale(1.06);
+}
+
+.apertureOuter:hover .diaph:nth-child(2) {
+  top: -12%;
+  left: 158%;
+  transform: translate(-50%, -50%) rotate(60deg) scale(1.06);
+}
+
+.apertureOuter:hover .diaph:nth-child(3) {
+  top: 112%;
+  left: 158%;
+  transform: translate(-50%, -50%) rotate(120deg) scale(1.06);
+}
+
+.apertureOuter:hover .diaph:nth-child(4) {
+  top: 168%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(180deg) scale(1.06);
+}
+
+.apertureOuter:hover .diaph:nth-child(5) {
+  top: 112%;
+  left: -58%;
+  transform: translate(-50%, -50%) rotate(240deg) scale(1.06);
+}
+
+.apertureOuter:hover .diaph:nth-child(6) {
+  top: -12%;
+  left: -58%;
+  transform: translate(-50%, -50%) rotate(300deg) scale(1.06);
+}
+
+/*
+  Mobile / tablet: obiettivo semiaperto (~80% apertura, lame ancora visibili).
+  Non usare posizioni da hover: sembrano aperte al 100%.
+  Desktop (≥1024px) resta semiaperto + hover come sopra.
+*/
+@media (max-width: 1023px) {
+  /* ~35% tra stato desktop iniziale e apertura totale = semiaperto leggibile */
+  .diaph:nth-child(1) {
+    top: -48%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(0deg) scale(1.12);
+  }
+
+  .diaph:nth-child(2) {
+    top: 2%;
+    left: 138%;
+    transform: translate(-50%, -50%) rotate(60deg) scale(1.12);
+  }
+
+  .diaph:nth-child(3) {
+    top: 98%;
+    left: 138%;
+    transform: translate(-50%, -50%) rotate(120deg) scale(1.12);
+  }
+
+  .diaph:nth-child(4) {
+    top: 148%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(180deg) scale(1.12);
+  }
+
+  .diaph:nth-child(5) {
+    top: 98%;
+    left: -38%;
+    transform: translate(-50%, -50%) rotate(240deg) scale(1.12);
+  }
+
+  .diaph:nth-child(6) {
+    top: 2%;
+    left: -38%;
+    transform: translate(-50%, -50%) rotate(300deg) scale(1.12);
+  }
+
+  /* Nessun effetto hover: stesso stato semiaperto */
+  .apertureOuter:hover .diaph:nth-child(1) {
+    top: -48%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(0deg) scale(1.12);
+  }
+
+  .apertureOuter:hover .diaph:nth-child(2) {
+    top: 2%;
+    left: 138%;
+    transform: translate(-50%, -50%) rotate(60deg) scale(1.12);
+  }
+
+  .apertureOuter:hover .diaph:nth-child(3) {
+    top: 98%;
+    left: 138%;
+    transform: translate(-50%, -50%) rotate(120deg) scale(1.12);
+  }
+
+  .apertureOuter:hover .diaph:nth-child(4) {
+    top: 148%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(180deg) scale(1.12);
+  }
+
+  .apertureOuter:hover .diaph:nth-child(5) {
+    top: 98%;
+    left: -38%;
+    transform: translate(-50%, -50%) rotate(240deg) scale(1.12);
+  }
+
+  .apertureOuter:hover .diaph:nth-child(6) {
+    top: 2%;
+    left: -38%;
+    transform: translate(-50%, -50%) rotate(300deg) scale(1.12);
+  }
+}

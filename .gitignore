@@ -1,15 +1,38 @@
 # Dipendenze Node.js
-node_modules/
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
 
-# Lock file (ricreabile con npm install)
-package-lock.json
+# testing
+/coverage
 
-# File di sistema
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
 .DS_Store
 Thumbs.db
 desktop.ini
+*.pem
 
-# Editor / IDE
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+*.log
+*.tmp
+
+# editor / IDE
 .vscode/
 .idea/
 *.swp
@@ -19,6 +42,12 @@ desktop.ini
 # Claude Code
 .claude/
 
-# File temporanei
-*.tmp
-*.log
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts

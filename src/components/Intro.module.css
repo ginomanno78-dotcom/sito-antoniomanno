@@ -1,0 +1,420 @@
+/* Intro overlay — animazioni dalla prova isolata */
+
+@font-face {
+  font-family: "Poppins Intro";
+  src: url("/assets/font/Poppins-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  /* Sopra widget Iubenda (z-index elevatissimo) e navbar */
+  z-index: 2147483000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  overflow: hidden;
+  /* Blocca click sotto; il tasto Salta resta usabile */
+  pointer-events: auto;
+}
+
+/* Tasto salta: sempre visibile sopra l'animazione */
+.salta {
+  position: absolute;
+  /* 2cm a sinistra per non restare sotto il logo Iubenda */
+  right: calc(1.25rem + 2cm);
+  bottom: 1.25rem;
+  z-index: 3;
+  margin: 0;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 0;
+  background: transparent;
+  color: #f2f2f2;
+  font-family: "Poppins Intro", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.salta:hover,
+.salta:focus-visible {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.06);
+  outline: none;
+}
+
+/* Sfondo iris: parte chiuso insieme al diaframma */
+.sfondoIris {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: #000;
+  animation: scompare-sfondo 1.15s ease 1.9s forwards;
+}
+
+/* Grigio fisso a tutto viewport: niente alone nero intorno */
+.irisGrigio {
+  position: absolute;
+  inset: 0;
+  background: #282828;
+}
+
+/* Buco nero = esagono regolare che scala (il vuoto centrale) */
+.iris {
+  width: 160vmax;
+  height: 160vmax;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  overflow: hidden;
+  background: #000;
+  clip-path: polygon(
+    50% 0%,
+    93.301% 25%,
+    93.301% 75%,
+    50% 100%,
+    6.699% 75%,
+    6.699% 25%
+  );
+  animation: lens 1.5s linear forwards;
+}
+
+/* Contenitore centrale: diaframma + anelli + nome */
+.intro {
+  position: relative;
+  width: min(500px, 90vw);
+  height: min(500px, 90vw);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 900px;
+  transform-origin: center center;
+  z-index: 2;
+  animation: zoom-out-tutto 1.15s cubic-bezier(0.16, 0.84, 0.44, 1) 1.9s forwards;
+}
+
+.diaframma {
+  list-style: none;
+  height: 60%;
+  width: 60%;
+  position: absolute;
+  z-index: 1;
+  border-radius: 100%;
+  overflow: hidden;
+  background: #000;
+  border: 5px solid rgba(255, 255, 255, 0.15);
+  opacity: 0;
+  margin: 0;
+  padding: 0;
+  animation: vita-diaframma 1.65s ease-in-out forwards;
+}
+
+.diaframma li {
+  display: block;
+  width: 1px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.diaframma li::before,
+.diaframma li::after {
+  content: "";
+  display: block;
+  width: 9000px;
+  position: absolute;
+  background: rgba(255, 255, 255, 0.18);
+  height: 49%;
+  animation: apri-diaframma 0.75s ease-in-out 0.32s forwards;
+}
+
+.diaframma li::after {
+  right: 0;
+  bottom: 0;
+}
+
+.diaframma li::before {
+  left: 0;
+  top: 0;
+}
+
+.diaframma li:nth-child(2) {
+  transform: rotate(30deg);
+}
+
+.diaframma li:nth-child(3) {
+  transform: rotate(60deg);
+}
+
+.diaframma li:nth-child(4) {
+  transform: rotate(90deg);
+}
+
+.diaframma li:nth-child(5) {
+  transform: rotate(120deg);
+}
+
+.diaframma li:nth-child(6) {
+  transform: rotate(150deg);
+}
+
+.anelli {
+  position: absolute;
+  z-index: 2;
+  width: 68%;
+  height: 68%;
+  overflow: visible;
+  transform-style: preserve-3d;
+}
+
+.spin {
+  transform-origin: 170px 170px;
+  animation: ruota 2.8s linear 1.15s infinite;
+}
+
+.spinLento {
+  transform-origin: 170px 170px;
+  animation: ruota 6s linear 1.15s infinite;
+}
+
+.barrel {
+  transform-origin: 170px 170px;
+  opacity: 0;
+}
+
+.barrel1 {
+  animation: esce-allunga-1 0.7s cubic-bezier(0.22, 1, 0.36, 1) 1.15s forwards;
+}
+
+.barrel2 {
+  animation: esce-allunga-2 0.7s cubic-bezier(0.22, 1, 0.36, 1) 1.22s forwards;
+}
+
+.barrel3 {
+  animation: esce-allunga-3 0.7s cubic-bezier(0.22, 1, 0.36, 1) 1.3s forwards;
+}
+
+.barrel4 {
+  animation: esce-allunga-4 0.7s cubic-bezier(0.22, 1, 0.36, 1) 1.38s forwards;
+}
+
+.spin2 {
+  animation-delay: 1.05s;
+}
+
+.spin3 {
+  animation-delay: 0.95s;
+}
+
+.nome {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  font-family: "Poppins Intro", sans-serif;
+  font-weight: 300;
+  font-size: clamp(1.4rem, 4.5vw, 2rem);
+  letter-spacing: 0.12em;
+  text-transform: lowercase;
+  line-height: 0.95;
+  text-align: center;
+  opacity: 0;
+  margin: 0;
+  animation: materializza-nome 0.55s ease-out 1.35s forwards;
+}
+
+.riga {
+  display: block;
+  white-space: nowrap;
+}
+
+.dicitura {
+  fill: #f3f3f3;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2.2px;
+}
+
+.dicituraSmall {
+  fill: #e8e8e8;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 7px;
+  font-weight: 500;
+  letter-spacing: 1.6px;
+}
+
+@keyframes vita-diaframma {
+  0% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+
+  18% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  75% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes apri-diaframma {
+  from {
+    height: 49%;
+  }
+
+  to {
+    height: 0%;
+  }
+}
+
+@keyframes ruota {
+  50% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes esce-allunga-1 {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  35% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1.7);
+  }
+}
+
+@keyframes esce-allunga-2 {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  35% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1.45);
+  }
+}
+
+@keyframes esce-allunga-3 {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  35% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1.22);
+  }
+}
+
+@keyframes esce-allunga-4 {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  35% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0.35;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes materializza-nome {
+  0% {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes zoom-out-tutto {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(12);
+  }
+}
+
+@keyframes lens {
+  /* Solo scala + rotazione: la forma resta un esagono regolare */
+  0%,
+  10% {
+    transform: translate(-50%, -50%) scale(0) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1) rotate(180deg);
+  }
+}
+
+@keyframes scompare-sfondo {
+  to {
+    opacity: 0;
+  }
+}
+
+/* Accessibilità: niente animazioni, ma overlay e Salta restano visibili */
+@media (prefers-reduced-motion: reduce) {
+
+  .overlay *,
+  .overlay {
+    animation: none !important;
+  }
+}

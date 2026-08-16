@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+/*
+  Token architecture: primitive -> semantic -> component, per the project's
+  design-system convention. Palette is a deliberate near-monochrome (this is a
+  black-and-white photography portfolio) plus one warm accent evoking a
+  darkroom safelight. Locked to a single light theme across every page/section
+  (no mid-page inversion) to match the brand's existing identity.
+*/
+:root {
+  /* primitive (not used directly, only through the semantic layer below) */
+  --raw-grey-950: #0c0c0b;
+  --raw-grey-800: #2b2a27;
+  --raw-grey-600: #6f6d66;
+  --raw-grey-300: #cfccc3;
+  --raw-grey-150: #e5e2da;
+  --raw-grey-50: #faf9f6;
+  /* Accento brand */
+  --raw-amber-600: #d12f1e;
+  --raw-amber-500: #f63724;
+  --raw-amber-400: #f86b5c;
+
+  --navbar-scroll-offset: 0px;
+}
+
+@theme inline {
+  /* semantic (Tailwind utilities: bg-ink, text-muted, border-line, ...) */
+  --color-ink: var(--raw-grey-950);
+  --color-ink-soft: var(--raw-grey-800);
+  --color-muted: var(--raw-grey-600);
+  --color-paper: var(--raw-grey-50);
+  --color-paper-raised: #ffffff;
+  --color-line: var(--raw-grey-150);
+  --color-line-strong: var(--raw-grey-300);
+  --color-accent: var(--raw-amber-500);
+  --color-accent-strong: var(--raw-amber-600);
+  --color-accent-soft: var(--raw-amber-400);
+
+  /* next/font variables, set on <html> in layout.tsx (font-display, font-nav, font-body utilities) */
+  --font-display: var(--font-display);
+  --font-nav: var(--font-nav);
+  --font-body: var(--font-body);
+
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--navbar-scroll-offset);
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body), "Century Gothic", "AppleGothic", sans-serif;
+}
+
+/* Copertura nera pre-paint: evita flash della hero prima dell'intro (solo home) */
+html[data-intro="1"] body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 2147482999;
+  background: #000;
+  pointer-events: none;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display), "Century Gothic", sans-serif;
+}
+
+::selection {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+/* Focus ring: visible everywhere, styled once */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Mobile/tablet landscape: sezioni più compatte in altezza */
+@media (max-width: 1023px) and (orientation: landscape) {
+  #biografia > div,
+  #portfolio > div,
+  #mostre > div,
+  #contatti > div {
+    padding-top: 2.25rem;
+    padding-bottom: 2.25rem;
+  }
+
+  #portfolio > div {
+    /* Esposimetro in basso a dx: meno padding destro */
+    padding-right: 1.25rem;
+  }
+}

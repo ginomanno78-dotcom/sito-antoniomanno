@@ -1017,14 +1017,14 @@ body {
     font-family: 'Century Gothic', 'AppleGothic', sans-serif;
     font-size: 0.9rem;
     font-weight: 500;
-    color: #000000;
+    color: #ffffff;
     text-decoration: underline;
     text-underline-offset: 3px;
     transition: color 0.3s ease;
 }
 
 .biografia-links a:hover {
-    color: #000000;
+    color: #ffffff;
 }
 
 /* Citazione nel testo biografico (sotto «La Mia Fotografia Oggià): corsivo elegante, più piccolo */
@@ -4374,6 +4374,7 @@ body:has(.privacy-page) .site-footer {
         z-index: 2;
     }
 }
+
 /* ===== NOVITÀ FOTO (hero CTA, badge portfolio, gallery) ===== */
 .cta-button {
     position: relative;
@@ -4408,8 +4409,15 @@ body:has(.privacy-page) .site-footer {
 }
 
 @keyframes cta-novita-bounce-y {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-12px); }
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
 }
 
 /*
@@ -4418,14 +4426,21 @@ body:has(.privacy-page) .site-footer {
  */
 @media (max-width: 768px) and (orientation: portrait),
 (min-width: 712px) and (max-width: 1366px) and (orientation: portrait) {
-    #hero > .cta-button.cta-button--bounce {
+    #hero>.cta-button.cta-button--bounce {
         animation-name: cta-novita-bounce-centered;
     }
 }
 
 @keyframes cta-novita-bounce-centered {
-    0%, 100% { transform: translate(-50%, 0); }
-    50% { transform: translate(-50%, -12px); }
+
+    0%,
+    100% {
+        transform: translate(-50%, 0);
+    }
+
+    50% {
+        transform: translate(-50%, -12px);
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
