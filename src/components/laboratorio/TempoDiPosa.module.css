@@ -1,4 +1,4 @@
-/* Modulo profondità di campo — allineato al nero della sezione Laboratorio */
+/* Modulo tempo di posa — allineato al box Laboratorio (niente sfondo a puntini) */
 
 .root {
   /* I figli (titolo, lead, media, controlli) entrano nella subgrid della card */
@@ -88,17 +88,34 @@
   align-self: flex-end;
 }
 
-/* Foto e obiettivo: stesso quadrato 234px */
-.sampleImgContainer,
-.ringImgContainer {
+.exampleImgContainer,
+.shutterLottieContainer {
   width: 234px;
   max-width: 100%;
   aspect-ratio: 1;
   position: relative;
-  margin-top: 0;
 }
 
-.sampleImg {
+.exampleImgInfo {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem;
+  border: 2px dashed rgba(255, 255, 255, 0.35);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.35;
+}
+
+.exampleImgInfoHidden {
+  display: none;
+}
+
+.exampleImg {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -110,47 +127,34 @@
   display: none;
 }
 
-.sampleImgVisible {
+.exampleImgVisible {
   display: block;
 }
 
-.ringImgContainer {
+.shutterLottieContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-left: auto;
 }
 
-.ringImg {
+.lottieCanvas {
   width: 100%;
   height: 100%;
-  min-width: 0;
-  object-fit: contain;
+  max-width: 234px;
+  max-height: 234px;
+  filter: brightness(1.2);
   position: absolute;
   inset: 0;
   margin: auto;
   display: none;
-  /* Diametro visivo = Lottie di dx (~205px su box 234) */
-  transform: scale(0.907);
-  transform-origin: center center;
 }
 
-.ringImgVisible {
+.lottieCanvasVisible {
   display: block;
 }
 
-.flare {
-  display: block;
-  opacity: 0.35;
-}
-
-.reflection {
-  display: block;
-  opacity: 0.5;
-  rotate: 180deg;
-}
-
-.sliderContainer {
+.optionContainer {
   width: 100%;
   max-width: 100%;
   margin: 0;
@@ -161,7 +165,7 @@
   min-height: 7.5rem;
 }
 
-.sliderLabel {
+.optionLabel {
   margin: 0 0 0.75rem;
   font-size: 0.95rem;
   font-weight: 700;
@@ -170,117 +174,115 @@
   color: rgba(255, 255, 255, 0.85);
 }
 
-.apertureSlider {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 1.5px;
-  background: rgba(255, 255, 255, 0.35);
-}
-
-.apertureSlider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: #fff;
-  outline: 1.5px solid #f63724;
-  cursor: pointer;
-}
-
-.apertureSlider::-moz-range-thumb {
-  width: 22px;
-  height: 22px;
-  border: none;
-  border-radius: 50%;
-  background: #fff;
-  outline: 1.5px solid #f63724;
-  cursor: pointer;
-}
-
-.sliderScale {
-  width: 97%;
-  height: 50px;
-  margin: 0 auto;
+.shutterOptionContainer {
   display: flex;
-  justify-content: space-between;
-  padding-top: 0.75rem;
-  padding-bottom: 0.5rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
 }
 
-.scaleValue {
-  width: 2px;
-  height: 12px;
+.shutterOption {
   position: relative;
+  width: 76px;
+  height: 36px;
+  cursor: pointer;
+}
+
+.shutterOption input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.shutterToggle {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  border-bottom-width: 4px;
+  transition: color 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.color1 {
+  border-bottom-color: Gold;
+}
+
+.color2 {
+  border-bottom-color: #eeb448;
+}
+
+.color3 {
+  border-bottom-color: #e69447;
+}
+
+.color4 {
+  border-bottom-color: #dc7444;
+}
+
+.color5 {
+  border-bottom-color: #d45243;
+}
+
+.color6 {
+  border-bottom-color: Crimson;
+}
+
+.shutterOption input:checked + .shutterToggle {
+  background-color: #f63724;
+  border-color: #f63724;
+  color: #fff;
+}
+
+@media (hover: hover) {
+  .shutterToggle:hover {
+    color: #f63724;
+    border-color: #f63724;
+  }
+
+  .shutterOption input:checked + .shutterToggle:hover {
+    color: #fff;
+  }
+}
+
+.gradientLine {
+  width: 100%;
+  height: 4px;
+  position: relative;
+  margin-top: 1.25rem;
+  margin-bottom: 1.75rem;
+  background-image: linear-gradient(to right, Gold, Crimson);
+}
+
+.gradientLine::before {
+  /* \A = a capo CSS; spazio dopo evita escape Unicode errati */
+  content: "Tempo\A lungo";
+  white-space: pre;
+  text-align: left;
+  position: absolute;
+  margin-top: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  left: 0;
   color: rgba(255, 255, 255, 0.75);
 }
 
-.scaleValueActive {
-  color: #f63724;
-}
-
-.scaleValueSm {
-  width: 2px;
-  height: 5px;
-  position: relative;
-  border-left: 2px solid rgba(255, 255, 255, 0.35);
-}
-
-.value1 {
-  border-right: 2px solid rgba(255, 255, 255, 0.35);
-}
-
-.value1::after {
-  content: "1.8";
-  position: relative;
-  left: -2px;
-  top: 8px;
-  font-size: 15px;
+.gradientLine::after {
+  content: "Tempo\A breve";
+  white-space: pre;
+  text-align: right;
+  position: absolute;
+  margin-top: 8px;
+  font-size: 0.75rem;
   font-weight: 700;
-  color: inherit;
-}
-
-.value2 {
-  border-left: 2px solid rgba(255, 255, 255, 0.35);
-}
-
-.value2::after {
-  content: "2.8";
-  position: relative;
-  left: -4px;
-  top: 8px;
-  font-size: 15px;
-  font-weight: 700;
-  color: inherit;
-}
-
-.value3 {
-  border-right: 2px solid rgba(255, 255, 255, 0.35);
-}
-
-.value3::after {
-  content: "4";
-  position: relative;
-  left: -2px;
-  top: 8px;
-  font-size: 15px;
-  font-weight: 700;
-  color: inherit;
-}
-
-.value4 {
-  border-right: 2px solid rgba(255, 255, 255, 0.35);
-}
-
-.value4::after {
-  content: "8";
-  position: relative;
-  top: 8px;
-  left: -4px;
-  font-size: 15px;
-  font-weight: 700;
-  color: inherit;
+  right: 0;
+  color: rgba(255, 255, 255, 0.75);
 }
 
 @media (min-width: 768px) {
@@ -297,11 +299,5 @@
 @media (min-width: 1024px) {
   .title {
     font-size: 0.98rem;
-  }
-}
-
-@media screen and (max-width: 360px) {
-  .sliderScale {
-    width: 96%;
   }
 }

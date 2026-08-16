@@ -62,7 +62,7 @@ export function ApertureDepthOfField() {
             </div>
           </div>
 
-          <div className={styles.mediaCol}>
+          <div className={styles.mediaCol + " " + styles.mediaColLens}>
             <p className={styles.exampleLabel}>Anello del diaframma</p>
             <div className={styles.ringImgContainer}>
               {RING_IMGS.map((ring) => (
@@ -96,7 +96,7 @@ export function ApertureDepthOfField() {
         </div>
 
         <div className={styles.sliderContainer}>
-          <p className={styles.sliderLabel}>Valore di apertura: numero f</p>
+          <p className={styles.sliderLabel}>Valore di apertura: numero F</p>
           <input
             type="range"
             className={styles.apertureSlider}

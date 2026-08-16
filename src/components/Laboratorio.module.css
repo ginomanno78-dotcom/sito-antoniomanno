@@ -1,4 +1,4 @@
-/* Griglia a due box: sx profondità di campo, dx tempo di posa */
+/* Griglia a due box allineati riga per riga (subgrid) */
 
 .grid {
   display: grid;
@@ -11,45 +11,26 @@
   min-width: 0;
   border: 1px solid rgba(255, 255, 255, 0.15);
   padding: 1.25rem 1rem 1.5rem;
-}
-
-.placeholderTitle {
-  margin: 0;
-  font-family: var(--font-body), "Century Gothic", sans-serif;
-  font-size: 17px;
-  font-weight: 400;
-  line-height: 1.2;
-  text-align: left;
+  font-family: var(--font-body), "Century Gothic", "AppleGothic", sans-serif;
   color: #fff;
-}
-
-.placeholderHint {
-  margin: 0.75rem 0 0;
-  font-size: 14px;
-  line-height: 1.65;
-  text-align: justify;
-  text-align-last: left;
-  color: rgba(255, 255, 255, 0.45);
 }
 
 @media (min-width: 768px) {
   .grid {
+    /* 4 righe condivise: titolo | lead | media | controlli */
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto auto;
     gap: 1.5rem;
     margin-top: 2.5rem;
-    align-items: start;
+    align-items: stretch;
   }
 
   .box {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 4;
     padding: 1.5rem 1.25rem 1.75rem;
-  }
-
-  .placeholderTitle {
-    font-size: 25px;
-  }
-
-  .placeholderHint {
-    font-size: 16px;
+    row-gap: 0;
   }
 }
 
