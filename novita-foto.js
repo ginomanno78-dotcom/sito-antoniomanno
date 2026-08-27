@@ -16,13 +16,14 @@
         ttlHours: 48,
         /* publishedAt per gallery: dopo ttlHours quel badge sparisce da solo */
         items: [
-            { id: 'street', count: 2, publishedAt: '2026-08-22T07:38:00+02:00' },
+            { id: 'street', count: 2, publishedAt: '2026-08-27T10:30:00+02:00' },
             { id: 'portraits', count: 4, publishedAt: '2026-08-19T21:38:00+02:00' },
             { id: 'jazz', count: 4, publishedAt: '2026-08-04T20:00:00+02:00' },
             { id: 'arti-mestieri', count: 18, publishedAt: '2026-08-09T20:10:00+02:00' },
             { id: 'fulvio-vellone', count: 27, publishedAt: '2026-08-11T16:40:00+02:00' },
             { id: 'urban', count: 2, publishedAt: '2026-08-17T14:10:00+02:00' },
-            { id: 'landscapes', count: 2, publishedAt: '2026-08-17T14:10:00+02:00' }
+            { id: 'colours', count: 1, publishedAt: '2026-08-27T10:30:00+02:00' },
+            { id: 'landscapes', count: 1, publishedAt: '2026-08-27T10:30:00+02:00' }
         ]
     };
     /* ===== fine config ===== */
