@@ -24,7 +24,8 @@
             { id: 'urban', count: 2, publishedAt: '2026-08-17T14:10:00+02:00' },
             { id: 'colours', count: 1, publishedAt: '2026-08-27T10:30:00+02:00' },
             { id: 'landscapes', count: 1, publishedAt: '2026-08-27T10:30:00+02:00' },
-            { id: 'country-market', count: 4, publishedAt: '2026-09-08T10:34:45+02:00' }
+            { id: 'country-market', count: 4, publishedAt: '2026-09-08T10:34:45+02:00' },
+            { id: 'windows', count: 1, publishedAt: '2026-09-08T10:47:04+02:00' }
         ]
     };
     /* ===== fine config ===== */
